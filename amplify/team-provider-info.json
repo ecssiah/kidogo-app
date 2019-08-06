@@ -1,0 +1,19 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "kidogoapp-prod-20190805204131-authRole",
+            "UnauthRoleArn": "arn:aws:iam::894706014111:role/kidogoapp-prod-20190805204131-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::894706014111:role/kidogoapp-prod-20190805204131-authRole",
+            "Region": "eu-west-2",
+            "DeploymentBucketName": "kidogoapp-prod-20190805204131-deployment",
+            "UnauthRoleName": "kidogoapp-prod-20190805204131-unauthRole",
+            "StackName": "kidogoapp-prod-20190805204131",
+            "StackId": "arn:aws:cloudformation:eu-west-2:894706014111:stack/kidogoapp-prod-20190805204131/16f4e2e0-b7fc-11e9-af73-0a1170ef5528"
+        },
+        "categories": {
+            "auth": {
+                "cognito3dfe9ca6": {}
+            }
+        }
+    }
+}

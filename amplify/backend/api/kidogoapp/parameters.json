@@ -1,0 +1,10 @@
+{
+    "AppSyncApiName": "kidogoapp",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognito3dfe9ca6",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

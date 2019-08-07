@@ -107,7 +107,6 @@ const Home = (props) => {
             { flex: 0.5, marginRight: 5 }
           ]}
           onPress={() => {
-            console.log(props)
             props.navigation.navigate('SignUp')
           }}
         >

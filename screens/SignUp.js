@@ -58,7 +58,6 @@ const SignUp = (props) => {
     setTimeout(() => setError(null), 2000)
   }
 
-  console.log(styles)
 
   return (
     <LinearGradient
@@ -66,6 +65,8 @@ const SignUp = (props) => {
       colors={[Colors.gradient_dark, Colors.gradient_light]}
     >
       <ScrollView >
+        <Spacer height={40} />
+
         <CaregiverEntry
           username={username}
           passwordd={password}

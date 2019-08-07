@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Colors } from '../constants/Style';
 
-const Home = () => {
-  const [username, setUsername] = React.useState('')
-  const [password, setPassword] = React.useState('')
-  const [hidePassword, setHidePassword] = React.useState(true)
-  const [loading, setLoading] = React.useState(false)
-  const [soundObject, setSoundObject] = React.useState(null)
-  const [error, setError] = React.useState(null)
+const Home = (props) => {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [hidePassword, setHidePassword] = useState(true)
+  const [loading, setLoading] = useState(false)
+  const [soundObject, setSoundObject] = useState(null)
+  const [error, setError] = useState(null)
+
 
   const toggleShowPassword = () => setHidePassword(!hidePassword)
+
 
   const onSignIn = () => {
 
   }
+
 
   const toggleHelpAudio = async () => {
     try {
@@ -37,10 +40,12 @@ const Home = () => {
     }
   }
 
+
   const showError = error => {
     setError(error)
     setTimeout(() => setError(null), 2000)
   }
+
 
   return (
     <LinearGradient
@@ -101,7 +106,10 @@ const Home = () => {
             styles.button,
             { flex: 0.5, marginRight: 5 }
           ]}
-          onPress={() => navigate('Signup')}
+          onPress={() => {
+            console.log(props)
+            props.navigation.navigate('SignUp')
+          }}
         >
           <Text style={styles.btnText}>Sign Up</Text>
         </TouchableOpacity>

@@ -1,4 +1,7 @@
-import { StyleSheet } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
+
+export const SCREEN_WIDTH = Dimensions.get("window").width
+export const SCREEN_HEIGHT = Dimensions.get("window").height
 
 const styles = StyleSheet.create({
   container: {
@@ -90,6 +93,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
   },
+  homeLogo: {
+    alignSelf: 'center',
+  },
   error: {
     position: 'absolute',
     top: 0,
@@ -113,6 +119,11 @@ const styles = StyleSheet.create({
     flex: 0.5,
     marginVertical: 20,
     borderRadius: 2,
+  },
+  signUpButton: {
+    borderWidth: 1,
+    borderColor: '#ffffff80',
+    marginHorizontal: 20,
   },
   btnText: {
     fontSize: 24,

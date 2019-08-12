@@ -6,15 +6,12 @@ import { Audio } from 'expo-av'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Colors } from '../constants/Style';
 import { Icon } from 'react-native-elements'
-import bcrypt from 'react-native-bcrypt'
 import styles from '../components/styles'
 
 import {
   SignUpCaregiver, SignInCaregiver, ConfirmCaregiver
 } from '../utilities/auth'
-import {
-  createCentre, createCaregiver
-} from '../utilities/store';
+import { createCaregiver } from '../utilities/store';
 
 import Loading from '../components/Loading'
 import Spacer from '../components/Spacer'
@@ -46,6 +43,9 @@ const SignUp = (props) => {
       password,
       email,
       phone,
+      centreName,
+      address,
+      city,
     }
 
     await SignUpCaregiver(caregiverData)
@@ -59,25 +59,25 @@ const SignUp = (props) => {
     const confirmResult = await ConfirmCaregiver(username, code)
 
     if (confirmResult === 'SUCCESS') {
-      const centreId = await createCentre({
-        centreName,
-        address,
-        city,
-      })
-
-      const caregiverId = await createCaregiver({
+      await createCaregiver({
         username,
         password,
         email,
         firstName,
         lastName,
         phone,
-        centreId,
+        centreName,
+        address,
+        city,
       })
+
+      await SignInCaregiver(username, password)
+
+      props.navigation.navigate('Dash')
 
       setConfirmModalVisible(false)
     } else {
-
+      console.log("Caregiver confirmation failed")
     }
   }
 
@@ -141,25 +141,14 @@ const SignUp = (props) => {
               onChangeCity={setCity}
             />
 
-            <View
-              style={{
-                marginVertical: 20,
-                marginHorizontal: 10,
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-              }}
+            <Spacer large />
+
+            <TouchableOpacity
+              style={styles.signUpButton}
+              onPress={onPressSignUp}
             >
-              <View style={{ flex: 0.5 }} />
-              <TouchableOpacity
-                style={[
-                  styles.button,
-                  { marginVertical: 20, flex: 0.5, alignSelf: 'flex-end' }
-                ]}
-                onPress={onPressSignUp}
-              >
-                <Text style={styles.btnText}>Confirm Signup</Text>
-              </TouchableOpacity>
-            </View>
+              <Text style={styles.btnText}>Confirm Signup</Text>
+            </TouchableOpacity>
 
             <Spacer height={322} />
           </ScrollView>

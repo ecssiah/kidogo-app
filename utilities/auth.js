@@ -26,9 +26,7 @@ export const SignUpCaregiver = async (caregiverData) => {
 
 export const ConfirmCaregiver = async (username, code) => {
   try {
-    const userData = await Auth.confirmSignUp(username, code)
-
-    return userData
+    return await Auth.confirmSignUp(username, code)
   } catch(error) {
     console.error(error)
   }
@@ -46,9 +44,8 @@ export const ResendConfirmCode = async (username) => {
 
 export const SignInCaregiver = async (username, password) => {
   try {
-    const user = await Auth.signIn(username, password)
-
-    return user
+    await Auth.signIn(username, password)
+    await SecureStore.setItemAsync('CURRENT_USER', username)
   } catch(error) {
     console.error(error)
   }

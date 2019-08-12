@@ -6,6 +6,7 @@ import { createAppContainer } from 'react-navigation';
 import * as Font from 'expo-font'
 import bcrypt from 'react-native-bcrypt'
 import isaac from 'isaac'
+import { resetStore } from './utilities/store';
 
 Amplify.configure(awsconfig)
 
@@ -19,6 +20,7 @@ const AppContainer = createAppContainer(AppNavigator)
 
 const App = () => {
   useEffect(() => {
+    resetStore()
     loadFonts()
   }, [])
 

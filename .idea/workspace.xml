@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/CaregiverEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CaregiverEntry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/CentreEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CentreEntry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ConfirmModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ConfirmModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/SignUp.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utilities/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/store.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +18,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="73" />
-    <option name="y" value="83" />
+    <option name="x" value="81" />
+    <option name="y" value="104" />
     <option name="width" value="1257" />
     <option name="height" value="724" />
   </component>

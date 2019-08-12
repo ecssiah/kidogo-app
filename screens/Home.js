@@ -7,23 +7,13 @@ import { Audio } from 'expo-av'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Colors } from '../constants/Style';
 import styles from '../components/styles'
-import * as SecureStore from 'expo-secure-store'
+
+import Spacer from '../components/Spacer'
+
 
 const Home = (props) => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [hidePassword, setHidePassword] = useState(true)
-  const [loading, setLoading] = useState(false)
   const [soundObject, setSoundObject] = useState(null)
   const [error, setError] = useState(null)
-
-
-  const onSignIn = () => {
-
-  }
-
-
-  const toggleShowPassword = () => setHidePassword(!hidePassword)
 
 
   const toggleHelpAudio = async () => {
@@ -56,74 +46,30 @@ const Home = (props) => {
       style={{ flex: 1 }}
       colors={[Colors.gradient_dark, Colors.gradient_light]}
     >
-      <View style={styles.imageHolder}>
-        <Image
-          source={require('../assets/images/kidogo_logo.png')}
-          style={{ width: 180, height: 180, margin: 20 }}
-        />
-      </View>
+      <Spacer xlarge />
 
-      <TextInput
-        style={styles.input}
-        value={username}
-        onChangeText={setUsername}
+      <Image
+        style={styles.homeLogo}
+        source={require('../assets/images/kidogo_logo.png')}
       />
 
-      <Text style={styles.label} >
-        Username
-      </Text>
+      <Spacer small />
 
-      <View style={styles.passwordHolder}>
-        <TextInput
-          style={[
-            styles.input,
-            { flex: 0.9, marginRight: 0 },
-          ]}
-          value={password}
-          secureTextEntry={hidePassword}
-          onChangeText={setPassword}
-        />
-
-        <View style={styles.showButton} >
-          <TouchableOpacity onPress={toggleShowPassword} >
-            <Icon
-              color="white"
-              name={hidePassword ? "visibility-off" : 'visibility'}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      <Text style={styles.label} >
-        Password
-      </Text>
-
-      <View
-        style={{
-          flexDirection: 'row',
-          marginHorizontal: 10,
-          height: 50,
-        }}
+      <TouchableOpacity
+        style={styles.signUpButton}
+        onPress={() => props.navigation.navigate('SignUp')}
       >
-        <TouchableOpacity
-          style={[
-            styles.button,
-            { flex: 0.5, marginRight: 5 }
-          ]}
-          onPress={() => {
-            props.navigation.navigate('SignUp')
-          }}
-        >
-          <Text style={styles.btnText}>Sign Up</Text>
-        </TouchableOpacity>
+        <Text style={styles.btnText}>Sign Up</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity
-          style={[styles.button, { flex: 0.5, marginLeft: 5 }]}
-          onPress={onSignIn}
-        >
-          <Text style={styles.btnText}>Sign In</Text>
-        </TouchableOpacity>
-      </View>
+      <Spacer medium />
+
+      <TouchableOpacity
+        style={styles.signUpButton}
+        onPress={() => props.navigation.navigate('Recover')}
+      >
+        <Text style={styles.btnText}>Recover Account</Text>
+      </TouchableOpacity>
 
       <TouchableOpacity
         style={{
@@ -139,8 +85,6 @@ const Home = (props) => {
           <Icon name="record-voice-over" color="#3C233D" size={36} />
         </View>
       </TouchableOpacity>
-
-      { loading ? <Loading /> : null }
 
       {
         !!error === true

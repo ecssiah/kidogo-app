@@ -3,44 +3,26 @@ import bcrypt from 'react-native-bcrypt'
 import uuid from 'uuid'
 
 
-export const createCentre = async (centreData) => {
-  const centreId = uuid()
-
-  centreData = {
-    id: centreId,
-    ...centreData,
-  }
-
-  console.log(centreData)
-
-  try {
-    // await SecureStore.setItemAsync('CENTRE', JSON.stringify(centres))
-
-    return centreId
-  } catch(error) {
-    console.error(error)
-
-    return null
-  }
-}
-
-
 export const createCaregiver = async (caregiverData) => {
   const caregiverId = uuid()
 
   try {
-    const saltRounds = 10
-    const hashedPassword = await bcrypt.hash(caregiverData.password, saltRounds)
+    bcrypt.hash(
+      caregiverData.password, 10,
+      async (err, hash) => {
+        caregiverData = {
+          id: caregiverId,
+          ...caregiverData,
+          password: hash,
+        }
 
-    caregiverData = {
-      id: caregiverId,
-      ...caregiverData,
-      password: hashedPassword,
-    }
+        await SecureStore.setItemAsync(
+          'CAREGIVER',
+          JSON.stringify(caregiverData)
+        )
+      }
+    )
 
-    console.log(caregiverData)
-
-    // await SecureStore.setItemAsync('CAREGIVERS', JSON.stringify(caregivers))
 
     return caregiverId
   } catch(error) {
@@ -83,4 +65,19 @@ export const getQuestions = async () => {
   const questionsResp = await SecureStore.getItemAsync('QUESTIONS')
 
   return questionsResp === null ? {} : JSON.parse(questionsResp)
+}
+
+
+export const resetStore = async () => {
+  try {
+    await SecureStore.setItemAsync('CURRENT_USER', JSON.stringify({}))
+    await SecureStore.setItemAsync('CAREGIVER', JSON.stringify({}))
+    await SecureStore.setItemAsync('PAYMENTS', JSON.stringify({}))
+    await SecureStore.setItemAsync('ACCOUNTS', JSON.stringify({}))
+    await SecureStore.setItemAsync('FINANCES', JSON.stringify({}))
+    await SecureStore.setItemAsync('QUESTIONS', JSON.stringify({}))
+    await SecureStore.setItemAsync('ATTENDANCE', JSON.stringify({}))
+  } catch(error) {
+    console.error(error)
+  }
 }

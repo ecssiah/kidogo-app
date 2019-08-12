@@ -1,9 +1,16 @@
 import { Dimensions, StyleSheet } from 'react-native'
 
-export const SCREEN_WIDTH = Dimensions.get("window").width
-export const SCREEN_HEIGHT = Dimensions.get("window").height
+export const Screen = {
+  Width: Dimensions.get("window").width,
+  Height: Dimensions.get("window").height,
+}
 
-const styles = StyleSheet.create({
+export const Colors = {
+  gradient_dark: '#11011b',
+  gradient_light: '#3c233d',
+}
+
+const Styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 5,
@@ -20,13 +27,13 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   input: {
-    borderBottomWidth: 2,
-    borderColor: 'white',
-    opacity: 0.5,
-    margin: 10,
     fontSize: 18,
     color: 'white',
+    borderColor: 'white',
+    borderBottomWidth: 2,
+    margin: 10,
     paddingLeft: 10,
+    opacity: 0.5,
   },
   codeInput: {
     color: 'white',
@@ -47,12 +54,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   showButton: {
-    borderBottomWidth: 2,
+    flex: 0.1,
     borderColor: 'white',
+    borderBottomWidth: 2,
     opacity: 0.5,
     marginVertical: 10,
     marginRight: 10,
-    flex: 0.1
   },
   nameHolder: {
     flexDirection: 'row'
@@ -164,4 +171,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default styles
+export default Styles

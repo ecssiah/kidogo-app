@@ -2,49 +2,49 @@ import React, { useState } from 'react'
 import {
   View, Text, TextInput, Image,
 } from 'react-native'
-import styles from './styles'
+import { Styles } from '../constants/Style';
 
 
 const CentreEntry = (props) => {
   return (
     <View>
-      <Text style={styles.h1}>Centre</Text>
+      <Text style={Styles.h1}>Centre</Text>
 
       <Image
-        style={styles.img}
+        style={Styles.img}
         source={require('../assets/images/centre.png')}
       />
 
       <TextInput
-        style={styles.input}
+        style={Styles.input}
         blurOnSubmit={false}
         value={props.centreName}
         onChangeText={props.onChangeCentreName}
       />
 
-      <Text style={styles.label} >
+      <Text style={Styles.label} >
         Centre Name
       </Text>
 
       <TextInput
-        style={styles.input}
+        style={Styles.input}
         blurOnSubmit={false}
         value={props.address}
         onChangeText={props.onChangeAddress}
       />
 
-      <Text style={styles.label} >
+      <Text style={Styles.label} >
         Address
       </Text>
 
       <TextInput
-        style={styles.input}
+        style={Styles.input}
         blurOnSubmit={false}
         value={props.city}
         onChangeText={props.onChangeCity}
       />
 
-      <Text style={styles.label} >
+      <Text style={Styles.label} >
         City
       </Text>
     </View>

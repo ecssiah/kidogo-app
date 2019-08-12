@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Image, StyleSheet, View, Text, TextInput, TouchableOpacity
 } from 'react-native';
 import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
 import { LinearGradient } from 'expo-linear-gradient'
-import { Colors } from '../constants/Style';
-import styles from '../components/styles'
+import { Colors, Styles } from '../constants/Style';
+import { UserSignedIn } from '../utilities/auth';
 
 import Spacer from '../components/Spacer'
 
@@ -14,6 +14,17 @@ import Spacer from '../components/Spacer'
 const Home = (props) => {
   const [soundObject, setSoundObject] = useState(null)
   const [error, setError] = useState(null)
+
+  useEffect(() => {
+    checkSignIn()
+  }, [])
+
+
+  const checkSignIn = async () => {
+    if (await UserSignedIn()) {
+      props.navigation.navigate('Dash')
+    }
+  }
 
 
   const toggleHelpAudio = async () => {
@@ -49,26 +60,26 @@ const Home = (props) => {
       <Spacer xlarge />
 
       <Image
-        style={styles.homeLogo}
+        style={Styles.homeLogo}
         source={require('../assets/images/kidogo_logo.png')}
       />
 
       <Spacer small />
 
       <TouchableOpacity
-        style={styles.signUpButton}
+        style={Styles.signUpButton}
         onPress={() => props.navigation.navigate('SignUp')}
       >
-        <Text style={styles.btnText}>Sign Up</Text>
+        <Text style={Styles.btnText}>Sign Up</Text>
       </TouchableOpacity>
 
       <Spacer medium />
 
       <TouchableOpacity
-        style={styles.signUpButton}
+        style={Styles.signUpButton}
         onPress={() => props.navigation.navigate('Recover')}
       >
-        <Text style={styles.btnText}>Recover Account</Text>
+        <Text style={Styles.btnText}>Recover Account</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -88,8 +99,8 @@ const Home = (props) => {
 
       {
         !!error === true
-          ? <View style={styles.error} >
-              <Text style={styles.errorText} >
+          ? <View style={Styles.error} >
+              <Text style={Styles.errorText} >
                 { error }
               </Text>
             </View>

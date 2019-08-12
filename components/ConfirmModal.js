@@ -3,8 +3,7 @@ import {
   Modal, View, Text, TextInput, TouchableOpacity
 } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
-import { Colors } from '../constants/Style';
-import styles from './styles'
+import { Colors, Styles } from '../constants/Style';
 
 const ConfirmModal = (props) => {
   const [code1, setCode1] = React.useState('')
@@ -71,7 +70,7 @@ const ConfirmModal = (props) => {
           }}
         >
           <TextInput
-            style={styles.codeInput}
+            style={Styles.codeInput}
             maxLength={1}
             textAlign={'center'}
             keyboardType="number-pad"
@@ -80,7 +79,7 @@ const ConfirmModal = (props) => {
           />
 
           <TextInput
-            style={styles.codeInput}
+            style={Styles.codeInput}
             maxLength={1}
             textAlign={'center'}
             keyboardType="number-pad"
@@ -89,7 +88,7 @@ const ConfirmModal = (props) => {
           />
 
           <TextInput
-            style={styles.codeInput}
+            style={Styles.codeInput}
             maxLength={1}
             textAlign={'center'}
             keyboardType="number-pad"
@@ -98,7 +97,7 @@ const ConfirmModal = (props) => {
           />
 
           <TextInput
-            style={styles.codeInput}
+            style={Styles.codeInput}
             maxLength={1}
             textAlign={'center'}
             keyboardType="number-pad"
@@ -107,7 +106,7 @@ const ConfirmModal = (props) => {
           />
 
           <TextInput
-            style={styles.codeInput}
+            style={Styles.codeInput}
             maxLength={1}
             textAlign={'center'}
             keyboardType="number-pad"
@@ -116,7 +115,7 @@ const ConfirmModal = (props) => {
           />
 
           <TextInput
-            style={styles.codeInput}
+            style={Styles.codeInput}
             maxLength={1}
             textAlign={'center'}
             keyboardType="number-pad"
@@ -127,19 +126,19 @@ const ConfirmModal = (props) => {
 
         <View style={{ flexDirection: 'row', margin: 10 }}>
           <TouchableOpacity
-            style={[styles.button, { flex: 0.5, marginRight: 5 }]}
+            style={[Styles.button, { flex: 0.5, marginRight: 5 }]}
             onPress={onResend}
           >
-            <Text style={styles.btnText}>
+            <Text style={Styles.btnText}>
               Resend
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.button, { flex: 0.5, marginLeft: 5 }]}
+            style={[Styles.button, { flex: 0.5, marginLeft: 5 }]}
             onPress={onCodeSubmit}
           >
-            <Text style={styles.btnText}>
+            <Text style={Styles.btnText}>
               Confirm
             </Text>
           </TouchableOpacity>

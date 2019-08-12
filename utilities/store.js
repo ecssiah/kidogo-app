@@ -70,7 +70,7 @@ export const getQuestions = async () => {
 
 export const resetStore = async () => {
   try {
-    await SecureStore.setItemAsync('CURRENT_USER', JSON.stringify({}))
+    await SecureStore.setItemAsync('CURRENT_USER', '')
     await SecureStore.setItemAsync('CAREGIVER', JSON.stringify({}))
     await SecureStore.setItemAsync('PAYMENTS', JSON.stringify({}))
     await SecureStore.setItemAsync('ACCOUNTS', JSON.stringify({}))

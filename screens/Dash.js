@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { ScrollView } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
+
 import Header from '../components/Header'
-import DashView from '../components/DashView'
-import ActionButtons from '../components/ActionButtons'
+import DashContent from '../components/DashContent'
+import { Colors } from '../constants/Style';
 
 
 const Dash = (props) => {
@@ -26,13 +27,12 @@ const Dash = (props) => {
   return (
     <LinearGradient
       style={{ flex: 1 }}
-      colors={['#11011B', '#3C233D']}
+      colors={[Colors.gradient_dark, Colors.gradient_light]}
     >
       <Header onHeader={onHeader} />
 
       <ScrollView>
-        <DashView onDashView={onDashView} />
-        <ActionButtons onActionButtons={onActionButtons} />
+        <DashContent onDashView={onDashView} />
       </ScrollView>
     </LinearGradient>
   )

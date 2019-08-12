@@ -4,9 +4,8 @@ import {
 } from 'react-native';
 import { Audio } from 'expo-av'
 import { LinearGradient } from 'expo-linear-gradient'
-import { Colors } from '../constants/Style';
+import { Colors, Styles } from '../constants/Style';
 import { Icon } from 'react-native-elements'
-import styles from '../components/styles'
 
 import {
   SignUpCaregiver, SignInCaregiver, ConfirmCaregiver
@@ -144,10 +143,10 @@ const SignUp = (props) => {
             <Spacer large />
 
             <TouchableOpacity
-              style={styles.signUpButton}
+              style={Styles.signUpButton}
               onPress={onPressSignUp}
             >
-              <Text style={styles.btnText}>Confirm Signup</Text>
+              <Text style={Styles.btnText}>Confirm Signup</Text>
             </TouchableOpacity>
 
             <Spacer height={322} />
@@ -175,8 +174,8 @@ const SignUp = (props) => {
       />
 
       {!!error
-        ? <View style={styles.error}>
-            <Text style={styles.errorText}>{error}</Text>
+        ? <View style={Styles.error}>
+            <Text style={Styles.errorText}>{error}</Text>
           </View>
         : null
       }

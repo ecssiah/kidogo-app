@@ -3,7 +3,7 @@ import {
   View, Text, TextInput, Image, TouchableOpacity
 } from 'react-native'
 import { Icon } from 'react-native-elements'
-import styles from './styles'
+import { Styles } from '../constants/Style';
 
 
 const CaregiverEntry = (props) => {
@@ -13,31 +13,31 @@ const CaregiverEntry = (props) => {
 
 
   return (
-    <View styles={styles.container} >
-      <Text style={[styles.h1, { fontSize: 35 }, styles.raleway]} >
+    <View style={Styles.container} >
+      <Text style={[Styles.h1, { fontSize: 35 }, Styles.raleway]} >
         Caregiver
       </Text>
 
       <Image
         source={require('../assets/images/caregiver.png')}
-        style={styles.img}
+        style={Styles.img}
       />
 
       <TextInput
-        style={styles.input}
+        style={Styles.input}
         value={props.username}
         onChangeText={props.onChangeUsername}
         blurOnSubmit={false}
       />
 
-      <Text style={styles.label} >
+      <Text style={Styles.label} >
         Username
       </Text>
 
-      <View style={styles.passwordHolder}>
+      <View style={Styles.passwordHolder}>
         <TextInput
           style={[
-            styles.input,
+            Styles.input,
             { flex: 0.9, marginRight: 0 },
           ]}
           secureTextEntry={hidePassword}
@@ -46,7 +46,7 @@ const CaregiverEntry = (props) => {
           blurOnSubmit={false}
         />
 
-        <View style={styles.showButton} >
+        <View style={Styles.showButton} >
           <TouchableOpacity onPress={toggleHidePassword} >
             <Icon
               color="white"
@@ -56,51 +56,51 @@ const CaregiverEntry = (props) => {
         </View>
       </View>
 
-      <Text style={styles.label} >
+      <Text style={Styles.label} >
         Password
       </Text>
 
       <TextInput
-        style={styles.input}
+        style={Styles.input}
         value={props.firstName}
         blurOnSubmit={false}
         onChangeText={props.onChangeFirstName}
       />
 
-      <Text style={styles.label} >
+      <Text style={Styles.label} >
         Name
       </Text>
 
       <TextInput
-        style={styles.input}
+        style={Styles.input}
         value={props.lastName}
         blurOnSubmit={false}
         onChangeText={props.onChangeLastName}
       />
 
-      <Text style={styles.label} >
+      <Text style={Styles.label} >
         Surname
       </Text>
 
       <TextInput
-        style={styles.input}
+        style={Styles.input}
         value={props.email}
         onChangeText={props.onChangeEmail}
       />
 
-      <Text style={styles.label} >
+      <Text style={Styles.label} >
         Email
       </Text>
 
       <TextInput
-        style={styles.input}
+        style={Styles.input}
         keyboardType="number-pad"
         maxLength={11}
         value={props.phone}
         onChangeText={props.onChangePhone}
       />
 
-      <Text style={styles.label} >
+      <Text style={Styles.label} >
         Phone
       </Text>
     </View>

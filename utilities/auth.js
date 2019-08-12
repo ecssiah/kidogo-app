@@ -3,6 +3,17 @@ import bcrypt from 'react-native-bcrypt'
 import * as SecureStore from 'expo-secure-store'
 
 
+export const UserSignedIn = async () => {
+  try {
+    const currentUser = await SecureStore.getItemAsync('CURRENT_USER')
+
+    return currentUser !== ""
+  } catch(error) {
+    console.error(error)
+  }
+}
+
+
 export const SignUpCaregiver = async (caregiverData) => {
   // const phone_number = '+254' + phone.split('-').join('')
   const phone_number = '+1' + caregiverData.phone.split('-').join('')

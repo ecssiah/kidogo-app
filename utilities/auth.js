@@ -1,84 +1,74 @@
 import { Auth } from 'aws-amplify'
-import { SecureStore } from 'expo'
+import bcrypt from 'react-native-bcrypt'
+import * as SecureStore from 'expo-secure-store'
 
 
-export async function signUp(username, password, phone, showError) {
-  const phone_number = '+254' + phone.split('-').join('')
+export const SignUpCaregiver = async (caregiverData) => {
+  // const phone_number = '+254' + phone.split('-').join('')
+  const phone_number = '+1' + caregiverData.phone.split('-').join('')
 
-  await Auth.signUp({
-    username,
-    password,
-    attributes: {
-      preferred_username: username,
-      phone_number,
-    },
-  })
-    .then(data => console.log(data))
-    .catch(err => {
-      showError(err.message || 'Something went wrong')
-    })
-}
-
-
-export const signIn = async (username, password, success, failure) => {
-  const signInResp = Auth.signIn({ username, password })
-    .then(async user => {
-      const tokenObj = {
-        accessToken: user.signInUserSession.accessToken.jwtToken,
-        idToken: user.signInUserSession.idToken.jwtToken,
-        refreshToken: user.signInUserSession.refreshToken.token,
-      }
-
-      await SecureStore.setItemAsync('_TOKEN', JSON.stringify(tokenObj))
-
-      return Promise.all([
-        success(false, 'needSignIn'),
-        success(false, 'loading'),
-        failure('Authorization successful')
-      ])
-    })
-    .catch(err => {
-      console.log(err)
-      return failure('Sign in unsuccessful')
+  try {
+    const data = await Auth.signUp({
+      username: caregiverData.username,
+      password: caregiverData.password,
+      attributes: {
+        email: caregiverData.email,
+        phone_number,
+      },
     })
 
-  return signInResp
+    return data
+  } catch(error) {
+    console.error(error)
+  }
 }
 
 
-export function confirm(username, code, success, failure, changeLoading) {
-  Auth.confirmSignUp(username, code, { forceAliasCreation: true })
-    .then(() => success())
-    .catch(err => {
-      return Promise.all([
-        failure(err.message || 'Error confirming code.'),
-        changeLoading(false, 'loading')
-      ])
-    })
+export const ConfirmCaregiver = async (username, code) => {
+  try {
+    const userData = await Auth.confirmSignUp(username, code)
+
+    return userData
+  } catch(error) {
+    console.error(error)
+  }
 }
 
 
-export function resend(username, failure) {
-  Auth.resendSignUp(username)
-    .then(() => console.log('code resent successfully'))
-    .catch(err => failure(err))
+export const ResendConfirmCode = async (username) => {
+  try {
+    await Auth.resendSignUp(username)
+  } catch(error) {
+    console.error(error)
+  }
 }
 
 
-export function changePassword(oldPassword, newPassword) {
-  Auth.currentAuthenticatedUser()
-    .then(user => Auth.changePassword(user, oldPassword, newPassword))
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
+export const SignInCaregiver = async (username, password) => {
+  try {
+    const user = await Auth.signIn(username, password)
+
+    return user
+  } catch(error) {
+    console.error(error)
+  }
 }
 
 
-export function forgotPassword(username) {
-  Auth.forgotPassword(username)
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
+// const ChangeUserPassword = async (oldPassword, newPassword) => {
+//   Auth.currentAuthenticatedUser()
+//     .then(user => Auth.changePassword(user, oldPassword, newPassword))
+//     .then(data => console.log(data))
+//     .catch(err => console.log(err))
+// }
 
-  Auth.forgotPasswordSubmit(username, code, new_password)
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
-}
+
+// const ForgotUserPassword = (username) => {
+//   Auth.forgotPassword(username)
+//     .then(data => console.log(data))
+//     .catch(err => console.log(err))
+
+//   Auth.forgotPasswordSubmit(username, code, new_password)
+//     .then(data => console.log(data))
+//     .catch(err => console.log(err))
+// }

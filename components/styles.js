@@ -1,56 +1,64 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    padding:5,
-    paddingBottom:50
+  container: {
+    flex: 1,
+    padding: 5,
+    paddingBottom: 50,
   },
-  h1:{
-    fontSize:36,
-    color:'#ffffff80',
-    margin:10
+  h1: {
+    fontSize: 36,
+    color: '#ffffff80',
+    margin: 10,
   },
   h2: {
     fontSize: 24,
     color: '#ffffff80',
-    margin: 10
+    margin: 10,
   },
-  input:{
+  input: {
     borderBottomWidth: 2,
     borderColor: 'white',
-    opacity:0.5,
-    margin:10,
-    fontSize:18,
-    color:'white',
-    paddingLeft:10
+    opacity: 0.5,
+    margin: 10,
+    fontSize: 18,
+    color: 'white',
+    paddingLeft: 10,
   },
-  label:{
-    fontSize:14,
-    opacity:0.5,
-    color:'white',
-    marginLeft:20,
-    marginBottom:10
+  codeInput: {
+    color: 'white',
+    fontSize: 22,
+    borderWidth: 2,
+    borderColor: 'white',
+    opacity: 0.5,
+    margin: 10,
   },
-  passwordHolder:{
-    flexDirection:'row',
+  label: {
+    fontSize: 14,
+    opacity: 0.5,
+    color: 'white',
+    marginLeft: 20,
+    marginBottom: 10,
   },
-  showButton:{
-    borderBottomWidth:2,
-    borderColor:'white',
-    opacity:0.5,
-    marginVertical:10,
-    marginRight:10,
-    flex:0.1
+  passwordHolder: {
+    flexDirection: 'row',
   },
-  nameHolder:{
-    flexDirection:'row'
+  showButton: {
+    borderBottomWidth: 2,
+    borderColor: 'white',
+    opacity: 0.5,
+    marginVertical: 10,
+    marginRight: 10,
+    flex: 0.1
   },
-  focused:{
-    opacity:1,
-    fontSize:18
+  nameHolder: {
+    flexDirection: 'row'
   },
-  next:{
+  focused: {
+    opacity: 1,
+    fontSize: 18
+  },
+  next: {
     flexDirection: 'row',
     marginRight: 10,
     marginTop: 20,
@@ -60,42 +68,42 @@ const styles = StyleSheet.create({
     height: 50,
     width: 250,
   },
-  nextText:{
-    fontSize:24,
-    color:'white',
-    marginRight:10,
-    textAlign:'right',
-    height:50,
-    lineHeight:50,
+  nextText: {
+    fontSize: 24,
+    color: 'white',
+    marginRight: 10,
+    textAlign: 'right',
+    height: 50,
+    lineHeight: 50,
   },
-  notReady:{
-    opacity:0.5
+  notReady: {
+    opacity: 0.5,
   },
-  ready:{
-    opacity:1
+  ready: {
+    opacity: 1,
   },
-  imageHolder:{
-    height:220,
-    width:220,
-    borderRadius:110,
-    alignSelf:'center',
-    marginTop:20,
-    marginBottom:10
+  imageHolder: {
+    height: 220,
+    width: 220,
+    borderRadius: 110,
+    alignSelf: 'center',
+    marginTop: 20,
+    marginBottom: 10,
   },
-  error:{
+  error: {
     position: 'absolute',
-    top:0,
+    top: 0,
     right: 0,
-    left:0,
+    left: 0,
     height: 75,
     padding: 20,
-    borderWidth:1,
-    borderColor:'#ffffff80',
-    backgroundColor:'#11011B',
+    borderWidth: 1,
+    borderColor: '#ffffff80',
+    backgroundColor: '#11011B',
   },
-  errorText:{
-    color:"white",
-    fontSize:18
+  errorText: {
+    color: "white",
+    fontSize: 18,
   },
   button: {
     height: 50,
@@ -104,7 +112,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     flex: 0.5,
     marginVertical: 20,
-    borderRadius:2
+    borderRadius: 2,
   },
   btnText: {
     fontSize: 24,
@@ -118,31 +126,31 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: '#000000dd'
+    backgroundColor: '#000000dd',
   },
-  title:{
-    fontSize:18,
-    fontWeight:'bold',
-    flex:0.4,
-    color:'#ffffff80',
-    marginLeft:10
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    flex: 0.4,
+    color: '#ffffff80',
+    marginLeft: 10,
   },
-  content:{
-    fontSize:18,
-    color:'#ffffff80',
-    flex:0.6,
-    marginLeft:10
+  content: {
+    fontSize: 18,
+    color: '#ffffff80',
+    flex: 0.6,
+    marginLeft: 10,
   },
   img: {
     height: 200,
     width: 200,
     alignSelf: 'center',
     borderRadius: 100,
-    marginVertical: 10
+    marginVertical: 10,
   },
-  raleway:{
-    fontFamily:'Raleway-Bold'
-  }
+  raleway: {
+    fontFamily:'Raleway-Bold',
+  },
 })
 
 export default styles

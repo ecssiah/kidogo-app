@@ -18,8 +18,19 @@ const CentreEntry = (props) => {
       <TextInput
         style={styles.input}
         blurOnSubmit={false}
-        value={props.address1}
-        onChangeText={props.onChangeAddress1}
+        value={props.centreName}
+        onChangeText={props.onChangeCentreName}
+      />
+
+      <Text style={styles.label} >
+        Centre Name
+      </Text>
+
+      <TextInput
+        style={styles.input}
+        blurOnSubmit={false}
+        value={props.address}
+        onChangeText={props.onChangeAddress}
       />
 
       <Text style={styles.label} >
@@ -29,8 +40,8 @@ const CentreEntry = (props) => {
       <TextInput
         style={styles.input}
         blurOnSubmit={false}
-        value={props.address2}
-        onChangeText={props.onChangeAddress2}
+        value={props.city}
+        onChangeText={props.onChangeCity}
       />
 
       <Text style={styles.label} >

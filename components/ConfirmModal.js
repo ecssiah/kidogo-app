@@ -3,9 +3,8 @@ import {
   Modal, View, Text, TextInput, TouchableOpacity
 } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
-import { confirm, resend } from '../utilities/auth'
-import styles from './styles'
 import { Colors } from '../constants/Style';
+import styles from './styles'
 
 const ConfirmModal = (props) => {
   const [code1, setCode1] = React.useState('')
@@ -16,8 +15,30 @@ const ConfirmModal = (props) => {
   const [code6, setCode6] = React.useState('')
 
 
-  const onCodeSubmit = () => {
+  const onCodeSubmit = async () => {
+    const code = code1 + code2 + code3 + code4 + code5 + code6
 
+    try {
+      resetCode()
+      props.onConfirmAttempt(code)
+    } catch(error) {
+      console.error(error)
+    }
+  }
+
+
+  const onResend = async () => {
+    console.log("resend code")
+  }
+
+
+  const resetCode = () => {
+    setCode1('')
+    setCode2('')
+    setCode3('')
+    setCode4('')
+    setCode5('')
+    setCode6('')
   }
 
 
@@ -29,7 +50,7 @@ const ConfirmModal = (props) => {
       onRequestClose={() => { }}
     >
       <LinearGradient
-        style={[ { flex: 1 } ]}
+        style={{ flex: 1 }}
         colors={[Colors.gradient_dark, Colors.gradient_light]}
       >
         <Text
@@ -50,48 +71,54 @@ const ConfirmModal = (props) => {
           }}
         >
           <TextInput
-            style={[styles.input, { flex: .15 }]}
+            style={styles.codeInput}
             maxLength={1}
+            textAlign={'center'}
             keyboardType="number-pad"
             value={code1}
             onChangeText={setCode1}
           />
 
           <TextInput
-            style={[styles.input, { flex: .15 }]}
+            style={styles.codeInput}
             maxLength={1}
+            textAlign={'center'}
             keyboardType="number-pad"
             value={code2}
             onChangeText={setCode2}
           />
 
           <TextInput
-            style={[styles.input, { flex: .15 }]}
+            style={styles.codeInput}
             maxLength={1}
+            textAlign={'center'}
             keyboardType="number-pad"
             value={code3}
             onChangeText={setCode3}
           />
 
           <TextInput
-            style={[styles.input, { flex: .15 }]}
+            style={styles.codeInput}
             maxLength={1}
+            textAlign={'center'}
             keyboardType="number-pad"
             value={code4}
             onChangeText={setCode4}
           />
 
           <TextInput
-            style={[styles.input, { flex: .15 }]}
+            style={styles.codeInput}
             maxLength={1}
+            textAlign={'center'}
             keyboardType="number-pad"
             value={code5}
             onChangeText={setCode5}
           />
 
           <TextInput
-            style={[styles.input, { flex: .15 }]}
+            style={styles.codeInput}
             maxLength={1}
+            textAlign={'center'}
             keyboardType="number-pad"
             value={code6}
             onChangeText={setCode6}
@@ -101,7 +128,7 @@ const ConfirmModal = (props) => {
         <View style={{ flexDirection: 'row', margin: 10 }}>
           <TouchableOpacity
             style={[styles.button, { flex: 0.5, marginRight: 5 }]}
-            onPress={() => resend(props.username, props.setError)}
+            onPress={onResend}
           >
             <Text style={styles.btnText}>
               Resend

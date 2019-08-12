@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { Image, StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
+import {
+  Image, StyleSheet, View, Text, TextInput, TouchableOpacity
+} from 'react-native';
 import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Colors } from '../constants/Style';
+import styles from '../components/styles'
+import * as SecureStore from 'expo-secure-store'
 
 const Home = (props) => {
   const [username, setUsername] = useState('')
@@ -14,12 +18,12 @@ const Home = (props) => {
   const [error, setError] = useState(null)
 
 
-  const toggleShowPassword = () => setHidePassword(!hidePassword)
-
-
   const onSignIn = () => {
 
   }
+
+
+  const toggleShowPassword = () => setHidePassword(!hidePassword)
 
 
   const toggleHelpAudio = async () => {
@@ -36,7 +40,7 @@ const Home = (props) => {
         setSoundObject(soundObject)
       }
     } catch(error) {
-      showError(error)
+      console.error(error)
     }
   }
 
@@ -152,101 +156,3 @@ const Home = (props) => {
 }
 
 export default Home
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'transparent',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input:{
-    borderBottomWidth: 2,
-    borderColor: 'white',
-    opacity:0.5,
-    margin:10,
-    fontSize:18,
-    color:'white',
-    paddingLeft:10
-  },
-  label:{
-    fontSize:14,
-    opacity:0.5,
-    color:'white',
-    marginLeft:20,
-    marginBottom:10
-  },
-  passwordHolder:{
-    flexDirection:'row',
-  },
-  showButton:{
-    borderBottomWidth:2,
-    borderColor:'white',
-    opacity:0.5,
-    marginVertical:10,
-    marginRight:10,
-    flex:0.1
-  },
-  nameHolder:{
-    flexDirection:'row'
-  },
-  imageHolder:{
-    height:220,
-    width:220,
-    borderRadius:110,
-    alignSelf:'center',
-    marginTop:20,
-    marginBottom:10
-  },
-  error:{
-    position: 'absolute',
-    top:0,
-    right: 0,
-    left:0,
-    height: 75,
-    padding: 20,
-    borderWidth:1,
-    borderColor:'#ffffff80',
-    backgroundColor:'#11011B',
-  },
-  errorText:{
-    color:"white",
-    fontSize:18
-  },
-  button: {
-    height: 50,
-    borderWidth: 1,
-    borderColor: '#ffffff80',
-    paddingHorizontal: 10,
-    flex: 0.5,
-    marginVertical: 20,
-    borderRadius:2
-  },
-  btnText: {
-    fontSize: 24,
-    lineHeight: 50,
-    color: '#ffffff80',
-    textAlign: 'center'
-  },
-  modal: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: '#000000dd'
-  },
-  title:{
-    fontSize:18,
-    fontWeight:'bold',
-    flex:0.4,
-    color:'#ffffff80',
-    marginLeft:10
-  },
-  content:{
-    fontSize:18,
-    color:'#ffffff80',
-    flex:0.6,
-    marginLeft:10
-  },
-});

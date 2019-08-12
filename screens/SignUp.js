@@ -1,36 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {
+  Image, StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView
+} from 'react-native';
 import { Audio } from 'expo-av'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Colors } from '../constants/Style';
 import { Icon } from 'react-native-elements'
-import {
-  Image, StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView
-} from 'react-native';
+import bcrypt from 'react-native-bcrypt'
 import styles from '../components/styles'
 
+import {
+  SignUpCaregiver, SignInCaregiver, ConfirmCaregiver
+} from '../utilities/auth'
+import {
+  createCentre, createCaregiver
+} from '../utilities/store';
+
+import Loading from '../components/Loading'
 import Spacer from '../components/Spacer'
 import CaregiverEntry from '../components/CaregiverEntry'
 import CentreEntry from '../components/CentreEntry'
 import ConfirmModal from '../components/ConfirmModal';
 
 const SignUp = (props) => {
-  const [username, setUsername] = React.useState('')
-  const [password, setPassword] = React.useState('')
-  const [email, setEmail] = React.useState('')
-  const [firstName, setFirstName] = React.useState('')
-  const [lastName, setLastName] = React.useState('')
-  const [phone, setPhone] = React.useState('')
-  const [centreName, setCentreName] = React.useState('')
-  const [address1, setAddress1] = React.useState('')
-  const [address2, setAddress2] = React.useState('')
-  const [error, setError] = React.useState(null)
-  const [loading, setLoading] = React.useState(false)
-  const [soundObject, setSoundObject] = React.useState(null)
-  const [confirmModalVisible, setConfirmModalVisible] = React.useState(false)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [centreName, setCentreName] = useState('')
+  const [address, setAddress] = useState('')
+  const [city, setCity] = useState('')
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [soundObject, setSoundObject] = useState(null)
+  const [confirmModalVisible, setConfirmModalVisible] = useState(false)
 
 
-  const onSignUp = async () => {
+  const onPressSignUp = async () => {
+    setLoading(true)
 
+    const caregiverData = {
+      username,
+      password,
+      email,
+      phone,
+    }
+
+    await SignUpCaregiver(caregiverData)
+
+    setLoading(false)
+    setConfirmModalVisible(true)
+  }
+
+
+  const onConfirmAttempt = async (code) => {
+    const confirmResult = await ConfirmCaregiver(username, code)
+
+    if (confirmResult === 'SUCCESS') {
+      const centreId = await createCentre({
+        centreName,
+        address,
+        city,
+      })
+
+      const caregiverId = await createCaregiver({
+        username,
+        password,
+        email,
+        firstName,
+        lastName,
+        phone,
+        centreId,
+      })
+
+      setConfirmModalVisible(false)
+    } else {
+
+    }
   }
 
 
@@ -48,7 +96,7 @@ const SignUp = (props) => {
         setSoundObject(soundObject)
       }
     } catch(error) {
-      showError(error)
+      console.error(error)
     }
   }
 
@@ -64,55 +112,58 @@ const SignUp = (props) => {
       style={{ flex: 1 }}
       colors={[Colors.gradient_dark, Colors.gradient_light]}
     >
-      <ScrollView >
-        <Spacer height={40} />
+      {loading
+        ? <Loading />
+        : <ScrollView >
+            <Spacer height={40} />
 
-        <CaregiverEntry
-          username={username}
-          passwordd={password}
-          email={email}
-          firstName={firstName}
-          lastName={lastName}
-          phone={phone}
-          onChangeUsername={setUsername}
-          onChangePassword={setPassword}
-          onChangeEmail={setEmail}
-          onChangeFirstName={setFirstName}
-          onChangeLastName={setLastName}
-          onChangePhone={setPhone}
-        />
+            <CaregiverEntry
+              username={username}
+              passwordd={password}
+              email={email}
+              firstName={firstName}
+              lastName={lastName}
+              phone={phone}
+              onChangeUsername={setUsername}
+              onChangePassword={setPassword}
+              onChangeEmail={setEmail}
+              onChangeFirstName={setFirstName}
+              onChangeLastName={setLastName}
+              onChangePhone={setPhone}
+            />
 
-        <CentreEntry
-          centreName={centreName}
-          address1={address1}
-          address2={address2}
-          onChangeCentreName={setCentreName}
-          onChangeAddress1={setAddress1}
-          onChangeAddress2={setAddress2}
-        />
+            <CentreEntry
+              centreName={centreName}
+              address={address}
+              city={city}
+              onChangeCentreName={setCentreName}
+              onChangeAddress={setAddress}
+              onChangeCity={setCity}
+            />
 
-        <View
-          style={{
-            marginVertical: 20,
-            marginHorizontal: 10,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          <View style={{ flex: 0.5 }} />
-          <TouchableOpacity
-            style={[
-              styles.button,
-              { marginVertical: 20, flex: 0.5, alignSelf: 'flex-end' }
-            ]}
-            onPress={onSignUp}
-          >
-            <Text style={styles.btnText}>Confirm Signup</Text>
-          </TouchableOpacity>
-        </View>
+            <View
+              style={{
+                marginVertical: 20,
+                marginHorizontal: 10,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}
+            >
+              <View style={{ flex: 0.5 }} />
+              <TouchableOpacity
+                style={[
+                  styles.button,
+                  { marginVertical: 20, flex: 0.5, alignSelf: 'flex-end' }
+                ]}
+                onPress={onPressSignUp}
+              >
+                <Text style={styles.btnText}>Confirm Signup</Text>
+              </TouchableOpacity>
+            </View>
 
-        <Spacer height={322} />
-      </ScrollView>
+            <Spacer height={322} />
+          </ScrollView>
+      }
 
       <TouchableOpacity
         style={{
@@ -130,18 +181,15 @@ const SignUp = (props) => {
       </TouchableOpacity>
 
       <ConfirmModal
-        showError={showError}
         visible={confirmModalVisible}
+        onConfirmAttempt={onConfirmAttempt}
       />
 
-      { loading ? <Loading /> : null }
-
-      {
-        !!error
-          ? <View style={styles.error}>
-              <Text style={styles.errorText}>{error}</Text>
-            </View>
-          : null
+      {!!error
+        ? <View style={styles.error}>
+            <Text style={styles.errorText}>{error}</Text>
+          </View>
+        : null
       }
     </LinearGradient>
   )

@@ -5,6 +5,7 @@ import {
 import { Icon } from 'react-native-elements'
 import styles from './styles'
 
+
 const CaregiverEntry = (props) => {
   const [hidePassword, setHidePassword] = useState(true)
 
@@ -79,6 +80,16 @@ const CaregiverEntry = (props) => {
 
       <Text style={styles.label} >
         Surname
+      </Text>
+
+      <TextInput
+        style={styles.input}
+        value={props.email}
+        onChangeText={props.onChangeEmail}
+      />
+
+      <Text style={styles.label} >
+        Email
       </Text>
 
       <TextInput

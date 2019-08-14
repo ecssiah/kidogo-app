@@ -119,7 +119,7 @@ export const Styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
   },
-  homeLogo: {
+  homeTitle: {
     alignSelf: 'center',
     resizeMode: 'cover',
   },
@@ -158,10 +158,10 @@ export const Styles = StyleSheet.create({
     marginVertical: 20,
     borderRadius: 2,
   },
-  signUpButton: {
+  mainButton: {
     borderWidth: 1,
     borderColor: '#ffffff80',
-    marginHorizontal: 20,
+    marginHorizontal: 32,
   },
   btnText: {
     fontSize: 24,

@@ -63,14 +63,14 @@ const Home = (props) => {
       <Spacer height={240} />
 
       <Image
-        style={Styles.homeLogo}
+        style={Styles.homeTitle}
         source={require('../assets/images/kidogo.png')}
       />
 
-      <Spacer small />
+      <Spacer medium />
 
       <TouchableOpacity
-        style={Styles.signUpButton}
+        style={Styles.mainButton}
         onPress={() => props.navigation.navigate('SignUp')}
       >
         <Text style={Styles.btnText}>Sign Up</Text>
@@ -79,7 +79,7 @@ const Home = (props) => {
       <Spacer medium />
 
       <TouchableOpacity
-        style={Styles.signUpButton}
+        style={Styles.mainButton}
         onPress={() => props.navigation.navigate('SignIn')}
       >
         <Text style={Styles.btnText}>Sign In</Text>

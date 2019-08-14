@@ -83,7 +83,7 @@ const SignIn = (props) => {
             <Spacer large />
 
             <TouchableOpacity
-              style={Styles.signUpButton}
+              style={Styles.mainButton}
               onPress={onPressSignUp}
             >
               <Text style={Styles.btnText}>Confirm</Text>

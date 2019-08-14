@@ -1,51 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Amplify from 'aws-amplify'
 import awsconfig from './aws-exports'
-import AppNavigator from './navigators/AppNavigator';
 import { AppLoading } from 'expo'
-import * as Font from 'expo-font'
-import bcrypt from 'react-native-bcrypt'
-import isaac from 'isaac'
-import { resetStore } from './utilities/store';
-
+import { ResetStore } from './utilities/store';
+import { LoadFonts, ConfigureBcrypt } from './utilities/config';
+import { createAppContainer } from 'react-navigation';
+import AppNavigator from './navigators/AppNavigator';
 
 Amplify.configure(awsconfig)
 
-bcrypt.setRandomFallback((len) => {
-  const buf = new Uint8Array(len)
-
-  return buf.map(() => Math.floor(isaac.random() * 256))
-})
-
+const AppContainer = createAppContainer(AppNavigator)
 
 const App = () => {
-  const [resourcesLoaded, setResourcesLoaded] = useState(false)
+  const [appLoading, setAppLoading] = useState(true)
 
 
-  const loadResources = async () => {
-    await resetStore()
-    await loadFonts()
+  const configureApp = async () => {
+    await ResetStore()
+    await LoadFonts()
+
+    ConfigureBcrypt()
   }
 
 
-  const loadFonts = async () => {
-    await Font.loadAsync({
-      'Raleway-Bold': require('./assets/fonts/Raleway-Bold.ttf')
-    })
-  }
-
-
-  if (!resourcesLoaded) {
+  if (appLoading) {
     return (
       <AppLoading
-        startAsync={loadResources}
-        onFinish={() => setResourcesLoaded(true)}
+        startAsync={configureApp}
+        onFinish={() => setAppLoading(false)}
         onError={console.warn}
       />
     )
   }
 
-  return <AppNavigator />
+  return <AppContainer />
 }
 
 export default App

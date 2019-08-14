@@ -1,4 +1,4 @@
-import { createSwitchNavigator, createAppContainer } from "react-navigation";
+import { createSwitchNavigator } from "react-navigation";
 
 import AuthNav from './AuthNav'
 import BottomNav from './BottomNav'
@@ -15,7 +15,4 @@ const navConfig = {
 }
 
 
-const AppSwitch = createSwitchNavigator(routeConfig, navConfig)
-
-
-export default createAppContainer(AppSwitch)
+export default createSwitchNavigator(routeConfig, navConfig)

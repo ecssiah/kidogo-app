@@ -68,7 +68,7 @@ export const getQuestions = async () => {
 }
 
 
-export const resetStore = async () => {
+export const ResetStore = async () => {
   try {
     await SecureStore.setItemAsync('CURRENT_USER', '')
     await SecureStore.setItemAsync('CAREGIVER', JSON.stringify({}))

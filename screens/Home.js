@@ -60,11 +60,11 @@ const Home = (props) => {
     >
       <Error message={error} />
 
-      <Spacer xlarge />
+      <Spacer height={240} />
 
       <Image
         style={Styles.homeLogo}
-        source={require('../assets/images/logo.png')}
+        source={require('../assets/images/kidogo.png')}
       />
 
       <Spacer small />

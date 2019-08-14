@@ -14,10 +14,10 @@
     "icon": "./assets/images/icon.png",
     "splash": {
       "image": "./assets/images/splash.png",
+      "resizeMode": "cover"
     },
     "android": {
       "splash": {
-        "resizeMode": "cover",
         "backgroundColor": "#11011b"
       }
     },

@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Amplify from 'aws-amplify'
 import awsconfig from './aws-exports'
 import AppNavigator from './navigators/AppNavigator';
 import { createAppContainer } from 'react-navigation';
+import { AppLoading } from 'expo'
 import * as Font from 'expo-font'
 import bcrypt from 'react-native-bcrypt'
 import isaac from 'isaac'
 import { resetStore } from './utilities/store';
+import Loading from './components/Loading';
 
 Amplify.configure(awsconfig)
 
@@ -19,10 +21,13 @@ bcrypt.setRandomFallback((len) => {
 const AppContainer = createAppContainer(AppNavigator)
 
 const App = () => {
-  useEffect(() => {
-    resetStore()
-    loadFonts()
-  }, [])
+  const [resourcesLoaded, setResourcesLoaded] = useState(false)
+
+
+  const loadResources = async () => {
+    await resetStore()
+    await loadFonts()
+  }
 
 
   const loadFonts = async () => {
@@ -32,9 +37,17 @@ const App = () => {
   }
 
 
-  return (
-    <AppContainer />
-  );
+  if (!resourcesLoaded) {
+    return (
+      <AppLoading
+        startAsync={loadResources}
+        onFinish={() => setResourcesLoaded(true)}
+        onError={console.warn}
+      />
+    )
+  }
+
+  return <AppContainer />
 }
 
 export default App

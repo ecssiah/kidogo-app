@@ -1,14 +1,14 @@
 import React from 'react'
-import { View } from 'react-native'
+import { ScrollView } from 'react-native'
 
 
-const DashView = (props) => {
+const DashContent = (props) => {
 
   return (
-    <View>
+    <ScrollView>
 
-    </View>
+    </ScrollView>
   )
 }
 
-export default DashView
+export default DashContent

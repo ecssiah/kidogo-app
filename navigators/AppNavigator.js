@@ -1,36 +1,21 @@
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createSwitchNavigator, createAppContainer } from "react-navigation";
 
-import Home from '../screens/Home'
-import SignUp from '../screens/SignUp'
-import Dash from '../screens/Dash'
-import Recover from '../screens/Recover'
+import AuthNav from './AuthNav'
+import BottomNav from './BottomNav'
 
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: Home,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  SignUp: {
-    screen: SignUp,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  Dash: {
-    screen: Dash,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  Recover: {
-    screen: Recover,
-    navigationOptions: {
-      header: null,
-    },
-  },
-})
+const routeConfig = {
+  Auth: AuthNav,
+  App: BottomNav,
+}
 
-export default createAppContainer(AppNavigator)
+
+const navConfig = {
+  initialRouteName: 'Auth',
+}
+
+
+const AppSwitch = createSwitchNavigator(routeConfig, navConfig)
+
+
+export default createAppContainer(AppSwitch)

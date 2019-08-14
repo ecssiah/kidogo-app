@@ -17,6 +17,7 @@ import Spacer from '../components/Spacer'
 import CaregiverEntry from '../components/CaregiverEntry'
 import CentreEntry from '../components/CentreEntry'
 import ConfirmModal from '../components/ConfirmModal';
+import Error from '../components/Error';
 
 const SignUp = (props) => {
   const [username, setUsername] = useState('')
@@ -111,6 +112,8 @@ const SignUp = (props) => {
       style={{ flex: 1 }}
       colors={[Colors.gradient_dark, Colors.gradient_light]}
     >
+      <Error message={error} />
+
       {loading
         ? <Loading />
         : <ScrollView >
@@ -146,7 +149,7 @@ const SignUp = (props) => {
               style={Styles.signUpButton}
               onPress={onPressSignUp}
             >
-              <Text style={Styles.btnText}>Confirm Signup</Text>
+              <Text style={Styles.btnText}>Confirm</Text>
             </TouchableOpacity>
 
             <Spacer height={322} />
@@ -154,16 +157,10 @@ const SignUp = (props) => {
       }
 
       <TouchableOpacity
-        style={{
-          backgroundColor: '#ffffff80',
-          position: 'absolute',
-          bottom: -75, left: -75,
-          width: 150, height: 150,
-          borderRadius: 75,
-        }}
+        style={Styles.helpButton}
         onPress={toggleHelpAudio}
       >
-        <View style={{ position: 'absolute', bottom: 85, left: 80 }} >
+        <View style={Styles.helpButtonIcon} >
           <Icon name="record-voice-over" color="#3C233D" size={36} />
         </View>
       </TouchableOpacity>
@@ -172,13 +169,6 @@ const SignUp = (props) => {
         visible={confirmModalVisible}
         onConfirmAttempt={onConfirmAttempt}
       />
-
-      {!!error
-        ? <View style={Styles.error}>
-            <Text style={Styles.errorText}>{error}</Text>
-          </View>
-        : null
-      }
     </LinearGradient>
   )
 }

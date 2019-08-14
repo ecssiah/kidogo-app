@@ -23,6 +23,14 @@ export const Styles = StyleSheet.create({
     padding: 5,
     paddingBottom: 50,
   },
+  headerStyle: {
+    backgroundColor: Colors.gradient_dark,
+  },
+  headerTitleStyle: {
+    fontFamily: 'arial',
+    fontSize: 32,
+    fontWeight: 'bold',
+  },
   loading: {
     flex: 1,
     justifyContent: 'center',
@@ -129,6 +137,17 @@ export const Styles = StyleSheet.create({
     color: "white",
     fontSize: 18,
   },
+  headerButtons: {
+    flex: 1,
+    height: 50,
+    backgroundColor: '#0C000E',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    flexWrap: 'nowrap',
+  },
+  headerButton: {
+    paddingTop: 10,
+  },
   button: {
     height: 50,
     borderWidth: 1,
@@ -179,5 +198,19 @@ export const Styles = StyleSheet.create({
   },
   raleway: {
     fontFamily:'Raleway-Bold',
+  },
+  helpButton: {
+    backgroundColor: '#ffffff80',
+    position: 'absolute',
+    bottom: -75,
+    left: -75,
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+  },
+  helpButtonIcon: {
+    position: 'absolute',
+    bottom: 85,
+    left: 80,
   },
 })

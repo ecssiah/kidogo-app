@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Image, StyleSheet, View, Text, TextInput, TouchableOpacity
+  Image, View, Text, TextInput, TouchableOpacity
 } from 'react-native';
 import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
@@ -9,6 +9,7 @@ import { Colors, Styles } from '../constants/Style';
 import { UserSignedIn } from '../utilities/auth';
 
 import Spacer from '../components/Spacer'
+import Error from '../components/Error';
 
 
 const Home = (props) => {
@@ -57,6 +58,8 @@ const Home = (props) => {
       style={{ flex: 1 }}
       colors={[Colors.gradient_dark, Colors.gradient_light]}
     >
+      <Error message={error} />
+
       <Spacer xlarge />
 
       <Image
@@ -77,35 +80,21 @@ const Home = (props) => {
 
       <TouchableOpacity
         style={Styles.signUpButton}
-        onPress={() => props.navigation.navigate('Recover')}
+        onPress={() => props.navigation.navigate('SignIn')}
       >
-        <Text style={Styles.btnText}>Recover Account</Text>
+        <Text style={Styles.btnText}>Sign In</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={{
-          backgroundColor: '#ffffff80',
-          position: 'absolute',
-          bottom: -75, left: -75,
-          width: 150, height: 150,
-          borderRadius: 75
-        }}
+        style={Styles.helpButton}
         onPress={toggleHelpAudio}
       >
-        <View style={{ position: 'absolute', bottom: 85, left: 80 }}>
+        <View style={Styles.helpButtonIcon} >
           <Icon name="record-voice-over" color="#3C233D" size={36} />
         </View>
       </TouchableOpacity>
 
-      {
-        !!error === true
-          ? <View style={Styles.error} >
-              <Text style={Styles.errorText} >
-                { error }
-              </Text>
-            </View>
-          : null
-      }
+
     </LinearGradient>
   );
 }

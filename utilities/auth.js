@@ -1,5 +1,4 @@
 import { Auth } from 'aws-amplify'
-import bcrypt from 'react-native-bcrypt'
 import * as SecureStore from 'expo-secure-store'
 
 

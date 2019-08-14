@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { Text } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Colors } from '../constants/Style';
 
+import Header from '../components/Header';
 
-const Recover = (props) => {
-  useEffect(() => {
-  })
 
+const Upload = (props) => {
   return (
     <LinearGradient
       style={{ flex: 1 }}
@@ -16,5 +16,4 @@ const Recover = (props) => {
   )
 }
 
-
-export default Recover
+export default Upload

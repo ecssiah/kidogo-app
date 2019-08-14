@@ -64,7 +64,7 @@ const Home = (props) => {
 
       <Image
         style={Styles.homeLogo}
-        source={require('../assets/images/kidogo_logo.png')}
+        source={require('../assets/images/logo.png')}
       />
 
       <Spacer small />

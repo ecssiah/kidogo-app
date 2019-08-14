@@ -121,6 +121,7 @@ export const Styles = StyleSheet.create({
   },
   homeLogo: {
     alignSelf: 'center',
+    resizeMode: 'cover',
   },
   error: {
     position: 'absolute',

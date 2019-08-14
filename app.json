@@ -14,8 +14,12 @@
     "icon": "./assets/images/icon.png",
     "splash": {
       "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+    },
+    "android": {
+      "splash": {
+        "resizeMode": "cover",
+        "backgroundColor": "#11011b"
+      }
     },
     "updates": {
       "fallbackToCacheTimeout": 0

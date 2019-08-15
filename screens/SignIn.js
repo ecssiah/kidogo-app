@@ -18,10 +18,10 @@ const SignIn = (props) => {
   const toggleHidePassword = () => setHidePassword(!hidePassword)
 
 
-  const onPressSignUp = async () => {
+  const onSignIn = async () => {
     setLoading(true)
 
-    await SignInCaregiver(username, password)
+    // await SignInCaregiver(username, password)
 
     setLoading(false)
 
@@ -84,7 +84,7 @@ const SignIn = (props) => {
 
             <TouchableOpacity
               style={Styles.mainButton}
-              onPress={onPressSignUp}
+              onPress={onSignIn}
             >
               <Text style={Styles.btnText}>Confirm</Text>
             </TouchableOpacity>

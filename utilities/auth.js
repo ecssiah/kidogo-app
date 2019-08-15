@@ -2,23 +2,12 @@ import { Auth } from 'aws-amplify'
 import * as SecureStore from 'expo-secure-store'
 
 
-export const UserSignedIn = async () => {
-  try {
-    const currentUser = await SecureStore.getItemAsync('CURRENT_USER')
-
-    return currentUser !== ""
-  } catch(error) {
-    console.error(error)
-  }
-}
-
-
 export const SignUpCaregiver = async (caregiverData) => {
   // const phone_number = '+254' + phone.split('-').join('')
   const phone_number = '+1' + caregiverData.phone.split('-').join('')
 
   try {
-    const data = await Auth.signUp({
+    await Auth.signUp({
       username: caregiverData.username,
       password: caregiverData.password,
       attributes: {
@@ -26,8 +15,6 @@ export const SignUpCaregiver = async (caregiverData) => {
         phone_number,
       },
     })
-
-    return data
   } catch(error) {
     console.error(error)
   }
@@ -55,7 +42,8 @@ export const ResendConfirmCode = async (username) => {
 export const SignInCaregiver = async (username, password) => {
   try {
     await Auth.signIn(username, password)
-    await SecureStore.setItemAsync('CURRENT_USER', username)
+
+
   } catch(error) {
     console.error(error)
   }

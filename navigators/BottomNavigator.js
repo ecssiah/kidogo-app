@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "react-navigation";
 import { Icon } from 'react-native-elements'
 import { Styles } from "../constants/Style";
 
-import Dash from '../screens/Dash'
+import Dash from '../navigators/DashNavigator'
 import Upload from '../screens/Upload'
 import Accounts from '../screens/Accounts'
 

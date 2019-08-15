@@ -11,23 +11,37 @@ import { Colors, Styles } from '../constants/Style';
 const Dash = (props) => {
   const [hour, setHour] = useState(new Date().getHours())
 
+
+  const getGreeting = () => {
+    if (hour < 12) {
+      return "Nani hako Leo?"
+    } else if (hour < 17) {
+      return "Kuna aliyetoka?"
+    } else {
+      return "Uli nunua kitu chochote leo?"
+    }
+  }
+
+
   const attendanceTransition = () => {
-    hour < 12
-      ? props.navigation.navigate('CheckIn')
-      : hour < 17
-        ? props.navigation.navigate('CheckOut')
-        : props.navigation.navigate('Finances')
+    if (hour < 12) {
+      props.navigation.navigate('CheckIn')
+    } else if (hour < 17) {
+      props.navigation.navigate('CheckOut')
+    } else {
+      props.navigation.navigate('Finances')
+    }
   }
 
 
   const getDaytimeImage = () => {
-    return (
-      hour < 12
-        ? <Image source={require('../assets/images/morning.png')} />
-        : hour < 17
-          ? <Image source={require('../assets/images/afternoon.png')} />
-          : <Image source={require('../assets/images/evening.png')} />
-    )
+    if (hour < 12) {
+      return <Image source={require('../assets/images/morning.png')} />
+    } else if (hour < 17) {
+      return <Image source={require('../assets/images/afternoon.png')} />
+    } else {
+      return <Image source={require('../assets/images/evening.png')} />
+    }
   }
 
 
@@ -46,13 +60,7 @@ const Dash = (props) => {
             <Text
               style={[Styles.dashFont, Styles.raleway, { fontSize: 24 }]}
             >
-              {
-                hour < 12
-                  ? "Nani hako Leo?"
-                  : hour < 17
-                    ? "Kuna aliyetoka?"
-                    : "Uli nunua kitu chochote leo?"
-              }
+              { getGreeting() }
             </Text>
           </View>
         </TouchableHighlight>

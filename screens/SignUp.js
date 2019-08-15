@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Image, StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView
+  View, Text, TouchableOpacity, ScrollView
 } from 'react-native';
 import { Audio } from 'expo-av'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -10,7 +10,7 @@ import { Icon } from 'react-native-elements'
 import {
   SignUpCaregiver, SignInCaregiver, ConfirmCaregiver
 } from '../utilities/auth'
-import { createCaregiver } from '../utilities/store';
+import { CreateCaregiver } from '../utilities/store';
 
 import Loading from '../components/Loading'
 import Spacer from '../components/Spacer'
@@ -18,6 +18,7 @@ import CaregiverEntry from '../components/CaregiverEntry'
 import CentreEntry from '../components/CentreEntry'
 import ConfirmModal from '../components/ConfirmModal';
 import Error from '../components/Error';
+
 
 const SignUp = (props) => {
   const [username, setUsername] = useState('')
@@ -38,17 +39,14 @@ const SignUp = (props) => {
   const onPressSignUp = async () => {
     setLoading(true)
 
-    const caregiverData = {
+    const userData = {
       username,
       password,
       email,
       phone,
-      centreName,
-      address,
-      city,
     }
 
-    await SignUpCaregiver(caregiverData)
+    await SignUpCaregiver(userData)
 
     setLoading(false)
     setConfirmModalVisible(true)
@@ -59,7 +57,7 @@ const SignUp = (props) => {
     const confirmResult = await ConfirmCaregiver(username, code)
 
     if (confirmResult === 'SUCCESS') {
-      await createCaregiver({
+      await CreateCaregiver({
         username,
         password,
         email,

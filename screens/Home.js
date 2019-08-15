@@ -6,7 +6,6 @@ import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Colors, Styles } from '../constants/Style';
-import { UserSignedIn } from '../utilities/auth';
 
 import Spacer from '../components/Spacer'
 import Error from '../components/Error';
@@ -22,7 +21,7 @@ const Home = (props) => {
 
 
   const checkSignIn = async () => {
-    if (await UserSignedIn()) {
+    if (await CurrentCaregiver()) {
       props.navigation.navigate('Dash')
     }
   }

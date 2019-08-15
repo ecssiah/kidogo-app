@@ -161,7 +161,7 @@ export const Styles = StyleSheet.create({
   mainButton: {
     borderWidth: 1,
     borderColor: '#ffffff80',
-    marginHorizontal: 32,
+    marginHorizontal: 20,
   },
   btnText: {
     fontSize: 24,
@@ -215,49 +215,78 @@ export const Styles = StyleSheet.create({
     left: 80,
   },
   dash: {
-    backgroundColor:'#aaa',
-    height:200,
+    backgroundColor: '#aaa',
+    height: 200,
     justifyContent: 'center',
     alignItems: 'center',
-    position:'relative',
+    position: 'relative',
   },
-  dashFont:{
-    zIndex:99,
+  dashFont: {
+    zIndex: 99,
     fontSize: 36,
-    height:200,
-    lineHeight:200,
+    height: 200,
+    lineHeight: 200,
     position: 'absolute',
     top: 0,
     left: 0,
-    right:0,
-    paddingLeft:30,
-    flex:1,
-    // fontWeight:'bold',
-    color:'white',
+    right: 0,
+    paddingLeft: 30,
+    flex: 1,
+    color: 'white',
   },
   actionsContainer: {
-    flex:1,
-    padding:10,
-    alignSelf:'stretch'
+    flex: 1,
+    padding: 10,
+    alignSelf: 'stretch',
   },
-  actionButton:{
-    height:150,
-    marginBottom:10,
-    zIndex:100,
-    borderRadius:5,
-    position:'relative'
+  actionButton: {
+    height: 150,
+    marginBottom: 10,
+    zIndex: 100,
+    borderRadius: 5,
+    position: 'relative',
   },
-  actionText:{
+  actionText: {
     zIndex: 101,
     fontSize: 24,
-    top:0,
-    height:150,
-    lineHeight:150,
-    paddingLeft:20,
-    color:'#333'
+    top: 0,
+    height: 150,
+    lineHeight: 150,
+    paddingLeft: 20,
+    color: '#333',
   },
-  buttonImage:{
-    borderRadius:5,
-    height:150
+  buttonImage: {
+    borderRadius: 5,
+    height: 150
+  },
+  attendanceHolder: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 10,
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+  },
+  attendanceCard: {
+    width: 105,
+    height: 150,
+    padding: 10,
+    position: 'relative',
+    borderWidth: 1,
+    borderColor: '#ffffff80',
+    marginBottom: 15,
+    opacity: 1,
+  },
+  present: {
+    backgroundColor: 'green',
+    height: 30,
+    width: 30,
+    paddingTop: 3,
+    borderRadius: 15,
+    position: 'absolute',
+    top: -10,
+    right: -10,
+    borderWidth: 2,
+    borderColor: '#ffffff80',
+    zIndex: 101,
   },
 })

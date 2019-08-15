@@ -1,12 +1,12 @@
 import { createSwitchNavigator } from "react-navigation";
 
-import AuthNav from './AuthNav'
-import BottomNav from './BottomNav'
+import AuthNavigator from './AuthNavigator'
+import BottomNavigator from './BottomNavigator'
 
 
 const routeConfig = {
-  Auth: AuthNav,
-  App: BottomNav,
+  Auth: AuthNavigator,
+  App: BottomNavigator,
 }
 
 

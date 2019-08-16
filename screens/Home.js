@@ -17,11 +17,11 @@ const Home = (props) => {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    checkSignIn()
+    checkActiveCaregiver()
   }, [])
 
 
-  const checkSignIn = async () => {
+  const checkActiveCaregiver = async () => {
     const caregiver = await GetCaregiver()
 
     if ("id" in caregiver) {
@@ -84,7 +84,7 @@ const Home = (props) => {
         style={Styles.mainButton}
         onPress={() => props.navigation.navigate('SignIn')}
       >
-        <Text style={Styles.btnText}>Sign In</Text>
+        <Text style={Styles.btnText}>Recover Account</Text>
       </TouchableOpacity>
 
       <TouchableOpacity

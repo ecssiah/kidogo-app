@@ -7,8 +7,6 @@ export const LoadFonts = async () => {
   await Font.loadAsync({
     'Raleway-Bold': require('../assets/fonts/Raleway-Bold.ttf')
   })
-
-  console.log("font loaded")
 }
 
 

@@ -6,11 +6,12 @@ import { Audio } from 'expo-av'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Colors, Styles } from '../constants/Style';
 import { Icon } from 'react-native-elements'
-
 import {
   SignUpCaregiver, SignInCaregiver, ConfirmCaregiver
 } from '../utilities/auth'
-import { CreateCaregiver } from '../utilities/store';
+import { CreateCaregiver } from '../utilities/localstore';
+import bcrypt from 'react-native-bcrypt'
+import uuid from 'uuid'
 
 import Loading from '../components/Loading'
 import Spacer from '../components/Spacer'
@@ -18,6 +19,7 @@ import CaregiverEntry from '../components/CaregiverEntry'
 import CentreEntry from '../components/CentreEntry'
 import ConfirmModal from '../components/ConfirmModal';
 import Error from '../components/Error';
+import { CreateCaregiverDB } from '../utilities/dbstore';
 
 
 const SignUp = (props) => {
@@ -36,7 +38,7 @@ const SignUp = (props) => {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false)
 
 
-  const onPressSignUp = async () => {
+  const onSignUp = async () => {
     setLoading(true)
 
     const userData = {
@@ -57,9 +59,19 @@ const SignUp = (props) => {
     const confirmResult = await ConfirmCaregiver(username, code)
 
     if (confirmResult === 'SUCCESS') {
-      await CreateCaregiver({
+      const hashedPassword = await new Promise((resolve, reject) => {
+        bcrypt.hash(password, 10, (err, hash) => {
+          if (err) {
+            reject(err)
+          }
+          resolve(hash)
+        })
+      })
+
+      const caregiverData = {
+        id: uuid(),
         username,
-        password,
+        password: hashedPassword,
         email,
         firstName,
         lastName,
@@ -67,13 +79,16 @@ const SignUp = (props) => {
         centreName,
         address,
         city,
-      })
+      }
 
       await SignInCaregiver(username, password)
 
-      props.navigation.navigate('Dash')
+      await CreateCaregiver(caregiverData)
+      await CreateCaregiverDB(caregiverData)
 
       setConfirmModalVisible(false)
+
+      props.navigation.navigate('Dash')
     } else {
       console.log("Caregiver confirmation failed")
     }
@@ -145,7 +160,7 @@ const SignUp = (props) => {
 
             <TouchableOpacity
               style={Styles.mainButton}
-              onPress={onPressSignUp}
+              onPress={onSignUp}
             >
               <Text style={Styles.btnText}>Confirm</Text>
             </TouchableOpacity>

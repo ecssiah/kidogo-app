@@ -21,7 +21,7 @@ const SignIn = (props) => {
   const onSignIn = async () => {
     setLoading(true)
 
-    // await SignInCaregiver(username, password)
+    await SignInCaregiver(username, password)
 
     setLoading(false)
 

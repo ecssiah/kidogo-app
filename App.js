@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Amplify from 'aws-amplify'
 import awsconfig from './aws-exports'
 import { AppLoading } from 'expo'
-import { ResetStore } from './utilities/store';
+import { ResetStore } from './utilities/localstore';
 import { LoadFonts, ConfigureBcrypt } from './utilities/config';
 import { createAppContainer } from 'react-navigation';
 import AppNavigator from './navigators/AppNavigator';

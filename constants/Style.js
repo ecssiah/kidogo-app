@@ -54,13 +54,24 @@ export const Styles = StyleSheet.create({
     paddingLeft: 10,
     opacity: 0.5,
   },
+  codeContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
   codeInput: {
+    flex: 1,
     color: 'white',
-    fontSize: 22,
+    fontSize: 32,
     borderWidth: 2,
     borderColor: 'white',
     opacity: 0.5,
-    margin: 10,
+    marginHorizontal: 86,
+    padding: 10,
+  },
+  codeMessage: {
+    margin: 18,
+    color: '#ffffff80',
+    fontSize: 22,
   },
   label: {
     fontSize: 14,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Image, View, Text, TextInput, TouchableOpacity
+  Image, View, Text, TouchableOpacity
 } from 'react-native';
 import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
@@ -21,9 +21,6 @@ const Home = (props) => {
 
 
   const checkSignIn = async () => {
-    if (await CurrentCaregiver()) {
-      props.navigation.navigate('Dash')
-    }
   }
 
 

@@ -1,13 +1,23 @@
 import { API, graphqlOperation } from "aws-amplify";
 import { createCaregiver } from "../src/graphql/mutations";
+import { listCaregivers } from "../src/graphql/queries";
 
 export const CreateCaregiverDB = async (caregiverData) => {
-  const caregiverResp = await API.graphql(
+  await API.graphql(
     graphqlOperation(
       createCaregiver,
       { input: { ...caregiverData } }
     ),
   )
+}
 
-  console.log("DB - create: ", caregiverResp)
+
+export const GetCaregiversDB = async () => {
+  const caregiversResp = await API.graphql(
+    graphqlOperation(
+      listCaregivers
+    )
+  )
+
+  return caregiversResp
 }

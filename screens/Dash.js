@@ -57,9 +57,7 @@ const Dash = (props) => {
           <View style={Styles.dash} >
             { getDaytimeImage() }
 
-            <Text
-              style={[Styles.dashFont, Styles.raleway, { fontSize: 24 }]}
-            >
+            <Text style={[Styles.dashFont, Styles.raleway]} >
               { getGreeting() }
             </Text>
           </View>

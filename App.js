@@ -16,7 +16,7 @@ const App = () => {
 
 
   const configureApp = async () => {
-    await ResetStore()
+    // await ResetStore()
     await LoadFonts()
 
     ConfigureBcrypt()

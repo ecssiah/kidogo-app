@@ -233,6 +233,7 @@ export const Styles = StyleSheet.create({
     position: 'relative',
   },
   dashFont: {
+    fontSize: 24,
     zIndex: 99,
     fontSize: 36,
     height: 200,

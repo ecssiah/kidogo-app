@@ -9,6 +9,7 @@ import { Colors, Styles } from '../constants/Style';
 
 import Spacer from '../components/Spacer'
 import Error from '../components/Error';
+import { GetCaregiver } from '../utilities/localstore';
 
 
 const Home = (props) => {
@@ -21,6 +22,11 @@ const Home = (props) => {
 
 
   const checkSignIn = async () => {
+    const caregiver = await GetCaregiver()
+
+    if ("id" in caregiver) {
+      props.navigation.navigate('Dash')
+    }
   }
 
 

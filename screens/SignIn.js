@@ -6,6 +6,8 @@ import { Colors, Styles } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import { SignInCaregiver } from '../utilities/auth';
 import Loading from '../components/Loading';
+import { GetCaregiversDB } from '../utilities/dbstore';
+import { CreateCaregiver } from '../utilities/localstore';
 
 
 const SignIn = (props) => {
@@ -22,6 +24,16 @@ const SignIn = (props) => {
     setLoading(true)
 
     await SignInCaregiver(username, password)
+
+    const caregiversResp = await GetCaregiversDB()
+    const caregivers = caregiversResp["data"]["listCaregivers"]["items"]
+
+    for (let caregiver of caregivers) {
+      if (caregiver.username === username) {
+        await CreateCaregiver(caregiver)
+        break
+      }
+    }
 
     setLoading(false)
 

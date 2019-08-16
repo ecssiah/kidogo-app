@@ -6,7 +6,8 @@ import {
 
 export const CreateCaregiver = async (caregiverData) => {
   try {
-    await SecureStore.setItemAsync(CAREGIVER, JSON.stringify(caregiverData))
+    const resp = await SecureStore.setItemAsync(CAREGIVER, JSON.stringify(caregiverData))
+    return resp
   } catch(error) {
     console.error(error)
   }

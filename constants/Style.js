@@ -1,4 +1,9 @@
+import { StatusBar } from 'react-native'
 import { Dimensions, StyleSheet } from 'react-native'
+
+
+export const TopMargin = StatusBar.currentHeight
+
 
 export const Screen = {
   Width: Dimensions.get("window").width,
@@ -13,6 +18,7 @@ export const Size = {
 }
 
 export const Colors = {
+  helpButton: '#3c233d',
   gradient_dark: '#11011b',
   gradient_light: '#3c233d',
 }
@@ -72,6 +78,16 @@ export const Styles = StyleSheet.create({
     margin: 18,
     color: '#ffffff80',
     fontSize: 22,
+  },
+  cameraBackground: {
+    flex: 1,
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+  },
+  cameraIcon: {
+    flex:1,
+    alignSelf: 'flex-end',
+    alignItems: 'center',
   },
   label: {
     fontSize: 14,

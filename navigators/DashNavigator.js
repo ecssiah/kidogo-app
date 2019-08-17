@@ -4,6 +4,7 @@ import Dash from '../screens/Dash'
 import CheckIn from '../screens/CheckIn'
 import CheckOut from '../screens/CheckOut'
 import Finances from '../screens/Finances'
+import Enrollment from '../screens/Enrollment'
 import Questions from '../screens/Questions'
 import Payments from '../screens/Payments'
 
@@ -29,6 +30,12 @@ const routeConfig = {
   },
   Finances: {
     screen: Finances,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Enrollment: {
+    screen: Enrollment,
     navigationOptions: {
       header: null,
     },

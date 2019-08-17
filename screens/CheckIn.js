@@ -5,10 +5,11 @@ import { Audio } from 'expo-av'
 import { LinearGradient } from 'expo-linear-gradient'
 import { GetFullDate } from '../utilities/dates';
 import { UpdateAttendance } from '../utilities/localstore';
-import { Colors } from '../constants/Style';
+import { Colors, Styles, TopMargin } from '../constants/Style';
 import { CHECKIN } from '../constants/Attendance';
 
 import AttendanceCard from '../components/AttendanceCard'
+import Spacer from '../components/Spacer';
 
 
 const CheckIn = (props) => {
@@ -16,41 +17,46 @@ const CheckIn = (props) => {
 
 
   const getAttendanceCards = () => {
-    if (!attendanceToday) {
-      return null
-    }
+    return null
 
-    return (
-      Object.keys(attendanceToday).map((id, i) => {
-        let cardDetails = attendanceToday[id]
+    // if (!attendanceToday) {
+    //   return null
+    // }
 
-        return (
-          <AttendanceCard
-            key={i}
-            isMorning={true}
-            { ...cardDetails }
-            onPress={() => UpdateAttendance(CHECKIN, id)}
-          />
-        )
-      })
-    )
+    // return (
+    //   Object.keys(attendanceToday).map((id, i) => {
+    //     let cardDetails = attendanceToday[id]
+
+    //     return (
+    //       <AttendanceCard
+    //         key={i}
+    //         isMorning={true}
+    //         { ...cardDetails }
+    //         onPress={() => UpdateAttendance(CHECKIN, id)}
+    //       />
+    //     )
+    //   })
+    // )
   }
 
 
   const childrenHere = () => {
-
+    return {
+      "total": 23,
+      "hereToday": 6,
+    }
   }
 
 
   const getAttendance = () => {
-    const childrenHere = childrenHere()
+    const childrenResp = childrenHere()
 
-    if (childrenHere.total === childrenHere.hereToday) {
+    if (childrenResp.total === childrenResp.hereToday) {
       return 'All children are here'
-    } else if (childrenHere.hereToday === 1) {
+    } else if (childrenResp.hereToday === 1) {
       return '1 child is here'
     } else {
-      return `${childrenHere.hereToday} children are here`
+      return `${childrenResp.hereToday} children are here`
     }
   }
 
@@ -79,6 +85,8 @@ const CheckIn = (props) => {
       style={{ flex: 1 }}
       colors={[Colors.gradient_dark, Colors.gradient_light]}
     >
+      <Spacer height={TopMargin} />
+
       <Text style={[Styles.h1, Styles.raleway]}>
         Check In
       </Text>

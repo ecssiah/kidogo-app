@@ -92,7 +92,7 @@ const Home = (props) => {
         onPress={toggleHelpAudio}
       >
         <View style={Styles.helpButtonIcon} >
-          <Icon name="record-voice-over" color="#3C233D" size={36} />
+          <Icon name="record-voice-over" color={Colors.helpButton} size={36} />
         </View>
       </TouchableOpacity>
 

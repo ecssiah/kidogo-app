@@ -9,7 +9,8 @@ import { Colors, Styles } from '../constants/Style';
 
 
 const Dash = (props) => {
-  const [hour, setHour] = useState(new Date().getHours())
+  // const [hour, setHour] = useState(new Date().getHours())
+  const [hour, setHour] = useState(4)
 
 
   const getGreeting = () => {

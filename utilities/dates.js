@@ -1,12 +1,20 @@
 
+const WeekDays = [
+  "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+]
+
+const Months = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+]
 
 export const GetFullDate = () => {
   const date = new Date()
 
-  return date.toLocaleString(
-    'default',
-    { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }
-  )
+  const weekday = WeekDays[date.getDay() - 1]
+  const month = Months[date.getMonth()]
+
+  return `${weekday} ${date.getDate()}, ${month} ${date.getFullYear()}`
 }
 
 export default class Dates {

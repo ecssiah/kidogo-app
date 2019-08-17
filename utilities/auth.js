@@ -1,5 +1,4 @@
 import { Auth } from 'aws-amplify'
-import * as SecureStore from 'expo-secure-store'
 
 
 export const SignUpCaregiver = async (caregiverData) => {
@@ -48,22 +47,3 @@ export const SignInCaregiver = async (username, password) => {
     console.error(error)
   }
 }
-
-
-// const ChangeUserPassword = async (oldPassword, newPassword) => {
-//   Auth.currentAuthenticatedUser()
-//     .then(user => Auth.changePassword(user, oldPassword, newPassword))
-//     .then(data => console.log(data))
-//     .catch(err => console.log(err))
-// }
-
-
-// const ForgotUserPassword = (username) => {
-//   Auth.forgotPassword(username)
-//     .then(data => console.log(data))
-//     .catch(err => console.log(err))
-
-//   Auth.forgotPasswordSubmit(username, code, new_password)
-//     .then(data => console.log(data))
-//     .catch(err => console.log(err))
-// }

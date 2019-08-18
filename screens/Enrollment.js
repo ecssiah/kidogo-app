@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Text, View } from 'react-native'
+import { ScrollView, TouchableOpacity, Text, View } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Colors, Styles, TopMargin } from '../constants/Style';
+import { Icon } from 'react-native-elements';
 
 import ChildEntry from '../components/ChildEntry';
 import GuardianEntry from '../components/GuardianEntry';
@@ -27,7 +28,7 @@ const Enrollment = (props) => {
         if (focus === 'CHILD') {
           await soundObject.loadAsync(require('../assets/audio/children.mp3'))
         } else if (focus === 'GUARDIAN') {
-          await soundObject.loadAsync(require('../assets/audio/guardian.mp3'))
+          await soundObject.loadAsync(require('../assets/audio/guardians.mp3'))
         } else if (focus === 'CONTACT') {
           await soundObject.loadAsync(require('../assets/audio/contacts.mp3'))
         }
@@ -51,24 +52,27 @@ const Enrollment = (props) => {
 
       <Error message={error} />
 
-      <Text style={[Styles.h1, Styles.raleway]} >
-        Add New Child
-      </Text>
+      <ScrollView>
+        <ChildEntry
+          navigate={props.navigation.navigate}
+        >
 
-      <ChildEntry
-      >
+        </ChildEntry>
 
-      </ChildEntry>
+        <GuardianEntry
+          navigate={props.navigation.navigate}
+        >
 
-      <GuardianEntry
-      >
+        </GuardianEntry>
 
-      </GuardianEntry>
+        <EmergencyContactEntry
+          navigate={props.navigation.navigate}
+        >
 
-      <EmergencyContactEntry
-      >
+        </EmergencyContactEntry>
 
-      </EmergencyContactEntry>
+        <Spacer height={320} />
+      </ScrollView>
 
       <TouchableOpacity
         style={Styles.helpButton}

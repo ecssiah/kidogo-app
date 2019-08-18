@@ -85,7 +85,7 @@ export const Styles = StyleSheet.create({
     flexDirection: 'row',
   },
   cameraIcon: {
-    flex:1,
+    flex: 1,
     alignSelf: 'flex-end',
     alignItems: 'center',
   },
@@ -225,7 +225,7 @@ export const Styles = StyleSheet.create({
     marginVertical: 10,
   },
   raleway: {
-    fontFamily:'Raleway-Bold',
+    fontFamily: 'Raleway-Bold',
   },
   helpButton: {
     backgroundColor: '#ffffff80',

@@ -1,4 +1,16 @@
 import { Auth } from 'aws-amplify'
+import { GetCaregiver } from './localstore';
+
+
+export const SignedIn = async () => {
+  const caregiver = await GetCaregiver()
+
+  if ("id" in caregiver) {
+    return true
+  }
+
+  return false
+}
 
 
 export const SignUpCaregiver = async (caregiverData) => {

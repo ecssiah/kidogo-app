@@ -68,10 +68,7 @@ const SignIn = (props) => {
 
             <View style={Styles.passwordHolder}>
               <TextInput
-                style={[
-                  Styles.input,
-                  { flex: 0.9, marginRight: 0 },
-                ]}
+                style={[Styles.input, { flex: 0.9, marginRight: 0 }]}
                 secureTextEntry={hidePassword}
                 value={password}
                 onChangeText={setPassword}

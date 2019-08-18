@@ -12,15 +12,14 @@ import AppNavigator from './navigators/AppNavigator';
 
 Amplify.configure(awsconfig)
 
-const AppContainer = createAppContainer(AppNavigator)
-
 const store = createStore(rootReducer)
+const AppContainer = createAppContainer(AppNavigator)
 
 const App = () => {
   const [appLoading, setAppLoading] = useState(true)
 
 
-  const configureApp = async () => {
+  const setupApp = async () => {
     // await ResetStore()
     await LoadFonts()
 
@@ -31,7 +30,7 @@ const App = () => {
   if (appLoading) {
     return (
       <AppLoading
-        startAsync={configureApp}
+        startAsync={setupApp}
         onFinish={() => setAppLoading(false)}
         onError={console.warn}
       />

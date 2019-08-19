@@ -60,6 +60,16 @@ export const Styles = StyleSheet.create({
     paddingLeft: 10,
     opacity: 0.5,
   },
+  textArea: {
+    fontSize: 18,
+    color: 'white',
+    borderColor: 'white',
+    borderWidth: 2,
+    margin: 10,
+    padding: 8,
+    opacity: 0.5,
+    textAlignVertical: 'top',
+  },
   codeContainer: {
     flexDirection: 'row',
     justifyContent: 'center',

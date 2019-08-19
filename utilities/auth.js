@@ -6,6 +6,7 @@ export const SignedIn = async () => {
   const caregiver = await GetCaregiver()
 
   if ("id" in caregiver) {
+    console.log("Caregiver present")
     return true
   }
 

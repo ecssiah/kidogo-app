@@ -1,23 +1,44 @@
 import * as SecureStore from 'expo-secure-store'
 import {
-  CAREGIVER, PAYMENTS, ACCOUNTS, ATTENDANCE, FINANCES, QUESTIONS
+  CAREGIVER, PAYMENTS, ACCOUNTS, ATTENDANCE, FINANCES, QUESTIONS, GUARDIAN
 } from '../constants/Store';
-
-
-export const CreateCaregiver = async (caregiverData) => {
-  try {
-    const resp = await SecureStore.setItemAsync(CAREGIVER, JSON.stringify(caregiverData))
-    return resp
-  } catch(error) {
-    console.error(error)
-  }
-}
 
 
 export const GetCaregiver = async () => {
   const caregiverResp = await SecureStore.getItemAsync(CAREGIVER)
 
   return caregiverResp === null ? {} : JSON.parse(caregiverResp)
+}
+
+
+export const CreateCaregiver = async (caregiverData) => {
+  return await SecureStore.setItemAsync(
+    CAREGIVER, JSON.stringify(caregiverData)
+  )
+}
+
+
+export const GetGuardian = async () => {
+  const guardianResp = await SecureStore.getItemAsync(GUARDIAN)
+
+  return guardianResp === null ? {} : JSON.parse(guardianResp)
+}
+
+
+export const CreateGuardian = async (guardianData) => {
+  return await SecureStore.setItemAsync(
+    GUARDIAN, JSON.stringify(guardianData)
+  )
+}
+
+
+export const GetChild = async (id) => {
+  return await SecureStore.getItemAsync(`${CHILD}_${id}`)
+}
+
+
+export const CreateChild = async (childData) => {
+  return await SecureStore.setItemAsync(`${CHILD}_${childData.id}`)
 }
 
 

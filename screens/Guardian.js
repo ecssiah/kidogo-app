@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useSelector, useState } from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
 import {
   Image, ScrollView, Text, TextInput, TouchableOpacity, View
@@ -11,7 +11,6 @@ import Error from '../components/Error';
 import EmergencyContactEntry from '../components/EmergencyContactEntry';
 import GuardianEntry from '../components/GuardianEntry';
 import { Frequency } from '../constants/Enrollment';
-import RateEntry from '../components/RateEntry';
 
 
 const Guardian = (props) => {
@@ -29,7 +28,7 @@ const Guardian = (props) => {
   const [error, setError] = useState(null)
 
 
-  const onNext = () => {
+  const onNext = async () => {
     props.navigation.navigate('Children')
   }
 
@@ -57,9 +56,6 @@ const Guardian = (props) => {
           setAddress={setAddress}
           city={city}
           setCity={setCity}
-        />
-
-        <RateEntry
           rate={rate}
           setRate={setRate}
           frequency={frequency}

@@ -6,11 +6,10 @@ import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Colors, Styles } from '../constants/Style';
+import { SignedIn } from '../utilities/auth';
 
 import Spacer from '../components/Spacer'
 import Error from '../components/Error';
-import { GetCaregiver } from '../utilities/localstore';
-import { SignedIn } from '../utilities/auth';
 
 
 const Home = (props) => {
@@ -23,7 +22,7 @@ const Home = (props) => {
 
 
   const checkActiveCaregiver = async () => {
-    if (SignedIn()) {
+    if (await SignedIn()) {
       props.navigation.navigate('Dash')
     }
   }
@@ -94,8 +93,6 @@ const Home = (props) => {
           <Icon name="record-voice-over" color={Colors.helpButton} size={36} />
         </View>
       </TouchableOpacity>
-
-
     </LinearGradient>
   );
 }

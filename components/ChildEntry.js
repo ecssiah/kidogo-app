@@ -5,6 +5,7 @@ import {
 import { Styles } from '../constants/Style';
 import * as ImagePicker from 'expo-image-picker'
 import { Icon } from 'react-native-elements';
+import { Gender } from '../constants/Enrollment';
 
 
 const ChildEntry = (props) => {
@@ -111,12 +112,12 @@ const ChildEntry = (props) => {
             <Picker
               style={{ color: 'white', marginTop: -10 }}
               selectedValue={gender}
-              onValueChange={(value, pos) => setGender(value)}
+              onValueChange={(value, index) => setGender(value)}
             >
               <Picker.Item label="" value={null} />
-              <Picker.Item label="Female" value="female" />
-              <Picker.Item label="Male" value="male" />
-              <Picker.Item label="Other" value="other" />
+              <Picker.Item label={Gender.FEMALE} value={Gender.FEMALE} />
+              <Picker.Item label={Gender.MALE} value={Gender.MALE} />
+              <Picker.Item label={Gender.OTHER} value={Gender.OTHER} />
             </Picker>
           </View>
 
@@ -127,8 +128,9 @@ const ChildEntry = (props) => {
       </View>
 
       <TextInput
-        style={Styles.input}
+        style={Styles.textArea}
         multiline={true}
+        numberOfLines={4}
         value={notes}
         onChangeText={setNotes}
       />

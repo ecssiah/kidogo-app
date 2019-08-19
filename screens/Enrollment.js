@@ -13,7 +13,6 @@ import Spacer from '../components/Spacer';
 
 const Enrollment = (props) => {
   const [error, setError] = useState('')
-  const [focus, setFocus] = useState('CHILD')
   const [numChildren, setNumChildren] = useState(1)
 
 

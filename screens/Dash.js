@@ -53,6 +53,7 @@ const Dash = (props) => {
     >
       <ScrollView>
         <TouchableHighlight
+          activeOpacity={0.8}
           onPress={attendanceTransition}
         >
           <View style={Styles.dash} >
@@ -66,6 +67,7 @@ const Dash = (props) => {
 
         <View style={Styles.actionsContainer}>
           <TouchableOpacity
+            activeOpacity={0.8}
             style={Styles.actionButton}
             onPress={() => props.navigation.navigate('Enrollment')}
           >
@@ -80,6 +82,7 @@ const Dash = (props) => {
           </TouchableOpacity>
 
           <TouchableOpacity
+            activeOpacity={0.8}
             style={Styles.actionButton}
             onPress={() => props.navigation.navigate('Attendance')}
           >
@@ -94,6 +97,7 @@ const Dash = (props) => {
           </TouchableOpacity>
 
           <TouchableOpacity
+            activeOpacity={0.8}
             style={Styles.actionButton}
             onPress={()=> props.navigation.navigate('Finances')}
           >
@@ -108,6 +112,7 @@ const Dash = (props) => {
           </TouchableOpacity>
 
           <TouchableOpacity
+            activeOpacity={0.8}
             style={Styles.actionButton}
             onPress={() => props.navigation.navigate('Questions')}
           >

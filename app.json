@@ -2,6 +2,7 @@
   "expo": {
     "name": "Kidogo App",
     "slug": "kidogoApp",
+    "description": "Kidogo is working to support early childhood education entrepreneurs in Kenya. The Kidogo app serves these entrepeneurs by providing a central hub for them to record and manage their finances and daily logistical concerns.",
     "privacy": "public",
     "sdkVersion": "34.0.0",
     "platforms": [

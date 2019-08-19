@@ -5,7 +5,7 @@ import isaac from 'isaac'
 
 export const LoadFonts = async () => {
   await Font.loadAsync({
-    'Raleway-Bold': require('../assets/fonts/Raleway-Bold.ttf')
+    'Raleway-Bold': require('../assets/fonts/Raleway-Bold.ttf'),
   })
 }
 

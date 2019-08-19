@@ -69,13 +69,13 @@ const Dash = (props) => {
             style={Styles.actionButton}
             onPress={() => props.navigation.navigate('Enrollment')}
           >
-              <ImageBackground
-                style={Styles.buttonImage}
-                source={require('../assets/images/enrollment.png')}
-              >
-                <Text style={[Styles.actionText, Styles.raleway]} >
-                  Add a family
-                </Text>
+            <ImageBackground
+              style={Styles.buttonImage}
+              source={require('../assets/images/enrollment.png')}
+            >
+              <Text style={[Styles.actionText, Styles.raleway]} >
+                Add a family
+              </Text>
             </ImageBackground>
           </TouchableOpacity>
 
@@ -83,10 +83,10 @@ const Dash = (props) => {
             style={Styles.actionButton}
             onPress={() => props.navigation.navigate('Attendance')}
           >
-              <ImageBackground
-                style={Styles.buttonImage}
-                source={require('../assets/images/attendance.png')}
-              >
+            <ImageBackground
+              style={Styles.buttonImage}
+              source={require('../assets/images/attendance.png')}
+            >
               <Text style={[Styles.actionText, Styles.raleway]} >
                 Attendance
               </Text>

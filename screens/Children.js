@@ -13,10 +13,10 @@ const Children = (props) => {
 
 
   const changeNumChildren = (delta) => {
-    if (numChildren + delta > 0) {
-      setNumChildren(numChildren + delta)
-    } else {
+    if (numChildren + delta < 1) {
       setNumChildren(1)
+    } else {
+      setNumChildren(numChildren + delta)
     }
   }
 

@@ -229,6 +229,20 @@ export const Styles = StyleSheet.create({
     marginHorizontal: 10,
     height: 50,
   },
+  prefix: {
+    flex: .2,
+    fontSize: 18,
+    fontWeight: 'bold',
+    borderBottomWidth: 2,
+    opacity: 0.5,
+    borderColor: 'white',
+    color: 'white',
+    height: 30,
+    marginVertical: 10,
+    marginLeft: 10,
+    paddingLeft: 10,
+    lineHeight: 34
+  },
   raleway: {
     fontFamily: 'Raleway-Bold',
   },

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Picker, Text, TextInput, View } from 'react-native'
 import { Styles } from '../constants/Style';
+import { Frequency } from '../constants/Enrollment';
 
 
 const RateEntry = (props) => {
@@ -14,10 +15,10 @@ const RateEntry = (props) => {
           </Text>
 
           <TextInput
+            style={[Styles.input, { flex: .8, marginLeft: 0 }]}
             keyboardType="number-pad"
             value={props.rate}
-            style={[Styles.input, { flex: .8, marginLeft: 0 }]}
-            onChangeText={(text) => props.handleNumberChange(text, 'rate')}
+            onChangeText={props.setRate}
           />
         </View>
 
@@ -31,11 +32,11 @@ const RateEntry = (props) => {
           <Picker
             style={{ color: 'white', marginTop: -10 }}
             selectedValue={props.frequency}
-            onValueChange={(value, index) => props.pickerChange(value)}
+            onValueChange={(value, index) => props.setFrequency(value)}
           >
-            <Picker.Item label="Kila siku" value="daily" />
-            <Picker.Item label="Kila wiki" value="weekly" />
-            <Picker.Item label="Kila Muhula" value="termly" />
+            <Picker.Item label={Frequency.DAILY} value={Frequency.DAILY} />
+            <Picker.Item label={Frequency.WEEKLY} value={Frequency.WEEKLY} />
+            <Picker.Item label={Frequency.TERMLY} value={Frequency.TERMLY} />
           </Picker>
         </View>
 

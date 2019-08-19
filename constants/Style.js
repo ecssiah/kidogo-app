@@ -224,6 +224,11 @@ export const Styles = StyleSheet.create({
     borderRadius: 100,
     marginVertical: 10,
   },
+  rowButtons: {
+    flexDirection: 'row',
+    marginHorizontal: 10,
+    height: 50,
+  },
   raleway: {
     fontFamily: 'Raleway-Bold',
   },

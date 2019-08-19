@@ -5,7 +5,7 @@ import { Colors, Styles, TopMargin } from '../constants/Style';
 import { Icon } from 'react-native-elements';
 
 import ChildEntry from '../components/ChildEntry';
-import GuardianEntry from '../components/GuardianEntry';
+import GuardianEntry from './Guardian';
 import EmergencyContactEntry from '../components/EmergencyContactEntry';
 import Error from '../components/Error';
 import Spacer from '../components/Spacer';
@@ -14,6 +14,31 @@ import Spacer from '../components/Spacer';
 const Enrollment = (props) => {
   const [error, setError] = useState('')
   const [focus, setFocus] = useState('CHILD')
+  const [numChildren, setNumChildren] = useState(1)
+
+
+  const onAddNewChildForm = () => {
+    setNumChildren(numChildren + 1)
+  }
+
+  const onRemoveNewChildForm = () => {
+    if (numChildren > 1) {
+      setNumChildren(numChildren - 1)
+    }
+  }
+
+
+  const getChildEntries = () => {
+    const childEntries = []
+
+    for (let i = 0; i < numChildren; i++) {
+      childEntries.push(
+        <ChildEntry key={i} />
+      )
+    }
+
+    return childEntries
+  }
 
 
   const toggleHelpAudio = async () => {
@@ -53,12 +78,6 @@ const Enrollment = (props) => {
       <Error message={error} />
 
       <ScrollView>
-        <ChildEntry
-          navigate={props.navigation.navigate}
-        >
-
-        </ChildEntry>
-
         <GuardianEntry
           navigate={props.navigation.navigate}
         >
@@ -71,6 +90,24 @@ const Enrollment = (props) => {
 
         </EmergencyContactEntry>
 
+        { getChildEntries() }
+
+        <View style={Styles.rowButtons} >
+          <TouchableOpacity
+            style={[Styles.mainButton, { flex: 0.5, marginLeft: 5 }]}
+            onPress={onRemoveNewChildForm}
+          >
+            <Text style={Styles.btnText}>Remove Child</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[Styles.mainButton, { flex: 0.5, marginLeft: 5 }]}
+            onPress={onAddNewChildForm}
+          >
+            <Text style={Styles.btnText}>Add Child</Text>
+          </TouchableOpacity>
+        </View>
+
         <Spacer height={320} />
       </ScrollView>
 
@@ -79,7 +116,11 @@ const Enrollment = (props) => {
         onPress={toggleHelpAudio}
       >
         <View style={Styles.helpButtonIcon} >
-          <Icon name="record-voice-over" color={Colors.helpButton} size={36} />
+          <Icon
+            name="record-voice-over"
+            size={36}
+            color={Colors.helpButton}
+          />
         </View>
       </TouchableOpacity>
     </LinearGradient>

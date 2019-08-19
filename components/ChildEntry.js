@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Image, Picker, Text, TextInput, TouchableOpacity, ScrollView, View
+  Image, Picker, Text, TextInput, TouchableOpacity, View
 } from 'react-native'
 import { Styles } from '../constants/Style';
 import * as ImagePicker from 'expo-image-picker'
@@ -50,7 +50,7 @@ const ChildEntry = (props) => {
   return (
     <View>
       <Text style={[Styles.h1, Styles.raleway]} >
-        Child Details
+        Child
       </Text>
 
       { getHeaderImage() }

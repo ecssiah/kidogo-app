@@ -5,7 +5,6 @@ import { createStore } from 'redux'
 import rootReducer from './reducers/RootReducer'
 import awsconfig from './aws-exports'
 import { AppLoading } from 'expo'
-import { ResetStore } from './utilities/localstore';
 import { LoadFonts, ConfigureBcrypt } from './utilities/config';
 import { createAppContainer } from 'react-navigation';
 import AppNavigator from './navigators/AppNavigator';
@@ -20,7 +19,6 @@ const App = () => {
 
 
   const setupApp = async () => {
-    // await ResetStore()
     await LoadFonts()
 
     ConfigureBcrypt()

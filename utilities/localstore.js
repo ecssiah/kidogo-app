@@ -18,8 +18,8 @@ export const CreateCaregiver = async (caregiverData) => {
 }
 
 
-export const GetGuardian = async () => {
-  const guardianResp = await SecureStore.getItemAsync(GUARDIAN)
+export const GetGuardian = async (id) => {
+  const guardianResp = await SecureStore.getItemAsync(`${GUARDIAN}_${id}`)
 
   return guardianResp === null ? {} : JSON.parse(guardianResp)
 }
@@ -27,7 +27,7 @@ export const GetGuardian = async () => {
 
 export const CreateGuardian = async (guardianData) => {
   return await SecureStore.setItemAsync(
-    GUARDIAN, JSON.stringify(guardianData)
+    `${GUARDIAN}_${guardianData.id}`, JSON.stringify(guardianData)
   )
 }
 
@@ -38,7 +38,9 @@ export const GetChild = async (id) => {
 
 
 export const CreateChild = async (childData) => {
-  return await SecureStore.setItemAsync(`${CHILD}_${childData.id}`)
+  return await SecureStore.setItemAsync(
+    `${CHILD}_${childData.id}`, JSON.stringify(childData)
+  )
 }
 
 
@@ -79,18 +81,4 @@ export const GetQuestions = async () => {
   const questionsResp = await SecureStore.getItemAsync(QUESTIONS)
 
   return questionsResp === null ? {} : JSON.parse(questionsResp)
-}
-
-
-export const ResetStore = async () => {
-  try {
-    await SecureStore.setItemAsync(CAREGIVER, JSON.stringify({}))
-    await SecureStore.setItemAsync(ATTENDANCE, JSON.stringify({}))
-    await SecureStore.setItemAsync(FINANCES, JSON.stringify({}))
-    await SecureStore.setItemAsync(PAYMENTS, JSON.stringify({}))
-    await SecureStore.setItemAsync(ACCOUNTS, JSON.stringify({}))
-    await SecureStore.setItemAsync(QUESTIONS, JSON.stringify({}))
-  } catch(error) {
-    console.error(error)
-  }
 }

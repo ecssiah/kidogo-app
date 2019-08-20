@@ -191,14 +191,18 @@ export const Styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ffffff80',
     paddingHorizontal: 10,
+  },
+  pairButton: {
     flex: 0.5,
-    marginVertical: 20,
-    borderRadius: 2,
+    borderWidth: 1,
+    borderColor: '#ffffff80',
+    paddingHorizontal: 10,
+    marginHorizontal: 4,
   },
   mainButton: {
     borderWidth: 1,
     borderColor: '#ffffff80',
-    marginHorizontal: 20,
+    marginHorizontal: 8,
   },
   btnText: {
     fontSize: 24,
@@ -235,9 +239,9 @@ export const Styles = StyleSheet.create({
     marginVertical: 10,
   },
   rowButtons: {
-    flexDirection: 'row',
-    marginHorizontal: 10,
     height: 50,
+    flexDirection: 'row',
+    marginHorizontal: 4,
   },
   prefix: {
     flex: .2,

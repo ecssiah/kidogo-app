@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import uuid from 'uuid'
 import { ScrollView, TouchableOpacity, Text, View } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Colors, TopMargin, Styles } from '../constants/Style';
@@ -7,30 +8,58 @@ import Spacer from '../components/Spacer';
 import Error from '../components/Error';
 import ChildEntry from '../components/ChildEntry';
 
+
 const Children = (props) => {
+  const { guardianId } = props.navigation.state.params
+
+  const [childData, setChildData] = useState([])
+  const [childEntries, setChildEntries] = useState([])
   const [error, setError] = useState(null)
-  const [numChildren, setNumChildren] = useState(1)
 
 
-  const changeNumChildren = (delta) => {
-    if (numChildren + delta < 1) {
-      setNumChildren(1)
-    } else {
-      setNumChildren(numChildren + delta)
-    }
+  useEffect(() => {
+    addChild()
+  }, [])
+
+
+  const onSubmit = () => {
+
   }
 
 
-  const getChildEntries = () => {
-    const childEntries = []
-
-    for (let i = 0; i < numChildren; i++) {
-      childEntries.push(
-        <ChildEntry key={i} />
-      )
+  const addChild = () => {
+    const newChildData = {
+      id: uuid(),
+      guardianId,
+      firstName: '',
+      lastName: '',
+      birthdate: '',
+      gender: '',
+      notes: '',
+      imgURI: null,
     }
 
-    return childEntries
+    setChildData(childData.concat(newChildData))
+
+    console.log(childData)
+
+    setChildEntries(
+      childEntries.concat(
+        <ChildEntry
+          key={childEntries.length}
+          childData={childData}
+          setChildData={setChildData}
+        />
+      )
+    )
+  }
+
+
+  const removeChild = () => {
+    if (childEntries.length > 1) {
+      setChildData(childData.slice(0, -1))
+      setChildEntries(childEntries.slice(0, -1))
+    }
   }
 
 
@@ -44,25 +73,34 @@ const Children = (props) => {
       <Error message={error} />
 
       <ScrollView>
-        { getChildEntries() }
+        { childEntries }
 
-        <Spacer large />
+        <Spacer small />
 
         <View style={Styles.rowButtons} >
           <TouchableOpacity
-            style={[Styles.mainButton, { flex: 0.5, marginLeft: 5 }]}
-            onPress={() => changeNumChildren(-1)}
+            style={Styles.pairButton}
+            onPress={removeChild}
           >
             <Text style={Styles.btnText}>Remove Child</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[Styles.mainButton, { flex: 0.5, marginLeft: 5 }]}
-            onPress={() => changeNumChildren(1)}
+            style={Styles.pairButton}
+            onPress={addChild}
           >
             <Text style={Styles.btnText}>Add Child</Text>
           </TouchableOpacity>
         </View>
+
+        <Spacer small />
+
+        <TouchableOpacity
+          style={Styles.mainButton}
+          onPress={onSubmit}
+        >
+          <Text style={Styles.btnText}>Submit Family</Text>
+        </TouchableOpacity>
 
         <Spacer height={320} />
       </ScrollView>

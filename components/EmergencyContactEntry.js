@@ -4,7 +4,6 @@ import { Styles } from '../constants/Style';
 
 
 const EmergencyContactEntry = (props) => {
-
   return (
     <View>
       <Text style={[Styles.h1, Styles.raleway]} >

@@ -3,6 +3,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import {
   Image, ScrollView, Text, TextInput, TouchableOpacity, View
 } from 'react-native'
+import uuid from 'uuid'
 import { Icon } from 'react-native-elements';
 import { Styles, Colors, TopMargin } from '../constants/Style';
 
@@ -11,6 +12,7 @@ import Error from '../components/Error';
 import EmergencyContactEntry from '../components/EmergencyContactEntry';
 import GuardianEntry from '../components/GuardianEntry';
 import { Frequency } from '../constants/Enrollment';
+import { CreateGuardian } from '../utilities/localstore';
 
 
 const Guardian = (props) => {
@@ -29,7 +31,24 @@ const Guardian = (props) => {
 
 
   const onNext = async () => {
-    props.navigation.navigate('Children')
+    const guardianData = {
+      id: uuid(),
+      firstName,
+      lastName,
+      phone,
+      govtId,
+      address,
+      city,
+      rate,
+      frequency,
+      ecFirstName,
+      ecLastName,
+      ecPhone,
+    }
+
+    await CreateGuardian(guardianData)
+
+    props.navigation.navigate('Children', { guardianId: guardianData.id })
   }
 
 

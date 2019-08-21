@@ -282,7 +282,6 @@ export const Styles = StyleSheet.create({
     position: 'relative',
   },
   dashFont: {
-    fontSize: 24,
     zIndex: 99,
     fontSize: 36,
     height: 200,
@@ -294,6 +293,9 @@ export const Styles = StyleSheet.create({
     paddingLeft: 30,
     flex: 1,
     color: 'white',
+    textShadowColor: 'rgba(0, 0, 0, 1.0)',
+    textShadowOffset: { width: 1, height: 2 },
+    textShadowRadius: 4,
   },
   actionsContainer: {
     flex: 1,
@@ -309,7 +311,7 @@ export const Styles = StyleSheet.create({
   },
   actionText: {
     zIndex: 101,
-    fontSize: 24,
+    fontSize: 28,
     top: 0,
     height: 150,
     lineHeight: 150,
@@ -317,7 +319,7 @@ export const Styles = StyleSheet.create({
     color: '#ffffff',
     textShadowColor: 'rgba(0, 0, 0, 1.0)',
     textShadowOffset: { width: 1, height: 2 },
-    textShadowRadius: 8,
+    textShadowRadius: 4,
   },
   buttonImage: {
     borderRadius: 5,

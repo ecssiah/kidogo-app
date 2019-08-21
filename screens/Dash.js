@@ -62,7 +62,7 @@ const Dash = (props) => {
           </View>
         </TouchableHighlight>
 
-        <View style={Styles.actionsContainer}>
+        <View style={Styles.actionsContainer} >
           <TouchableOpacity
             activeOpacity={0.8}
             style={Styles.actionButton}

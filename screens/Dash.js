@@ -66,21 +66,6 @@ const Dash = (props) => {
           <TouchableOpacity
             activeOpacity={0.8}
             style={Styles.actionButton}
-            onPress={() => props.navigation.navigate('Enrollment')}
-          >
-            <ImageBackground
-              style={Styles.buttonImage}
-              source={require('../assets/images/enrollment.png')}
-            >
-              <Text style={[Styles.actionText, Styles.raleway]} >
-                Add a family
-              </Text>
-            </ImageBackground>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            activeOpacity={0.8}
-            style={Styles.actionButton}
             onPress={() => props.navigation.navigate('Attendance')}
           >
             <ImageBackground
@@ -119,6 +104,21 @@ const Dash = (props) => {
             >
               <Text style={[Styles.actionText, Styles.raleway]} >
                 Daily Questions
+              </Text>
+            </ImageBackground>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={Styles.actionButton}
+            onPress={() => props.navigation.navigate('Enrollment')}
+          >
+            <ImageBackground
+              style={Styles.buttonImage}
+              source={require('../assets/images/enrollment.png')}
+            >
+              <Text style={[Styles.actionText, Styles.raleway]} >
+                Add a family
               </Text>
             </ImageBackground>
           </TouchableOpacity>

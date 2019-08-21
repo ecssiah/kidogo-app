@@ -314,7 +314,10 @@ export const Styles = StyleSheet.create({
     height: 150,
     lineHeight: 150,
     paddingLeft: 20,
-    color: '#333',
+    color: '#ffffff',
+    textShadowColor: 'rgba(0, 0, 0, 1.0)',
+    textShadowOffset: { width: 1, height: 2 },
+    textShadowRadius: 8,
   },
   buttonImage: {
     borderRadius: 5,

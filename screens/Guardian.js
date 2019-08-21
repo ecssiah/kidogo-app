@@ -1,4 +1,4 @@
-import React, { useRef, useSelector, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import {
   Image, ScrollView, Text, TextInput, TouchableOpacity, View
 } from 'react-native'

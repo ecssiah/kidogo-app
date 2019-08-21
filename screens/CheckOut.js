@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Text, View, ScrollView } from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient'
-import { Colors, Styles } from '../constants/Style';
+import { Styles } from '../constants/Style';
 import { GetFullDate } from '../utilities/dates';
 
 
@@ -25,60 +24,57 @@ const CheckOut = (props) => {
 
 
   return (
-    <LinearGradient
-      style={{ flex: 1 }}
-      colors={[Colors.gradient_dark, Colors.gradient_light]}
-    >
-        <Text style={[Styles.h1, Styles.raleway]}>
-          Check Out
-        </Text>
+    <Backdrop>
+      <Text style={[Styles.h1, Styles.raleway]}>
+        Check Out
+      </Text>
 
-        <Text style={Styles.h2}>
-          { GetFullDate() }
-        </Text>
+      <Text style={Styles.h2}>
+        { GetFullDate() }
+      </Text>
 
-        {
-          this.props.attendance && attendanceToday
-            ? <View>
-                <Text
-                  style={[Styles.text, { marginLeft: 10, marginBottom: 20 }]}
-                >
-                  { getAttendance() }
-                </Text>
+      {
+        this.props.attendance && attendanceToday
+          ? <View>
+              <Text
+                style={[Styles.text, { marginLeft: 10, marginBottom: 20 }]}
+              >
+                { getAttendance() }
+              </Text>
 
-                <ScrollView contentContainerStyle={styles.attendanceHolder}>
-                  {
-                    attendanceToday
-                      ? Object.keys(attendanceToday).map((id, i) => {
-                          let cardDetails = attendanceToday[id]
+              <ScrollView contentContainerStyle={styles.attendanceHolder}>
+                {
+                  attendanceToday
+                    ? Object.keys(attendanceToday).map((id, i) => {
+                        let cardDetails = attendanceToday[id]
 
-                          if (!!cardDetails.checkIn) {
-                            return (
-                              <AttendanceCard
-                                key={i}
-                                {...cardDetails}
-                                onPress={() => {
-                                  this.props.changeCheckInOut(
-                                    this.state.d.getToday(), id, 'checkOut'
-                                  )
-                                }}
-                                isMorning={false}
-                              />
-                            )
-                          } else {
-                            return
-                          }
-                        })
-                      : <Text style={[styles.text, { marginLeft: 10 }]}>
-                          No one was checked in today.
-                        </Text>
-                  }
-                </ScrollView>
-              </View>
-            : <Text style={styles.text}>Attendance was not taken today.</Text>
-        }
+                        if (!!cardDetails.checkIn) {
+                          return (
+                            <AttendanceCard
+                              key={i}
+                              {...cardDetails}
+                              onPress={() => {
+                                this.props.changeCheckInOut(
+                                  this.state.d.getToday(), id, 'checkOut'
+                                )
+                              }}
+                              isMorning={false}
+                            />
+                          )
+                        } else {
+                          return
+                        }
+                      })
+                    : <Text style={[styles.text, { marginLeft: 10 }]}>
+                        No one was checked in today.
+                      </Text>
+                }
+              </ScrollView>
+            </View>
+          : <Text style={styles.text}>Attendance was not taken today.</Text>
+      }
 
-    </LinearGradient>
+    </Backdrop>
   )
 }
 

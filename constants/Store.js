@@ -1,6 +1,7 @@
 
 export const CAREGIVER = 'Caregiver'
 export const GUARDIAN = 'Guardian'
+export const CONTACT = 'Contact'
 export const CHILD = 'Child'
 export const ATTENDANCE = 'Attendance'
 export const PAYMENTS = 'Payments'

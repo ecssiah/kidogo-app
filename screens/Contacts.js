@@ -1,64 +1,51 @@
-import React, { useRef, useSelector, useState } from 'react'
-import {
-  Image, ScrollView, Text, TextInput, TouchableOpacity, View
-} from 'react-native'
+import React, { useRef, useState } from 'react'
 import uuid from 'uuid'
-import { Audio } from 'expo-av'
 import { Icon } from 'react-native-elements';
-import { Styles, Colors, TopMargin } from '../constants/Style';
+import { Text, TouchableOpacity, ScrollView, View } from 'react-native'
 
+import Backdrop from '../components/Backdrop';
+import ContactEntry from '../components/ContactEntry';
 import Spacer from '../components/Spacer';
 import Error from '../components/Error';
-import GuardianEntry from '../components/GuardianEntry';
-import { Frequency } from '../constants/Enrollment';
-import { CreateGuardian } from '../utilities/localstore';
-import Backdrop from '../components/Backdrop';
+import { Styles, TopMargin, Colors } from '../constants/Style';
+import { CreateContact } from '../utilities/localstore';
 import Loading from '../components/Loading';
 
 
-const Guardian = (props) => {
-  const [accountId, setAccountId] = useState(uuid())
+const Contacts = (props) => {
+  const { accountId } = props.navigation.state.params
+
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [phone, setPhone] = useState('')
-  const [govtId, setGovtId] = useState('')
-  const [address, setAddress] = useState('')
-  const [city, setCity] = useState('')
-  const [rate, setRate] = useState('')
-  const [frequency, setFrequency] = useState(Frequency.DAILY)
-  const [soundObject, setSoundObject] = useState(null)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState('')
+  const [soundObject, setSoundObject] = useState(null)
 
   const scrollRef = useRef(null)
 
 
-  const onNextGuardian = async () => {
+  const onNextContact = async () => {
     resetForm()
 
     setLoading(true)
 
-    const guardianData = {
+    const contactData = {
       accountId,
       id: uuid(),
       firstName,
       lastName,
       phone,
-      govtId,
-      address,
-      city,
-      rate,
-      frequency,
     }
 
-    await CreateGuardian(guardianData)
+    await CreateContact(contactData)
 
     setLoading(false)
   }
 
 
-  const onAddContacts = async () => {
-    props.navigation.navigate('Contacts', { accountId })
+  const onAddChildren = async () => {
+    props.navigation.navigate('Children', { accountId })
   }
 
 
@@ -68,11 +55,6 @@ const Guardian = (props) => {
     setFirstName('')
     setLastName('')
     setPhone('')
-    setGovtId('')
-    setAddress('')
-    setCity('')
-    setRate('')
-    setFrequency(Frequency.DAILY)
   }
 
 
@@ -84,7 +66,7 @@ const Guardian = (props) => {
         setSoundObject(null)
       } else {
         const soundObject = new Audio.Sound()
-        await soundObject.loadAsync(require('../assets/audio/guardians.mp3'))
+        await soundObject.loadAsync(require('../assets/audio/contacts.mp3'))
         await soundObject.playAsync()
 
         setSoundObject(soundObject)
@@ -104,23 +86,13 @@ const Guardian = (props) => {
       {loading
         ? <Loading />
         : <ScrollView ref={scrollRef} >
-            <GuardianEntry
+            <ContactEntry
               firstName={firstName}
               setFirstName={setFirstName}
               lastName={lastName}
               setLastName={setLastName}
               phone={phone}
               setPhone={setPhone}
-              govtId={govtId}
-              setGovtId={setGovtId}
-              address={address}
-              setAddress={setAddress}
-              city={city}
-              setCity={setCity}
-              rate={rate}
-              setRate={setRate}
-              frequency={frequency}
-              setFrequency={setFrequency}
             />
 
             <Spacer large />
@@ -128,22 +100,23 @@ const Guardian = (props) => {
             <View style={Styles.rowButtons} >
               <TouchableOpacity
                 style={Styles.pairButton}
-                onPress={onNextGuardian}
+                onPress={onNextContact}
               >
-                <Text style={Styles.btnText}>Next Guardian</Text>
+                <Text style={Styles.btnText}>Next Contact</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
                 style={Styles.pairButton}
-                onPress={onAddContacts}
+                onPress={onAddChildren}
               >
-                <Text style={Styles.btnText}>Add Contacts</Text>
+                <Text style={Styles.btnText}>Add Children</Text>
               </TouchableOpacity>
             </View>
 
             <Spacer height={320} />
           </ScrollView>
       }
+
 
       <TouchableOpacity
         style={Styles.helpButton}
@@ -157,4 +130,4 @@ const Guardian = (props) => {
   )
 }
 
-export default Guardian
+export default Contacts

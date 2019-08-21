@@ -4,8 +4,8 @@ import {
   TouchableHighlight, TouchableOpacity,
   ScrollView, Text, View
 } from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient'
-import { Colors, Styles } from '../constants/Style';
+import { Styles } from '../constants/Style';
+import Backdrop from '../components/Backdrop';
 
 
 const Dash = (props) => {
@@ -47,10 +47,7 @@ const Dash = (props) => {
 
 
   return (
-    <LinearGradient
-      style={{ flex: 1 }}
-      colors={[Colors.gradient_dark, Colors.gradient_light]}
-    >
+    <Backdrop>
       <ScrollView>
         <TouchableHighlight
           activeOpacity={0.8}
@@ -127,7 +124,7 @@ const Dash = (props) => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </LinearGradient>
+    </Backdrop>
   )
 }
 

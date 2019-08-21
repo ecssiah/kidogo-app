@@ -4,12 +4,12 @@ import {
 } from 'react-native';
 import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
-import { LinearGradient } from 'expo-linear-gradient'
 import { Colors, Styles } from '../constants/Style';
 import { SignedIn } from '../utilities/auth';
 
 import Spacer from '../components/Spacer'
 import Error from '../components/Error';
+import Backdrop from '../components/Backdrop';
 
 
 const Home = (props) => {
@@ -54,10 +54,7 @@ const Home = (props) => {
 
 
   return (
-    <LinearGradient
-      style={{ flex: 1 }}
-      colors={[Colors.gradient_dark, Colors.gradient_light]}
-    >
+    <Backdrop>
       <Error message={error} />
 
       <Spacer height={240} />
@@ -93,7 +90,7 @@ const Home = (props) => {
           <Icon name="record-voice-over" color={Colors.helpButton} size={36} />
         </View>
       </TouchableOpacity>
-    </LinearGradient>
+    </Backdrop>
   );
 }
 

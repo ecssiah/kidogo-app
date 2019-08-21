@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ChildEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ChildEntry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/EmergencyContactEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/EmergencyContactEntry.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/Children.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Children.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Guardian.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Guardian.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilities/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/auth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utilities/localstore.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/localstore.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,7 +63,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="81" y="104" width="1257" height="724" extended-state="0" />
+    <frame x="81" y="104" width="1257" height="724" extended-state="1" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.37366256" />

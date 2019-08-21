@@ -3,7 +3,7 @@ import { Image, Text, TextInput, View } from 'react-native'
 import { Styles } from '../constants/Style';
 
 
-const EmergencyContactEntry = (props) => {
+const ContactEntry = (props) => {
   return (
     <View>
       <Text style={[Styles.h1, Styles.raleway]} >
@@ -50,4 +50,4 @@ const EmergencyContactEntry = (props) => {
   )
 }
 
-export default EmergencyContactEntry
+export default ContactEntry

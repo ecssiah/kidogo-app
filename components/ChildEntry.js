@@ -9,37 +9,12 @@ import { Gender } from '../constants/Enrollment';
 
 
 const ChildEntry = (props) => {
-  const onChangeFirstName = () => {
-
-  }
-
-
-  const onChangeLastName = () => {
-
-  }
-
-
-  const onChangeBirthdate = () => {
-
-  }
-
-
-  const onChangeGender = () => {
-
-  }
-
-
-  const onChangeNotes = () => {
-
-  }
-
-
   const getHeaderImage = () => {
-    if (props.childData.imgURI) {
+    if (props.uri) {
       return (
         <Image
           style={Styles.img}
-          source={{ uri: props.childData.imgURI }}
+          source={{ uri: props.uri }}
         />
       )
     } else {
@@ -91,8 +66,8 @@ const ChildEntry = (props) => {
 
       <TextInput
         style={Styles.input}
-        value={props.childData.firstName}
-        onChangeText={onChangeFirstName}
+        value={props.firstName}
+        onChangeText={props.setFirstName}
       />
 
       <Text style={Styles.label} >
@@ -101,8 +76,8 @@ const ChildEntry = (props) => {
 
       <TextInput
         style={Styles.input}
-        value={props.childData.lastName}
-        onChangeText={onChangeLastName}
+        value={props.lastName}
+        onChangeText={props.setLastName}
       />
 
       <Text style={Styles.label} >
@@ -115,8 +90,8 @@ const ChildEntry = (props) => {
             style={[Styles.input, Styles.dateInput]}
             maxLength={10}
             keyboardType="number-pad"
-            value={props.childData.birthdate}
-            onChangeText={onChangeBirthdate}
+            value={props.birthdate}
+            onChangeText={props.setBirthdate}
           />
 
           <Text style={Styles.label} >
@@ -128,8 +103,8 @@ const ChildEntry = (props) => {
           <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >
             <Picker
               style={{ color: 'white', marginTop: -10 }}
-              selectedValue={props.childData.gender}
-              onValueChange={onChangeGender}
+              selectedValue={props.gender}
+              onValueChange={(value, pos) => props.setGender(value)}
             >
               <Picker.Item label="" value={null} />
               <Picker.Item label={Gender.FEMALE} value={Gender.FEMALE} />
@@ -148,8 +123,8 @@ const ChildEntry = (props) => {
         style={Styles.textArea}
         multiline={true}
         numberOfLines={4}
-        value={props.childData.notes}
-        onChangeText={onChangeNotes}
+        value={props.notes}
+        onChangeText={props.setNotes}
       />
 
       <Text style={Styles.label} >

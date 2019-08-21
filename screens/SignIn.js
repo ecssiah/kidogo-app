@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { TextInput, Text, TouchableOpacity, View } from 'react-native'
 import { Icon } from 'react-native-elements'
-import { LinearGradient } from 'expo-linear-gradient'
-import { Colors, Styles } from '../constants/Style';
+import { Styles } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import { SignInCaregiver } from '../utilities/auth';
 import Loading from '../components/Loading';
 import { GetCaregiversDB } from '../utilities/dbstore';
 import { CreateCaregiver } from '../utilities/localstore';
+import Backdrop from '../components/Backdrop';
 
 
 const SignIn = (props) => {
@@ -42,10 +42,7 @@ const SignIn = (props) => {
 
 
   return (
-    <LinearGradient
-      style={{ flex: 1 }}
-      colors={[Colors.gradient_dark, Colors.gradient_light]}
-    >
+    <Backdrop>
       {loading
         ? <Loading />
         : <View>
@@ -99,7 +96,7 @@ const SignIn = (props) => {
             </TouchableOpacity>
           </View>
       }
-    </LinearGradient>
+    </Backdrop>
   )
 }
 

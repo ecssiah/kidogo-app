@@ -3,8 +3,7 @@ import {
   View, Text, TouchableOpacity, ScrollView
 } from 'react-native';
 import { Audio } from 'expo-av'
-import { LinearGradient } from 'expo-linear-gradient'
-import { Colors, Styles } from '../constants/Style';
+import { Styles } from '../constants/Style';
 import { Icon } from 'react-native-elements'
 import {
   SignUpCaregiver, SignInCaregiver, ConfirmCaregiver
@@ -20,6 +19,7 @@ import CentreEntry from '../components/CentreEntry'
 import ConfirmModal from '../components/ConfirmModal';
 import Error from '../components/Error';
 import { CreateCaregiverDB } from '../utilities/dbstore';
+import Backdrop from '../components/Backdrop';
 
 
 const SignUp = (props) => {
@@ -121,10 +121,7 @@ const SignUp = (props) => {
 
 
   return (
-    <LinearGradient
-      style={{ flex: 1 }}
-      colors={[Colors.gradient_dark, Colors.gradient_light]}
-    >
+    <Backdrop>
       <Error message={error} />
 
       {loading
@@ -182,7 +179,7 @@ const SignUp = (props) => {
         visible={confirmModalVisible}
         onConfirmAttempt={onConfirmAttempt}
       />
-    </LinearGradient>
+    </Backdrop>
   )
 }
 

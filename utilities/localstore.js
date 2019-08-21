@@ -1,6 +1,6 @@
 import * as SecureStore from 'expo-secure-store'
 import {
-  CAREGIVER, PAYMENTS, ACCOUNTS, ATTENDANCE, FINANCES, QUESTIONS, GUARDIAN
+  CAREGIVER, PAYMENTS, ACCOUNTS, ATTENDANCE, FINANCES, QUESTIONS, GUARDIAN, CHILD, CONTACT
 } from '../constants/Store';
 
 
@@ -28,6 +28,20 @@ export const GetGuardian = async (id) => {
 export const CreateGuardian = async (guardianData) => {
   return await SecureStore.setItemAsync(
     `${GUARDIAN}_${guardianData.id}`, JSON.stringify(guardianData)
+  )
+}
+
+
+export const GetContact = async (id) => {
+  const contactResp = await SecureStore.getItemAsync(`${CONTACT}_${id}`)
+
+  return contactResp === null ? {} : JSON.parse(contactResp)
+}
+
+
+export const CreateContact = async (contactData) => {
+  return await SecureStore.setItemAsync(
+    `${CONTACT}_${contactData.id}`, JSON.stringify(contactData)
   )
 }
 

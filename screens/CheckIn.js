@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Text, ScrollView, TouchableOpacity, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
-import { LinearGradient } from 'expo-linear-gradient'
 import { GetFullDate } from '../utilities/dates';
 import { UpdateAttendance } from '../utilities/localstore';
 import { Colors, Styles, TopMargin } from '../constants/Style';
@@ -10,6 +9,7 @@ import { CHECKIN } from '../constants/Attendance';
 
 import AttendanceCard from '../components/AttendanceCard'
 import Spacer from '../components/Spacer';
+import Backdrop from '../components/Backdrop';
 
 
 const CheckIn = (props) => {
@@ -81,10 +81,7 @@ const CheckIn = (props) => {
 
 
   return (
-    <LinearGradient
-      style={{ flex: 1 }}
-      colors={[Colors.gradient_dark, Colors.gradient_light]}
-    >
+    <Backdrop>
       <Spacer height={TopMargin} />
 
       <Text style={[Styles.h1, Styles.raleway]}>
@@ -111,7 +108,7 @@ const CheckIn = (props) => {
           <Icon name="record-voice-over" color="#3c233d" size={36} />
         </View>
       </TouchableOpacity>
-    </LinearGradient>
+    </Backdrop>
   )
 }
 

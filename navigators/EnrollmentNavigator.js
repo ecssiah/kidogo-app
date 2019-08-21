@@ -1,8 +1,8 @@
 import { createStackNavigator } from 'react-navigation'
 
 import Guardian from '../screens/Guardian'
-import Children from '../screens/Children'
 import Contacts from '../screens/Contacts';
+import Children from '../screens/Children'
 
 
 const routeConfig = {

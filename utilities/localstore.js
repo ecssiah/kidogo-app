@@ -1,7 +1,172 @@
 import * as SecureStore from 'expo-secure-store'
 import {
-  CAREGIVER, PAYMENTS, ACCOUNTS, ATTENDANCE, FINANCES, QUESTIONS, GUARDIAN, CHILD, CONTACT
+  CAREGIVER,
+  GUARDIANS, CONTACTS, CHILDREN,
+  PAYMENTS, ACCOUNTS, ATTENDANCE, FINANCES, QUESTIONS,
 } from '../constants/Store';
+
+import uuid from 'uuid'
+import { Frequency, Gender } from '../constants/Enrollment';
+
+
+export const LogTestData = async () => {
+  const guardians = await Get(GUARDIANS)
+  const contacts = await Get(CONTACTS)
+  const children = await Get(CHILDREN)
+
+  console.log(GUARDIANS, guardians)
+  console.log(CONTACTS, contacts)
+  console.log(CHILDREN, children)
+}
+
+
+export const LoadTestData = async () => {
+  const accountId1 = uuid()
+
+  const guardian11 = {
+    accountId: accountId1,
+    id: uuid(),
+    firstName: "Alan",
+    lastName: "Smith",
+    phone: "608-519-6875",
+    govtId: "485-02-2764",
+    address: "123 Shook Street",
+    city: "San Francisco",
+    rate: "120",
+    frequency: Frequency.DAILY,
+  }
+
+  const guardian12 = {
+    accountId: accountId1,
+    id: uuid(),
+    firstName: "Laura",
+    lastName: "Tadow",
+    phone: "621-675-1236",
+    govtId: "321-45-6875",
+    address: "345 Apple Street",
+    city: "San Francisco",
+    rate: "720",
+    frequency: Frequency.WEEKLY,
+  }
+
+  const contact11 = {
+    accountId: accountId1,
+    id: uuid(),
+    firstName: "Sam",
+    lastName: "Sparro",
+    phone: "435-678-1542",
+  }
+
+  const contact12 = {
+    accountId: accountId1,
+    id: uuid(),
+    firstName: "Arch",
+    lastName: "Rech",
+    phone: "765-132-4568",
+  }
+
+  const child11 = {
+    accountId: accountId1,
+    id: uuid(),
+    firstName: "Tristan",
+    lastName: "Johnston",
+    birthdate: "1-28-1983",
+    gender: Gender.MALE,
+    note: "This is a note about Tristan.",
+    uri: null,
+  }
+
+  const child12 = {
+    accountId: accountId1,
+    id: uuid(),
+    firstName: "Darrin",
+    lastName: "Snapton",
+    birthdate: "6-12-1999",
+    gender: Gender.OTHER,
+    note: "This is a note about Darrin.",
+    uri: null,
+  }
+
+  await Create(GUARDIANS, guardian11)
+  await Create(GUARDIANS, guardian12)
+  await Create(CONTACTS, contact11)
+  await Create(CONTACTS, contact12)
+  await Create(CHILDREN, child11)
+  await Create(CHILDREN, child12)
+
+  const accountId2 = uuid()
+
+  const guardian21 = {
+    accountId: accountId2,
+    id: uuid(),
+    firstName: "Michael",
+    lastName: "Chapman",
+    phone: "608-120-6875",
+    govtId: "675-02-2764",
+    address: "3333 Harriet Street",
+    city: "La Crosse",
+    rate: "4200",
+    frequency: Frequency.TERMLY,
+  }
+
+  const guardian22 = {
+    accountId: accountId2,
+    id: uuid(),
+    firstName: "Masego",
+    lastName: "Tadow",
+    phone: "621-675-4555",
+    govtId: "321-22-6875",
+    address: "1 High Street",
+    city: "Denver",
+    rate: "86",
+    frequency: Frequency.DAILY,
+  }
+
+  const contact21 = {
+    accountId: accountId2,
+    id: uuid(),
+    firstName: "Graham",
+    lastName: "Tiro",
+    phone: "234-678-1111",
+  }
+
+  const contact22 = {
+    accountId: accountId2,
+    id: uuid(),
+    firstName: "Trent",
+    lastName: "Rocht",
+    phone: "765-333-6655",
+  }
+
+  const child21 = {
+    accountId: accountId2,
+    id: uuid(),
+    firstName: "Reselle",
+    lastName: "Trepi",
+    birthdate: "8-2-2001",
+    gender: Gender.OTHER,
+    note: "This is a note about Reselle.",
+    uri: null,
+  }
+
+  const child22 = {
+    accountId: accountId2,
+    id: uuid(),
+    firstName: "Grey",
+    lastName: "Mark",
+    birthdate: "9-12-1994",
+    gender: Gender.MALE,
+    note: "This is a note about Grey.",
+    uri: null,
+  }
+
+  await Create(GUARDIANS, guardian21)
+  await Create(GUARDIANS, guardian22)
+  await Create(CONTACTS, contact21)
+  await Create(CONTACTS, contact22)
+  await Create(CHILDREN, child21)
+  await Create(CHILDREN, child22)
+}
 
 
 export const GetCaregiver = async () => {
@@ -18,42 +183,41 @@ export const CreateCaregiver = async (caregiverData) => {
 }
 
 
-export const GetGuardian = async (id) => {
-  const guardianResp = await SecureStore.getItemAsync(`${GUARDIAN}_${id}`)
+export const GetIds = async (key) => {
+  const idsResp = await SecureStore.getItemAsync(`${key}`)
+  const ids = idsResp === null ? [] : JSON.parse(idsResp)
 
-  return guardianResp === null ? {} : JSON.parse(guardianResp)
+  return ids
 }
 
 
-export const CreateGuardian = async (guardianData) => {
-  return await SecureStore.setItemAsync(
-    `${GUARDIAN}_${guardianData.id}`, JSON.stringify(guardianData)
+export const Get = async (key) => {
+  const ids = await GetIds(key)
+
+  const elementPromises = ids.map(async (id) => {
+    const elementResp = await SecureStore.getItemAsync(`${key}_${id}`)
+    const element = JSON.parse(elementResp)
+
+    return element
+  })
+
+  const elements = await Promise.all(elementPromises)
+
+  return elements
+}
+
+
+export const Create = async (key, data) => {
+  const ids = await GetIds(key)
+
+  await SecureStore.setItemAsync(
+    `${key}`, JSON.stringify([data.id, ...ids])
   )
-}
 
+  console.log(key, data.id, data)
 
-export const GetContact = async (id) => {
-  const contactResp = await SecureStore.getItemAsync(`${CONTACT}_${id}`)
-
-  return contactResp === null ? {} : JSON.parse(contactResp)
-}
-
-
-export const CreateContact = async (contactData) => {
   return await SecureStore.setItemAsync(
-    `${CONTACT}_${contactData.id}`, JSON.stringify(contactData)
-  )
-}
-
-
-export const GetChild = async (id) => {
-  return await SecureStore.getItemAsync(`${CHILD}_${id}`)
-}
-
-
-export const CreateChild = async (childData) => {
-  return await SecureStore.setItemAsync(
-    `${CHILD}_${childData.id}`, JSON.stringify(childData)
+    `${key}_${data.id}`, JSON.stringify(data)
   )
 }
 

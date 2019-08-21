@@ -11,9 +11,10 @@ import Spacer from '../components/Spacer';
 import Error from '../components/Error';
 import GuardianEntry from '../components/GuardianEntry';
 import { Frequency } from '../constants/Enrollment';
-import { CreateGuardian } from '../utilities/localstore';
+import { Create } from '../utilities/localstore';
 import Backdrop from '../components/Backdrop';
 import Loading from '../components/Loading';
+import { GUARDIANS } from '../constants/Store';
 
 
 const Guardian = (props) => {
@@ -51,7 +52,7 @@ const Guardian = (props) => {
       frequency,
     }
 
-    await CreateGuardian(guardianData)
+    await Create(GUARDIANS, guardianData)
 
     setLoading(false)
   }

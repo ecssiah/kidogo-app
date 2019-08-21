@@ -1,8 +1,8 @@
 
 export const CAREGIVER = 'Caregiver'
-export const GUARDIAN = 'Guardian'
-export const CONTACT = 'Contact'
-export const CHILD = 'Child'
+export const GUARDIANS = 'Guardians'
+export const CONTACTS = 'Contacts'
+export const CHILDREN = 'Children'
 export const ATTENDANCE = 'Attendance'
 export const PAYMENTS = 'Payments'
 export const FINANCES = 'Finances'

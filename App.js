@@ -8,6 +8,7 @@ import { AppLoading } from 'expo'
 import { LoadFonts, ConfigureBcrypt } from './utilities/config';
 import { createAppContainer } from 'react-navigation';
 import AppNavigator from './navigators/AppNavigator';
+import { LoadTestData, LogTestData } from './utilities/localstore';
 
 Amplify.configure(awsconfig)
 
@@ -20,6 +21,9 @@ const App = () => {
 
   const setupApp = async () => {
     await LoadFonts()
+
+    // await LoadTestData()
+    await LogTestData()
 
     ConfigureBcrypt()
   }

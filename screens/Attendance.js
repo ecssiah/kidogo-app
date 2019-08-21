@@ -13,6 +13,7 @@ const Attendance = (props) => {
 
       <View style={Styles.actionsContainer}>
         <TouchableOpacity
+          activeOpacity={0.8}
           style={Styles.actionButton}
           onPress={() => props.navigation.navigate('CheckIn')}
         >
@@ -27,8 +28,9 @@ const Attendance = (props) => {
         </TouchableOpacity>
 
         <TouchableOpacity
+          activeOpacity={0.8}
           style={Styles.actionButton}
-          onPress={() => this.props.navigation.navigate('CheckOut')}
+          onPress={() => props.navigation.navigate('CheckOut')}
         >
           <ImageBackground
             style={Styles.buttonImage}
@@ -41,6 +43,7 @@ const Attendance = (props) => {
         </TouchableOpacity>
 
         <TouchableOpacity
+          activeOpacity={0.8}
           style={Styles.actionButton}
           onPress={() => props.navigation.navigate('AttendanceHistory')}
         >

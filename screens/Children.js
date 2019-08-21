@@ -4,7 +4,8 @@ import { ScrollView, TouchableOpacity, Text, View } from 'react-native'
 import uuid from 'uuid'
 import { Colors, TopMargin, Styles } from '../constants/Style';
 import { Icon } from 'react-native-elements';
-import { CreateChild } from '../utilities/localstore';
+import { Get, Create } from '../utilities/localstore';
+import { CHILDREN } from '../constants/Store';
 
 import Spacer from '../components/Spacer';
 import Error from '../components/Error';
@@ -45,13 +46,13 @@ const Children = (props) => {
       uri,
     }
 
-    await CreateChild(childData)
+    await Create(CHILDREN, childData)
 
     setLoading(false)
   }
 
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     props.navigation.navigate('Dash')
   }
 

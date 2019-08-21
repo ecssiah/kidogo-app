@@ -8,8 +8,9 @@ import ContactEntry from '../components/ContactEntry';
 import Spacer from '../components/Spacer';
 import Error from '../components/Error';
 import { Styles, TopMargin, Colors } from '../constants/Style';
-import { CreateContact } from '../utilities/localstore';
+import { CreateContact, Create } from '../utilities/localstore';
 import Loading from '../components/Loading';
+import { CONTACTS } from '../constants/Store';
 
 
 const Contacts = (props) => {
@@ -38,7 +39,7 @@ const Contacts = (props) => {
       phone,
     }
 
-    await CreateContact(contactData)
+    await Create(CONTACTS, contactData)
 
     setLoading(false)
   }

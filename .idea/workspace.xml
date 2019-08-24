@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/Store.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/navigators/AttendanceNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigators/AttendanceNavigator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/navigators/EnrollmentNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigators/EnrollmentNavigator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Attendance.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Attendance.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/CheckOut.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/CheckOut.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AttendanceCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AttendanceCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/Style.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/CheckIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/CheckIn.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/Children.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Children.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/Contacts.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Contacts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/Guardian.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Guardian.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/dates.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/dates.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utilities/localstore.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/localstore.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,8 +22,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="81" />
-    <option name="y" value="104" />
+    <option name="x" value="65" />
+    <option name="y" value="100" />
     <option name="width" value="1257" />
     <option name="height" value="724" />
   </component>
@@ -70,7 +69,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="81" y="104" width="1257" height="724" extended-state="1" />
+    <frame x="65" y="100" width="1257" height="724" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.37366256" />

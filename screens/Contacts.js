@@ -39,7 +39,7 @@ const Contacts = (props) => {
       phone,
     }
 
-    await Create(CONTACTS, contactData)
+    await Create(CONTACTS, contactData.id, contactData)
 
     setLoading(false)
   }

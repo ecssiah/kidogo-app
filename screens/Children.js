@@ -46,7 +46,7 @@ const Children = (props) => {
       uri,
     }
 
-    await Create(CHILDREN, childData)
+    await Create(CHILDREN, childData.id, childData)
 
     setLoading(false)
   }

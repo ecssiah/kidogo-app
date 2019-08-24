@@ -332,6 +332,12 @@ export const Styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'flex-start',
   },
+  imgNameHolder:{
+    height:80,
+    width:80,
+    zIndex:100,
+    overflow:'hidden'
+  },
   attendanceCard: {
     width: 105,
     height: 150,
@@ -341,6 +347,12 @@ export const Styles = StyleSheet.create({
     borderColor: '#ffffff80',
     marginBottom: 15,
     opacity: 1,
+  },
+  attendanceImage: {
+    flex: 1,
+    width: 80,
+    height: 80,
+    resizeMode: 'cover',
   },
   present: {
     backgroundColor: 'green',
@@ -354,5 +366,9 @@ export const Styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#ffffff80',
     zIndex: 101,
+  },
+  text: {
+    fontSize: 18,
+    color: '#ffffff80',
   },
 })

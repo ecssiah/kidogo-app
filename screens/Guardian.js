@@ -52,7 +52,7 @@ const Guardian = (props) => {
       frequency,
     }
 
-    await Create(GUARDIANS, guardianData)
+    await Create(GUARDIANS, guardianData.id, guardianData)
 
     setLoading(false)
   }

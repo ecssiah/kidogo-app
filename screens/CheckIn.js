@@ -1,62 +1,123 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Text, ScrollView, TouchableOpacity, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
-import { GetFullDate } from '../utilities/dates';
-import { UpdateAttendance } from '../utilities/localstore';
+import { GetFullDate, GetDate } from '../utilities/dates';
 import { Colors, Styles, TopMargin } from '../constants/Style';
 import { CHECKIN } from '../constants/Attendance';
 
-import AttendanceCard from '../components/AttendanceCard'
 import Spacer from '../components/Spacer';
 import Backdrop from '../components/Backdrop';
+import AttendanceCard from '../components/AttendanceCard'
+import { ATTENDANCE, CHILDREN } from '../constants/Store';
+import { Get, Create, Update, GetIds } from '../utilities/localstore';
 
 
 const CheckIn = (props) => {
+  const [checkInData, setCheckInData] = useState(null)
   const [soundObject, setSoundObject] = useState(null)
 
 
-  const getAttendanceCards = () => {
-    return null
-
-    // if (!attendanceToday) {
-    //   return null
-    // }
-
-    // return (
-    //   Object.keys(attendanceToday).map((id, i) => {
-    //     let cardDetails = attendanceToday[id]
-
-    //     return (
-    //       <AttendanceCard
-    //         key={i}
-    //         isMorning={true}
-    //         { ...cardDetails }
-    //         onPress={() => UpdateAttendance(CHECKIN, id)}
-    //       />
-    //     )
-    //   })
-    // )
-  }
+  useEffect(() => {
+    getCheckInData()
+  }, [])
 
 
-  const childrenHere = () => {
-    return {
-      "total": 23,
-      "hereToday": 6,
+  const getCheckInData = async () => {
+    let attendanceToday
+    const today = GetDate()
+    const attendanceIds = await GetIds(ATTENDANCE)
+    const attendanceTodayId = attendanceIds.find((date) => date === today)
+
+    if (attendanceTodayId) {
+      attendanceToday = await Get(ATTENDANCE, today)
+    } else {
+      const newAttendance = children.reduce((acc, childData) => {
+        acc[childData.id] = {
+          checkIn: true,
+          checkOut:  false,
+        }
+
+        return acc
+      }, {})
+
+      await Create(ATTENDANCE, today, newAttendance)
+
+      attendanceToday = newAttendance
     }
+
+    const children = await Get(CHILDREN)
+
+    const checkInData = children.map((childData) => {
+      const cardData = {
+        id: childData.id,
+        firstName: childData.firstName,
+        lastName: childData.lastName,
+        uri: childData.uri,
+        checkIn: attendanceToday[childData.id].checkIn,
+        checkOut: attendanceToday[childData.id].checkOut,
+      }
+
+      return cardData
+    })
+
+    setCheckInData(checkInData)
   }
 
 
-  const getAttendance = () => {
-    const childrenResp = childrenHere()
+  const toggleCheckIn = async (id) => {
+    const today = GetDate()
+    const attendanceToday = await Get(ATTENDANCE, today)
+    attendanceToday[id].checkIn = !attendanceToday[id].checkIn
 
-    if (childrenResp.total === childrenResp.hereToday) {
+    await Update(ATTENDANCE, today, attendanceToday)
+
+    getCheckInData()
+  }
+
+
+  const getAttendanceCards = () => {
+    if (!checkInData) {
+      return null
+    }
+
+    return (
+      checkInData.map((data, i) => {
+        return (
+          <AttendanceCard
+            key={i}
+            data={data}
+            selected={data.checkIn}
+            onPress={() => toggleCheckIn(data.id)}
+          />
+        )
+      })
+    )
+  }
+
+
+  const getCurrentAttendance = () => {
+    let total = 0
+
+    checkInData.forEach((data) => {
+      if (data.checkIn) {
+        total += 1
+      }
+    })
+
+    return total
+  }
+
+
+  const getAttendanceTotals = () => {
+    const currentAttendance = getCurrentAttendance()
+
+    if (currentAttendance === checkInData.length) {
       return 'All children are here'
-    } else if (childrenResp.hereToday === 1) {
+    } else if (currentAttendance === 1) {
       return '1 child is here'
     } else {
-      return `${childrenResp.hereToday} children are here`
+      return `${currentAttendance} children are here`
     }
   }
 
@@ -93,11 +154,11 @@ const CheckIn = (props) => {
       </Text>
 
       <Text style={[Styles.text, { marginLeft: 10, marginBottom: 20 }]} >
-        { getAttendance() }
+        { checkInData ? getAttendanceTotals() : null }
       </Text>
 
       <ScrollView contentContainerStyle={Styles.attendanceHolder} >
-        { getAttendanceCards() }
+        { checkInData ? getAttendanceCards() : null }
       </ScrollView>
 
       <TouchableOpacity

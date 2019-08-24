@@ -8,6 +8,22 @@ const Months = [
   "July", "August", "September", "October", "November", "December"
 ]
 
+
+export const GetDate = () => {
+  const dateObject = new Date()
+
+  const date = dateObject.getDate()
+  const paddedDate = date < 10 ? '0' + date : date
+
+  const month = dateObject.getMonth()
+  const paddedMonth = month < 10 ? '0' + month : month
+
+  const result = `${paddedDate}-${paddedMonth}-${dateObject.getFullYear()}`
+
+  return result
+}
+
+
 export const GetFullDate = () => {
   const date = new Date()
 
@@ -16,6 +32,7 @@ export const GetFullDate = () => {
 
   return `${weekday} ${date.getDate()}, ${month} ${date.getFullYear()}`
 }
+
 
 export default class Dates {
   constructor() {}

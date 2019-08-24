@@ -87,12 +87,12 @@ export const LoadTestData = async () => {
     uri: null,
   }
 
-  await Create(GUARDIANS, guardian11)
-  await Create(GUARDIANS, guardian12)
-  await Create(CONTACTS, contact11)
-  await Create(CONTACTS, contact12)
-  await Create(CHILDREN, child11)
-  await Create(CHILDREN, child12)
+  await Create(GUARDIANS, guardian11.id, guardian11)
+  await Create(GUARDIANS, guardian12.id, guardian12)
+  await Create(CONTACTS, contact11.id, contact11)
+  await Create(CONTACTS, contact12.id, contact12)
+  await Create(CHILDREN, child11.id, child11)
+  await Create(CHILDREN, child12.id, child12)
 
   const accountId2 = uuid()
 
@@ -160,12 +160,12 @@ export const LoadTestData = async () => {
     uri: null,
   }
 
-  await Create(GUARDIANS, guardian21)
-  await Create(GUARDIANS, guardian22)
-  await Create(CONTACTS, contact21)
-  await Create(CONTACTS, contact22)
-  await Create(CHILDREN, child21)
-  await Create(CHILDREN, child22)
+  await Create(GUARDIANS, guardian21.id, guardian21)
+  await Create(GUARDIANS, guardian22.id, guardian22)
+  await Create(CONTACTS, contact21.id, contact21)
+  await Create(CONTACTS, contact22.id, contact22)
+  await Create(CHILDREN, child21.id, child21)
+  await Create(CHILDREN, child22.id, child22)
 }
 
 
@@ -191,72 +191,75 @@ export const GetIds = async (key) => {
 }
 
 
-export const Get = async (key) => {
-  const ids = await GetIds(key)
-
-  const elementPromises = ids.map(async (id) => {
-    const elementResp = await SecureStore.getItemAsync(`${key}_${id}`)
+export const Get = async (key, ids) => {
+  if (typeof ids === "string") {
+    const elementResp = await SecureStore.getItemAsync(`${key}_${ids}`)
     const element = JSON.parse(elementResp)
 
     return element
-  })
+  } else {
+    if (ids === undefined) {
+      ids = await GetIds(key)
+    }
 
-  const elements = await Promise.all(elementPromises)
+    const elementPromises = ids.map(async (id) => {
+      const elementResp = await SecureStore.getItemAsync(`${key}_${id}`)
+      const element = JSON.parse(elementResp)
 
-  return elements
+      return element
+    })
+
+    const elements = await Promise.all(elementPromises)
+
+    return elements
+  }
 }
 
 
-export const Create = async (key, data) => {
+export const Create = async (key, id, data) => {
   const ids = await GetIds(key)
 
   await SecureStore.setItemAsync(
-    `${key}`, JSON.stringify([data.id, ...ids])
+    `${key}`, JSON.stringify([id, ...ids])
   )
 
-  console.log(key, data.id, data)
-
-  return await SecureStore.setItemAsync(
-    `${key}_${data.id}`, JSON.stringify(data)
+  const result = await SecureStore.setItemAsync(
+    `${key}_${id}`, JSON.stringify(data)
   )
+
+  return result
 }
 
 
-export const GetPayments = async () => {
-  const paymentsResp = await SecureStore.getItemAsync(PAYMENTS)
+export const Update = async (key, id, data) => {
+  const currentDataResp = await SecureStore.getItemAsync(`${key}_${id}`)
+  const currentData = JSON.parse(currentDataResp)
 
-  return paymentsResp === null ? {} : JSON.parse(paymentsResp)
-}
+  if (typeof currentData === "object") {
+    const mergedData = Object.assign({}, currentData, data)
 
+    const result = await SecureStore.setItemAsync(
+      `${key}_${id}`, JSON.stringify(mergedData)
+    )
 
-export const GetAccounts = async () => {
-  const accountsResp = await SecureStore.getItemAsync(ACCOUNTS)
+    return result
+  } else if (Array.isArray(data)) {
+    const mergedData = currentData.concat(data)
 
-  return accountsResp === null ? {} : JSON.parse(accountsResp)
-}
+    const result = await SecureStore.setItemAsync(
+      `${key}_${id}`, JSON.stringify(mergedData)
+    )
 
+    return result
+  } else {
+    let dataString
 
-export const GetAttendance = async () => {
-  const attendanceResp = await SecureStore.getItemAsync(ATTENDANCE)
+    if (typeof data === "string") {
+      dataString = data
+    } else {
+      dataString = JSON.stringify(dataString)
+    }
 
-  return attendanceResp === null ? {} : JSON.parse(attendanceResp)
-}
-
-
-export const UpdateAttendance = async () => {
-
-}
-
-
-export const GetFinances = async () => {
-  const financesResp = await SecureStore.getItemAsync(FINANCES)
-
-  return financesResp === null ? {} : JSON.parse(financesResp)
-}
-
-
-export const GetQuestions = async () => {
-  const questionsResp = await SecureStore.getItemAsync(QUESTIONS)
-
-  return questionsResp === null ? {} : JSON.parse(questionsResp)
+    return await SecureStore.setItemAsync(`${key}_${id}`, dataString)
+  }
 }

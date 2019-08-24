@@ -3,8 +3,7 @@ import { Text, ScrollView, TouchableOpacity, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
 import { GetFullDate, GetDate } from '../utilities/dates';
-import { Colors, Styles, TopMargin } from '../constants/Style';
-import { CHECKIN } from '../constants/Attendance';
+import { Styles, TopMargin } from '../constants/Style';
 
 import Spacer from '../components/Spacer';
 import Backdrop from '../components/Backdrop';

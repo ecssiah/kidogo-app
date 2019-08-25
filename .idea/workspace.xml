@@ -3,14 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/AttendanceCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AttendanceCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/Style.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/AttendanceHistory.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/AttendanceHistory.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/CheckIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/CheckIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Children.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Children.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Contacts.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Contacts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Guardian.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Guardian.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilities/dates.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/dates.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilities/localstore.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/localstore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/CheckOut.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/CheckOut.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="65" />
     <option name="y" value="100" />
     <option name="width" value="1257" />
@@ -33,9 +28,9 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">

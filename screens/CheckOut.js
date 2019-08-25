@@ -23,29 +23,30 @@ const CheckOut = (props) => {
 
 
   const getCheckOutData = async () => {
-    let attendanceToday
     const today = GetDate()
+    const children = await Get(CHILDREN)
     const attendanceIds = await GetIds(ATTENDANCE)
     const attendanceTodayId = attendanceIds.find((date) => date === today)
+
+    let attendanceToday
 
     if (attendanceTodayId) {
       attendanceToday = await Get(ATTENDANCE, today)
     } else {
-      const newAttendance = children.reduce((acc, childData) => {
-        acc[childData.id] = {
-          checkIn: true,
-          checkOut:  false,
-        }
+      attendanceToday = {
+        date: today,
+        attendance: {},
+      }
 
-        return acc
-      }, {})
+      children.forEach((childData) => {
+        attendanceToday.attendance[childData.id] = {
+          checkIn: true,
+          checkOut: false,
+        }
+      })
 
       await Create(ATTENDANCE, today, newAttendance)
-
-      attendanceToday = newAttendance
     }
-
-    const children = await Get(CHILDREN)
 
     const checkOutData = children.map((childData) => {
       const cardData = {
@@ -53,8 +54,8 @@ const CheckOut = (props) => {
         firstName: childData.firstName,
         lastName: childData.lastName,
         uri: childData.uri,
-        checkIn: attendanceToday[childData.id].checkIn,
-        checkOut: attendanceToday[childData.id].checkOut,
+        checkIn: attendanceToday.attendance[childData.id].checkIn,
+        checkOut: attendanceToday.attendance[childData.id].checkOut,
       }
 
       return cardData
@@ -67,7 +68,7 @@ const CheckOut = (props) => {
   const toggleCheckOut = async (id) => {
     const today = GetDate()
     const attendanceToday = await Get(ATTENDANCE, today)
-    attendanceToday[id].checkOut = !attendanceToday[id].checkOut
+    attendanceToday.attendance[id].checkOut = !attendanceToday.attendance[id].checkOut
 
     await Update(ATTENDANCE, today, attendanceToday)
 

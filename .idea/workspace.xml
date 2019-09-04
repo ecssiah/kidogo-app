@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AttendanceHistoryHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AttendanceHistoryHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AttendanceHistoryRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AttendanceHistoryRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/Style.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Style.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/AttendanceHistory.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/AttendanceHistory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/CheckIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/CheckIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/CheckOut.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/CheckOut.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,9 +17,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="100" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="82" />
+    <option name="y" value="103" />
     <option name="width" value="1257" />
     <option name="height" value="724" />
   </component>
@@ -64,7 +65,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="100" width="1257" height="724" extended-state="0" />
+    <frame x="82" y="103" width="1257" height="724" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.37366256" />

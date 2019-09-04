@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Text, ScrollView, TouchableOpacity, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
-import { GetFullDate, GetDate } from '../utilities/dates';
+import { GetFullDate, GetShortDate } from '../utilities/dates';
 import { Styles, TopMargin } from '../constants/Style';
 
 import Spacer from '../components/Spacer';
@@ -23,7 +23,7 @@ const CheckOut = (props) => {
 
 
   const getCheckOutData = async () => {
-    const today = GetDate()
+    const today = GetShortDate()
     const children = await Get(CHILDREN)
     const attendanceIds = await GetIds(ATTENDANCE)
     const attendanceTodayId = attendanceIds.find((date) => date === today)
@@ -66,7 +66,7 @@ const CheckOut = (props) => {
 
 
   const toggleCheckOut = async (id) => {
-    const today = GetDate()
+    const today = GetShortDate()
     const attendanceToday = await Get(ATTENDANCE, today)
     attendanceToday.attendance[id].checkOut = !attendanceToday.attendance[id].checkOut
 

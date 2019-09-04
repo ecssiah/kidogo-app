@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Text, ScrollView, TouchableOpacity, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
-import { GetFullDate, GetDate } from '../utilities/dates';
+import { GetFullDate, GetShortDate } from '../utilities/dates';
 import { Styles, TopMargin } from '../constants/Style';
 
 import Spacer from '../components/Spacer';
@@ -27,30 +27,9 @@ const CheckIn = (props) => {
 
 
   const getCheckInData = async () => {
-    const today = GetDate()
+    const today = GetShortDate()
     const children = await Get(CHILDREN)
-    const attendanceIds = await GetIds(ATTENDANCE)
-    const attendanceTodayId = attendanceIds.find((date) => date === today)
-
-    let attendanceToday
-
-    if (attendanceTodayId) {
-      attendanceToday = await Get(ATTENDANCE, today)
-    } else {
-      attendanceToday = {
-        date: today,
-        attendance: {},
-      }
-
-      children.forEach((childData) => {
-        attendanceToday.attendance[childData.id] = {
-          checkIn: true,
-          checkOut: false,
-        }
-      })
-
-      await Create(ATTENDANCE, today, attendanceToday)
-    }
+    const attendanceToday = await Get(ATTENDANCE, today)
 
     const checkInData = children.map((childData) => {
       const cardData = {
@@ -70,7 +49,7 @@ const CheckIn = (props) => {
 
 
   const toggleCheckIn = async (id) => {
-    const today = GetDate()
+    const today = GetShortDate()
     const attendanceToday = await Get(ATTENDANCE, today)
     attendanceToday.attendance[id].checkIn = !attendanceToday.attendance[id].checkIn
 

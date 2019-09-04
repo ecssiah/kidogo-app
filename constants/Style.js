@@ -10,6 +10,7 @@ export const Screen = {
   Height: Dimensions.get("window").height,
 }
 
+
 export const Size = {
   small: 4,
   medium: 16,
@@ -17,11 +18,15 @@ export const Size = {
   xlarge: 128,
 }
 
+
 export const Colors = {
+  mainText: '#ffffff80',
+  highlightText: '#007c47',
   helpButton: '#3c233d',
   gradient_dark: '#11011b',
   gradient_light: '#3c233d',
 }
+
 
 export const Styles = StyleSheet.create({
   container: {
@@ -29,8 +34,37 @@ export const Styles = StyleSheet.create({
     padding: 5,
     paddingBottom: 50,
   },
+  attendanceRow: {
+    flexDirection: 'row',
+    padding: 5,
+  },
+  dateHolder: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 10,
+    marginTop: 0,
+    height: 40,
+  },
+  dateStatusHolder: {
+    flex: 0.1,
+    margin: 5,
+  },
+  dateStatus: {
+    height: 30,
+    width: 30,
+    borderRadius: 15,
+    marginTop: 18
+  },
+  name: {
+    fontSize: 14,
+    marginLeft: 5,
+    color: Colors.mainText,
+  },
   headerStyle: {
     backgroundColor: Colors.gradient_dark,
+  },
+  child: {
+    flex: 0.3,
   },
   headerTitleStyle: {
     fontFamily: 'arial',
@@ -43,12 +77,12 @@ export const Styles = StyleSheet.create({
   },
   h1: {
     fontSize: 36,
-    color: '#ffffff80',
+    color: Colors.mainText,
     margin: 10,
   },
   h2: {
     fontSize: 24,
-    color: '#ffffff80',
+    color: Colors.mainText,
     margin: 10,
   },
   input: {
@@ -86,7 +120,7 @@ export const Styles = StyleSheet.create({
   },
   codeMessage: {
     margin: 18,
-    color: '#ffffff80',
+    color: Colors.mainText,
     fontSize: 22,
   },
   cameraBackground: {
@@ -134,6 +168,41 @@ export const Styles = StyleSheet.create({
     height: 50,
     width: 250,
   },
+  attendanceHistoryImageView: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    zIndex: 100,
+    overflow: 'hidden',
+  },
+  attendanceHistoryImage: {
+    flex: 1,
+    width: 70,
+    height: null,
+    resizeMode: 'cover',
+  },
+  dateHolder:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 10,
+    marginTop: 0,
+    height: 40,
+  },
+  dates: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    marginBottom: 10,
+  },
+  date: {
+    flex: 0.1,
+    margin: 5,
+  },
+  dateText: {
+    width: 50,
+    transform: [{ rotate: '-66deg' }],
+    fontSize: 16,
+    color: Colors.mainText,
+  },
   nextText: {
     fontSize: 24,
     color: 'white',
@@ -168,7 +237,7 @@ export const Styles = StyleSheet.create({
     height: 75,
     padding: 20,
     borderWidth: 1,
-    borderColor: '#ffffff80',
+    borderColor: Colors.mainText,
     backgroundColor: '#11011B',
   },
   errorText: {
@@ -189,25 +258,25 @@ export const Styles = StyleSheet.create({
   button: {
     height: 50,
     borderWidth: 1,
-    borderColor: '#ffffff80',
+    borderColor: Colors.mainText,
     paddingHorizontal: 10,
   },
   pairButton: {
     flex: 0.5,
     borderWidth: 1,
-    borderColor: '#ffffff80',
+    borderColor: Colors.mainText,
     paddingHorizontal: 10,
     marginHorizontal: 4,
   },
   mainButton: {
     borderWidth: 1,
-    borderColor: '#ffffff80',
+    borderColor: Colors.mainText,
     marginHorizontal: 8,
   },
   btnText: {
     fontSize: 24,
     lineHeight: 50,
-    color: '#ffffff80',
+    color: Colors.mainText,
     textAlign: 'center'
   },
   modal: {
@@ -222,12 +291,12 @@ export const Styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     flex: 0.4,
-    color: '#ffffff80',
+    color: Colors.mainText,
     marginLeft: 10,
   },
   content: {
     fontSize: 18,
-    color: '#ffffff80',
+    color: Colors.mainText,
     flex: 0.6,
     marginLeft: 10,
   },
@@ -261,7 +330,7 @@ export const Styles = StyleSheet.create({
     fontFamily: 'Raleway-Bold',
   },
   helpButton: {
-    backgroundColor: '#ffffff80',
+    backgroundColor: Colors.mainText,
     position: 'absolute',
     bottom: -75,
     left: -75,
@@ -344,7 +413,7 @@ export const Styles = StyleSheet.create({
     padding: 10,
     position: 'relative',
     borderWidth: 1,
-    borderColor: '#ffffff80',
+    borderColor: Colors.mainText,
     marginBottom: 15,
     opacity: 1,
   },
@@ -364,11 +433,11 @@ export const Styles = StyleSheet.create({
     top: -10,
     right: -10,
     borderWidth: 2,
-    borderColor: '#ffffff80',
+    borderColor: Colors.mainText,
     zIndex: 101,
   },
   text: {
     fontSize: 18,
-    color: '#ffffff80',
+    color: Colors.mainText,
   },
 })

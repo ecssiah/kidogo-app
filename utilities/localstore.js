@@ -7,6 +7,7 @@ import {
 
 import uuid from 'uuid'
 import { Frequency, Gender } from '../constants/Enrollment';
+import { GetShortDate } from './dates';
 
 
 export const LogTestData = async () => {
@@ -166,6 +167,31 @@ export const LoadTestData = async () => {
   await Create(CONTACTS, contact22.id, contact22)
   await Create(CHILDREN, child21.id, child21)
   await Create(CHILDREN, child22.id, child22)
+}
+
+
+export const InitDatabase = async () => {
+  const today = GetShortDate()
+  const attendanceIds = await GetIds(ATTENDANCE)
+  const attendanceTodayId = attendanceIds.find((date) => date === today)
+
+  if (attendanceTodayId) {
+    const attendanceToday = {
+      date: today,
+      attendance: {},
+    }
+
+    const children = await Get(CHILDREN)
+
+    children.forEach((childData) => {
+      attendanceToday.attendance[childData.id] = {
+        checkIn: true,
+        checkOut: false,
+      }
+    })
+
+    await Create(ATTENDANCE, today, attendanceToday)
+  }
 }
 
 

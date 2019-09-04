@@ -9,28 +9,40 @@ const Months = [
 ]
 
 
-export const GetDate = () => {
-  const dateObject = new Date()
+export const NextDay = (dateObj, dow) => {
+  dateObj.setDate(dateObj.getDate() + (dow + (7 - dateObj.getDay())) % 7)
 
-  const date = dateObject.getDate()
+  return dateObj
+}
+
+
+export const GetShortDate = (dateObj = new Date(), offset = 0) => {
+  dateObj.setDate(dateObj.getDate() + offset)
+
+  const date = dateObj.getDate()
   const paddedDate = date < 10 ? '0' + date : date
 
-  const month = dateObject.getMonth()
+  const month = dateObj.getMonth()
   const paddedMonth = month < 10 ? '0' + month : month
 
-  const result = `${paddedDate}-${paddedMonth}-${dateObject.getFullYear()}`
+  const result = `${paddedDate}-${paddedMonth}-${dateObj.getFullYear()}`
 
   return result
 }
 
 
-export const GetFullDate = () => {
-  const date = new Date()
+export const GetFullDate = (dateObj = new Date(), offset = 0) => {
+  dateObj.setDate(dateObj.getDate() + offset)
 
-  const weekday = WeekDays[date.getDay() - 1]
-  const month = Months[date.getMonth()]
+  const weekday = WeekDays[dateObj.getDay() - 1]
+  const month = Months[dateObj.getMonth()]
 
-  return `${weekday} ${date.getDate()}, ${month} ${date.getFullYear()}`
+  return `${weekday} ${dateObj.getDate()}, ${month} ${dateObj.getFullYear()}`
+}
+
+
+export const GetDateRange = (start, end) => {
+  return Array.from({length: (end - start)}, (_, id) => GetDate(offset - id))
 }
 
 

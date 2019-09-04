@@ -23,6 +23,11 @@ const AttendanceHistory = (props) => {
   }, [])
 
 
+  useEffect(() => {
+    setDateRange(getDateRange())
+  }, [offset])
+
+
   const getAttendanceData = async () => {
     setDateRange(getDateRange())
     setAttendance(await Get(ATTENDANCE))
@@ -31,11 +36,11 @@ const AttendanceHistory = (props) => {
 
 
   const shiftDateRange = (shift) => {
-
+    setOffset(offset + shift)
   }
 
 
-  const getDateRange = (offset = 0) => {
+  const getDateRange = () => {
     const targetSunday = NextDay(new Date(), 0, offset)
 
     return [-7, -6, -5, -4, -3, -2, -1].map((i) =>

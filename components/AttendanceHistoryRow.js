@@ -53,18 +53,20 @@ const AttendanceHistoryRow = (props) => {
   return (
     <View>
       <View style={Styles.attendanceRow} >
-        <View style={Styles.child} >
+        <View style={Styles.attendanceChild} >
           { getChildImg() }
 
           <Text
-            numberOfLines={1}
-            style={Styles.name}
+            numberOfLines={2}
+            style={Styles.attendanceName}
           >
-            {props.firstName} {props.lastName}
+            { `${props.firstName}\n${props.lastName}` }
           </Text>
         </View>
 
-        { getAttendanceComponents() }
+        <View style={Styles.attendanceStatusComponents}>
+          { getAttendanceComponents() }
+        </View>
       </View>
     </View>
   )

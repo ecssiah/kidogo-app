@@ -7,8 +7,8 @@ import { Icon } from 'react-native-elements';
 const AttendanceHistoryHeader = (props) => {
   const getDateRangeComponents = () => {
     return props.dateRange.map((date, i) => {
-      <View key={i} style={Styles.date} >
-        <Text style={Styles.dateText} >
+      <View key={i} style={Styles.attendanceDate} >
+        <Text style={Styles.attendanceDateText} >
           { Number(date.substring(0, 2)) + '/' + Number(date.substring(3, 5)) }
         </Text>
       </View>
@@ -17,31 +17,31 @@ const AttendanceHistoryHeader = (props) => {
 
 
   return (
-    <View style={Styles.historyHeader} >
-      <Text style={[Styles.h1, Styles.raleway, { marginBottom: 0}]} >
-        Attendance History
-      </Text>
-
-      <View style={Styles.dateHolder} >
-        <TouchableOpacity onPress={() => props.shiftDateRange(-1)} >
+    <View style={Styles.attendanceHeader} >
+      <View style={Styles.attendanceControlContainer} >
+        <TouchableOpacity
+          style={Styles.attendanceDateArrow}
+          onPress={() => props.shiftDateRange(-1)}
+        >
           <Icon name="chevron-left" size={40} color="white" />
         </TouchableOpacity>
 
-        <Text style={Styles.h2} >
-          {props.dateRange[0]} - {props.dateRange[6]}
+        <Text
+          style={Styles.attendanceDateRangeText}
+          numberOfLines={1}
+        >
+          { `${props.dateRange[0]} - ${props.dateRange[6]}` }
         </Text>
 
         <TouchableOpacity
+          style={Styles.attendanceDateArrow}
           onPress={() => props.shiftDateRange(1)}
-          style={{ opacity: 0.3 }}
         >
           <Icon name="chevron-right" size={40} color="white" />
         </TouchableOpacity>
       </View>
 
-      <View style={Styles.dates} >
-        <View style={{ flex: 0.3 }} />
-
+      <View style={Styles.attendanceDates} >
         { getDateRangeComponents() }
       </View>
     </View>

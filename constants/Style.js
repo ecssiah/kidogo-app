@@ -34,37 +34,78 @@ export const Styles = StyleSheet.create({
     padding: 5,
     paddingBottom: 50,
   },
-  attendanceRow: {
-    flexDirection: 'row',
-    padding: 5,
+  attendanceDate: {
+    flex: 0.1,
+    margin: 5,
   },
-  dateHolder: {
+  attendanceDateText: {
+    width: 50,
+    fontSize: 16,
+    transform: [{ rotate: '-66deg' }],
+    color: Colors.mainText,
+  },
+  attendanceHeader: {
+    backgroundColor: '#00000090',
+  },
+  attendanceControlContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     margin: 10,
-    marginTop: 0,
-    height: 40,
+  },
+  attendanceDateArrow: {
+    flex: 0.08,
+  },
+  attendanceDateRangeText: {
+    flex: 0.84,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontSize: 22,
+    color: Colors.mainText,
+  },
+  attendanceStatusComponents: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   dateStatusHolder: {
-    flex: 0.1,
     margin: 5,
   },
   dateStatus: {
     height: 30,
     width: 30,
     borderRadius: 15,
-    marginTop: 18
   },
   name: {
     fontSize: 14,
     marginLeft: 5,
     color: Colors.mainText,
   },
+  attendanceRow: {
+    flexDirection: 'row',
+    padding: 5,
+  },
+  attendanceHistoryImageView: {
+    zIndex: 100,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    overflow: 'hidden',
+    marginHorizontal: 6,
+  },
+  attendanceHistoryImage: {
+    flex: 1,
+    width: 70,
+    height: null,
+    resizeMode: 'cover',
+  },
+  attendanceName: {
+    fontSize: 14,
+    textAlign: 'center',
+    color: Colors.mainText,
+  },
+  attendanceChild: {
+  },
   headerStyle: {
     backgroundColor: Colors.gradient_dark,
-  },
-  child: {
-    flex: 0.3,
   },
   headerTitleStyle: {
     fontFamily: 'arial',
@@ -168,19 +209,6 @@ export const Styles = StyleSheet.create({
     height: 50,
     width: 250,
   },
-  attendanceHistoryImageView: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    zIndex: 100,
-    overflow: 'hidden',
-  },
-  attendanceHistoryImage: {
-    flex: 1,
-    width: 70,
-    height: null,
-    resizeMode: 'cover',
-  },
   dateHolder:{
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -188,20 +216,10 @@ export const Styles = StyleSheet.create({
     marginTop: 0,
     height: 40,
   },
-  dates: {
+  attendanceDates: {
     flexDirection: 'row',
-    alignItems: 'flex-end',
+    alignItems: 'center',
     marginBottom: 10,
-  },
-  date: {
-    flex: 0.1,
-    margin: 5,
-  },
-  dateText: {
-    width: 50,
-    transform: [{ rotate: '-66deg' }],
-    fontSize: 16,
-    color: Colors.mainText,
   },
   nextText: {
     fontSize: 24,

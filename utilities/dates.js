@@ -9,10 +9,14 @@ const Months = [
 ]
 
 
-export const NextDay = (dateObj, dow) => {
-  dateObj.setDate(dateObj.getDate() + (dow + (7 - dateObj.getDay())) % 7)
+export const NextDay = (dateObj, dayIndex, week = 0) => {
+  const newDateObj = new Date(dateObj)
+  newDateObj.setDate(
+    newDateObj.getDate() + (dayIndex + (7 - newDateObj.getDay())) % 7
+  )
+  newDateObj.setDate(newDateObj.getDate() + (7 * week))
 
-  return dateObj
+  return newDateObj
 }
 
 

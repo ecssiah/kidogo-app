@@ -5,12 +5,8 @@ import { Icon } from 'react-native-elements';
 
 
 const AttendanceHistoryHeader = (props) => {
-  const [date1, setDate1] = useState(null)
-  const [date2, setDate2] = useState(null)
-
-
-  const getDateSpanComponents = () => {
-    return props.dateSpan.map((date, i) => {
+  const getDateRangeComponents = () => {
+    return props.dateRange.map((date, i) => {
       <View key={i} style={Styles.date} >
         <Text style={Styles.dateText} >
           { Number(date.substring(0, 2)) + '/' + Number(date.substring(3, 5)) }
@@ -27,16 +23,16 @@ const AttendanceHistoryHeader = (props) => {
       </Text>
 
       <View style={Styles.dateHolder} >
-        <TouchableOpacity onPress={() => props.changeWeeks('back')} >
+        <TouchableOpacity onPress={() => props.shiftDateRange(-1)} >
           <Icon name="chevron-left" size={40} color="white" />
         </TouchableOpacity>
 
         <Text style={Styles.h2} >
-          {date1} - {date2}
+          {props.dateRange[0]} - {props.dateRange[6]}
         </Text>
 
         <TouchableOpacity
-          onPress={() => props.changeWeeks('forward')}
+          onPress={() => props.shiftDateRange(1)}
           style={{ opacity: 0.3 }}
         >
           <Icon name="chevron-right" size={40} color="white" />
@@ -46,7 +42,7 @@ const AttendanceHistoryHeader = (props) => {
       <View style={Styles.dates} >
         <View style={{ flex: 0.3 }} />
 
-        { getDateSpanComponents() }
+        { getDateRangeComponents() }
       </View>
     </View>
   )

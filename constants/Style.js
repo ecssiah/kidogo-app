@@ -440,4 +440,14 @@ export const Styles = StyleSheet.create({
     fontSize: 18,
     color: Colors.mainText,
   },
+  uploadButton: {
+    borderWidth: 1,
+    borderColor: Colors.mainText,
+    padding: 22,
+    alignSelf: 'center',
+  },
+  uploadButtonText: {
+    fontSize: 32,
+    color: Colors.mainText,
+  },
 })

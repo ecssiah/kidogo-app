@@ -12,6 +12,7 @@ import Spacer from '../components/Spacer';
 
 
 const AttendanceHistory = (props) => {
+  const [dateRange, setDateRange] = useState([])
   const [offset, setOffset] = useState(0)
   const [children, setChildren] = useState(null)
   const [attendance, setAttendance] = useState(null)
@@ -23,24 +24,30 @@ const AttendanceHistory = (props) => {
 
 
   const getAttendanceData = async () => {
+    setDateRange(getDateRange())
     setAttendance(await Get(ATTENDANCE))
     setChildren(await Get(CHILDREN))
   }
 
 
-  const getDateRange = () => {
-    return null
+  const shiftDateRange = (shift) => {
+
+  }
+
+
+  const getDateRange = (offset = 0) => {
+    const targetSunday = NextDay(new Date(), 0, offset)
+
+    return [-7, -6, -5, -4, -3, -2, -1].map((i) =>
+      GetShortDate(targetSunday, i)
+    )
   }
 
 
   const getChildAttendance = (childId) => {
-    const childAttendance = []
-    const nextSunday = NextDay(new Date(), 0)
-
-    for (let i = 0; i < 7; i++) {
-      const shortDate = GetShortDate(nextSunday, -i)
+    return dateRange.map((date) => {
       const dayAttendance = attendance.find((attendance) => {
-        return attendance.date === shortDate
+        return attendance.date === date
       })
 
       if (dayAttendance) {
@@ -48,13 +55,11 @@ const AttendanceHistory = (props) => {
           dayAttendance.attendance[childId].checkIn &&
           dayAttendance.attendance[childId].checkOut
         )
-        childAttendance.push(attended)
+        return attended
       } else {
-        childAttendance.push(false)
+        return false
       }
-    }
-
-    return childAttendance
+    })
   }
 
 
@@ -80,6 +85,11 @@ const AttendanceHistory = (props) => {
     <Backdrop>
       <Spacer height={TopMargin} />
 
+      <AttendanceHistoryHeader
+        dateRange={dateRange}
+        shiftDateRange={shiftDateRange}
+      />
+
       <ScrollView>
         { getAttendanceRowComponents() }
       </ScrollView>
@@ -90,6 +100,3 @@ const AttendanceHistory = (props) => {
 export default AttendanceHistory
 
 
-      // <AttendanceHistoryHeader
-      //   dateRange={getDateRange()}
-      // />

@@ -2,16 +2,20 @@ import React, { useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { Styles } from '../constants/Style';
 import { Icon } from 'react-native-elements';
+import Spacer from './Spacer';
 
 
 const AttendanceHistoryHeader = (props) => {
+
   const getDateRangeComponents = () => {
     return props.dateRange.map((date, i) => {
-      <View key={i} style={Styles.attendanceDate} >
-        <Text style={Styles.attendanceDateText} >
-          { Number(date.substring(0, 2)) + '/' + Number(date.substring(3, 5)) }
-        </Text>
-      </View>
+      return (
+        <View key={i} style={Styles.attendanceDate} >
+          <Text style={Styles.attendanceDateText} >
+            { date.substring(0, 2) + '/' + date.substring(3, 5) }
+          </Text>
+        </View>
+      )
     })
   }
 
@@ -42,6 +46,8 @@ const AttendanceHistoryHeader = (props) => {
       </View>
 
       <View style={Styles.attendanceDates} >
+        <Spacer width={94} />
+
         { getDateRangeComponents() }
       </View>
     </View>

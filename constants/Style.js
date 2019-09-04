@@ -35,21 +35,24 @@ export const Styles = StyleSheet.create({
     paddingBottom: 50,
   },
   attendanceDate: {
-    flex: 0.1,
-    margin: 5,
+    width: 40,
   },
   attendanceDateText: {
-    width: 50,
-    fontSize: 16,
-    transform: [{ rotate: '-66deg' }],
+    fontSize: 14,
     color: Colors.mainText,
+    transform: [{ rotate: '-66deg' }],
   },
   attendanceHeader: {
     backgroundColor: '#00000090',
+    height: 100,
   },
   attendanceControlContainer: {
     flexDirection: 'row',
-    margin: 10,
+    marginBottom: 16,
+  },
+  attendanceDates: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   attendanceDateArrow: {
     flex: 0.08,
@@ -215,11 +218,6 @@ export const Styles = StyleSheet.create({
     margin: 10,
     marginTop: 0,
     height: 40,
-  },
-  attendanceDates: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
   },
   nextText: {
     fontSize: 24,

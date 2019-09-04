@@ -22,9 +22,9 @@ const App = () => {
   const setupApp = async () => {
     await LoadFonts()
 
-    await InitDatabase()
     // await LoadTestData()
     // await LogTestData()
+    await InitDatabase()
 
     ConfigureBcrypt()
   }

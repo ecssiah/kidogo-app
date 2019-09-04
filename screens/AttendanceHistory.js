@@ -7,6 +7,8 @@ import { ATTENDANCE, CHILDREN } from '../constants/Store';
 import Backdrop from '../components/Backdrop';
 import AttendanceHistoryHeader from '../components/AttendanceHistoryHeader';
 import AttendanceHistoryRow from '../components/AttendanceHistoryRow';
+import { TopMargin } from '../constants/Style';
+import Spacer from '../components/Spacer';
 
 
 const AttendanceHistory = (props) => {
@@ -36,15 +38,15 @@ const AttendanceHistory = (props) => {
     const nextSunday = NextDay(new Date(), 0)
 
     for (let i = 0; i < 7; i++) {
-      const date = GetShortDate(nextSunday, -i)
-      const attendanceToday = attendance.find((attendance) =>
-        attendance.date === date
-      )
+      const shortDate = GetShortDate(nextSunday, -i)
+      const dayAttendance = attendance.find((attendance) => {
+        return attendance.date === shortDate
+      })
 
-      if (attendanceToday) {
+      if (dayAttendance) {
         const attended = (
-          attendanceToday[childId].attendance.checkIn &&
-          attendanceToday[childId].attendance.checkOut
+          dayAttendance.attendance[childId].checkIn &&
+          dayAttendance.attendance[childId].checkOut
         )
         childAttendance.push(attended)
       } else {
@@ -52,7 +54,7 @@ const AttendanceHistory = (props) => {
       }
     }
 
-    console.log(childAttendance)
+    return childAttendance
   }
 
 
@@ -76,6 +78,8 @@ const AttendanceHistory = (props) => {
 
   return (
     <Backdrop>
+      <Spacer height={TopMargin} />
+
       <ScrollView>
         { getAttendanceRowComponents() }
       </ScrollView>

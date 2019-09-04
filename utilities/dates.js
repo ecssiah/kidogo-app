@@ -17,15 +17,16 @@ export const NextDay = (dateObj, dow) => {
 
 
 export const GetShortDate = (dateObj = new Date(), offset = 0) => {
-  dateObj.setDate(dateObj.getDate() + offset)
+  const tempDateObj = new Date(dateObj)
+  tempDateObj.setDate(tempDateObj.getDate() + offset)
 
-  const date = dateObj.getDate()
+  const date = tempDateObj.getDate()
   const paddedDate = date < 10 ? '0' + date : date
 
-  const month = dateObj.getMonth()
+  const month = tempDateObj.getMonth()
   const paddedMonth = month < 10 ? '0' + month : month
 
-  const result = `${paddedDate}-${paddedMonth}-${dateObj.getFullYear()}`
+  const result = `${paddedDate}-${paddedMonth}-${tempDateObj.getFullYear()}`
 
   return result
 }

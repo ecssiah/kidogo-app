@@ -175,7 +175,7 @@ export const InitDatabase = async () => {
   const attendanceIds = await GetIds(ATTENDANCE)
   const attendanceTodayId = attendanceIds.find((date) => date === today)
 
-  if (attendanceTodayId) {
+  if (attendanceTodayId === undefined) {
     const attendanceToday = {
       date: today,
       attendance: {},

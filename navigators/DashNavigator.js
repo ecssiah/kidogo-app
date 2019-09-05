@@ -1,8 +1,10 @@
 import { createStackNavigator } from 'react-navigation'
 
 import Dash from '../screens/Dash'
-import EnrollmentNavigator from './EnrollmentNavigator';
 import AttendanceNavigator from './AttendanceNavigator';
+import FinancesNavigator from './FinancesNavigator';
+import EnrollmentNavigator from './EnrollmentNavigator';
+import QuestionsNavigator from './QuestionsNavigator';
 
 
 const routeConfig = {
@@ -14,6 +16,18 @@ const routeConfig = {
   },
   Attendance: {
     screen: AttendanceNavigator,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Finances: {
+    screen: FinancesNavigator,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Questions: {
+    screen: QuestionsNavigator,
     navigationOptions: {
       header: null,
     },

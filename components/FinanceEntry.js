@@ -1,13 +1,30 @@
-import React from 'react'
-import { View } from 'react-native'
+import React, { useState } from 'react'
+import { Text, TouchableOpacity, View } from 'react-native'
 
 
 const FinanceEntry = (props) => {
-  return (
+  const [addingExpense, setAddingExpense] = useState(false)
+
+
+  const toggleAddingExpense = () => setAddingExpense(!addingExpense)
+
+
+  if (addingExpense) {
     <View>
 
     </View>
-  )
+  } else {
+    return (
+      <TouchableOpacity
+        style={Styles.button}
+        onPress={toggleAddingExpense}
+      >
+        <Text style={Styles.btnText}>
+          New Expense
+        </Text>
+      </TouchableOpacity>
+    )
+  }
 }
 
 

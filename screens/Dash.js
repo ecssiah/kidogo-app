@@ -9,8 +9,7 @@ import Backdrop from '../components/Backdrop';
 
 
 const Dash = (props) => {
-  // const [hour, setHour] = useState(new Date().getHours())
-  const [hour, setHour] = useState(4)
+  const [hour, setHour] = useState(new Date().getHours())
 
 
   const getGreeting = () => {

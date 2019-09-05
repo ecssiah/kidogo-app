@@ -61,13 +61,13 @@ export const Styles = StyleSheet.create({
     flex: 0.84,
     textAlign: 'center',
     textAlignVertical: 'center',
-    fontSize: 22,
+    fontSize: 26,
     color: Colors.mainText,
   },
   attendanceStatusComponents: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 14,
   },
   dateStatusHolder: {
     margin: 5,

@@ -52,7 +52,7 @@ const FinanceHeader = (props) => {
             <Icon name='arrow-downward' size={24} color='red' />
 
             <Text style={[Styles.dashText, { color: 'red' }]} >
-              `K${props.finances.net.expenses}`
+              K{props.finances.net.expenses}
             </Text>
           </View>
 
@@ -66,7 +66,7 @@ const FinanceHeader = (props) => {
             <Icon name='arrow-upward' size={24} color='green' />
 
             <Text style={[Styles.dashText, { color: 'green' }]} >
-              `K${props.finances.net.income}`
+              K{props.finances.net.income}
             </Text>
           </View>
 

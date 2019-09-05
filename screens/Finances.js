@@ -16,14 +16,23 @@ const Finances = (props) => {
   })
 
 
+  const addExpense = (expense) => {
+
+  }
+
+
   return (
     <Backdrop>
       <ScrollView>
         <FinanceHeader
           finances={finances}
         />
-        <FinanceEntry />
-        <FinanceHistory />
+        <FinanceEntry
+          addExpense={addExpense}
+        />
+        <FinanceHistory
+          finances={finances}
+        />
       </ScrollView>
     </Backdrop>
   )

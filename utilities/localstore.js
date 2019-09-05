@@ -192,6 +192,8 @@ export const InitDatabase = async () => {
 
     await Create(ATTENDANCE, today, attendanceToday)
   }
+
+  // Init Finances
 }
 
 

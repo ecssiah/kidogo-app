@@ -7,8 +7,8 @@ import { Icon } from 'react-native-elements';
 const FinanceHeader = (props) => {
 
   const getFinanceSummary = () => {
-    const income = Number(props.finances.net.income)
-    const expenses = Number(props.finances.net.expenses)
+    const income = Number(props.finances.income)
+    const expenses = Number(props.finances.expenses)
 
     if (income > expenses) {
       return `You earned ${income - expenses} this week.`
@@ -19,7 +19,7 @@ const FinanceHeader = (props) => {
 
 
   const getSpendingSummary = () => {
-    const expenses = Number(props.finances.net.expenses)
+    const expenses = Number(props.finances.expenses)
 
     if (expenses > 0) {
       return `You spent ${expenses} this week.`
@@ -30,7 +30,7 @@ const FinanceHeader = (props) => {
 
 
   const getPaymentSummary = () => {
-    const income = Number(props.finances.net.income)
+    const income = Number(props.finances.income)
 
     if (income > 0) {
       return `You were paid ${income} this week.`
@@ -40,9 +40,14 @@ const FinanceHeader = (props) => {
   }
 
 
+  if (!props.finances) {
+    return null
+  }
+
+
   return (
     <View>
-      <Text style={Styles.net}>
+      <Text style={Styles.net} >
         { getFinanceSummary() }
       </Text>
 
@@ -52,7 +57,7 @@ const FinanceHeader = (props) => {
             <Icon name='arrow-downward' size={24} color='red' />
 
             <Text style={[Styles.dashText, { color: 'red' }]} >
-              K{props.finances.net.expenses}
+              K{props.finances.expenses}
             </Text>
           </View>
 
@@ -66,7 +71,7 @@ const FinanceHeader = (props) => {
             <Icon name='arrow-upward' size={24} color='green' />
 
             <Text style={[Styles.dashText, { color: 'green' }]} >
-              K{props.finances.net.income}
+              K{props.finances.income}
             </Text>
           </View>
 

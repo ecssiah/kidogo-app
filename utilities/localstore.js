@@ -172,6 +172,7 @@ export const LoadTestData = async () => {
 
 export const InitDatabase = async () => {
   const today = GetShortDate()
+
   const attendanceIds = await GetIds(ATTENDANCE)
   const attendanceTodayId = attendanceIds.find((date) => date === today)
 
@@ -193,7 +194,18 @@ export const InitDatabase = async () => {
     await Create(ATTENDANCE, today, attendanceToday)
   }
 
-  // Init Finances
+  const financeIds = await GetIds(FINANCES)
+  const financeTodayId = financeIds.find((date) => date === today)
+
+  if (financeTodayId === undefined) {
+    const financeToday = {
+      date: today,
+      income: 0,
+      expenses: 0,
+    }
+
+    await Create(FINANCES, today, financeToday)
+  }
 }
 
 

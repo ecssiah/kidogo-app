@@ -9,6 +9,7 @@ import AttendanceHistoryHeader from '../components/AttendanceHistoryHeader';
 import AttendanceHistoryRow from '../components/AttendanceHistoryRow';
 import { TopMargin } from '../constants/Style';
 import Spacer from '../components/Spacer';
+import { Day } from '../constants/Attendance';
 
 
 const AttendanceHistory = (props) => {
@@ -41,7 +42,7 @@ const AttendanceHistory = (props) => {
 
 
   const getDateRange = () => {
-    const targetSunday = NextDay(new Date(), 0, offset)
+    const targetSunday = NextDay(new Date(), Day.SUNDAY, offset)
 
     return [-7, -6, -5, -4, -3, -2, -1].map((i) =>
       GetShortDate(targetSunday, i)

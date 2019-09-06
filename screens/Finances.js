@@ -9,6 +9,7 @@ import Spacer from '../components/Spacer';
 import { TopMargin } from '../constants/Style';
 import { Get } from '../utilities/localstore';
 import { FINANCES } from '../constants/Store';
+import { GetShortDate } from '../utilities/dates';
 
 
 const Finances = (props) => {
@@ -21,7 +22,24 @@ const Finances = (props) => {
 
 
   const getFinanceData = async () => {
-    setFinances(await Get(FINANCES))
+    const finances = await Get(FINANCES)
+
+    setFinances(finances)
+  }
+
+
+  const getNetData = () => {
+    if (finances) {
+      const today = GetShortDate()
+
+      const financesToday = finances.find((net) => {
+        return net.date === today
+      })
+
+      return financesToday
+    } else {
+      return null
+    }
   }
 
 
@@ -35,7 +53,7 @@ const Finances = (props) => {
       <Spacer height={TopMargin} />
 
       <ScrollView>
-        <FinanceHeader finances={finances} />
+        <FinanceHeader net={getNetData()} />
         <FinanceEntry addExpense={addExpense} />
         <FinanceHistory finances={finances} />
       </ScrollView>

@@ -23,7 +23,7 @@ const App = () => {
     await LoadFonts()
 
     // await LoadTestData()
-    // await LogTestData()
+    await LogTestData()
     await InitDatabase()
 
     ConfigureBcrypt()

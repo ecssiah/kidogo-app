@@ -7,8 +7,8 @@ import FinanceEntry from '../components/FinanceEntry';
 import FinanceHistory from '../components/FinanceHistory';
 import Spacer from '../components/Spacer';
 import { TopMargin } from '../constants/Style';
-import { Get } from '../utilities/localstore';
-import { FINANCES } from '../constants/Store';
+import { Get, Create, GetIds, Update } from '../utilities/localstore';
+import { FINANCES, EXPENSES } from '../constants/Store';
 import { GetShortDate } from '../utilities/dates';
 
 
@@ -22,29 +22,28 @@ const Finances = (props) => {
 
 
   const getFinanceData = async () => {
-    const finances = await Get(FINANCES)
-
-    setFinances(finances)
+    setFinances(await Get(FINANCES))
   }
 
 
   const getNetData = () => {
     if (finances) {
       const today = GetShortDate()
-
-      const financesToday = finances.find((net) => {
-        return net.date === today
-      })
-
-      return financesToday
+      return finances.find((net) => net.date === today)
     } else {
       return null
     }
   }
 
 
-  const addExpense = (expense) => {
+  const addExpense = async (expense) => {
+    const today = GetShortDate()
+    const expensesToday = await Get(EXPENSES, today)
+    expensesToday.expenses.push(expense)
 
+    console.log(expensesToday)
+
+    Update(EXPENSES, today, expensesToday)
   }
 
 

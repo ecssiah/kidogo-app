@@ -2,7 +2,7 @@ import * as SecureStore from 'expo-secure-store'
 import {
   CAREGIVER,
   GUARDIANS, CONTACTS, CHILDREN,
-  PAYMENTS, ACCOUNTS, ATTENDANCE, FINANCES, QUESTIONS,
+  PAYMENTS, ACCOUNTS, ATTENDANCE, FINANCES, QUESTIONS, EXPENSES,
 } from '../constants/Store';
 
 import uuid from 'uuid'
@@ -205,6 +205,18 @@ export const InitDatabase = async () => {
     }
 
     await Create(FINANCES, today, financeToday)
+  }
+
+  const expensesIds = await GetIds(EXPENSES)
+  const expenseTodayId = expensesIds.find((date) => date === today)
+
+  if (expenseTodayId === undefined) {
+    const expensesToday = {
+      date: today,
+      expenses: [],
+    }
+
+    await Create(EXPENSES, today, expensesToday)
   }
 }
 

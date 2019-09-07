@@ -30,6 +30,10 @@ const FinanceEntry = (props) => {
   if (addingExpense) {
     return (
       <View>
+        <Text style={Styles.h2}>
+          New Expense
+        </Text>
+
         <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >
           <Picker
             selectedValue={memo}
@@ -41,7 +45,7 @@ const FinanceEntry = (props) => {
         </View>
 
         <Text style={Styles.label}>
-          Expense
+          Type
         </Text>
 
         <View style={{ flexDirection: 'row' }} >
@@ -91,11 +95,7 @@ const FinanceEntry = (props) => {
 
           <TouchableOpacity
             style={[Styles.button, { flex: 0.5, marginLeft: 5 }]}
-            onPress={() => props.addExpense({
-              date,
-              amount,
-              memo,
-            })}
+            onPress={() => props.addExpense({memo, amount, date})}
           >
             <Text style={Styles.btnText}>Add Expense</Text>
           </TouchableOpacity>

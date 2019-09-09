@@ -1,5 +1,5 @@
 
-export const Memo = {
+export const ExpenseMemo = {
   RENT: "Kodi ya Nyumba",
   WATER: "Maji",
   FOOD: "Chakula",
@@ -9,11 +9,21 @@ export const Memo = {
 }
 
 
-export const MemoIcons = {
-  [Memo.RENT]: "home",
-  [Memo.ELECTRICITY]: "bolt",
-  [Memo.FUEL]: "fire",
-  [Memo.FOOD]: "spoon",
-  [Memo.WATER]: "tint",
-  [Memo.SALARY]: "money",
+export const ExpenseMemoIcons = {
+  [ExpenseMemo.RENT]: "home",
+  [ExpenseMemo.ELECTRICITY]: "bolt",
+  [ExpenseMemo.FUEL]: "fire",
+  [ExpenseMemo.FOOD]: "spoon",
+  [ExpenseMemo.WATER]: "tint",
+  [ExpenseMemo.SALARY]: "money",
+}
+
+
+export const PaymentMemo = {
+  PAYMENT: "Malipo",
+}
+
+
+export const PaymentMemoIcons = {
+  [PaymentMemo.PAYMENT]: "money-bill",
 }

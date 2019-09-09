@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { Styles, Colors } from '../constants/Style';
-import { Memo, MemoIcons } from '../constants/Finances';
+import { PaymentMemoIcons, ExpenseMemoIcons } from '../constants/Finances';
 
 
 const FinanceHistoryRow = (props) => {
@@ -14,7 +14,7 @@ const FinanceHistoryRow = (props) => {
         </Text>
 
         <Icon
-          name={MemoIcons[props.expense.memo]}
+          name={ExpenseMemoIcons[props.expense.memo]}
           size={30}
           type="font-awesome"
           color={Colors.mainText}

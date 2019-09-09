@@ -3,12 +3,13 @@ import { Picker, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { Styles } from '../constants/Style';
 import { GetShortDate } from '../utilities/dates';
 import { Memo } from '../constants/Finances';
+import Spacer from './Spacer';
 
 
 const FinanceEntry = (props) => {
   const [date, setDate] = useState(GetShortDate(new Date()))
   const [amount, setAmount] = useState('0')
-  const [memo, setMemo] = useState('rent')
+  const [memo, setMemo] = useState(Memo.RENT)
   const [addingExpense, setAddingExpense] = useState(false)
 
 
@@ -27,7 +28,22 @@ const FinanceEntry = (props) => {
   }
 
 
-  if (addingExpense) {
+  if (!addingExpense) {
+    return (
+      <View>
+        <Spacer height={60} />
+
+        <TouchableOpacity
+          style={Styles.button}
+          onPress={toggleAddingExpense}
+        >
+          <Text style={Styles.btnText}>
+            Add Expense
+          </Text>
+        </TouchableOpacity>
+      </View>
+    )
+  } else {
     return (
       <View>
         <Text style={Styles.h2}>
@@ -101,17 +117,6 @@ const FinanceEntry = (props) => {
           </TouchableOpacity>
         </View>
       </View>
-    )
-  } else {
-    return (
-      <TouchableOpacity
-        style={Styles.button}
-        onPress={toggleAddingExpense}
-      >
-        <Text style={Styles.btnText}>
-          New Expense
-        </Text>
-      </TouchableOpacity>
     )
   }
 }

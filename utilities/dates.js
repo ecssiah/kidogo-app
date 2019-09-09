@@ -1,6 +1,6 @@
 
 const WeekDays = [
-  "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
 ]
 
 const Months = [
@@ -39,7 +39,7 @@ export const GetShortDate = (dateObj = new Date(), offset = 0) => {
 export const GetFullDate = (dateObj = new Date(), offset = 0) => {
   dateObj.setDate(dateObj.getDate() + offset)
 
-  const weekday = WeekDays[dateObj.getDay() - 1]
+  const weekday = WeekDays[dateObj.getDay()]
   const month = Months[dateObj.getMonth()]
 
   return `${weekday} ${dateObj.getDate()}, ${month} ${dateObj.getFullYear()}`

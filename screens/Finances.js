@@ -14,6 +14,7 @@ import { GetShortDate } from '../utilities/dates';
 
 const Finances = (props) => {
   const [finances, setFinances] = useState(null)
+  const [expenses, setExpenses] = useState(null)
 
 
   useEffect(() => {
@@ -23,6 +24,7 @@ const Finances = (props) => {
 
   const getFinanceData = async () => {
     setFinances(await Get(FINANCES))
+    setExpenses(await Get(EXPENSES))
   }
 
 
@@ -41,8 +43,6 @@ const Finances = (props) => {
     const expensesToday = await Get(EXPENSES, today)
     expensesToday.expenses.push(expense)
 
-    console.log(expensesToday)
-
     Update(EXPENSES, today, expensesToday)
   }
 
@@ -54,7 +54,9 @@ const Finances = (props) => {
       <ScrollView>
         <FinanceHeader net={getNetData()} />
         <FinanceEntry addExpense={addExpense} />
-        <FinanceHistory finances={finances} />
+        <FinanceHistory expenses={expenses} />
+
+        <Spacer height={320} />
       </ScrollView>
     </Backdrop>
   )

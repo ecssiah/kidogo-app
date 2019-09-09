@@ -131,7 +131,7 @@ const SignUp = (props) => {
 
             <CaregiverEntry
               username={username}
-              passwordd={password}
+              password={password}
               email={email}
               firstName={firstName}
               lastName={lastName}

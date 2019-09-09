@@ -1,15 +1,44 @@
 import React from 'react'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
+import { Styles } from '../constants/Style';
+
+import FinanceHistorySection from './FinanceHistorySection';
 
 
 const FinanceHistory = (props) => {
-  if (!props.finances) {
+  const getHistorySectionComponents = () => {
+    return props.expenses.map((expensesData, i) => {
+      return <FinanceHistorySection
+        key={i}
+        date={expensesData.date}
+        expenses={expensesData.expenses}
+      />
+    })
+  }
+
+
+  if (!props.expenses) {
     return null
   }
 
-  return (
-    <View>
 
+  return (
+    <View style={{ marginTop: 50 }} >
+      <View style={Styles.tableHeader} >
+        <Text style={Styles.tableRow} >
+          Date
+        </Text>
+
+        <Text style={Styles.tableRow} >
+          Type
+        </Text>
+
+        <Text style={Styles.tableRow} >
+          Amount
+        </Text>
+      </View>
+
+      { getHistorySectionComponents() }
     </View>
   )
 }

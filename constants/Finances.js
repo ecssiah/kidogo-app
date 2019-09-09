@@ -7,3 +7,13 @@ export const Memo = {
   ELECTRICITY: "Umeme",
   SALARY: "Mushahara",
 }
+
+
+export const MemoIcons = {
+  [Memo.RENT]: "home",
+  [Memo.ELECTRICITY]: "bolt",
+  [Memo.FUEL]: "fire",
+  [Memo.FOOD]: "spoon",
+  [Memo.WATER]: "tint",
+  [Memo.SALARY]: "money",
+}

@@ -1,13 +1,19 @@
 import { createStackNavigator } from 'react-navigation'
 
-import Guardian from '../screens/Guardian'
-import Contacts from '../screens/Contacts';
 import Children from '../screens/Children'
+import Guardians from '../screens/Guardians'
+import Contacts from '../screens/Contacts';
 
 
 const routeConfig = {
-  Guardian: {
-    screen: Guardian,
+  Children: {
+    screen: Children,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Guardians: {
+    screen: Guardians,
     navigationOptions: {
       header: null,
     },
@@ -18,16 +24,10 @@ const routeConfig = {
       header: null,
     },
   },
-  Children: {
-    screen: Children,
-    navigationOptions: {
-      header: null,
-    },
-  },
 }
 
 const navConfig = {
-  initialRouteName: 'Guardian',
+  initialRouteName: 'Children',
 }
 
 

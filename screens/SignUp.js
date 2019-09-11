@@ -31,6 +31,7 @@ const SignUp = (props) => {
   const [phone, setPhone] = useState('')
   const [centreName, setCentreName] = useState('')
   const [address, setAddress] = useState('')
+  const [location, setLocation] = useState('')
   const [city, setCity] = useState('')
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -78,6 +79,7 @@ const SignUp = (props) => {
         phone,
         centreName,
         address,
+        location,
         city,
       }
 
@@ -147,9 +149,11 @@ const SignUp = (props) => {
             <CentreEntry
               centreName={centreName}
               address={address}
+              location={location}
               city={city}
               onChangeCentreName={setCentreName}
               onChangeAddress={setAddress}
+              onChangeLocation={setLocation}
               onChangeCity={setCity}
             />
 

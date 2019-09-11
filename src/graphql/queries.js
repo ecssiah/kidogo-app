@@ -11,6 +11,7 @@ export const getCaregiver = `query GetCaregiver($id: ID!) {
     firstName
     lastName
     centreName
+    location
     address
     city
   }
@@ -31,6 +32,7 @@ export const listCaregivers = `query ListCaregivers(
       firstName
       lastName
       centreName
+      location
       address
       city
     }

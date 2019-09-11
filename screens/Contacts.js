@@ -7,8 +7,8 @@ import Backdrop from '../components/Backdrop';
 import ContactEntry from '../components/ContactEntry';
 import Spacer from '../components/Spacer';
 import Error from '../components/Error';
-import { Styles, TopMargin, Colors } from '../constants/Style';
-import { CreateContact, Create } from '../utilities/localstore';
+import { Styles, Colors, Size } from '../constants/Style';
+import { Create } from '../utilities/localstore';
 import Loading from '../components/Loading';
 import { CONTACTS } from '../constants/Store';
 
@@ -45,8 +45,8 @@ const Contacts = (props) => {
   }
 
 
-  const onAddChildren = async () => {
-    props.navigation.navigate('Children', { accountId })
+  const onSubmitFamily = async () => {
+    props.navigation.navigate('Dash')
   }
 
 
@@ -80,7 +80,7 @@ const Contacts = (props) => {
 
   return (
     <Backdrop>
-      <Spacer height={TopMargin} />
+      <Spacer height={Size.statusbar} />
 
       <Error message={error} />
 
@@ -108,13 +108,13 @@ const Contacts = (props) => {
 
               <TouchableOpacity
                 style={Styles.pairButton}
-                onPress={onAddChildren}
+                onPress={onSubmitFamily}
               >
-                <Text style={Styles.btnText}>Add Children</Text>
+                <Text style={Styles.btnText}>Submit Family</Text>
               </TouchableOpacity>
             </View>
 
-            <Spacer height={320} />
+            <Spacer height={Size.keyboard} />
           </ScrollView>
       }
 

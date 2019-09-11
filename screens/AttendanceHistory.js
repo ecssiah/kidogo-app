@@ -7,7 +7,7 @@ import { ATTENDANCE, CHILDREN } from '../constants/Store';
 import Backdrop from '../components/Backdrop';
 import AttendanceHistoryHeader from '../components/AttendanceHistoryHeader';
 import AttendanceHistoryRow from '../components/AttendanceHistoryRow';
-import { TopMargin } from '../constants/Style';
+import { Size } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import { Day } from '../constants/Attendance';
 
@@ -89,7 +89,7 @@ const AttendanceHistory = (props) => {
 
   return (
     <Backdrop>
-      <Spacer height={TopMargin} />
+      <Spacer height={Size.statusbar} />
 
       <AttendanceHistoryHeader
         dateRange={dateRange}

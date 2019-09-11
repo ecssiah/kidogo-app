@@ -6,8 +6,8 @@ import FinanceHeader from '../components/FinanceHeader';
 import FinanceEntry from '../components/FinanceEntry';
 import FinanceHistory from '../components/FinanceHistory';
 import Spacer from '../components/Spacer';
-import { TopMargin } from '../constants/Style';
-import { Get, Create, GetIds, Update } from '../utilities/localstore';
+import { Size } from '../constants/Style';
+import { Get, Update } from '../utilities/localstore';
 import { FINANCES, EXPENSES } from '../constants/Store';
 import { GetShortDate } from '../utilities/dates';
 
@@ -49,14 +49,14 @@ const Finances = (props) => {
 
   return (
     <Backdrop>
-      <Spacer height={TopMargin} />
+      <Spacer height={Size.statusbar} />
 
       <ScrollView>
         <FinanceHeader net={getNetData()} />
         <FinanceEntry addExpense={addExpense} />
         <FinanceHistory expenses={expenses} />
 
-        <Spacer height={320} />
+        <Spacer height={Size.statusbar} />
       </ScrollView>
     </Backdrop>
   )

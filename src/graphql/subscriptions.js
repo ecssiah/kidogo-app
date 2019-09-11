@@ -11,6 +11,7 @@ export const onCreateCaregiver = `subscription OnCreateCaregiver {
     firstName
     lastName
     centreName
+    location
     address
     city
   }
@@ -26,6 +27,7 @@ export const onUpdateCaregiver = `subscription OnUpdateCaregiver {
     firstName
     lastName
     centreName
+    location
     address
     city
   }
@@ -41,6 +43,7 @@ export const onDeleteCaregiver = `subscription OnDeleteCaregiver {
     firstName
     lastName
     centreName
+    location
     address
     city
   }

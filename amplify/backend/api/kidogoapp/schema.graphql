@@ -7,6 +7,7 @@ type Caregiver @model {
   firstName: String!
   lastName: String!
   centreName: String!
+  location: String!
   address: String!
   city: String!
 }

@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react'
 import { Audio } from 'expo-av'
 import { ScrollView, TouchableOpacity, Text, View } from 'react-native'
 import uuid from 'uuid'
-import { Colors, TopMargin, Styles } from '../constants/Style';
+import { Colors, Styles, Size } from '../constants/Style';
 import { Icon } from 'react-native-elements';
 import { Get, Create } from '../utilities/localstore';
 import { CHILDREN } from '../constants/Store';
@@ -22,7 +22,6 @@ const Children = (props) => {
   const [birthdate, setBirthdate] = useState('')
   const [gender, setGender] = useState('')
   const [note, setNote] = useState('')
-  const [uri, setUri] = useState(null)
   const [loading, setLoading] = useState(false)
   const [soundObject, setSoundObject] = useState(null)
   const [error, setError] = useState(null)
@@ -43,7 +42,6 @@ const Children = (props) => {
       birthdate,
       gender,
       note,
-      uri,
     }
 
     await Create(CHILDREN, childData.id, childData)
@@ -52,8 +50,8 @@ const Children = (props) => {
   }
 
 
-  const onSubmit = async () => {
-    props.navigation.navigate('Dash')
+  const onAddGuardians = async () => {
+    props.navigation.navigate('Guardians')
   }
 
 
@@ -65,7 +63,6 @@ const Children = (props) => {
     setBirthdate('')
     setGender('')
     setNote('')
-    setUri(null)
   }
 
 
@@ -90,7 +87,7 @@ const Children = (props) => {
 
   return (
     <Backdrop>
-      <Spacer height={TopMargin} />
+      <Spacer height={Size.statusbar} />
 
       <Error message={error} />
 
@@ -108,8 +105,6 @@ const Children = (props) => {
               setGender={setGender}
               note={note}
               setNote={setNote}
-              uri={uri}
-              setUri={setUri}
             />
 
             <Spacer medium />
@@ -124,13 +119,13 @@ const Children = (props) => {
 
               <TouchableOpacity
                 style={Styles.pairButton}
-                onPress={onSubmit}
+                onPress={onAddGuardians}
               >
-                <Text style={Styles.btnText}>Submit</Text>
+                <Text style={Styles.btnText}>Add Guardians</Text>
               </TouchableOpacity>
             </View>
 
-            <Spacer height={320} />
+            <Spacer height={Size.keyboard} />
           </ScrollView>
       }
 

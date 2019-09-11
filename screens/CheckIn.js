@@ -3,7 +3,7 @@ import { Text, ScrollView, TouchableOpacity, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
 import { GetFullDate, GetShortDate } from '../utilities/dates';
-import { Styles, TopMargin } from '../constants/Style';
+import { Styles, Size } from '../constants/Style';
 
 import Spacer from '../components/Spacer';
 import Backdrop from '../components/Backdrop';
@@ -126,7 +126,7 @@ const CheckIn = (props) => {
 
   return (
     <Backdrop>
-      <Spacer height={TopMargin} />
+      <Spacer height={Size.statusbar} />
 
       <Text style={[Styles.h1, Styles.raleway]}>
         Check In

@@ -5,7 +5,7 @@ import {
 import uuid from 'uuid'
 import { Audio } from 'expo-av'
 import { Icon } from 'react-native-elements';
-import { Styles, Colors, TopMargin } from '../constants/Style';
+import { Styles, Colors, Size } from '../constants/Style';
 
 import Spacer from '../components/Spacer';
 import Error from '../components/Error';
@@ -17,8 +17,9 @@ import Loading from '../components/Loading';
 import { GUARDIANS } from '../constants/Store';
 
 
-const Guardian = (props) => {
-  const [accountId, setAccountId] = useState(uuid())
+const Guardians = (props) => {
+  const { accountId } = props.navigation.state.params
+
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [phone, setPhone] = useState('')
@@ -98,7 +99,7 @@ const Guardian = (props) => {
 
   return (
     <Backdrop>
-      <Spacer height={TopMargin} />
+      <Spacer height={Size.statusbar} />
 
       <Error message={error} />
 
@@ -142,7 +143,7 @@ const Guardian = (props) => {
               </TouchableOpacity>
             </View>
 
-            <Spacer height={320} />
+            <Spacer height={Size.keyboard} />
           </ScrollView>
       }
 
@@ -158,4 +159,4 @@ const Guardian = (props) => {
   )
 }
 
-export default Guardian
+export default Guardians

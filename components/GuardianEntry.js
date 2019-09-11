@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import {
-  Image, Picker, ScrollView, Text, TextInput, TouchableOpacity, View
+  Image, Picker, Text, TextInput, TouchableOpacity, View
 } from 'react-native'
 import { Icon } from 'react-native-elements';
-import { Styles, Colors, TopMargin } from '../constants/Style';
+import { Styles } from '../constants/Style';
 import { Frequency } from '../constants/Enrollment';
-
-import Spacer from '../components/Spacer';
-import Error from '../components/Error';
 
 
 const GuardianEntry = (props) => {

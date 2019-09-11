@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, TouchableOpacity, ImageBackground, View } from 'react-native'
-import { Styles, TopMargin } from '../constants/Style';
+import { Styles, Size } from '../constants/Style';
 
 import Backdrop from '../components/Backdrop';
 import Spacer from '../components/Spacer';
@@ -9,7 +9,7 @@ import Spacer from '../components/Spacer';
 const Attendance = (props) => {
   return (
     <Backdrop>
-      <Spacer height={TopMargin} />
+      <Spacer height={Size.statusbar} />
 
       <View style={Styles.actionsContainer}>
         <TouchableOpacity

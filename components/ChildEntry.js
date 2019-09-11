@@ -9,60 +9,16 @@ import { Gender } from '../constants/Enrollment';
 
 
 const ChildEntry = (props) => {
-  const getHeaderImage = () => {
-    if (props.uri) {
-      return (
-        <Image
-          style={Styles.img}
-          source={{ uri: props.uri }}
-        />
-      )
-    } else {
-      return (
-        <Image
-          style={Styles.img}
-          source={require('../assets/images/child.png')}
-        />
-      )
-    }
-  }
-
-
-  const onChooseCamera = () => {
-    // props.navigate('Camera', { setImgURI })
-  }
-
-
-  const onOpenImages = async () => {
-    const pic = await ImagePicker.launchImageLibraryAsync()
-
-
-  }
-
-
   return (
     <View>
       <Text style={[Styles.h1, Styles.raleway]} >
         Child
       </Text>
 
-      { getHeaderImage() }
-
-      <View style={{ flexDirection: 'row' }} >
-        <TouchableOpacity
-          style={{ width: 50,  margin: 10 }}
-          onPress={onChooseCamera}
-        >
-          <Icon name="camera-alt" size={36} color="#ffffff80" />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={{ width: 50, margin: 10 }}
-          onPress={onOpenImages}
-        >
-          <Icon name="photo" size={36} color="#ffffff80" />
-        </TouchableOpacity>
-      </View>
+      <Image
+        style={Styles.img}
+        source={require('../assets/images/child.png')}
+      />
 
       <TextInput
         style={Styles.input}

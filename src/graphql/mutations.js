@@ -11,6 +11,7 @@ export const createCaregiver = `mutation CreateCaregiver($input: CreateCaregiver
     firstName
     lastName
     centreName
+    location
     address
     city
   }
@@ -26,6 +27,7 @@ export const updateCaregiver = `mutation UpdateCaregiver($input: UpdateCaregiver
     firstName
     lastName
     centreName
+    location
     address
     city
   }
@@ -41,6 +43,7 @@ export const deleteCaregiver = `mutation DeleteCaregiver($input: DeleteCaregiver
     firstName
     lastName
     centreName
+    location
     address
     city
   }

@@ -40,6 +40,17 @@ const CentreEntry = (props) => {
       <TextInput
         style={Styles.input}
         blurOnSubmit={false}
+        value={props.location}
+        onChangeText={props.onChangeLocation}
+      />
+
+      <Text style={Styles.label} >
+        Location
+      </Text>
+
+      <TextInput
+        style={Styles.input}
+        blurOnSubmit={false}
         value={props.city}
         onChangeText={props.onChangeCity}
       />

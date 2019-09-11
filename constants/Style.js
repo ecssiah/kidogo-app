@@ -2,9 +2,6 @@ import { StatusBar } from 'react-native'
 import { Dimensions, StyleSheet } from 'react-native'
 
 
-export const TopMargin = StatusBar.currentHeight
-
-
 export const Screen = {
   Width: Dimensions.get("window").width,
   Height: Dimensions.get("window").height,
@@ -16,6 +13,8 @@ export const Size = {
   medium: 16,
   large: 64,
   xlarge: 128,
+  statusbar: StatusBar.currentHeight,
+  keyboard: 320,
 }
 
 

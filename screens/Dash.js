@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 import { Styles } from '../constants/Style';
 import Backdrop from '../components/Backdrop';
+import uuid from 'uuid-js';
 
 
 const Dash = (props) => {
@@ -110,7 +111,7 @@ const Dash = (props) => {
           <TouchableOpacity
             activeOpacity={0.8}
             style={Styles.actionButton}
-            onPress={() => props.navigation.navigate('Enrollment')}
+            onPress={() => props.navigation.navigate('Enrollment', { accountId: uuid() })}
           >
             <ImageBackground
               style={Styles.buttonImage}

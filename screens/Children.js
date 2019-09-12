@@ -4,14 +4,15 @@ import { ScrollView, TouchableOpacity, Text, View } from 'react-native'
 import uuid from 'uuid'
 import { Colors, Styles, Size } from '../constants/Style';
 import { Icon } from 'react-native-elements';
-import { Get, Create } from '../utilities/localstore';
-import { CHILDREN } from '../constants/Store';
+import { Get, Create, Update } from '../utilities/localstore';
+import { CHILDREN, ATTENDANCE } from '../constants/Store';
 
 import Spacer from '../components/Spacer';
 import Error from '../components/Error';
 import ChildEntry from '../components/ChildEntry';
 import Loading from '../components/Loading';
 import Backdrop from '../components/Backdrop';
+import { GetShortDate } from '../utilities/dates';
 
 
 const Children = (props) => {
@@ -46,12 +47,17 @@ const Children = (props) => {
 
     await Create(CHILDREN, childData.id, childData)
 
+    const today = GetShortDate()
+    const attendanceToday = Get(ATTENDANCE, today)
+    attendanceToday[childData.id] = { checkIn: true, checkOut: false }
+    await Update(ATTENDANCE, today, attendanceToday)
+
     setLoading(false)
   }
 
 
   const onAddGuardians = async () => {
-    props.navigation.navigate('Guardians')
+    props.navigation.navigate('Guardians', { accountId })
   }
 
 

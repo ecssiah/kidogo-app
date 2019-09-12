@@ -3,25 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/kidogoapp/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/api/kidogoapp/schema.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/CentreEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CentreEntry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/GuardianEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/GuardianEntry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/Style.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Style.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Attendance.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Attendance.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/AttendanceHistory.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/AttendanceHistory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/CheckIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/CheckIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/CheckOut.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/CheckOut.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/Children.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Children.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Contacts.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Contacts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Finances.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Finances.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Guardian.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Guardian.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/SignUp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/queries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/schema.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/subscriptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/subscriptions.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,8 +15,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="133" />
-    <option name="y" value="122" />
+    <option name="x" value="135" />
+    <option name="y" value="138" />
     <option name="width" value="1257" />
     <option name="height" value="724" />
   </component>
@@ -80,7 +62,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="133" y="122" width="1257" height="724" extended-state="1" />
+    <frame x="135" y="138" width="1257" height="724" extended-state="1" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.37366256" />

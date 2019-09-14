@@ -6,9 +6,9 @@ import rootReducer from './reducers/RootReducer'
 import awsconfig from './aws-exports'
 import { AppLoading } from 'expo'
 import { LoadFonts, ConfigureBcrypt } from './utilities/config';
+import { LoadTestData, LogTestData, InitDatabase } from './utilities/localstore';
 import { createAppContainer } from 'react-navigation';
 import AppNavigator from './navigators/AppNavigator';
-import { LoadTestData, LogTestData, InitDatabase } from './utilities/localstore';
 
 Amplify.configure(awsconfig)
 
@@ -20,10 +20,14 @@ const App = () => {
 
 
   const setupApp = async () => {
-    await LoadFonts()
+    const runTests = false
 
-    // await LoadTestData()
-    // await LogTestData()
+    if (runTests) {
+      await LoadTestData()
+      await LogTestData()
+    }
+
+    await LoadFonts()
     await InitDatabase()
 
     ConfigureBcrypt()

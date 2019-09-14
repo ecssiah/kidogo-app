@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
   Image, ImageBackground,
   TouchableHighlight, TouchableOpacity,
@@ -6,7 +6,6 @@ import {
 } from 'react-native'
 import { Styles } from '../constants/Style';
 import Backdrop from '../components/Backdrop';
-import uuid from 'uuid-js';
 
 
 const Dash = (props) => {
@@ -43,6 +42,11 @@ const Dash = (props) => {
     } else {
       return <Image source={require('../assets/images/evening.png')} />
     }
+  }
+
+
+  const onPressEnrollment = () => {
+    props.navigation.navigate('Enrollment')
   }
 
 
@@ -111,7 +115,7 @@ const Dash = (props) => {
           <TouchableOpacity
             activeOpacity={0.8}
             style={Styles.actionButton}
-            onPress={() => props.navigation.navigate('Enrollment', { accountId: uuid() })}
+            onPress={onPressEnrollment}
           >
             <ImageBackground
               style={Styles.buttonImage}

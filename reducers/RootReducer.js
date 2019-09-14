@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux'
-import attendanceReducer from './AttendanceReducer';
-import accountsReducer from './AccountsReducer';
+import newAccountReducer from './NewAccountReducer';
 
 const rootReducer = combineReducers({
-  accounts: accountsReducer,
-  attendance: attendanceReducer,
+  newAccount: newAccountReducer,
 })
 
 export default rootReducer

@@ -4,29 +4,6 @@ import { Styles, Colors } from '../constants/Style';
 
 
 const AttendanceHistoryRow = (props) => {
-  const getChildImg = () => {
-    if (props.uri) {
-      return (
-        <View style={Styles.attendanceHistoryImageView} >
-          <Image
-            source={{ uri: props.uri }}
-            style={Styles.attendanceHistoryImage}
-          />
-        </View>
-      )
-    } else {
-      return (
-        <View style={Styles.attendanceHistoryImageView} >
-          <Image
-            source={require('../assets/images/child.png')}
-            style={Styles.attendanceHistoryImage}
-          />
-        </View>
-      )
-    }
-  }
-
-
   const getAttendanceComponents = () => {
     return (
       props.attendance.map((status, i) => {
@@ -51,7 +28,12 @@ const AttendanceHistoryRow = (props) => {
     <View>
       <View style={Styles.attendanceRow} >
         <View style={Styles.attendanceChild} >
-          { getChildImg() }
+          <View style={Styles.attendanceHistoryImageView} >
+            <Image
+              source={require('../assets/images/child.png')}
+              style={Styles.attendanceHistoryImage}
+            />
+          </View>
 
           <Text
             numberOfLines={2}

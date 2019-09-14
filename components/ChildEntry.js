@@ -3,8 +3,6 @@ import {
   Image, Picker, Text, TextInput, TouchableOpacity, View
 } from 'react-native'
 import { Styles } from '../constants/Style';
-import * as ImagePicker from 'expo-image-picker'
-import { Icon } from 'react-native-elements';
 import { Gender } from '../constants/Enrollment';
 
 

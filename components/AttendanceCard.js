@@ -19,20 +19,6 @@ const AttendanceCard = (props) => {
   }
 
 
-  const getChildImage = () => {
-    const source = props.data.uri
-      ? props.data.uri
-      : require('../assets/images/child.png')
-
-    return (
-      <Image
-        style={Styles.attendanceImage}
-        source={source}
-      />
-    )
-  }
-
-
   return (
     <TouchableOpacity
       style={Styles.attendanceCard}
@@ -41,7 +27,10 @@ const AttendanceCard = (props) => {
       { getSelectedComponent() }
 
       <View style={Styles.imgNameHolder} >
-        { getChildImage() }
+        <Image
+          style={Styles.attendanceImage}
+          source={require('../assets/images/child.png')}
+        />
       </View>
 
       <Text style={Styles.text} >

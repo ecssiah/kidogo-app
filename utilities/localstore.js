@@ -74,7 +74,6 @@ export const LoadTestData = async () => {
     birthdate: "1-28-1983",
     gender: Gender.MALE,
     note: "This is a note about Tristan.",
-    uri: null,
   }
 
   const child12 = {
@@ -85,7 +84,6 @@ export const LoadTestData = async () => {
     birthdate: "6-12-1999",
     gender: Gender.OTHER,
     note: "This is a note about Darrin.",
-    uri: null,
   }
 
   await Create(GUARDIANS, guardian11.id, guardian11)
@@ -147,7 +145,6 @@ export const LoadTestData = async () => {
     birthdate: "8-2-2001",
     gender: Gender.OTHER,
     note: "This is a note about Reselle.",
-    uri: null,
   }
 
   const child22 = {
@@ -158,7 +155,6 @@ export const LoadTestData = async () => {
     birthdate: "9-12-1994",
     gender: Gender.MALE,
     note: "This is a note about Grey.",
-    uri: null,
   }
 
   await Create(GUARDIANS, guardian21.id, guardian21)
@@ -217,6 +213,30 @@ export const InitDatabase = async () => {
     }
 
     await Create(EXPENSES, today, expensesToday)
+  }
+}
+
+
+export const SubmitAccount = async (account) => {
+  const accountId = uuid()
+
+  for (const child in account.children) {
+    await Create(CHILDREN, child.id, { accountId, ...child })
+
+    const today = GetShortDate()
+
+    const attendanceToday = Get(ATTENDANCE, today)
+    attendanceToday[child.id] = { checkIn: true, checkOut: false }
+
+    await Update(ATTENDANCE, today, attendanceToday)
+  }
+
+  for (const guardian in account.guardians) {
+    await Create(GUARDIANS, guardian.id, { accountId, ...guardian })
+  }
+
+  for (const contact in account.contacts) {
+    await Create(CONTACTS, contact.id, { accountId, ...contact })
   }
 }
 

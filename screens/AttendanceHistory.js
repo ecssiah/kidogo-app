@@ -77,7 +77,6 @@ const AttendanceHistory = (props) => {
     return children.map((childData, i) =>
       <AttendanceHistoryRow
         key={i}
-        uri={childData.uri}
         childId={childData.id}
         firstName={childData.firstName}
         lastName={childData.lastName}

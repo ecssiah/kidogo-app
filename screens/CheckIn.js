@@ -36,7 +36,6 @@ const CheckIn = (props) => {
         id: childData.id,
         firstName: childData.firstName,
         lastName: childData.lastName,
-        uri: childData.uri,
         checkIn: attendanceToday.attendance[childData.id].checkIn,
         checkOut: attendanceToday.attendance[childData.id].checkOut,
       }

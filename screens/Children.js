@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Audio } from 'expo-av'
 import { ScrollView, TouchableOpacity, Text, View } from 'react-native'
 import uuid from 'uuid'
@@ -13,10 +14,11 @@ import ChildEntry from '../components/ChildEntry';
 import Loading from '../components/Loading';
 import Backdrop from '../components/Backdrop';
 import { GetShortDate } from '../utilities/dates';
+import { ADD_CHILD } from '../constants/Enrollment'
 
 
 const Children = (props) => {
-  const { accountId } = props.navigation.state.params
+  const dispatch = useDispatch()
 
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -31,12 +33,9 @@ const Children = (props) => {
 
 
   const onNextChild = async () => {
-    resetForm()
-
     setLoading(true)
 
     const childData = {
-      accountId,
       id: uuid(),
       firstName,
       lastName,
@@ -45,30 +44,27 @@ const Children = (props) => {
       note,
     }
 
-    await Create(CHILDREN, childData.id, childData)
+    resetForm()
 
-    const today = GetShortDate()
-    const attendanceToday = Get(ATTENDANCE, today)
-    attendanceToday[childData.id] = { checkIn: true, checkOut: false }
-    await Update(ATTENDANCE, today, attendanceToday)
+    dispatch({ type: ADD_CHILD, child: childData })
 
     setLoading(false)
   }
 
 
   const onAddGuardians = async () => {
-    props.navigation.navigate('Guardians', { accountId })
+    props.navigation.navigate('Guardians')
   }
 
 
   const resetForm = () => {
-    scrollRef.current.scrollTo({ x: 0, y: 0, animated: false })
-
     setFirstName('')
     setLastName('')
     setBirthdate('')
     setGender('')
     setNote('')
+
+    scrollRef.current.scrollTo({ x: 0, y: 0, animated: false })
   }
 
 

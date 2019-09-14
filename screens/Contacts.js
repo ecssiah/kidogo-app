@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import uuid from 'uuid'
 import { Icon } from 'react-native-elements';
 import { Text, TouchableOpacity, ScrollView, View } from 'react-native'
@@ -8,13 +9,14 @@ import ContactEntry from '../components/ContactEntry';
 import Spacer from '../components/Spacer';
 import Error from '../components/Error';
 import { Styles, Colors, Size } from '../constants/Style';
-import { Create } from '../utilities/localstore';
+import { SubmitAccount } from '../utilities/localstore';
 import Loading from '../components/Loading';
-import { CONTACTS } from '../constants/Store';
+import { ADD_CONTACT } from '../constants/Enrollment';
 
 
 const Contacts = (props) => {
-  const { accountId } = props.navigation.state.params
+  const dispatch = useDispatch()
+  const newAccount = useSelector(state => state.newAccount)
 
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -27,25 +29,26 @@ const Contacts = (props) => {
 
 
   const onNextContact = async () => {
-    resetForm()
-
     setLoading(true)
 
     const contactData = {
-      accountId,
       id: uuid(),
       firstName,
       lastName,
       phone,
     }
 
-    await Create(CONTACTS, contactData.id, contactData)
+    resetForm()
+
+    dispatch({ type: ADD_CONTACT, contact: contactData })
 
     setLoading(false)
   }
 
 
   const onSubmitFamily = async () => {
+    await SubmitAccount(newAccount)
+
     props.navigation.navigate('Dash')
   }
 

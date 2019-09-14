@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Image, ScrollView, Text, TextInput, TouchableOpacity, View
 } from 'react-native'
@@ -10,15 +11,13 @@ import { Styles, Colors, Size } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import Error from '../components/Error';
 import GuardianEntry from '../components/GuardianEntry';
-import { Frequency } from '../constants/Enrollment';
-import { Create } from '../utilities/localstore';
+import { Frequency, ADD_GUARDIAN } from '../constants/Enrollment';
 import Backdrop from '../components/Backdrop';
 import Loading from '../components/Loading';
-import { GUARDIANS } from '../constants/Store';
 
 
 const Guardians = (props) => {
-  const { accountId } = props.navigation.state.params
+  const dispatch = useDispatch()
 
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -36,12 +35,9 @@ const Guardians = (props) => {
 
 
   const onNextGuardian = async () => {
-    resetForm()
-
     setLoading(true)
 
     const guardianData = {
-      accountId,
       id: uuid(),
       firstName,
       lastName,
@@ -53,14 +49,16 @@ const Guardians = (props) => {
       frequency,
     }
 
-    await Create(GUARDIANS, guardianData.id, guardianData)
+    resetForm()
+
+    dispatch({ type: ADD_GUARDIAN, guardian: guardianData })
 
     setLoading(false)
   }
 
 
   const onAddContacts = async () => {
-    props.navigation.navigate('Contacts', { accountId })
+    props.navigation.navigate('Contacts')
   }
 
 

@@ -95,7 +95,6 @@ const CaregiverEntry = (props) => {
       <TextInput
         style={Styles.input}
         keyboardType="number-pad"
-        maxLength={11}
         value={props.phone}
         onChangeText={props.onChangePhone}
       />

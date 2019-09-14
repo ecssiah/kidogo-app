@@ -220,23 +220,29 @@ export const InitDatabase = async () => {
 export const SubmitAccount = async (account) => {
   const accountId = uuid()
 
-  for (const child in account.children) {
-    await Create(CHILDREN, child.id, { accountId, ...child })
+  for (let [id, child] of Object.entries(account.children)) {
+    await Create(CHILDREN, id, { accountId, ...child })
 
     const today = GetShortDate()
 
     const attendanceToday = Get(ATTENDANCE, today)
-    attendanceToday[child.id] = { checkIn: true, checkOut: false }
+    attendanceToday[id] = { checkIn: true, checkOut: false }
 
     await Update(ATTENDANCE, today, attendanceToday)
+
+    console.log(id, child)
   }
 
-  for (const guardian in account.guardians) {
-    await Create(GUARDIANS, guardian.id, { accountId, ...guardian })
+  for (let [id, guardian] of Object.entries(account.guardians)) {
+    await Create(GUARDIANS, id, { accountId, ...guardian })
+
+    console.log(id, guardian)
   }
 
-  for (const contact in account.contacts) {
-    await Create(CONTACTS, contact.id, { accountId, ...contact })
+  for (const [id, contact] of Object.entries(account.contacts)) {
+    await Create(CONTACTS, id, { accountId, ...contact })
+
+    console.log(id, contact)
   }
 }
 

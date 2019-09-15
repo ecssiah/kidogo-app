@@ -18,13 +18,8 @@ const AttendanceHistory = (props) => {
   const children = useSelector(state => state.children)
   const attendance = useSelector(state => state.attendance)
 
-  const [dateRange, setDateRange] = useState([])
   const [offset, setOffset] = useState(0)
-
-
-  useEffect(() => {
-    setDateRange(getDateRange())
-  }, [])
+  const [dateRange, setDateRange] = useState([])
 
 
   useEffect(() => {

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Text, ScrollView, TouchableOpacity, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
@@ -10,10 +11,15 @@ import Backdrop from '../components/Backdrop';
 import AttendanceCard from '../components/AttendanceCard'
 import { ATTENDANCE, CHILDREN } from '../constants/Store';
 import { Get, Create, Update, GetIds } from '../utilities/localstore';
+import { UPDATE_ATTENDANCE } from '../constants/Attendance'
 
 
 const CheckOut = (props) => {
-  const [checkOutData, setCheckOutData] = useState(null)
+  const dispatch = useDispatch()
+  const attendance = useSelector(state => state.attendance)
+  const children = useSelector(state => state.children)
+
+  const [checkOutData, setCheckOutData] = useState([])
   const [soundObject, setSoundObject] = useState(null)
 
 
@@ -24,41 +30,17 @@ const CheckOut = (props) => {
 
   const getCheckOutData = async () => {
     const today = GetShortDate()
-    const children = await Get(CHILDREN)
-    const attendanceIds = await GetIds(ATTENDANCE)
-    const attendanceTodayId = attendanceIds.find((date) => date === today)
+    const checkOutData = []
 
-    let attendanceToday
-
-    if (attendanceTodayId) {
-      attendanceToday = await Get(ATTENDANCE, today)
-    } else {
-      attendanceToday = {
-        date: today,
-        attendance: {},
-      }
-
-      children.forEach((childData) => {
-        attendanceToday.attendance[childData.id] = {
-          checkIn: true,
-          checkOut: false,
-        }
+    for (let [id, child] of Object.entries(children)) {
+      checkOutData.push({
+        id,
+        firstName: child.firstName,
+        lastName: child.lastName,
+        checkIn: attendance[today]["attendance"][id].checkIn,
+        checkOut: attendance[today]["attendance"][id].checkOut,
       })
-
-      await Create(ATTENDANCE, today, newAttendance)
     }
-
-    const checkOutData = children.map((childData) => {
-      const cardData = {
-        id: childData.id,
-        firstName: childData.firstName,
-        lastName: childData.lastName,
-        checkIn: attendanceToday.attendance[childData.id].checkIn,
-        checkOut: attendanceToday.attendance[childData.id].checkOut,
-      }
-
-      return cardData
-    })
 
     setCheckOutData(checkOutData)
   }
@@ -67,30 +49,29 @@ const CheckOut = (props) => {
   const toggleCheckOut = async (id) => {
     const today = GetShortDate()
     const attendanceToday = await Get(ATTENDANCE, today)
-    attendanceToday.attendance[id].checkOut = !attendanceToday.attendance[id].checkOut
+
+    const childAttendance = attendance[today]["attendance"][id]
+    childAttendance.checkOut = !childAttendance.checkOut
+    attendanceToday.attendance[id].checkOut = childAttendance.checkOut
 
     await Update(ATTENDANCE, today, attendanceToday)
+
+    dispatch({ type: UPDATE_ATTENDANCE, id, update: childAttendance })
 
     getCheckOutData()
   }
 
 
   const getAttendanceCards = () => {
-    if (!checkOutData) {
-      return null
-    }
-
     return (
-      checkOutData.map((data, i) => {
-        return (
-          <AttendanceCard
-            key={i}
-            data={data}
-            selected={data.checkOut}
-            onPress={() => toggleCheckOut(data.id)}
-          />
-        )
-      })
+      checkOutData.map((data, i) =>
+        <AttendanceCard
+          key={i}
+          data={data}
+          selected={data.checkOut}
+          onPress={() => toggleCheckOut(data.id)}
+        />
+      )
     )
   }
 

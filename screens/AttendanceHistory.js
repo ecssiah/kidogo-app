@@ -41,12 +41,12 @@ const AttendanceHistory = (props) => {
   }
 
 
-  const getChildAttendance = (childId) => {
+  const getChildAttendance = (id) => {
     return dateRange.map((date) => {
       if (date in attendance) {
         const attended = (
-          attendance[date]["attendance"][childId].checkIn &&
-          attendance[date]["attendance"][childId].checkOut
+          attendance[date]["attendance"][id].checkIn &&
+          attendance[date]["attendance"][id].checkOut
         )
         return attended
       } else {

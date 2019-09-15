@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Image, ImageBackground,
   TouchableHighlight, TouchableOpacity,
@@ -10,6 +10,11 @@ import Backdrop from '../components/Backdrop';
 
 const Dash = (props) => {
   const [hour, setHour] = useState(new Date().getHours())
+
+
+  useEffect(() => {
+
+  }, [])
 
 
   const getGreeting = () => {

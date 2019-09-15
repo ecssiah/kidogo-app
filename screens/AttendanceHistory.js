@@ -11,47 +11,25 @@ import AttendanceHistoryRow from '../components/AttendanceHistoryRow';
 import { Size } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import { Day } from '../constants/Attendance';
-import { SET_ATTENDANCE } from '../constants/Update';
 
 
 const AttendanceHistory = (props) => {
   const dispatch = useDispatch()
-  const updateData = useSelector(state => state.update)
+  const children = useSelector(state => state.children)
+  const attendance = useSelector(state => state.attendance)
 
   const [dateRange, setDateRange] = useState([])
   const [offset, setOffset] = useState(0)
-  const [children, setChildren] = useState(null)
-  const [attendance, setAttendance] = useState(null)
 
 
   useEffect(() => {
-    getAttendanceData()
+    setDateRange(getDateRange())
   }, [])
 
 
   useEffect(() => {
     setDateRange(getDateRange())
   }, [offset])
-
-
-  console.log(updateData[ATTENDANC])
-
-
-  if (updateData[ATTENDANCE]) {
-    console.log("Updated Attendance")
-    getAttendanceData()
-
-    dispatch({ type: SET_ATTENDANCE, update: false })
-  } else {
-    console.log("No Attendance Update")
-  }
-
-
-  const getAttendanceData = async () => {
-    setDateRange(getDateRange())
-    setAttendance(await Get(ATTENDANCE))
-    setChildren(await Get(CHILDREN))
-  }
 
 
   const shiftDateRange = (shift) => {
@@ -70,14 +48,10 @@ const AttendanceHistory = (props) => {
 
   const getChildAttendance = (childId) => {
     return dateRange.map((date) => {
-      const dayAttendance = attendance.find((attendance) => {
-        return attendance.date === date
-      })
-
-      if (dayAttendance) {
+      if (date in attendance) {
         const attended = (
-          dayAttendance.attendance[childId].checkIn &&
-          dayAttendance.attendance[childId].checkOut
+          attendance[date]["attendance"][childId].checkIn &&
+          attendance[date]["attendance"][childId].checkOut
         )
         return attended
       } else {
@@ -88,19 +62,21 @@ const AttendanceHistory = (props) => {
 
 
   const getAttendanceRowComponents = () => {
-    if (!children) {
-      return null
+    const rowComponents = []
+
+    for (let [id, child] of Object.entries(children)) {
+      rowComponents.push(
+        <AttendanceHistoryRow
+          key={id}
+          childId={id}
+          firstName={child.firstName}
+          lastName={child.lastName}
+          attendance={getChildAttendance(id)}
+        />
+      )
     }
 
-    return children.map((childData, i) =>
-      <AttendanceHistoryRow
-        key={i}
-        childId={childData.id}
-        firstName={childData.firstName}
-        lastName={childData.lastName}
-        attendance={getChildAttendance(childData.id)}
-      />
-    )
+    return rowComponents
   }
 
 
@@ -121,5 +97,3 @@ const AttendanceHistory = (props) => {
 }
 
 export default AttendanceHistory
-
-

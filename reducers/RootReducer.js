@@ -1,12 +1,16 @@
 import { combineReducers } from 'redux'
 
-import updateReducer from './UpdateReducer';
-import newAccountReducer from './NewAccountReducer';
+import attendanceReducer from './AttendanceReducer';
+import childrenReducer from './ChildrenReducer';
+import guardiansReducer from './GuardiansReducer';
+import contactsReducer from './ContactsReducer';
 
 
 const rootReducer = combineReducers({
-  update: updateReducer,
-  newAccount: newAccountReducer,
+  attendance: attendanceReducer,
+  children: childrenReducer,
+  guardians: guardiansReducer,
+  contacts: contactsReducer,
 })
 
 

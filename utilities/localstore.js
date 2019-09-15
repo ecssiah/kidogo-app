@@ -1,13 +1,16 @@
 import * as SecureStore from 'expo-secure-store'
+import uuid from 'uuid'
 import {
   CAREGIVER,
   GUARDIANS, CONTACTS, CHILDREN,
   PAYMENTS, ACCOUNTS, ATTENDANCE, FINANCES, QUESTIONS, EXPENSES,
 } from '../constants/Store';
-
-import uuid from 'uuid'
-import { Frequency, Gender } from '../constants/Enrollment';
 import { GetShortDate } from './dates';
+import { Frequency, Gender } from '../constants/Enrollment';
+import { ADD_GUARDIAN } from '../constants/Guardians';
+import { ADD_CHILD } from '../constants/Children';
+import { ADD_CONTACT } from '../constants/Contacts';
+import { ADD_ATTENDANCE } from '../constants/Attendance';
 
 
 export const LogTestData = async () => {
@@ -21,7 +24,7 @@ export const LogTestData = async () => {
 }
 
 
-export const LoadTestData = async () => {
+export const LoadTestData = async (dispatch) => {
   const accountId1 = uuid()
 
   const guardian11 = {
@@ -93,6 +96,13 @@ export const LoadTestData = async () => {
   await Create(CHILDREN, child11.id, child11)
   await Create(CHILDREN, child12.id, child12)
 
+  dispatch({ type: ADD_CHILD, id: child11.id, child: child11 })
+  dispatch({ type: ADD_CHILD, id: child12.id, child: child12 })
+  dispatch({ type: ADD_GUARDIAN, id: guardian11.id, guardian: guardian11 })
+  dispatch({ type: ADD_GUARDIAN, id: guardian12.id, guardian: guardian12 })
+  dispatch({ type: ADD_CONTACT, id: contact11.id, contact: contact11 })
+  dispatch({ type: ADD_CONTACT, id: contact12.id, contact: contact12 })
+
   const accountId2 = uuid()
 
   const guardian21 = {
@@ -157,18 +167,23 @@ export const LoadTestData = async () => {
     note: "This is a note about Grey.",
   }
 
+  await Create(CHILDREN, child21.id, child21)
+  await Create(CHILDREN, child22.id, child22)
   await Create(GUARDIANS, guardian21.id, guardian21)
   await Create(GUARDIANS, guardian22.id, guardian22)
   await Create(CONTACTS, contact21.id, contact21)
   await Create(CONTACTS, contact22.id, contact22)
-  await Create(CHILDREN, child21.id, child21)
-  await Create(CHILDREN, child22.id, child22)
+
+  dispatch({ type: ADD_CHILD, id: child21.id, child: child21 })
+  dispatch({ type: ADD_CHILD, id: child22.id, child: child22 })
+  dispatch({ type: ADD_GUARDIAN, id: guardian21.id, guardian: guardian21 })
+  dispatch({ type: ADD_GUARDIAN, id: guardian22.id, guardian: guardian22 })
+  dispatch({ type: ADD_CONTACT, id: contact21.id, contact: contact21 })
+  dispatch({ type: ADD_CONTACT, id: contact22.id, contact: contact22 })
 }
 
 
-export const InitDatabase = async () => {
-  const today = GetShortDate()
-
+const InitAttendance = async (dispatch, today) => {
   const attendanceIds = await GetIds(ATTENDANCE)
   const attendanceTodayId = attendanceIds.find((date) => date === today)
 
@@ -189,7 +204,42 @@ export const InitDatabase = async () => {
 
     await Create(ATTENDANCE, today, attendanceToday)
   }
+}
 
+
+export const UpdateStore = async (dispatch) => {
+  const attendance = await Get(ATTENDANCE, await GetIds(ATTENDANCE))
+  const children = await Get(CHILDREN, await GetIds(CHILDREN))
+  const guardians = await Get(GUARDIANS, await GetIds(GUARDIANS))
+  const contacts = await Get(CONTACTS, await GetIds(CONTACTS))
+
+  attendance.forEach((attendanceData) => {
+    dispatch({
+      type: ADD_ATTENDANCE, id: attendanceData.date, attendance: attendanceData
+    })
+  })
+
+  children.forEach((child) => {
+    dispatch({
+      type: ADD_CHILD, id: child.id, child
+    })
+  })
+
+  guardians.forEach((guardian) => {
+    dispatch({
+      type: ADD_GUARDIAN, id: guardian.id, guardian
+    })
+  })
+
+  contacts.forEach((contact) => {
+    dispatch({
+      type: ADD_CONTACT, id: contact.id, contact
+    })
+  })
+}
+
+
+const InitFinance = async (dispatch, today) => {
   const financeIds = await GetIds(FINANCES)
   const financeTodayId = financeIds.find((date) => date === today)
 
@@ -202,7 +252,10 @@ export const InitDatabase = async () => {
 
     await Create(FINANCES, today, financeToday)
   }
+}
 
+
+const InitExpenses = async (dispatch, today) => {
   const expensesIds = await GetIds(EXPENSES)
   const expenseTodayId = expensesIds.find((date) => date === today)
 
@@ -214,6 +267,15 @@ export const InitDatabase = async () => {
 
     await Create(EXPENSES, today, expensesToday)
   }
+}
+
+
+export const InitDatabase = async (dispatch) => {
+  const today = GetShortDate()
+
+  InitAttendance(dispatch, today)
+  InitFinance(dispatch, today)
+  InitExpenses(dispatch, today)
 }
 
 

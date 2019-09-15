@@ -6,7 +6,7 @@ import rootReducer from './reducers/RootReducer'
 import awsconfig from './aws-exports'
 import { AppLoading } from 'expo'
 import { LoadFonts, ConfigureBcrypt } from './utilities/config';
-import { LoadTestData, LogTestData, InitDatabase } from './utilities/localstore';
+import { LoadTestData, LogTestData, InitDatabase, UpdateStore } from './utilities/localstore';
 import { createAppContainer } from 'react-navigation';
 import AppNavigator from './navigators/AppNavigator';
 
@@ -20,15 +20,15 @@ const App = () => {
 
 
   const setupApp = async () => {
-    const runTests = false
+    await LoadFonts()
 
-    if (runTests) {
-      await LoadTestData()
+    if (false) {
+      await LoadTestData(store.dispatch)
       await LogTestData()
     }
 
-    await LoadFonts()
-    await InitDatabase()
+    await InitDatabase(store.dispatch)
+    await UpdateStore(store.dispatch)
 
     ConfigureBcrypt()
   }
@@ -42,13 +42,13 @@ const App = () => {
         onError={console.warn}
       />
     )
+  } else {
+    return (
+      <Provider store={store} >
+        <AppContainer />
+      </Provider>
+    )
   }
-
-  return (
-    <Provider store={store} >
-      <AppContainer />
-    </Provider>
-  )
 }
 
 export default App

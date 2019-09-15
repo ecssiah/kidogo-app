@@ -10,8 +10,6 @@ const initialState = {
 const updateReducer = (state = initialState, action) => {
   const newState = { ...state }
 
-  console.log(action.update)
-
   switch(action.type) {
     case SET_ATTENDANCE: {
       newState[ATTENDANCE] = action.update

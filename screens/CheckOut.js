@@ -9,9 +9,9 @@ import { Styles, Size } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import Backdrop from '../components/Backdrop';
 import AttendanceCard from '../components/AttendanceCard'
-import { ATTENDANCE, CHILDREN } from '../constants/Store';
-import { Get, Create, Update, GetIds } from '../utilities/localstore';
-import { UPDATE_ATTENDANCE } from '../constants/Attendance'
+import { ATTENDANCE } from '../constants/Store';
+import { Update } from '../utilities/localstore';
+import { ADD_ATTENDANCE } from '../constants/Attendance'
 
 
 const CheckOut = (props) => {
@@ -48,15 +48,13 @@ const CheckOut = (props) => {
 
   const toggleCheckOut = async (id) => {
     const today = GetShortDate()
-    const attendanceToday = await Get(ATTENDANCE, today)
-
-    const childAttendance = attendance[today]["attendance"][id]
-    childAttendance.checkOut = !childAttendance.checkOut
-    attendanceToday.attendance[id].checkOut = childAttendance.checkOut
+    const attendanceToday = { ...attendance[today] }
+    attendanceToday.attendance[id].checkOut =
+      !attendanceToday.attendance[id].checkOut
 
     await Update(ATTENDANCE, today, attendanceToday)
 
-    dispatch({ type: UPDATE_ATTENDANCE, id, update: childAttendance })
+    dispatch({ type: ADD_ATTENDANCE, id: today, attendance: attendanceToday })
 
     getCheckOutData()
   }

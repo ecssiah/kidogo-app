@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { ScrollView } from 'react-native'
 import { Get } from '../utilities/localstore';
 import { GetShortDate, NextDay, GetDateRange } from '../utilities/dates';
@@ -10,9 +11,13 @@ import AttendanceHistoryRow from '../components/AttendanceHistoryRow';
 import { Size } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import { Day } from '../constants/Attendance';
+import { SET_ATTENDANCE } from '../constants/Update';
 
 
 const AttendanceHistory = (props) => {
+  const dispatch = useDispatch()
+  const updateData = useSelector(state => state.update)
+
   const [dateRange, setDateRange] = useState([])
   const [offset, setOffset] = useState(0)
   const [children, setChildren] = useState(null)
@@ -27,6 +32,19 @@ const AttendanceHistory = (props) => {
   useEffect(() => {
     setDateRange(getDateRange())
   }, [offset])
+
+
+  console.log(updateData[ATTENDANC])
+
+
+  if (updateData[ATTENDANCE]) {
+    console.log("Updated Attendance")
+    getAttendanceData()
+
+    dispatch({ type: SET_ATTENDANCE, update: false })
+  } else {
+    console.log("No Attendance Update")
+  }
 
 
   const getAttendanceData = async () => {

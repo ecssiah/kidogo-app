@@ -12,6 +12,7 @@ import { Styles, Colors, Size } from '../constants/Style';
 import { SubmitAccount } from '../utilities/localstore';
 import Loading from '../components/Loading';
 import { ADD_CONTACT } from '../constants/Enrollment';
+import { SET_ATTENDANCE } from '../constants/Update';
 
 
 const Contacts = (props) => {
@@ -48,6 +49,8 @@ const Contacts = (props) => {
 
   const onSubmitFamily = async () => {
     await SubmitAccount(newAccount)
+
+    dispatch({ type: SET_ATTENDANCE, update: true })
 
     props.navigation.navigate('Dash')
   }

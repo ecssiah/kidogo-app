@@ -1,5 +1,5 @@
 import {
-  ADD_ATTENDANCE, UPDATE_ATTENDANCE, DELETE_ATTENDANCE
+  SET_ATTENDANCE, UPDATE_ATTENDANCE, DELETE_ATTENDANCE
 } from "../constants/Attendance"
 
 
@@ -7,7 +7,7 @@ const attendanceReducer = (state = {}, action) => {
   const newState = { ...state }
 
   switch (action.type) {
-    case ADD_ATTENDANCE: {
+    case SET_ATTENDANCE: {
       newState[action.id] = action.attendance
       return newState
     }

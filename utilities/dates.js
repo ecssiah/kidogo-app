@@ -42,7 +42,7 @@ export const GetFullDate = (dateObj = new Date(), offset = 0) => {
   const weekday = WeekDays[dateObj.getDay()]
   const month = Months[dateObj.getMonth()]
 
-  return `${weekday} ${dateObj.getDate()}, ${month} ${dateObj.getFullYear()}`
+  return `${weekday}, ${dateObj.getDate()} ${month}, ${dateObj.getFullYear()}`
 }
 
 

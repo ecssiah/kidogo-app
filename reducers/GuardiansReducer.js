@@ -1,5 +1,5 @@
 import {
-  ADD_GUARDIAN, UPDATE_GUARDIAN, DELETE_GUARDIAN
+  SET_GUARDIAN, UPDATE_GUARDIAN, DELETE_GUARDIAN
 } from "../constants/Guardians"
 
 
@@ -7,7 +7,7 @@ const guardiansReducer = (state = {}, action) => {
   const newState = { ...state }
 
   switch (action.type) {
-    case ADD_GUARDIAN: {
+    case SET_GUARDIAN: {
       newState[action.id] = action.guardian
       return newState
     }

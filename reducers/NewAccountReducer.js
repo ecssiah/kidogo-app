@@ -1,5 +1,5 @@
 import {
-  ADD_CHILD, ADD_GUARDIAN, ADD_CONTACT,
+  SET_CHILD, SET_GUARDIAN, SET_CONTACT,
   UPDATE_CHILD, UPDATE_GUARDIAN, UPDATE_CONTACT,
   DELETE_CHILD, DELETE_GUARDIAN, DELETE_CONTACT,
 } from "../constants/Enrollment"
@@ -16,15 +16,15 @@ const newAccountReducer = (state = initialState, action) => {
   const newState = { ...state }
 
   switch(action.type) {
-    case ADD_CHILD: {
+    case SET_CHILD: {
       newState.children[action.child.id] = action.child
       return newState
     }
-    case ADD_GUARDIAN: {
+    case SET_GUARDIAN: {
       newState.guardians[action.guardian.id] = action.guardian
       return newState
     }
-    case ADD_CONTACT: {
+    case SET_CONTACT: {
       newState.contacts[action.contact.id] = action.contact
       return newState
     }

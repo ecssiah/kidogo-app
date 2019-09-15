@@ -11,7 +11,7 @@ import Error from '../components/Error';
 import { Styles, Colors, Size } from '../constants/Style';
 import { SubmitAccount } from '../utilities/localstore';
 import Loading from '../components/Loading';
-import { ADD_CONTACT } from '../constants/Enrollment';
+import { SET_CONTACT } from '../constants/Enrollment';
 import { SET_ATTENDANCE } from '../constants/Update';
 
 
@@ -41,7 +41,7 @@ const Contacts = (props) => {
 
     resetForm()
 
-    dispatch({ type: ADD_CONTACT, contact: contactData })
+    dispatch({ type: SET_CONTACT, contact: contactData })
 
     setLoading(false)
   }

@@ -1,5 +1,5 @@
 import {
-  ADD_CHILD, UPDATE_CHILD, DELETE_CHILD
+  SET_CHILD, UPDATE_CHILD, DELETE_CHILD
 } from "../constants/Children"
 
 
@@ -7,7 +7,7 @@ const childrenReducer = (state = {}, action) => {
   const newState = { ...state }
 
   switch (action.type) {
-    case ADD_CHILD: {
+    case SET_CHILD: {
       newState[action.id] = action.child
       return newState
     }

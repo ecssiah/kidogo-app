@@ -14,7 +14,7 @@ import ChildEntry from '../components/ChildEntry';
 import Loading from '../components/Loading';
 import Backdrop from '../components/Backdrop';
 import { GetShortDate } from '../utilities/dates';
-import { ADD_CHILD } from '../constants/Enrollment'
+import { SET_CHILD } from '../constants/Enrollment'
 
 
 const Children = (props) => {
@@ -46,7 +46,7 @@ const Children = (props) => {
 
     resetForm()
 
-    dispatch({ type: ADD_CHILD, child: childData })
+    dispatch({ type: SET_CHILD, child: childData })
 
     setLoading(false)
   }

@@ -1,5 +1,5 @@
 import {
-  ADD_CONTACT, UPDATE_CONTACT, DELETE_CONTACT
+  SET_CONTACT, UPDATE_CONTACT, DELETE_CONTACT
 } from "../constants/Contacts"
 
 
@@ -7,7 +7,7 @@ const contactsReducer = (state = {}, action) => {
   const newState = { ...state }
 
   switch (action.type) {
-    case ADD_CONTACT: {
+    case SET_CONTACT: {
       newState[action.id] = action.contact
       return newState
     }

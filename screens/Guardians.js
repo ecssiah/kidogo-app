@@ -11,7 +11,7 @@ import { Styles, Colors, Size } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import Error from '../components/Error';
 import GuardianEntry from '../components/GuardianEntry';
-import { Frequency, ADD_GUARDIAN } from '../constants/Enrollment';
+import { Frequency, SET_GUARDIAN } from '../constants/Enrollment';
 import Backdrop from '../components/Backdrop';
 import Loading from '../components/Loading';
 
@@ -51,7 +51,7 @@ const Guardians = (props) => {
 
     resetForm()
 
-    dispatch({ type: ADD_GUARDIAN, guardian: guardianData })
+    dispatch({ type: SET_GUARDIAN, guardian: guardianData })
 
     setLoading(false)
   }

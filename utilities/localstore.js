@@ -7,10 +7,10 @@ import {
 } from '../constants/Store';
 import { GetShortDate } from './dates';
 import { Frequency, Gender } from '../constants/Enrollment';
-import { ADD_GUARDIAN } from '../constants/Guardians';
-import { ADD_CHILD } from '../constants/Children';
-import { ADD_CONTACT } from '../constants/Contacts';
-import { ADD_ATTENDANCE } from '../constants/Attendance';
+import { SET_GUARDIAN } from '../constants/Guardians';
+import { SET_CHILD } from '../constants/Children';
+import { SET_CONTACT } from '../constants/Contacts';
+import { SET_ATTENDANCE } from '../constants/Attendance';
 
 
 export const LogTestData = async () => {
@@ -96,12 +96,12 @@ export const LoadTestData = async (dispatch) => {
   await Create(CHILDREN, child11.id, child11)
   await Create(CHILDREN, child12.id, child12)
 
-  dispatch({ type: ADD_CHILD, id: child11.id, child: child11 })
-  dispatch({ type: ADD_CHILD, id: child12.id, child: child12 })
-  dispatch({ type: ADD_GUARDIAN, id: guardian11.id, guardian: guardian11 })
-  dispatch({ type: ADD_GUARDIAN, id: guardian12.id, guardian: guardian12 })
-  dispatch({ type: ADD_CONTACT, id: contact11.id, contact: contact11 })
-  dispatch({ type: ADD_CONTACT, id: contact12.id, contact: contact12 })
+  dispatch({ type: SET_CHILD, id: child11.id, child: child11 })
+  dispatch({ type: SET_CHILD, id: child12.id, child: child12 })
+  dispatch({ type: SET_GUARDIAN, id: guardian11.id, guardian: guardian11 })
+  dispatch({ type: SET_GUARDIAN, id: guardian12.id, guardian: guardian12 })
+  dispatch({ type: SET_CONTACT, id: contact11.id, contact: contact11 })
+  dispatch({ type: SET_CONTACT, id: contact12.id, contact: contact12 })
 
   const accountId2 = uuid()
 
@@ -174,12 +174,12 @@ export const LoadTestData = async (dispatch) => {
   await Create(CONTACTS, contact21.id, contact21)
   await Create(CONTACTS, contact22.id, contact22)
 
-  dispatch({ type: ADD_CHILD, id: child21.id, child: child21 })
-  dispatch({ type: ADD_CHILD, id: child22.id, child: child22 })
-  dispatch({ type: ADD_GUARDIAN, id: guardian21.id, guardian: guardian21 })
-  dispatch({ type: ADD_GUARDIAN, id: guardian22.id, guardian: guardian22 })
-  dispatch({ type: ADD_CONTACT, id: contact21.id, contact: contact21 })
-  dispatch({ type: ADD_CONTACT, id: contact22.id, contact: contact22 })
+  dispatch({ type: SET_CHILD, id: child21.id, child: child21 })
+  dispatch({ type: SET_CHILD, id: child22.id, child: child22 })
+  dispatch({ type: SET_GUARDIAN, id: guardian21.id, guardian: guardian21 })
+  dispatch({ type: SET_GUARDIAN, id: guardian22.id, guardian: guardian22 })
+  dispatch({ type: SET_CONTACT, id: contact21.id, contact: contact21 })
+  dispatch({ type: SET_CONTACT, id: contact22.id, contact: contact22 })
 }
 
 
@@ -215,25 +215,25 @@ export const UpdateStore = async (dispatch) => {
 
   attendance.forEach((attendanceData) => {
     dispatch({
-      type: ADD_ATTENDANCE, id: attendanceData.date, attendance: attendanceData
+      type: SET_ATTENDANCE, id: attendanceData.date, attendance: attendanceData
     })
   })
 
   children.forEach((child) => {
     dispatch({
-      type: ADD_CHILD, id: child.id, child
+      type: SET_CHILD, id: child.id, child
     })
   })
 
   guardians.forEach((guardian) => {
     dispatch({
-      type: ADD_GUARDIAN, id: guardian.id, guardian
+      type: SET_GUARDIAN, id: guardian.id, guardian
     })
   })
 
   contacts.forEach((contact) => {
     dispatch({
-      type: ADD_CONTACT, id: contact.id, contact
+      type: SET_CONTACT, id: contact.id, contact
     })
   })
 }

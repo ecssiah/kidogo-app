@@ -11,7 +11,7 @@ import Backdrop from '../components/Backdrop';
 import AttendanceCard from '../components/AttendanceCard'
 import { ATTENDANCE } from '../constants/Store';
 import { Update } from '../utilities/localstore';
-import { ADD_ATTENDANCE } from '../constants/Attendance'
+import { SET_ATTENDANCE } from '../constants/Attendance'
 
 
 const CheckIn = (props) => {
@@ -54,7 +54,7 @@ const CheckIn = (props) => {
 
     await Update(ATTENDANCE, today, attendanceToday)
 
-    dispatch({ type: ADD_ATTENDANCE, id: today, attendance: attendanceToday })
+    dispatch({ type: SET_ATTENDANCE, id: today, attendance: attendanceToday })
 
     getCheckInData()
   }
@@ -93,11 +93,13 @@ const CheckIn = (props) => {
     const currentAttendance = getCurrentAttendance()
 
     if (currentAttendance === checkInData.length) {
-      return 'All children are here'
+      return 'All children are checked in'
+    } else if (currentAttendance === 0) {
+      return 'No children are checked in'
     } else if (currentAttendance === 1) {
-      return '1 child is here'
+      return '1 child is checked in'
     } else {
-      return `${currentAttendance} children are here`
+      return `${currentAttendance} children are checked in`
     }
   }
 

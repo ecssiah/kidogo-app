@@ -2,7 +2,7 @@
 export const CHECKIN = 'check in'
 export const CHECKOUT = 'check out'
 
-export const ADD_ATTENDANCE = 'attendance:add_attendance'
+export const SET_ATTENDANCE = 'attendance:add_attendance'
 export const UPDATE_ATTENDANCE = 'attendance:update_attendance'
 export const DELETE_ATTENDANCE = 'attendance:delete_attendance'
 

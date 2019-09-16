@@ -349,6 +349,23 @@ export const Styles = StyleSheet.create({
     alignSelf: 'center',
     resizeMode: 'cover',
   },
+  message: {
+    position: 'absolute',
+    zIndex: 100,
+    top: Size.statusbar,
+    right: 0,
+    left: 0,
+    padding: 20,
+    borderWidth: 2,
+    borderRadius: 12,
+    overflow: 'hidden',
+    borderColor: Colors.mainText,
+    backgroundColor: Colors.gradient_light,
+  },
+  messageText: {
+    color: Colors.mainText,
+    fontSize: 18,
+  },
   error: {
     position: 'absolute',
     top: 0,

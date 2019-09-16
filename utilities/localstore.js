@@ -6,7 +6,7 @@ import {
   PAYMENTS, ACCOUNTS, ATTENDANCE, FINANCES, QUESTIONS, EXPENSES,
 } from '../constants/Store';
 import { GetShortDate } from './dates';
-import { Frequency, Gender } from '../constants/Enrollment';
+import { Frequency, Gender, CLEAR_NEW_ACCOUNT } from '../constants/Enrollment';
 import { SET_GUARDIAN } from '../constants/Guardians';
 import { SET_CHILD } from '../constants/Children';
 import { SET_CONTACT } from '../constants/Contacts';
@@ -272,11 +272,12 @@ export const SubmitAccount = async (dispatch, account) => {
     await Create(CHILDREN, id, { accountId, ...child })
 
     const today = GetShortDate()
-
     const attendanceToday = Get(ATTENDANCE, today)
     attendanceToday[id] = { checkIn: true, checkOut: false }
 
     await Update(ATTENDANCE, today, attendanceToday)
+
+    dispatch({ type: SET_ATTENDANCE, id: today, attendance: attendanceToday })
 
     console.log(id, child)
   }
@@ -292,6 +293,8 @@ export const SubmitAccount = async (dispatch, account) => {
 
     console.log(id, contact)
   }
+
+  dispatch({ type: CLEAR_NEW_ACCOUNT })
 }
 
 

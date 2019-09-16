@@ -8,13 +8,13 @@ import { Colors, Styles } from '../constants/Style';
 import { SignedIn } from '../utilities/auth';
 
 import Spacer from '../components/Spacer'
-import Error from '../components/Error';
+import Message from '../components/Message';
 import Backdrop from '../components/Backdrop';
 
 
 const Home = (props) => {
   const [soundObject, setSoundObject] = useState(null)
-  const [error, setError] = useState(null)
+  const [message, setMessage] = useState(null)
 
   useEffect(() => {
     checkActiveCaregiver()
@@ -47,15 +47,9 @@ const Home = (props) => {
   }
 
 
-  const showError = error => {
-    setError(error)
-    setTimeout(() => setError(null), 2000)
-  }
-
-
   return (
     <Backdrop>
-      <Error message={error} />
+      <Message text={message} />
 
       <Spacer height={240} />
 

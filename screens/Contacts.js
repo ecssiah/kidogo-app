@@ -7,7 +7,7 @@ import { Text, TouchableOpacity, ScrollView, View } from 'react-native'
 import Backdrop from '../components/Backdrop';
 import ContactEntry from '../components/ContactEntry';
 import Spacer from '../components/Spacer';
-import Error from '../components/Error';
+import Message from '../components/Message';
 import { Styles, Colors, Size } from '../constants/Style';
 import { SubmitAccount } from '../utilities/localstore';
 import { SET_NEW_CONTACT } from '../constants/Enrollment';
@@ -21,8 +21,8 @@ const Contacts = (props) => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [phone, setPhone] = useState('')
-  const [error, setError] = useState('')
   const [soundObject, setSoundObject] = useState(null)
+  const [message, setMessage] = useState(null)
 
   const scrollRef = useRef(null)
 
@@ -85,7 +85,7 @@ const Contacts = (props) => {
     <Backdrop>
       <Spacer height={Size.statusbar} />
 
-      <Error message={error} />
+      <Message text={message} />
 
       <ScrollView ref={scrollRef} >
         <ContactEntry

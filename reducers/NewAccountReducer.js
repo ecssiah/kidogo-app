@@ -39,6 +39,13 @@ const newAccountReducer = (state = initialState, action) => {
       delete newState.contacts[action.id]
       return newState
     }
+    case CLEAR_NEW_ACCOUNT: {
+      return {
+        children: {},
+        guardians: {},
+        contacts: {},
+      }
+    }
     default: {
       return newState
     }

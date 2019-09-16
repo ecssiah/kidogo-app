@@ -17,7 +17,7 @@ import Spacer from '../components/Spacer'
 import CaregiverEntry from '../components/CaregiverEntry'
 import CentreEntry from '../components/CentreEntry'
 import ConfirmModal from '../components/ConfirmModal';
-import Error from '../components/Error';
+import Message from '../components/Message';
 import { CreateCaregiverDB } from '../utilities/dbstore';
 import Backdrop from '../components/Backdrop';
 
@@ -33,7 +33,7 @@ const SignUp = (props) => {
   const [address, setAddress] = useState('')
   const [location, setLocation] = useState('')
   const [city, setCity] = useState('')
-  const [error, setError] = useState(null)
+  const [message, setMessage] = useState(null)
   const [loading, setLoading] = useState(false)
   const [soundObject, setSoundObject] = useState(null)
   const [confirmModalVisible, setConfirmModalVisible] = useState(false)
@@ -116,15 +116,9 @@ const SignUp = (props) => {
   }
 
 
-  const showError = error => {
-    setError(error)
-    setTimeout(() => setError(null), 2000)
-  }
-
-
   return (
     <Backdrop>
-      <Error message={error} />
+      <Message text={message} />
 
       {loading
         ? <Loading />

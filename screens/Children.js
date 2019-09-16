@@ -7,10 +7,10 @@ import { Colors, Styles, Size } from '../constants/Style';
 import { Icon } from 'react-native-elements';
 
 import Spacer from '../components/Spacer';
-import Error from '../components/Error';
 import ChildEntry from '../components/ChildEntry';
 import Backdrop from '../components/Backdrop';
-import { SET_CHILD } from '../constants/Enrollment'
+import { SET_CHILD, SET_NEW_CHILD } from '../constants/Enrollment'
+import Message from '../components/Message'
 
 
 const Children = (props) => {
@@ -23,7 +23,7 @@ const Children = (props) => {
   const [gender, setGender] = useState('')
   const [note, setNote] = useState('')
   const [soundObject, setSoundObject] = useState(null)
-  const [error, setError] = useState(null)
+  const [message, setMessage] = useState(null)
 
   const scrollRef = useRef(null)
 
@@ -39,11 +39,14 @@ const Children = (props) => {
     }
 
     dispatch({ type: SET_NEW_CHILD, id, child })
+
+    setMessage("Child's information submitted")
+    setTimeout(() => setMessage(null), 2000)
   }
 
 
   const onNextChild = () => {
-    submitChild()
+    onSubmitChild()
     setId(uuid())
     resetForm()
   }
@@ -88,7 +91,7 @@ const Children = (props) => {
     <Backdrop>
       <Spacer height={Size.statusbar} />
 
-      <Error message={error} />
+      <Message text={message} />
 
       <ScrollView ref={scrollRef} >
         <ChildEntry
@@ -142,7 +145,6 @@ const Children = (props) => {
           <Icon name="record-voice-over" color={Colors.helpButton} size={36} />
         </View>
       </TouchableOpacity>
-
     </Backdrop>
   )
 }

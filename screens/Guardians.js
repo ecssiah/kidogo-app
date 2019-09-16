@@ -9,7 +9,7 @@ import { Icon } from 'react-native-elements';
 import { Styles, Colors, Size } from '../constants/Style';
 
 import Spacer from '../components/Spacer';
-import Error from '../components/Error';
+import Message from '../components/Message';
 import GuardianEntry from '../components/GuardianEntry';
 import { Frequency, SET_NEW_GUARDIAN } from '../constants/Enrollment';
 import Backdrop from '../components/Backdrop';
@@ -28,7 +28,7 @@ const Guardians = (props) => {
   const [rate, setRate] = useState('')
   const [frequency, setFrequency] = useState(Frequency.DAILY)
   const [soundObject, setSoundObject] = useState(null)
-  const [error, setError] = useState(null)
+  const [message, setMessage] = useState(null)
 
   const scrollRef = useRef(null)
 
@@ -99,7 +99,7 @@ const Guardians = (props) => {
     <Backdrop>
       <Spacer height={Size.statusbar} />
 
-      <Error message={error} />
+      <Message text={message} />
 
       <ScrollView ref={scrollRef} >
         <GuardianEntry

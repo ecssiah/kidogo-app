@@ -77,8 +77,8 @@ const ChildEntry = (props) => {
         style={Styles.textArea}
         multiline={true}
         numberOfLines={4}
-        value={props.notes}
-        onChangeText={props.setNotes}
+        value={props.note}
+        onChangeText={props.setNote}
       />
 
       <Text style={Styles.label} >

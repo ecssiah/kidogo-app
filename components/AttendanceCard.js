@@ -5,7 +5,6 @@ import { Styles } from '../constants/Style';
 
 
 const AttendanceCard = (props) => {
-
   const getSelectedComponent = () => {
     if (props.selected) {
       return (

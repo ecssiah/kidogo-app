@@ -5,38 +5,32 @@ import { ScrollView, TouchableOpacity, Text, View } from 'react-native'
 import uuid from 'uuid'
 import { Colors, Styles, Size } from '../constants/Style';
 import { Icon } from 'react-native-elements';
-import { Get, Create, Update } from '../utilities/localstore';
-import { CHILDREN, ATTENDANCE } from '../constants/Store';
 
 import Spacer from '../components/Spacer';
 import Error from '../components/Error';
 import ChildEntry from '../components/ChildEntry';
-import Loading from '../components/Loading';
 import Backdrop from '../components/Backdrop';
-import { GetShortDate } from '../utilities/dates';
 import { SET_CHILD } from '../constants/Enrollment'
 
 
 const Children = (props) => {
   const dispatch = useDispatch()
 
+  const [id, setId] = useState(uuid())
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [birthdate, setBirthdate] = useState('')
   const [gender, setGender] = useState('')
   const [note, setNote] = useState('')
-  const [loading, setLoading] = useState(false)
   const [soundObject, setSoundObject] = useState(null)
   const [error, setError] = useState(null)
 
   const scrollRef = useRef(null)
 
 
-  const onNextChild = async () => {
-    setLoading(true)
-
-    const childData = {
-      id: uuid(),
+  const onSubmitChild = () => {
+    const child = {
+      id,
       firstName,
       lastName,
       birthdate,
@@ -44,11 +38,14 @@ const Children = (props) => {
       note,
     }
 
+    dispatch({ type: SET_NEW_CHILD, id, child })
+  }
+
+
+  const onNextChild = () => {
+    submitChild()
+    setId(uuid())
     resetForm()
-
-    dispatch({ type: SET_CHILD, child: childData })
-
-    setLoading(false)
   }
 
 
@@ -93,43 +90,49 @@ const Children = (props) => {
 
       <Error message={error} />
 
-      {loading
-        ? <Loading />
-        : <ScrollView ref={scrollRef} >
-            <ChildEntry
-              firstName={firstName}
-              setFirstName={setFirstName}
-              lastName={lastName}
-              setLastName={setLastName}
-              birthdate={birthdate}
-              setBirthdate={setBirthdate}
-              gender={gender}
-              setGender={setGender}
-              note={note}
-              setNote={setNote}
-            />
+      <ScrollView ref={scrollRef} >
+        <ChildEntry
+          firstName={firstName}
+          setFirstName={setFirstName}
+          lastName={lastName}
+          setLastName={setLastName}
+          birthdate={birthdate}
+          setBirthdate={setBirthdate}
+          gender={gender}
+          setGender={setGender}
+          note={note}
+          setNote={setNote}
+        />
 
-            <Spacer medium />
+        <Spacer medium />
 
-            <View style={Styles.rowButtons} >
-              <TouchableOpacity
-                style={Styles.pairButton}
-                onPress={onNextChild}
-              >
-                <Text style={Styles.btnText}>Next Child</Text>
-              </TouchableOpacity>
+        <View style={Styles.rowButtons} >
+          <TouchableOpacity
+            style={Styles.pairButton}
+            onPress={onSubmitChild}
+          >
+            <Text style={Styles.btnText}>Submit Child</Text>
+          </TouchableOpacity>
 
-              <TouchableOpacity
-                style={Styles.pairButton}
-                onPress={onAddGuardians}
-              >
-                <Text style={Styles.btnText}>Add Guardians</Text>
-              </TouchableOpacity>
-            </View>
+          <TouchableOpacity
+            style={Styles.pairButton}
+            onPress={onNextChild}
+          >
+            <Text style={Styles.btnText}>Next Child</Text>
+          </TouchableOpacity>
+        </View>
 
-            <Spacer height={Size.keyboard} />
-          </ScrollView>
-      }
+        <Spacer medium />
+
+        <TouchableOpacity
+          style={Styles.mainButton}
+          onPress={onAddGuardians}
+        >
+          <Text style={Styles.btnText}>Add Guardians</Text>
+        </TouchableOpacity>
+
+        <Spacer height={Size.keyboard} />
+      </ScrollView>
 
       <TouchableOpacity
         style={Styles.helpButton}

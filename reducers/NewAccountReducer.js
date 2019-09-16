@@ -1,7 +1,6 @@
 import {
-  SET_CHILD, SET_GUARDIAN, SET_CONTACT,
-  UPDATE_CHILD, UPDATE_GUARDIAN, UPDATE_CONTACT,
-  DELETE_CHILD, DELETE_GUARDIAN, DELETE_CONTACT,
+  SET_NEW_CHILD, SET_NEW_GUARDIAN, SET_NEW_CONTACT,
+  DELETE_NEW_CHILD, DELETE_NEW_GUARDIAN, DELETE_NEW_CONTACT
 } from "../constants/Enrollment"
 
 
@@ -16,46 +15,28 @@ const newAccountReducer = (state = initialState, action) => {
   const newState = { ...state }
 
   switch(action.type) {
-    case SET_CHILD: {
-      newState.children[action.child.id] = action.child
+    case SET_NEW_CHILD: {
+      newState.children[action.id] = action.child
       return newState
     }
-    case SET_GUARDIAN: {
-      newState.guardians[action.guardian.id] = action.guardian
+    case SET_NEW_GUARDIAN: {
+      newState.guardians[action.id] = action.guardian
       return newState
     }
-    case SET_CONTACT: {
-      newState.contacts[action.contact.id] = action.contact
+    case SET_NEW_CONTACT: {
+      newState.contacts[action.id] = action.contact
       return newState
     }
-    case DELETE_CHILD: {
-      delete newState.contacts[action.child.id]
+    case DELETE_NEW_CHILD: {
+      delete newState.contacts[action.id]
       return newState
     }
-    case DELETE_GUARDIAN: {
-      delete newState.guardians[action.guardian.id]
+    case DELETE_NEW_GUARDIAN: {
+      delete newState.guardians[action.id]
       return newState
     }
-    case DELETE_CONTACT: {
-      delete newState.contacts[action.contact.id]
-      return newState
-    }
-    case UPDATE_CHILD: {
-      newState.children[action.id] = Object.assign(
-        {}, newState.children[action.id], action.update
-      )
-      return newState
-    }
-    case UPDATE_GUARDIAN: {
-      newState.guardians[action.id] = Object.assign(
-        {}, newState.guardians[action.id], action.update
-      )
-      return newState
-    }
-    case UPDATE_CONTACT: {
-      newState.contacts[action.id] = Object.assign(
-        {}, newState.contacts[action.id], action.update
-      )
+    case DELETE_NEW_CONTACT: {
+      delete newState.contacts[action.id]
       return newState
     }
     default: {

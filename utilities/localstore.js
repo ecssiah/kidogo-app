@@ -96,13 +96,6 @@ export const LoadTestData = async (dispatch) => {
   await Create(CHILDREN, child11.id, child11)
   await Create(CHILDREN, child12.id, child12)
 
-  dispatch({ type: SET_CHILD, id: child11.id, child: child11 })
-  dispatch({ type: SET_CHILD, id: child12.id, child: child12 })
-  dispatch({ type: SET_GUARDIAN, id: guardian11.id, guardian: guardian11 })
-  dispatch({ type: SET_GUARDIAN, id: guardian12.id, guardian: guardian12 })
-  dispatch({ type: SET_CONTACT, id: contact11.id, contact: contact11 })
-  dispatch({ type: SET_CONTACT, id: contact12.id, contact: contact12 })
-
   const accountId2 = uuid()
 
   const guardian21 = {
@@ -173,13 +166,6 @@ export const LoadTestData = async (dispatch) => {
   await Create(GUARDIANS, guardian22.id, guardian22)
   await Create(CONTACTS, contact21.id, contact21)
   await Create(CONTACTS, contact22.id, contact22)
-
-  dispatch({ type: SET_CHILD, id: child21.id, child: child21 })
-  dispatch({ type: SET_CHILD, id: child22.id, child: child22 })
-  dispatch({ type: SET_GUARDIAN, id: guardian21.id, guardian: guardian21 })
-  dispatch({ type: SET_GUARDIAN, id: guardian22.id, guardian: guardian22 })
-  dispatch({ type: SET_CONTACT, id: contact21.id, contact: contact21 })
-  dispatch({ type: SET_CONTACT, id: contact22.id, contact: contact22 })
 }
 
 
@@ -279,7 +265,7 @@ export const InitDatabase = async (dispatch) => {
 }
 
 
-export const SubmitAccount = async (account) => {
+export const SubmitAccount = async (dispatch, account) => {
   const accountId = uuid()
 
   for (let [id, child] of Object.entries(account.children)) {

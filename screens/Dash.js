@@ -12,11 +12,6 @@ const Dash = (props) => {
   const [hour, setHour] = useState(new Date().getHours())
 
 
-  useEffect(() => {
-
-  }, [])
-
-
   const getGreeting = () => {
     if (hour < 12) {
       return "Nani hako Leo?"

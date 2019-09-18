@@ -3,7 +3,6 @@ import {
   DELETE_NEW_CHILD, DELETE_NEW_GUARDIAN, DELETE_NEW_CONTACT
 } from "../constants/Enrollment"
 
-
 const initialState = {
   children: {},
   guardians: {},
@@ -38,13 +37,6 @@ const newAccountReducer = (state = initialState, action) => {
     case DELETE_NEW_CONTACT: {
       delete newState.contacts[action.id]
       return newState
-    }
-    case CLEAR_NEW_ACCOUNT: {
-      return {
-        children: {},
-        guardians: {},
-        contacts: {},
-      }
     }
     default: {
       return newState

@@ -47,6 +47,9 @@ const Guardians = (props) => {
     }
 
     dispatch({ type: SET_NEW_GUARDIAN, id, guardian })
+
+    setMessage("Guardian information submitted")
+    setTimeout(() => setMessage(null), 2000)
   }
 
 
@@ -128,14 +131,14 @@ const Guardians = (props) => {
             style={Styles.pairButton}
             onPress={onSubmitGuardian}
           >
-            <Text style={Styles.btnText}>Submit Guardian</Text>
+            <Text style={Styles.btnText}>Submit</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={Styles.pairButton}
             onPress={onNextGuardian}
           >
-            <Text style={Styles.btnText}>Next Guardian</Text>
+            <Text style={Styles.btnText}>Next</Text>
           </TouchableOpacity>
         </View>
 

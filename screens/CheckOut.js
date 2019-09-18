@@ -30,17 +30,18 @@ const CheckOut = (props) => {
 
   const getCheckOutData = async () => {
     const today = GetShortDate()
-    const checkOutData = []
 
-    for (let [id, child] of Object.entries(children)) {
-      checkOutData.push({
-        id,
+    const checkOutData = children.map((child) => {
+      const data = {
+        id: child.id,
         firstName: child.firstName,
         lastName: child.lastName,
-        checkIn: attendance[today].attendance[id].checkIn,
-        checkOut: attendance[today].attendance[id].checkOut,
-      })
-    }
+        checkIn: attendance[today].attendance[child.id].checkIn,
+        checkOut: attendance[today].attendance[child.id].checkOut,
+      }
+
+      return data
+    })
 
     setCheckOutData(checkOutData)
   }

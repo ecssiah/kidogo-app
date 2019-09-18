@@ -30,17 +30,18 @@ const CheckIn = (props) => {
 
   const getCheckInData = async () => {
     const today = GetShortDate()
-    const checkInData = []
 
-    for (let [id, child] of Object.entries(children)) {
-      checkInData.push({
-        id,
+    const checkInData = children.map((child) => {
+      const data = {
+        id: child.id,
         firstName: child.firstName,
         lastName: child.lastName,
         checkIn: attendance[today].attendance[id].checkIn,
         checkOut: attendance[today].attendance[id].checkOut,
-      })
-    }
+      }
+
+      return data
+    })
 
     setCheckInData(checkInData)
   }

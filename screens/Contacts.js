@@ -11,6 +11,7 @@ import Message from '../components/Message';
 import { Styles, Colors, Size } from '../constants/Style';
 import { SubmitAccount } from '../utilities/localstore';
 import { SET_NEW_CONTACT } from '../constants/Enrollment';
+import Loading from '../components/Loading';
 
 
 const Contacts = (props) => {
@@ -21,6 +22,7 @@ const Contacts = (props) => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [phone, setPhone] = useState('')
+  const [loading, setLoading] = useState(false)
   const [soundObject, setSoundObject] = useState(null)
   const [message, setMessage] = useState(null)
 
@@ -36,6 +38,9 @@ const Contacts = (props) => {
     }
 
     dispatch({ type: SET_NEW_CONTACT, id, contact })
+
+    setMessage("Contact information submitted")
+    setTimeout(() => setMessage(null), 2000)
   }
 
 
@@ -47,7 +52,11 @@ const Contacts = (props) => {
 
 
   const onSubmitFamily = async () => {
+    setLoading(true)
+
     await SubmitAccount(dispatch, newAccount)
+
+    setLoading(false)
 
     props.navigation.navigate('Dash')
   }
@@ -80,53 +89,54 @@ const Contacts = (props) => {
     }
   }
 
-
   return (
     <Backdrop>
       <Spacer height={Size.statusbar} />
 
       <Message text={message} />
 
-      <ScrollView ref={scrollRef} >
-        <ContactEntry
-          firstName={firstName}
-          setFirstName={setFirstName}
-          lastName={lastName}
-          setLastName={setLastName}
-          phone={phone}
-          setPhone={setPhone}
-        />
+      {loading
+        ? <Loading />
+        : <ScrollView ref={scrollRef} >
+            <ContactEntry
+              firstName={firstName}
+              setFirstName={setFirstName}
+              lastName={lastName}
+              setLastName={setLastName}
+              phone={phone}
+              setPhone={setPhone}
+            />
 
-        <Spacer large />
+            <Spacer large />
 
-        <View style={Styles.rowButtons} >
-          <TouchableOpacity
-            style={Styles.pairButton}
-            onPress={onSubmitContact}
-          >
-            <Text style={Styles.btnText}>Submit Contact</Text>
-          </TouchableOpacity>
+            <View style={Styles.rowButtons} >
+              <TouchableOpacity
+                style={Styles.pairButton}
+                onPress={onSubmitContact}
+              >
+                <Text style={Styles.btnText}>Submit</Text>
+              </TouchableOpacity>
 
-          <TouchableOpacity
-            style={Styles.pairButton}
-            onPress={onNextContact}
-          >
-            <Text style={Styles.btnText}>Next Contact</Text>
-          </TouchableOpacity>
-        </View>
+              <TouchableOpacity
+                style={Styles.pairButton}
+                onPress={onNextContact}
+              >
+                <Text style={Styles.btnText}>Next</Text>
+              </TouchableOpacity>
+            </View>
 
-        <Spacer medium />
+            <Spacer medium />
 
-        <TouchableOpacity
-          style={Styles.mainButton}
-          onPress={onSubmitFamily}
-        >
-          <Text style={Styles.btnText}>Submit Family</Text>
-        </TouchableOpacity>
+            <TouchableOpacity
+              style={Styles.mainButton}
+              onPress={onSubmitFamily}
+            >
+              <Text style={Styles.btnText}>Submit Family</Text>
+            </TouchableOpacity>
 
-        <Spacer height={Size.keyboard} />
-      </ScrollView>
-
+            <Spacer height={Size.keyboard} />
+          </ScrollView>
+      }
 
       <TouchableOpacity
         style={Styles.helpButton}

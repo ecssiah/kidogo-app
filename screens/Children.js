@@ -9,7 +9,7 @@ import { Icon } from 'react-native-elements';
 import Spacer from '../components/Spacer';
 import ChildEntry from '../components/ChildEntry';
 import Backdrop from '../components/Backdrop';
-import { SET_CHILD, SET_NEW_CHILD } from '../constants/Enrollment'
+import { SET_NEW_CHILD } from '../constants/Enrollment'
 import Message from '../components/Message'
 
 
@@ -40,8 +40,13 @@ const Children = (props) => {
 
     dispatch({ type: SET_NEW_CHILD, id, child })
 
-    setMessage("Child's information submitted")
+    setMessage("Child information submitted")
     setTimeout(() => setMessage(null), 2000)
+  }
+
+
+  const onPrevChild = () => {
+
   }
 
 
@@ -114,14 +119,14 @@ const Children = (props) => {
             style={Styles.pairButton}
             onPress={onSubmitChild}
           >
-            <Text style={Styles.btnText}>Submit Child</Text>
+            <Text style={Styles.btnText}>Submit</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={Styles.pairButton}
             onPress={onNextChild}
           >
-            <Text style={Styles.btnText}>Next Child</Text>
+            <Text style={Styles.btnText}>Next</Text>
           </TouchableOpacity>
         </View>
 

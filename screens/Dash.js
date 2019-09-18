@@ -122,7 +122,7 @@ const Dash = (props) => {
               source={require('../assets/images/enrollment.png')}
             >
               <Text style={[Styles.actionText, Styles.raleway]} >
-                Add a family
+                Add a Family
               </Text>
             </ImageBackground>
           </TouchableOpacity>

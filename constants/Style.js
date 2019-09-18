@@ -28,9 +28,6 @@ export const Colors = {
 
 
 export const Styles = StyleSheet.create({
-  dash: {
-    flexDirection: 'row',
-  },
   net: {
     fontSize: 36,
     margin: 10,
@@ -481,7 +478,7 @@ export const Styles = StyleSheet.create({
     left: 80,
   },
   dash: {
-    backgroundColor: '#aaa',
+    backgroundColor: Colors.gradient_light,
     height: 200,
     justifyContent: 'center',
     alignItems: 'center',

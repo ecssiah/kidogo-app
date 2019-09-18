@@ -54,8 +54,6 @@ const FinanceHeader = (props) => {
       <View style={Styles.dash} >
         <View style={Styles.expenses} >
           <View style={{ flexDirection: 'row' }} >
-            <Icon name='arrow-downward' size={24} color='red' />
-
             <Text style={[Styles.dashText, { color: 'red' }]} >
               K{props.net.expenses}
             </Text>
@@ -68,8 +66,6 @@ const FinanceHeader = (props) => {
 
         <View style={Styles.expenses} >
           <View style={{ flexDirection: 'row' }} >
-            <Icon name='arrow-upward' size={24} color='green' />
-
             <Text style={[Styles.dashText, { color: 'green' }]} >
               K{props.net.income}
             </Text>

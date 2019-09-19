@@ -23,7 +23,7 @@ const FinanceHistory = (props) => {
 
 
   return (
-    <View style={{ marginTop: 50 }} >
+    <View style={Styles.financeHistoryContainer} >
       <View style={Styles.tableHeader} >
         <Text style={Styles.tableRow} >
           Date

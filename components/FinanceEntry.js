@@ -47,9 +47,7 @@ const FinanceEntry = (props) => {
   const getExpenseComponent = () => {
     if (!addingExpense) {
       return (
-        <View>
-          <Spacer height={60} />
-
+        <View style={Styles.financeButtonContainer} >
           <TouchableOpacity
             style={Styles.button}
             onPress={toggleAddingExpense}
@@ -144,9 +142,7 @@ const FinanceEntry = (props) => {
   const getPaymentComponent = () => {
     if (!addingPayment) {
       return (
-        <View>
-          <Spacer height={60} />
-
+        <View style={Styles.financeButtonContainer} >
           <TouchableOpacity
             style={Styles.button}
             onPress={toggleAddingPayment}

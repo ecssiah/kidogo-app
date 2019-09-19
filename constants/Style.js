@@ -28,6 +28,13 @@ export const Colors = {
 
 
 export const Styles = StyleSheet.create({
+  financeButtonContainer: {
+    paddingTop: 16,
+    paddingHorizontal: 36,
+  },
+  financeHistoryContainer: {
+    paddingTop: 16,
+  },
   net: {
     fontSize: 36,
     margin: 10,

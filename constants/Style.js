@@ -19,7 +19,7 @@ export const Size = {
 
 
 export const Colors = {
-  mainText: '#ffffff80',
+  mainText: '#eaeaea',
   highlightText: '#007c47',
   helpButton: '#3c233d',
   gradient_dark: '#11011b',
@@ -38,7 +38,7 @@ export const Styles = StyleSheet.create({
   net: {
     fontSize: 36,
     margin: 10,
-    color: '#ffffff80',
+    color: Colors.mainText,
   },
   expenses: {
     flex: 0.5,
@@ -49,23 +49,23 @@ export const Styles = StyleSheet.create({
   },
   subText: {
     fontSize: 18,
-    color: '#ffffff80',
+    color: Colors.mainText,
   },
   button: {
     height: 50,
     borderWidth: 1,
-    borderColor: '#ffffff80',
+    borderColor: Colors.mainText,
     margin: 10,
     borderRadius: 2,
   },
   buttonText: {
-    color: '#ffffff80',
+    color: Colors.mainText,
     lineHeight: 50,
     textAlign: 'center',
     fontSize: 24,
   },
   btnText: {
-    color: '#ffffff80',
+    color: Colors.mainText,
     lineHeight: 50,
     textAlign: 'center',
     fontSize: 18,
@@ -134,7 +134,7 @@ export const Styles = StyleSheet.create({
   tableRow: {
     lineHeight: 50,
     flex: 0.27,
-    color: '#ffffff80',
+    color: Colors.mainText,
   },
   // end finances
   container: {

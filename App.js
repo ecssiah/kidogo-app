@@ -20,17 +20,16 @@ const App = () => {
 
 
   const setupApp = async () => {
+    ConfigureBcrypt()
     await LoadFonts()
 
     if (false) {
-      await LoadTestData(store.dispatch)
+      await LoadTestData()
       await LogTestData()
     }
 
-    await InitDatabase(store.dispatch)
+    await InitDatabase()
     await UpdateStore(store.dispatch)
-
-    ConfigureBcrypt()
   }
 
 

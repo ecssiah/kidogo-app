@@ -1,14 +1,14 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Text, View } from 'react-native'
 import { Styles } from '../constants/Style';
 import { Icon } from 'react-native-elements';
 
 
 const FinanceHeader = (props) => {
-
   const getFinanceSummary = () => {
-    const income = Number(props.net.income)
-    const expenses = Number(props.net.expenses)
+    const income = Number(props.financesToday.income)
+    const expenses = Number(props.financesToday.expenses)
 
     if (income > expenses) {
       return `You earned ${income - expenses} this week.`
@@ -19,7 +19,7 @@ const FinanceHeader = (props) => {
 
 
   const getSpendingSummary = () => {
-    const expenses = Number(props.net.expenses)
+    const expenses = Number(props.financesToday.expenses)
 
     if (expenses > 0) {
       return `You spent ${expenses} this week.`
@@ -30,7 +30,7 @@ const FinanceHeader = (props) => {
 
 
   const getPaymentSummary = () => {
-    const income = Number(props.net.income)
+    const income = Number(props.financesToday.income)
 
     if (income > 0) {
       return `You were paid ${income} this week.`
@@ -40,7 +40,8 @@ const FinanceHeader = (props) => {
   }
 
 
-  if (!props.net) {
+  if (!props.financesToday) {
+    console.log(props)
     return null
   }
 
@@ -55,7 +56,7 @@ const FinanceHeader = (props) => {
         <View style={Styles.expenses} >
           <View style={{ flexDirection: 'row' }} >
             <Text style={[Styles.dashText, { color: 'red' }]} >
-              K{props.net.expenses}
+              K{props.financesToday.expenses}
             </Text>
           </View>
 
@@ -67,7 +68,7 @@ const FinanceHeader = (props) => {
         <View style={Styles.expenses} >
           <View style={{ flexDirection: 'row' }} >
             <Text style={[Styles.dashText, { color: 'green' }]} >
-              K{props.net.income}
+              K{props.financesToday.income}
             </Text>
           </View>
 

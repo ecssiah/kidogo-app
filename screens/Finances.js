@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { ScrollView } from 'react-native'
 
 import Backdrop from '../components/Backdrop';
@@ -8,33 +9,20 @@ import FinanceHistory from '../components/FinanceHistory';
 import Spacer from '../components/Spacer';
 import { Size } from '../constants/Style';
 import { Get, Update } from '../utilities/localstore';
-import { FINANCES, EXPENSES } from '../constants/Store';
+import { FINANCES, EXPENSES, PAYMENTS } from '../constants/Store';
 import { GetShortDate } from '../utilities/dates';
+import { SET_EXPENSES, SET_PAYMENTS } from '../constants/Finances';
 
 
 const Finances = (props) => {
-  const [finances, setFinances] = useState(null)
-  const [expenses, setExpenses] = useState(null)
+  const dispatch = useDispatch()
+  const finances = useSelector(state => state.finances)
+  const payments = useSelector(state => state.payments)
+  const expenses = useSelector(state => state.expenses)
 
 
-  useEffect(() => {
-    getFinanceData()
-  }, [])
-
-
-  const getFinanceData = async () => {
-    setFinances(await Get(FINANCES))
-    setExpenses(await Get(EXPENSES))
-  }
-
-
-  const getNetData = () => {
-    if (finances) {
-      const today = GetShortDate()
-      return finances.find((net) => net.date === today)
-    } else {
-      return null
-    }
+  const getFinancesToday = () => {
+    return finances[GetShortDate()]
   }
 
 
@@ -43,7 +31,20 @@ const Finances = (props) => {
     const expensesToday = await Get(EXPENSES, today)
     expensesToday.expenses.push(expense)
 
-    Update(EXPENSES, today, expensesToday)
+    await Update(EXPENSES, today, expensesToday)
+
+    dispatch({ type: SET_EXPENSES, id: today, expenses: expensesToday })
+  }
+
+
+  const addPayment = async (payment) => {
+    const today = GetShortDate()
+    const paymentsToday = await Get(PAYMENTS, today)
+    paymentsToday.payments.push(payment)
+
+    await Update(PAYMENTS, today, paymentsToday)
+
+    dispatch({ type: SET_PAYMENTS, id: today, payments: paymentsToday })
   }
 
 
@@ -52,9 +53,9 @@ const Finances = (props) => {
       <Spacer height={Size.statusbar} />
 
       <ScrollView>
-        <FinanceHeader net={getNetData()} />
-        <FinanceEntry addExpense={addExpense} />
-        <FinanceHistory expenses={expenses} />
+        <FinanceHeader financesToday={getFinancesToday()} />
+        <FinanceEntry addPayment={addPayment} addExpense={addExpense} />
+        <FinanceHistory payments={payments} expenses={expenses} />
 
         <Spacer height={Size.statusbar} />
       </ScrollView>

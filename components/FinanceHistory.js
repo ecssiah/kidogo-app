@@ -7,13 +7,17 @@ import FinanceHistorySection from './FinanceHistorySection';
 
 const FinanceHistory = (props) => {
   const getHistorySectionComponents = () => {
-    return props.expenses.map((expensesData, i) => {
-      return <FinanceHistorySection
-        key={i}
-        date={expensesData.date}
-        expenses={expensesData.expenses}
-      />
-    })
+    const sectionComponents = []
+
+    for (const [date, expensesData] of Object.entries(props.expenses)) {
+      sectionComponents.push(
+        <FinanceHistorySection
+          key={date}
+          date={date}
+          expenses={expensesData.expenses}
+        />
+      )
+    }
   }
 
 

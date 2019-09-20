@@ -186,21 +186,18 @@ export const UpdateStore = async (dispatch) => {
   })
 
   finances.forEach((financesData) => {
-    console.log(financesData)
     dispatch({
       type: SET_FINANCES, id: financesData.date, finances: financesData
     })
   })
 
   payments.forEach((paymentsData) => {
-    console.log(paymentsData)
     dispatch({
       type: SET_PAYMENTS, id: paymentsData.date, payments: paymentsData
     })
   })
 
   expenses.forEach((expensesData) => {
-    console.log(expensesData)
     dispatch({
       type: SET_EXPENSES, id: expensesData.date, expenses: expensesData
     })
@@ -319,20 +316,14 @@ export const SubmitAccount = async (dispatch, account) => {
     await Update(ATTENDANCE, today, attendanceToday)
 
     dispatch({ type: SET_ATTENDANCE, id: today, attendance: attendanceToday })
-
-    console.log(id, child)
   }
 
   for (let [id, guardian] of Object.entries(account.guardians)) {
     await Create(GUARDIANS, id, { accountId, ...guardian })
-
-    console.log(id, guardian)
   }
 
   for (const [id, contact] of Object.entries(account.contacts)) {
     await Create(CONTACTS, id, { accountId, ...contact })
-
-    console.log(id, contact)
   }
 
   dispatch({ type: CLEAR_NEW_ACCOUNT })

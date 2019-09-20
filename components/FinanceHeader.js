@@ -41,7 +41,6 @@ const FinanceHeader = (props) => {
 
 
   if (!props.financesToday) {
-    console.log(props)
     return null
   }
 

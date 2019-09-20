@@ -2,19 +2,19 @@ import React, { useState } from 'react'
 import { Picker, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { Styles } from '../constants/Style';
 import { GetShortDate } from '../utilities/dates';
-import { ExpenseMemo, PaymentMemo } from '../constants/Finances';
+import { ExpenseType, PaymentType } from '../constants/Finances';
 import Spacer from './Spacer';
 
 
 const FinanceEntry = (props) => {
-  const [paymentDate, setPaymentDate] = useState(GetShortDate(new Date()))
+  const [paymentDate, setPaymentDate] = useState(GetShortDate())
   const [paymentAmount, setPaymentAmount] = useState('0')
-  const [paymentMemo, setPaymentMemo] = useState(PaymentMemo.RENT)
+  const [paymentType, setPaymentType] = useState(PaymentType.RENT)
   const [addingPayment, setAddingPayment] = useState(false)
 
-  const [expenseDate, setExpenseDate] = useState(GetShortDate(new Date()))
-  const [expenseAmount, setExpenseAmount] = useState('0')
-  const [expenseMemo, setExpenseMemo] = useState(ExpenseMemo.PAYMENT)
+  const [expenseDate, setExpenseDate] = useState(GetShortDate())
+  const [expenseAmount, setExpenseAmount] = useState('100')
+  const [expenseType, setExpenseType] = useState(ExpenseType.PAYMENT)
   const [addingExpense, setAddingExpense] = useState(false)
 
 
@@ -24,22 +24,22 @@ const FinanceEntry = (props) => {
   const toggleAddingPayment = () => setAddingPayment(!addingPayment)
 
 
-  const onPaymentMemoChange = (memo, i) => setPaymentMemo(paymentMemo)
+  const onPaymentTypeChange = (type, i) => setPaymentType(type)
 
 
-  const onExpenseMemoChange = (memo, i) => setExpenseMemo(expenseMemo)
+  const onExpenseTypeChange = (type, i) => setExpenseType(type)
 
 
-  const getExpenseMemoItems = () => {
-    return Object.values(ExpenseMemo).map((memo, i) => {
-      return <Picker.Item key={i} label={memo} value={memo} />
+  const getExpenseTypeItems = () => {
+    return Object.values(ExpenseType).map((type, i) => {
+      return <Picker.Item key={i} label={type} value={type} />
     })
   }
 
 
-  const getPaymentMemoItems = () => {
-    return Object.values(PaymentMemo).map((memo, i) => {
-      return <Picker.Item key={i} label={memo} value={memo} />
+  const getPaymentTypeItems = () => {
+    return Object.values(PaymentType).map((type, i) => {
+      return <Picker.Item key={i} label={type} value={type} />
     })
   }
 
@@ -67,11 +67,11 @@ const FinanceEntry = (props) => {
 
           <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >
             <Picker
-              selectedValue={expenseMemo}
+              selectedValue={expenseType}
               style={{ height: 30, color: 'white' }}
-              onValueChange={onExpenseMemoChange}
+              onValueChange={onExpenseTypeChange}
             >
-              { getExpenseMemoItems() }
+              { getExpenseTypeItems() }
             </Picker>
           </View>
 
@@ -127,7 +127,9 @@ const FinanceEntry = (props) => {
             <TouchableOpacity
               style={[Styles.button, { flex: 0.5, marginLeft: 5 }]}
               onPress={() => props.addExpense({
-                expenseAmount, expenseMemo, expenseDate
+                date: expenseDate,
+                type: expenseType,
+                amount: expenseAmount,
               })}
             >
               <Text style={Styles.btnText}>Add Expense</Text>
@@ -162,11 +164,11 @@ const FinanceEntry = (props) => {
 
           <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >
             <Picker
-              selectedValue={paymentMemo}
+              selectedValue={paymentType}
               style={{ height: 30, color: 'white' }}
-              onValueChange={onPaymentMemoChange}
+              onValueChange={onPaymentTypeChange}
             >
-              { getPaymentMemoItems() }
+              { getPaymentTypeItems() }
             </Picker>
           </View>
 
@@ -211,7 +213,7 @@ const FinanceEntry = (props) => {
 
           <View style={{ margin: 10, flexDirection: 'row' }} >
             <TouchableOpacity
-              style={[Styles.button, { flex: 0.5, marginRight: 5 }]}
+              style={Styles.pairButton}
               onPress={toggleAddingPayment}
             >
               <Text style={Styles.btnText} >
@@ -220,9 +222,11 @@ const FinanceEntry = (props) => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={[Styles.button, { flex: 0.5, marginLeft: 5 }]}
+              style={Styles.pairButton}
               onPress={() => props.addExpense({
-                paymentMemo, paymentAmount, paymentDate
+                date: paymentDate,
+                type: paymentType,
+                amount: paymentAmount,
               })}
             >
               <Text style={Styles.btnText}>Add Payment</Text>

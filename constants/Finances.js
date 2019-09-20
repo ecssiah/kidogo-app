@@ -7,7 +7,7 @@ export const SET_EXPENSES = 'expenses:set_expenses'
 export const DELETE_EXPENSES = 'expenses:delete_expenses'
 
 
-export const ExpenseMemo = {
+export const ExpenseType = {
   RENT: "Kodi ya Nyumba",
   WATER: "Maji",
   FOOD: "Chakula",
@@ -17,21 +17,21 @@ export const ExpenseMemo = {
 }
 
 
-export const ExpenseMemoIcons = {
-  [ExpenseMemo.RENT]: "home",
-  [ExpenseMemo.ELECTRICITY]: "bolt",
-  [ExpenseMemo.FUEL]: "fire",
-  [ExpenseMemo.FOOD]: "spoon",
-  [ExpenseMemo.WATER]: "tint",
-  [ExpenseMemo.SALARY]: "money",
+export const ExpenseTypeIcons = {
+  [ExpenseType.RENT]: "home",
+  [ExpenseType.ELECTRICITY]: "bolt",
+  [ExpenseType.FUEL]: "fire",
+  [ExpenseType.FOOD]: "spoon",
+  [ExpenseType.WATER]: "tint",
+  [ExpenseType.SALARY]: "money",
 }
 
 
-export const PaymentMemo = {
+export const PaymentType = {
   PAYMENT: "Malipo",
 }
 
 
-export const PaymentMemoIcons = {
-  [PaymentMemo.PAYMENT]: "money-bill",
+export const PaymentTypeIcons = {
+  [PaymentType.PAYMENT]: "money-bill",
 }

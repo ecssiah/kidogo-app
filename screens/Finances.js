@@ -33,6 +33,11 @@ const Finances = (props) => {
 
     await Update(EXPENSES, today, expensesToday)
 
+    const financesToday = await Get(FINANCES, today)
+    financesToday.expenses += parseFloat(expense.amount)
+
+    await Update(FINANCES, today, financesToday)
+
     dispatch({ type: SET_EXPENSES, id: today, expenses: expensesToday })
   }
 
@@ -43,6 +48,11 @@ const Finances = (props) => {
     paymentsToday.payments.push(payment)
 
     await Update(PAYMENTS, today, paymentsToday)
+
+    const financesToday = await Get(FINANCES, today)
+    financesToday.income += parseFloat(payment.amount)
+
+    await Update(FINANCES, today, financesToday)
 
     dispatch({ type: SET_PAYMENTS, id: today, payments: paymentsToday })
   }
@@ -57,7 +67,7 @@ const Finances = (props) => {
         <FinanceEntry addPayment={addPayment} addExpense={addExpense} />
         <FinanceHistory payments={payments} expenses={expenses} />
 
-        <Spacer height={Size.statusbar} />
+        <Spacer height={Size.keyboard} />
       </ScrollView>
     </Backdrop>
   )

@@ -2,22 +2,40 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { Styles } from '../constants/Style';
 
-import FinanceHistorySection from './FinanceHistorySection';
+import FinanceHistoryRow from './FinanceHistoryRow';
 
 
 const FinanceHistory = (props) => {
-  const getHistorySectionComponents = () => {
-    const sectionComponents = []
+  const getHistoryRowComponents = () => {
+    const rowData = []
+
+    for (const [date, paymentsData] of Object.entries(props.payments)) {
+      for (const payment of paymentsData.payments) {
+        rowData.push({
+          date,
+          category: 'payment',
+          type: payment.type,
+          amount: payment.amount,
+        })
+      }
+    }
 
     for (const [date, expensesData] of Object.entries(props.expenses)) {
-      sectionComponents.push(
-        <FinanceHistorySection
-          key={date}
-          date={date}
-          expenses={expensesData.expenses}
-        />
-      )
+      for (const expense of expensesData.expenses) {
+        rowData.push({
+          date,
+          category: 'expense',
+          type: expense.type,
+          amount: expense.amount,
+        })
+      }
     }
+
+    rowData.sort((a, b) => a.date < b.date)
+
+    return rowData.map((data, i) => (
+      <FinanceHistoryRow key={i} data={data} />
+    ))
   }
 
 
@@ -42,7 +60,7 @@ const FinanceHistory = (props) => {
         </Text>
       </View>
 
-      { getHistorySectionComponents() }
+      { getHistoryRowComponents() }
     </View>
   )
 }

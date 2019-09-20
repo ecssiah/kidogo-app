@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/FinanceEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/FinanceEntry.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/FinanceHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/FinanceHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/FinanceHistory.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/FinanceHistory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/FinanceHistoryRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/FinanceHistoryRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/FinanceHistorySection.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/FinanceHistorySection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Loading.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Loading.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/constants/Finances.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Finances.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/Finances.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Finances.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utilities/localstore.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/localstore.js" afterDir="false" />

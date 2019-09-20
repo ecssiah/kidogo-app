@@ -28,6 +28,10 @@ export const Colors = {
 
 
 export const Styles = StyleSheet.create({
+  divider: {
+    height: 1,
+    backgroundColor: Colors.mainText,
+  },
   financeButtonContainer: {
     paddingTop: 16,
     paddingHorizontal: 36,
@@ -72,11 +76,10 @@ export const Styles = StyleSheet.create({
   },
   input: {
     borderBottomWidth: 2,
-    borderColor: 'white',
-    opacity: 0.5,
+    borderColor: Colors.mainText,
     margin: 10,
     fontSize: 18,
-    color: 'white',
+    color: Colors.mainText,
     paddingLeft: 10
   },
   prefix: {
@@ -84,9 +87,8 @@ export const Styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     borderBottomWidth: 2,
-    opacity: 0.5,
-    borderColor: 'white',
-    color: 'white',
+    borderColor: Colors.mainText,
+    color: Colors.mainText,
     height: 30,
     marginVertical: 10,
     marginLeft: 10,
@@ -95,8 +97,7 @@ export const Styles = StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    opacity: 0.5,
-    color: 'white',
+    color: Colors.mainText,
     marginLeft: 20,
     marginBottom: 10,
   },
@@ -127,9 +128,8 @@ export const Styles = StyleSheet.create({
     backgroundColor: '#00000050',
   },
   focused: {
-    opacity: 1,
     fontSize: 18,
-    color: 'white',
+    color: Colors.mainText,
   },
   tableRow: {
     lineHeight: 50,
@@ -239,21 +239,19 @@ export const Styles = StyleSheet.create({
   },
   input: {
     fontSize: 18,
-    color: 'white',
-    borderColor: 'white',
+    color: Colors.mainText,
+    borderColor: Colors.mainText,
     borderBottomWidth: 2,
     margin: 10,
     paddingLeft: 10,
-    opacity: 0.5,
   },
   textArea: {
     fontSize: 18,
-    color: 'white',
-    borderColor: 'white',
+    color: Colors.mainText,
+    borderColor: Colors.mainText,
     borderWidth: 2,
     margin: 10,
     padding: 8,
-    opacity: 0.5,
     textAlignVertical: 'top',
   },
   codeContainer: {
@@ -262,11 +260,10 @@ export const Styles = StyleSheet.create({
   },
   codeInput: {
     flex: 1,
-    color: 'white',
+    color: Colors.mainText,
     fontSize: 32,
     borderWidth: 2,
-    borderColor: 'white',
-    opacity: 0.5,
+    borderColor: Colors.mainText,
     marginHorizontal: 86,
     padding: 10,
   },
@@ -287,8 +284,7 @@ export const Styles = StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    opacity: 0.5,
-    color: 'white',
+    color: Colors.mainText,
     marginLeft: 20,
     marginBottom: 10,
   },
@@ -297,9 +293,8 @@ export const Styles = StyleSheet.create({
   },
   showButton: {
     flex: 0.1,
-    borderColor: 'white',
+    borderColor: Colors.mainText,
     borderBottomWidth: 2,
-    opacity: 0.5,
     marginVertical: 10,
     marginRight: 10,
   },
@@ -307,16 +302,14 @@ export const Styles = StyleSheet.create({
     flexDirection: 'row'
   },
   focused: {
-    opacity: 1,
     fontSize: 18
   },
   next: {
     flexDirection: 'row',
     marginRight: 10,
     marginTop: 20,
-    opacity: 0.5,
     borderWidth: 1,
-    borderColor: 'white',
+    borderColor: Colors.mainText,
     height: 50,
     width: 250,
   },
@@ -329,17 +322,15 @@ export const Styles = StyleSheet.create({
   },
   nextText: {
     fontSize: 24,
-    color: 'white',
+    color: Colors.mainText,
     marginRight: 10,
     textAlign: 'right',
     height: 50,
     lineHeight: 50,
   },
   notReady: {
-    opacity: 0.5,
   },
   ready: {
-    opacity: 1,
   },
   imageHolder: {
     height: 220,
@@ -458,9 +449,8 @@ export const Styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     borderBottomWidth: 2,
-    opacity: 0.5,
-    borderColor: 'white',
-    color: 'white',
+    borderColor: Colors.mainText,
+    color: Colors.mainText,
     height: 30,
     marginVertical: 10,
     marginLeft: 10,
@@ -502,7 +492,7 @@ export const Styles = StyleSheet.create({
     right: 0,
     paddingLeft: 30,
     flex: 1,
-    color: 'white',
+    color: Colors.mainText,
     textShadowColor: 'rgba(0, 0, 0, 1.0)',
     textShadowOffset: { width: 1, height: 2 },
     textShadowRadius: 4,
@@ -543,10 +533,10 @@ export const Styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   imgNameHolder:{
-    height:80,
-    width:80,
-    zIndex:100,
-    overflow:'hidden'
+    height: 80,
+    width: 80,
+    zIndex: 100,
+    overflow: 'hidden'
   },
   attendanceCard: {
     width: 105,
@@ -556,7 +546,6 @@ export const Styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.mainText,
     marginBottom: 15,
-    opacity: 1,
   },
   attendanceImage: {
     flex: 1,

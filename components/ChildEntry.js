@@ -41,7 +41,7 @@ const ChildEntry = (props) => {
       <View style={Styles.nameHolder} >
         <View style={{ flex: .5, marginRight: 5 }} >
           <TextInput
-            style={[Styles.input, Styles.dateInput]}
+            style={Styles.dateInput}
             maxLength={10}
             keyboardType="number-pad"
             value={props.birthdate}

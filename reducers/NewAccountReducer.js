@@ -1,9 +1,13 @@
 import {
   SET_NEW_CHILD, SET_NEW_GUARDIAN, SET_NEW_CONTACT,
-  DELETE_NEW_CHILD, DELETE_NEW_GUARDIAN, DELETE_NEW_CONTACT
+  DELETE_NEW_CHILD, DELETE_NEW_GUARDIAN, DELETE_NEW_CONTACT, Frequency
 } from "../constants/Enrollment"
 
 const initialState = {
+  id: undefined,
+  rate: 0,
+  frequency: Frequency.DAILY,
+  balance: 0,
   children: {},
   guardians: {},
   contacts: {},

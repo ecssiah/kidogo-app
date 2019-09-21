@@ -7,6 +7,12 @@ export const SET_EXPENSES = 'expenses:set_expenses'
 export const DELETE_EXPENSES = 'expenses:delete_expenses'
 
 
+export const FinanceCategory = {
+  PAYMENT: 'payment',
+  EXPENSE: 'expense',
+}
+
+
 export const ExpenseType = {
   RENT: "Kodi ya Nyumba",
   WATER: "Maji",

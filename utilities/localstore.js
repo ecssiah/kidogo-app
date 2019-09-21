@@ -306,6 +306,8 @@ export const InitDatabase = async () => {
 export const SubmitAccount = async (dispatch, account) => {
   const accountId = uuid()
 
+
+
   for (let [id, child] of Object.entries(account.children)) {
     await Create(CHILDREN, id, { accountId, ...child })
 

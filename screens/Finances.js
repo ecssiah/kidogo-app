@@ -4,20 +4,19 @@ import { ScrollView } from 'react-native'
 
 import Backdrop from '../components/Backdrop';
 import FinanceHeader from '../components/FinanceHeader';
-import FinanceEntry from '../components/FinanceEntry';
-import FinanceHistory from '../components/FinanceHistory';
+import ExpenseEntry from '../components/ExpenseEntry';
+import ExpenseHistory from '../components/ExpenseHistory';
 import Spacer from '../components/Spacer';
 import { Size } from '../constants/Style';
 import { Get, Update } from '../utilities/localstore';
 import { FINANCES, EXPENSES, PAYMENTS } from '../constants/Store';
 import { GetShortDate } from '../utilities/dates';
-import { SET_EXPENSES, SET_PAYMENTS } from '../constants/Finances';
+import { SET_EXPENSES } from '../constants/Finances';
 
 
 const Finances = (props) => {
   const dispatch = useDispatch()
   const finances = useSelector(state => state.finances)
-  const payments = useSelector(state => state.payments)
   const expenses = useSelector(state => state.expenses)
 
 
@@ -42,30 +41,14 @@ const Finances = (props) => {
   }
 
 
-  const addPayment = async (payment) => {
-    const today = GetShortDate()
-    const paymentsToday = await Get(PAYMENTS, today)
-    paymentsToday.payments.push(payment)
-
-    await Update(PAYMENTS, today, paymentsToday)
-
-    const financesToday = await Get(FINANCES, today)
-    financesToday.income += parseFloat(payment.amount)
-
-    await Update(FINANCES, today, financesToday)
-
-    dispatch({ type: SET_PAYMENTS, id: today, payments: paymentsToday })
-  }
-
-
   return (
     <Backdrop>
       <Spacer height={Size.statusbar} />
 
       <ScrollView>
         <FinanceHeader financesToday={getFinancesToday()} />
-        <FinanceEntry addPayment={addPayment} addExpense={addExpense} />
-        <FinanceHistory payments={payments} expenses={expenses} />
+        <ExpenseEntry addExpense={addExpense} />
+        <ExpenseHistory expenses={expenses} />
 
         <Spacer height={Size.keyboard} />
       </ScrollView>

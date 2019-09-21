@@ -28,6 +28,19 @@ export const Colors = {
 
 
 export const Styles = StyleSheet.create({
+  financePickerContainer: {
+    borderBottomWidth: 2,
+    borderColor: Colors.mainText,
+    margin: 10,
+    fontSize: 18,
+    color: Colors.mainText,
+    height: 30,
+    paddingLeft: 0,
+  },
+  financePicker: {
+    height: 30,
+    color: Colors.mainText,
+  },
   divider: {
     height: 1,
     backgroundColor: Colors.mainText,
@@ -80,7 +93,16 @@ export const Styles = StyleSheet.create({
     margin: 10,
     fontSize: 18,
     color: Colors.mainText,
-    paddingLeft: 10
+    paddingLeft: 10,
+  },
+  dateInput: {
+    flexDirection: 'row',
+    borderBottomWidth: 2,
+    borderColor: Colors.mainText,
+    margin: 10,
+    fontSize: 18,
+    color: Colors.mainText,
+    paddingLeft: 10,
   },
   prefix: {
     flex: 0.2,

@@ -2,39 +2,29 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { Styles, Colors } from '../constants/Style';
-import { PaymentTypeIcons, ExpenseTypeIcons } from '../constants/Finances';
+import { ExpenseTypeIcons } from '../constants/Finances';
 
-
-const FinanceHistoryRow = (props) => {
-  const getIconName = () => {
-    if (props.data.category === 'expense') {
-      return ExpenseTypeIcons[props.data.type]
-    } else if (props.data.category === 'payment') {
-      return PaymentTypeIcons[props.data.type]
-    }
-  }
-
-
+const ExpenseHistoryRow = (props) => {
   return (
     <View>
       <View style={Styles.financeRow} >
         <Text style={Styles.tableRow} >
-          { props.data.date }
+          { props.date }
         </Text>
 
         <Icon
-          name={getIconName()}
           size={30}
           type="font-awesome"
           color={Colors.mainText}
+          name={ExpenseTypeIcons[props.type]}
         />
 
         <Text style={Styles.tableRow} >
-          { props.data.type }
+          { props.type }
         </Text>
 
         <Text style={Styles.tableRow} >
-          { props.data.amount }
+          { props.amount }
         </Text>
       </View>
 
@@ -43,4 +33,4 @@ const FinanceHistoryRow = (props) => {
   )
 }
 
-export default FinanceHistoryRow
+export default ExpenseHistoryRow

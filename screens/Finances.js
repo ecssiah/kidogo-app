@@ -11,7 +11,7 @@ import { Size } from '../constants/Style';
 import { Get, Update } from '../utilities/localstore';
 import { FINANCES, EXPENSES, PAYMENTS } from '../constants/Store';
 import { GetShortDate } from '../utilities/dates';
-import { SET_EXPENSES } from '../constants/Finances';
+import { SET_EXPENSES, SET_FINANCES } from '../constants/Finances';
 
 
 const Finances = (props) => {
@@ -37,6 +37,7 @@ const Finances = (props) => {
 
     await Update(FINANCES, today, financesToday)
 
+    dispatch({ type: SET_FINANCES, id: today, finances: financesToday })
     dispatch({ type: SET_EXPENSES, id: today, expenses: expensesToday })
   }
 

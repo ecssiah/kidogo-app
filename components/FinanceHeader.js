@@ -12,11 +12,11 @@ const FinanceHeader = (props) => {
     const expenses = Number(props.financesToday.expenses)
 
     if (income === expenses) {
-      return `${Language.ThisWeek}: 0`
+      return `${Language.ThisWeek}: K0`
     } else if (income > expenses) {
-      return `${Language.ThisWeek}: + ${income - expenses}`
+      return `${Language.ThisWeek}: + K${income - expenses}`
     } else {
-      return `${Language.ThisWeek}: - ${expenses - income}`
+      return `${Language.ThisWeek}: - K${expenses - income}`
     }
   }
 
@@ -35,11 +35,11 @@ const FinanceHeader = (props) => {
       <View style={Styles.financeHeader} >
         <View style={{ flexDirection: 'row' }} >
           <Text style={[Styles.financeDisplay, { color: 'green' }]} >
-            K {props.financesToday.income}
+            K{props.financesToday.income}
           </Text>
 
           <Text style={[Styles.financeDisplay, { color: 'red' }]} >
-            K {props.financesToday.expenses}
+            K{props.financesToday.expenses}
           </Text>
         </View>
       </View>

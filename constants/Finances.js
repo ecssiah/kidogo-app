@@ -26,7 +26,7 @@ export const ExpenseTypeIcons = {
   [ExpenseType.Fuel]: 'fire',
   [ExpenseType.Electricity]: 'bolt',
   [ExpenseType.Salary]: 'money',
-  [ExpenseType.Equipment]: 'futbol',
+  [ExpenseType.Equipment]: 'book',
 }
 
 

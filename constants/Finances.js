@@ -20,13 +20,13 @@ export const ExpenseType = {
 
 
 export const ExpenseTypeIcons = {
-  [ExpenseType.Rent]: "home",
-  [ExpenseType.Electricity]: "bolt",
-  [ExpenseType.Fuel]: "fire",
-  [ExpenseType.Food]: "spoon",
-  [ExpenseType.Water]: "tint",
-  [ExpenseType.Salary]: "money",
-  [ExpenseType.Equipment]: "futbol",
+  [ExpenseType.Rent]: 'home',
+  [ExpenseType.Water]: 'tint',
+  [ExpenseType.Food]: 'spoon',
+  [ExpenseType.Fuel]: 'fire',
+  [ExpenseType.Electricity]: 'bolt',
+  [ExpenseType.Salary]: 'money',
+  [ExpenseType.Equipment]: 'futbol',
 }
 
 

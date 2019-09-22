@@ -9,7 +9,7 @@ import Language from '../languages'
 const ExpenseEntry = (props) => {
   const [date, setDate] = useState(GetShortDate())
   const [amount, setAmount] = useState('100')
-  const [type, setType] = useState(ExpenseType.PAYMENT)
+  const [type, setType] = useState(ExpenseType.Rent)
   const [entryActive, setEntryActive] = useState(false)
 
 

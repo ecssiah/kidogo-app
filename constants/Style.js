@@ -61,6 +61,11 @@ export const Styles = StyleSheet.create({
     flex: 0.5,
     margin: 10,
   },
+  financeDisplay: {
+    flex: 0.5,
+    fontSize: 36,
+    textAlign: 'center',
+  },
   dashText: {
     fontSize: 36,
   },
@@ -501,7 +506,6 @@ export const Styles = StyleSheet.create({
     height: 200,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'relative',
   },
   dashFont: {
     zIndex: 99,
@@ -518,6 +522,12 @@ export const Styles = StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 1.0)',
     textShadowOffset: { width: 1, height: 2 },
     textShadowRadius: 4,
+  },
+  financeHeader: {
+    backgroundColor: Colors.gradient_light,
+    height: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   actionsContainer: {
     flex: 1,

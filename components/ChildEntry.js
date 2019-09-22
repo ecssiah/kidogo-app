@@ -4,9 +4,15 @@ import {
 } from 'react-native'
 import { Styles } from '../constants/Style';
 import { Gender } from '../constants/Enrollment';
+import Language from '../languages';
 
 
 const ChildEntry = (props) => {
+  const onImmunizationChange = (immunization, i) => {
+    props.setImmunization(immunization)
+  }
+
+
   return (
     <View>
       <Text style={[Styles.h1, Styles.raleway]} >
@@ -61,9 +67,9 @@ const ChildEntry = (props) => {
               onValueChange={(value, pos) => props.setGender(value)}
             >
               <Picker.Item label="" value={null} />
-              <Picker.Item label={Gender.FEMALE} value={Gender.FEMALE} />
-              <Picker.Item label={Gender.MALE} value={Gender.MALE} />
-              <Picker.Item label={Gender.OTHER} value={Gender.OTHER} />
+              <Picker.Item label={Gender.Female} value={Gender.Female} />
+              <Picker.Item label={Gender.Male} value={Gender.Male} />
+              <Picker.Item label={Gender.Other} value={Gender.Other} />
             </Picker>
           </View>
 
@@ -72,6 +78,28 @@ const ChildEntry = (props) => {
           </Text>
         </View>
       </View>
+
+      <TextInput
+        style={Styles.input}
+        value={props.immunization}
+        onChangeText={props.setImmunization}
+      />
+
+      <View style={Styles.financePickerContainer} >
+        <Picker
+          selectedValue={props.immunization}
+          style={Styles.financePicker}
+          onValueChange={onImmunizationChange}
+        >
+          <Picker.Item label={Language.True} value={true} />
+          <Picker.Item label={Language.False} value={false} />
+        </Picker>
+      </View>
+
+      <Text style={Styles.label} >
+        Chanjo
+      </Text>
+
 
       <TextInput
         style={Styles.textArea}

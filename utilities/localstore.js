@@ -38,7 +38,7 @@ export const LoadTestData = async () => {
     address: "123 Shook Street",
     city: "San Francisco",
     rate: "120",
-    frequency: Frequency.DAILY,
+    frequency: Frequency.Daily,
   }
 
   const guardian12 = {
@@ -51,7 +51,7 @@ export const LoadTestData = async () => {
     address: "345 Apple Street",
     city: "San Francisco",
     rate: "720",
-    frequency: Frequency.WEEKLY,
+    frequency: Frequency.Weekly,
   }
 
   const contact11 = {
@@ -76,7 +76,7 @@ export const LoadTestData = async () => {
     firstName: "Tristan",
     lastName: "Johnston",
     birthdate: "1-28-1983",
-    gender: Gender.MALE,
+    gender: Gender.Male,
     note: "This is a note about Tristan.",
   }
 
@@ -86,7 +86,7 @@ export const LoadTestData = async () => {
     firstName: "Darrin",
     lastName: "Snapton",
     birthdate: "6-12-1999",
-    gender: Gender.OTHER,
+    gender: Gender.Other,
     note: "This is a note about Darrin.",
   }
 
@@ -109,7 +109,7 @@ export const LoadTestData = async () => {
     address: "3333 Harriet Street",
     city: "La Crosse",
     rate: "4200",
-    frequency: Frequency.TERMLY,
+    frequency: Frequency.Termly,
   }
 
   const guardian22 = {
@@ -122,7 +122,7 @@ export const LoadTestData = async () => {
     address: "1 High Street",
     city: "Denver",
     rate: "86",
-    frequency: Frequency.DAILY,
+    frequency: Frequency.Daily,
   }
 
   const contact21 = {
@@ -147,7 +147,7 @@ export const LoadTestData = async () => {
     firstName: "Reselle",
     lastName: "Trepi",
     birthdate: "8-2-2001",
-    gender: Gender.OTHER,
+    gender: Gender.Other,
     note: "This is a note about Reselle.",
   }
 
@@ -157,7 +157,7 @@ export const LoadTestData = async () => {
     firstName: "Grey",
     lastName: "Mark",
     birthdate: "9-12-1994",
-    gender: Gender.MALE,
+    gender: Gender.Male,
     note: "This is a note about Grey.",
   }
 
@@ -306,7 +306,12 @@ export const InitDatabase = async () => {
 export const SubmitAccount = async (dispatch, account) => {
   const accountId = uuid()
 
+  const accountData = {
+    id: accountId,
+    balance: 0,
+  }
 
+  await Create(ACCOUNTS, accountId, accountData)
 
   for (let [id, child] of Object.entries(account.children)) {
     await Create(CHILDREN, id, { accountId, ...child })

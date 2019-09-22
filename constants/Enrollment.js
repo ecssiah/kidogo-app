@@ -1,15 +1,17 @@
+import Language from '../languages'
+
 
 export const Gender = {
-  MALE: "Male",
-  FEMALE: "Female",
-  OTHER: "Other",
+  Male: Language.Male,
+  Female: Language.Female,
+  Other: Language.Other,
 }
 
 
 export const Frequency = {
-  DAILY: "Kila Siku",
-  WEEKLY: "Kila Wiki",
-  TERMLY: "Kila Muhula",
+  Daily: Language.Daily,
+  Weekly: Language.Weekly,
+  Termly: Language.Termly,
 }
 
 export const SET_NEW_CHILD = 'enrollment:set_new_child'

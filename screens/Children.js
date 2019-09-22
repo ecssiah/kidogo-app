@@ -21,6 +21,7 @@ const Children = (props) => {
   const [lastName, setLastName] = useState('')
   const [birthdate, setBirthdate] = useState('')
   const [gender, setGender] = useState('')
+  const [immunization, setImmunization] = useState(false)
   const [note, setNote] = useState('')
   const [soundObject, setSoundObject] = useState(null)
   const [message, setMessage] = useState(null)
@@ -35,6 +36,7 @@ const Children = (props) => {
       lastName,
       birthdate,
       gender,
+      immunization,
       note,
     }
 
@@ -67,6 +69,7 @@ const Children = (props) => {
     setLastName('')
     setBirthdate('')
     setGender('')
+    setImmunization(false)
     setNote('')
 
     scrollRef.current.scrollTo({ x: 0, y: 0, animated: false })
@@ -108,6 +111,8 @@ const Children = (props) => {
           setBirthdate={setBirthdate}
           gender={gender}
           setGender={setGender}
+          immunization={immunization}
+          setImmunization={setImmunization}
           note={note}
           setNote={setNote}
         />

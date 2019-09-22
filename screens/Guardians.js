@@ -26,7 +26,7 @@ const Guardians = (props) => {
   const [address, setAddress] = useState('')
   const [city, setCity] = useState('')
   const [rate, setRate] = useState('')
-  const [frequency, setFrequency] = useState(Frequency.DAILY)
+  const [frequency, setFrequency] = useState(Frequency.Daily)
   const [soundObject, setSoundObject] = useState(null)
   const [message, setMessage] = useState(null)
 
@@ -75,7 +75,7 @@ const Guardians = (props) => {
     setAddress('')
     setCity('')
     setRate('')
-    setFrequency(Frequency.DAILY)
+    setFrequency(Frequency.Daily)
   }
 
 

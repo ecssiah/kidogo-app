@@ -6,7 +6,7 @@ import {
 const initialState = {
   id: undefined,
   rate: 0,
-  frequency: Frequency.DAILY,
+  frequency: Frequency.Daily,
   balance: 0,
   children: {},
   guardians: {},

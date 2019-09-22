@@ -1,3 +1,4 @@
+import Language from '../languages'
 
 export const SET_FINANCES = 'expenses:set_finances'
 export const DELETE_FINANCES = 'expenses:delete_finances'
@@ -7,34 +8,30 @@ export const SET_EXPENSES = 'expenses:set_expenses'
 export const DELETE_EXPENSES = 'expenses:delete_expenses'
 
 
-export const FinanceCategory = {
-  PAYMENT: 'payment',
-  EXPENSE: 'expense',
-}
-
-
 export const ExpenseType = {
-  RENT: "Kodi ya Nyumba",
-  WATER: "Maji",
-  FOOD: "Chakula",
-  FUEL: "Mafuta anayotumia",
-  ELECTRICITY: "Umeme",
-  SALARY: "Mushahara",
+  Rent: Language.Rent,
+  Water: Language.Water,
+  Food: Language.Food,
+  Fuel: Language.Fuel,
+  Electricity: Language.Electricity,
+  Salary: Language.Salary,
+  Equipment: Language.Equipment,
 }
 
 
 export const ExpenseTypeIcons = {
-  [ExpenseType.RENT]: "home",
-  [ExpenseType.ELECTRICITY]: "bolt",
-  [ExpenseType.FUEL]: "fire",
-  [ExpenseType.FOOD]: "spoon",
-  [ExpenseType.WATER]: "tint",
-  [ExpenseType.SALARY]: "money",
+  [ExpenseType.Rent]: "home",
+  [ExpenseType.Electricity]: "bolt",
+  [ExpenseType.Fuel]: "fire",
+  [ExpenseType.Food]: "spoon",
+  [ExpenseType.Water]: "tint",
+  [ExpenseType.Salary]: "money",
+  [ExpenseType.Equipment]: "futbol",
 }
 
 
 export const PaymentType = {
-  PAYMENT: "Malipo",
+  Payment: Language.Payment,
 }
 
 

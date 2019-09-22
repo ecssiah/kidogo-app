@@ -128,9 +128,9 @@ const GuardianEntry = (props) => {
               selectedValue={props.frequency}
               onValueChange={(value, index) => props.setFrequency(value)}
             >
-              <Picker.Item label={Frequency.DAILY} value={Frequency.DAILY} />
-              <Picker.Item label={Frequency.WEEKLY} value={Frequency.WEEKLY} />
-              <Picker.Item label={Frequency.TERMLY} value={Frequency.TERMLY} />
+              <Picker.Item label={Frequency.Daily} value={Frequency.Daily} />
+              <Picker.Item label={Frequency.Weekly} value={Frequency.Weekly} />
+              <Picker.Item label={Frequency.Termly} value={Frequency.Termly} />
             </Picker>
           </View>
 

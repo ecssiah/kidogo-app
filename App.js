@@ -6,7 +6,12 @@ import rootReducer from './reducers/RootReducer'
 import awsconfig from './aws-exports'
 import { AppLoading } from 'expo'
 import { LoadFonts, ConfigureBcrypt } from './utilities/config';
-import { LoadTestData, LogTestData, InitDatabase, UpdateStore } from './utilities/localstore';
+import {
+  LoadTestData,
+  LogTestData,
+  InitDatabase,
+  UpdateStore,
+} from './utilities/localstore';
 import { createAppContainer } from 'react-navigation';
 import AppNavigator from './navigators/AppNavigator';
 

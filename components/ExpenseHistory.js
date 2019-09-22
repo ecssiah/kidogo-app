@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import { Styles } from '../constants/Style';
+import Language from '../languages'
 
 import ExpenseHistoryRow from './ExpenseHistoryRow';
 
@@ -41,15 +42,15 @@ const ExpenseHistory = (props) => {
     <View style={Styles.financeHistoryContainer} >
       <View style={Styles.tableHeader} >
         <Text style={Styles.tableRow} >
-          Date
+          { Language.Date }
         </Text>
 
         <Text style={Styles.tableRow} >
-          Type
+          { Language.Type }
         </Text>
 
         <Text style={Styles.tableRow} >
-          Amount
+          { Language.Amount }
         </Text>
       </View>
 

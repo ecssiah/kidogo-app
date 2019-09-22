@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { Text, View } from 'react-native'
 import { Styles } from '../constants/Style';
 import { Icon } from 'react-native-elements';
+import Language from '../languages'
 
 
 const FinanceHeader = (props) => {
@@ -11,31 +12,9 @@ const FinanceHeader = (props) => {
     const expenses = Number(props.financesToday.expenses)
 
     if (income > expenses) {
-      return `You earned ${income - expenses} this week.`
+      return `${Language.ThisWeek}: + ${income - expenses}`
     } else {
-      return `You lost ${expenses - income} this week.`
-    }
-  }
-
-
-  const getSpendingSummary = () => {
-    const expenses = Number(props.financesToday.expenses)
-
-    if (expenses > 0) {
-      return `You spent ${expenses} this week.`
-    } else {
-      return `You didn't spend any money this week.`
-    }
-  }
-
-
-  const getPaymentSummary = () => {
-    const income = Number(props.financesToday.income)
-
-    if (income > 0) {
-      return `You were paid ${income} this week.`
-    } else {
-      return `You weren't paid anything this week.`
+      return `${Language.ThisWeek}: - ${expenses - income}`
     }
   }
 
@@ -58,10 +37,6 @@ const FinanceHeader = (props) => {
               K{props.financesToday.expenses}
             </Text>
           </View>
-
-          <Text style={Styles.subText} >
-            { getSpendingSummary() }
-          </Text>
         </View>
 
         <View style={Styles.expenses} >
@@ -70,10 +45,6 @@ const FinanceHeader = (props) => {
               K{props.financesToday.income}
             </Text>
           </View>
-
-          <Text style={Styles.subText} >
-            { getPaymentSummary() }
-          </Text>
         </View>
       </View>
     </View>

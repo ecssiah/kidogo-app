@@ -16,5 +16,18 @@ export default Swahili = {
   Salary: "Mushahara",
   Equipment: "Vifaa",
   Payment: "Malipo",
+  MorningGreeting: "Nani hako Leo?",
+  AfternoonGreeting: "Kuna aliyetoka?",
+  EveningGreeting: "Uli nunua kitu chochote leo?",
+  Attendance: "Mahudhurio",
+  Finances: "Fedha",
+  DailyQuestions: "Maswali ya Kila siku",
+  AddFamily: "Ongeza Familia",
+  AddExpense: "Ongeza Gharama",
+  Cancel: "Ghairi",
+  Date: "Tarehe",
+  Type: "Chapa",
+  Amount: "Kiasi",
+  ThisWeek: "Wiki hii",
 }
 

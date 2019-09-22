@@ -3,6 +3,7 @@ import { Picker, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { Styles } from '../constants/Style';
 import { GetShortDate } from '../utilities/dates';
 import { ExpenseType } from '../constants/Finances';
+import Language from '../languages'
 
 
 const ExpenseEntry = (props) => {
@@ -30,7 +31,7 @@ const ExpenseEntry = (props) => {
           onPress={() => setEntryActive(true)}
         >
           <Text style={Styles.btnText}>
-            Add Expense
+            { Language.AddExpense }
           </Text>
         </TouchableOpacity>
       </View>
@@ -38,10 +39,6 @@ const ExpenseEntry = (props) => {
   } else {
     return (
       <View>
-        <Text style={Styles.h2} >
-          New Expense
-        </Text>
-
         <View style={Styles.financePickerContainer} >
           <Picker
             selectedValue={type}
@@ -53,7 +50,7 @@ const ExpenseEntry = (props) => {
         </View>
 
         <Text style={Styles.label}>
-          Type
+          { Language.Type }
         </Text>
 
         <View style={{ flexDirection: 'row' }} >
@@ -72,7 +69,7 @@ const ExpenseEntry = (props) => {
             </View>
 
             <Text style={Styles.label} >
-              Amount
+              { Language.Amount }
             </Text>
           </View>
 
@@ -86,7 +83,7 @@ const ExpenseEntry = (props) => {
             />
 
             <Text style={Styles.label} >
-              Date
+              { Language.Date }
             </Text>
           </View>
         </View>
@@ -97,7 +94,7 @@ const ExpenseEntry = (props) => {
             onPress={() => setEntryActive(false)}
           >
             <Text style={Styles.btnText}>
-              Cancel
+              { Language.Cancel }
             </Text>
           </TouchableOpacity>
 
@@ -105,7 +102,9 @@ const ExpenseEntry = (props) => {
             style={Styles.pairButton}
             onPress={() => props.addExpense({ date, type, amount })}
           >
-            <Text style={Styles.btnText}>Add Expense</Text>
+            <Text style={Styles.btnText}>
+              { Language.AddExpense }
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

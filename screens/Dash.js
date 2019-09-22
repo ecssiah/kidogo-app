@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 import { Styles } from '../constants/Style';
 import Backdrop from '../components/Backdrop';
+import Language from '../languages'
 
 
 const Dash = (props) => {
@@ -14,11 +15,11 @@ const Dash = (props) => {
 
   const getGreeting = () => {
     if (hour < 12) {
-      return "Nani hako Leo?"
+      return Language.MorningGreeting
     } else if (hour < 17) {
-      return "Kuna aliyetoka?"
+      return Language.AfternoonGreeting
     } else {
-      return "Uli nunua kitu chochote leo?"
+      return Language.EveningGreeting
     }
   }
 
@@ -77,7 +78,7 @@ const Dash = (props) => {
               source={require('../assets/images/attendance.png')}
             >
               <Text style={[Styles.actionText, Styles.raleway]} >
-                Attendance
+                { Language.Attendance }
               </Text>
             </ImageBackground>
           </TouchableOpacity>
@@ -92,7 +93,7 @@ const Dash = (props) => {
               source={require('../assets/images/finances.png')}
             >
               <Text style={[Styles.actionText, Styles.raleway]} >
-                Finances
+                { Language.Finances }
               </Text>
             </ImageBackground>
           </TouchableOpacity>
@@ -107,7 +108,7 @@ const Dash = (props) => {
               style={Styles.buttonImage}
             >
               <Text style={[Styles.actionText, Styles.raleway]} >
-                Daily Questions
+                { Language.DailyQuestions }
               </Text>
             </ImageBackground>
           </TouchableOpacity>
@@ -122,7 +123,7 @@ const Dash = (props) => {
               source={require('../assets/images/enrollment.png')}
             >
               <Text style={[Styles.actionText, Styles.raleway]} >
-                Add a Family
+                { Language.AddFamily }
               </Text>
             </ImageBackground>
           </TouchableOpacity>

@@ -1,12 +1,14 @@
 import React from 'react'
 import { View } from 'react-native'
 
+import Backdrop from '../components/Backdrop'
+
 const Questions = (props) => {
 
   return (
-    <View>
+    <Backdrop>
 
-    </View>
+    </Backdrop>
   )
 }
 

@@ -28,6 +28,7 @@ export default Swahili = {
   Date: "Tarehe",
   Type: "Chapa",
   Amount: "Kiasi",
-  ThisWeek: "Wiki hii",
+  WeekTotal: "Jumla ya Wiki",
+  Submit: "Peana",
 }
 

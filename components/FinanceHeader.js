@@ -12,11 +12,11 @@ const FinanceHeader = (props) => {
     const expenses = Number(props.financesToday.expenses)
 
     if (income === expenses) {
-      return `${Language.ThisWeek}: K0`
+      return `${Language.WeekTotal}: K0`
     } else if (income > expenses) {
-      return `${Language.ThisWeek}: + K${income - expenses}`
+      return `${Language.WeekTotal}: + K${income - expenses}`
     } else {
-      return `${Language.ThisWeek}: - K${expenses - income}`
+      return `${Language.WeekTotal}: - K${expenses - income}`
     }
   }
 
@@ -28,7 +28,7 @@ const FinanceHeader = (props) => {
 
   return (
     <View>
-      <Text style={Styles.net} >
+      <Text style={Styles.financeHeadline} >
         { getFinanceSummary() }
       </Text>
 

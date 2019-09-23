@@ -52,10 +52,14 @@ export const Styles = StyleSheet.create({
   financeHistoryContainer: {
     paddingTop: 16,
   },
-  net: {
-    fontSize: 36,
+  financeHeadline: {
     margin: 10,
+    fontSize: 32,
     color: Colors.mainText,
+  },
+  financeIcon: {
+    paddingTop: 8,
+    paddingHorizontal: 8,
   },
   expenses: {
     flex: 0.5,
@@ -87,10 +91,9 @@ export const Styles = StyleSheet.create({
     fontSize: 24,
   },
   btnText: {
-    color: Colors.mainText,
-    lineHeight: 50,
+    fontSize: 16,
     textAlign: 'center',
-    fontSize: 18,
+    color: Colors.mainText,
   },
   input: {
     borderBottomWidth: 2,
@@ -128,11 +131,6 @@ export const Styles = StyleSheet.create({
     marginLeft: 20,
     marginBottom: 10,
   },
-  tableHeader: {
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    height: 35,
-  },
   financeRow: {
     height: 50,
     flexDirection: 'row',
@@ -150,9 +148,11 @@ export const Styles = StyleSheet.create({
   },
   tableHeader: {
     flexDirection: 'row',
+    borderTopWidth: 1,
     borderBottomWidth: 1,
+    backgroundColor: '#222222',
+    borderColor: Colors.mainText,
     height: 50,
-    backgroundColor: '#00000050',
   },
   focused: {
     fontSize: 18,
@@ -502,22 +502,20 @@ export const Styles = StyleSheet.create({
     left: 80,
   },
   dash: {
-    backgroundColor: Colors.gradient_light,
     height: 200,
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   dashFont: {
     zIndex: 99,
     fontSize: 36,
-    height: 200,
-    lineHeight: 200,
     position: 'absolute',
+    flex: 1,
     top: 0,
     left: 0,
     right: 0,
-    paddingLeft: 30,
-    flex: 1,
+    paddingTop: 62,
+    paddingLeft: 32,
     color: Colors.mainText,
     textShadowColor: 'rgba(0, 0, 0, 1.0)',
     textShadowOffset: { width: 1, height: 2 },

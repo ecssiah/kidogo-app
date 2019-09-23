@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Picker, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { Styles } from '../constants/Style';
 import { GetShortDate } from '../utilities/dates';
-import { ExpenseType } from '../constants/Finances';
+import { ExpenseType, ExpenseTypeString } from '../constants/Finances';
 import Language from '../languages'
 
 
@@ -18,7 +18,11 @@ const ExpenseEntry = (props) => {
 
   const getTypeItems = () => {
     return Object.values(ExpenseType).map((expenseType, i) => {
-      return <Picker.Item key={i} label={expenseType} value={expenseType} />
+      return <Picker.Item
+        key={i}
+        label={ExpenseTypeString[expenseType]}
+        value={expenseType}
+      />
     })
   }
 
@@ -39,6 +43,10 @@ const ExpenseEntry = (props) => {
   } else {
     return (
       <View>
+        <Text style={[Styles.h2, { textDecorationLine: 'underline' }]} >
+          { Language.AddExpense }
+        </Text>
+
         <View style={Styles.financePickerContainer} >
           <Picker
             selectedValue={type}
@@ -103,7 +111,7 @@ const ExpenseEntry = (props) => {
             onPress={() => props.addExpense({ date, type, amount })}
           >
             <Text style={Styles.btnText}>
-              { Language.AddExpense }
+              { Language.Submit }
             </Text>
           </TouchableOpacity>
         </View>

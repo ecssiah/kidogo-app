@@ -2,7 +2,8 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { Styles, Colors } from '../constants/Style';
-import { ExpenseTypeIcons } from '../constants/Finances';
+import { ExpenseTypeIcons, ExpenseTypeString } from '../constants/Finances';
+import Spacer from './Spacer';
 
 const ExpenseHistoryRow = (props) => {
   return (
@@ -14,13 +15,14 @@ const ExpenseHistoryRow = (props) => {
 
         <Icon
           size={30}
+          iconStyle={Styles.financeIcon}
           type="font-awesome"
           color={Colors.mainText}
           name={ExpenseTypeIcons[props.type]}
         />
 
         <Text style={Styles.tableRow} >
-          { props.type }
+          { ExpenseTypeString[props.type] }
         </Text>
 
         <Text style={Styles.tableRow} >

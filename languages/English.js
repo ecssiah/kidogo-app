@@ -28,8 +28,6 @@ export default English = {
   Date: "Date",
   Type: "Type",
   Amount: "Amount",
-  ThisWeek: "This week",
-  YouEarned: "You earned",
-  YouMade: "You made",
-  YouLost: "You lost",
+  WeekTotal: "Week Total",
+  Submit: "Submit",
 }

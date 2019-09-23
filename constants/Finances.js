@@ -9,13 +9,24 @@ export const DELETE_EXPENSES = 'expenses:delete_expenses'
 
 
 export const ExpenseType = {
-  Rent: Language.Rent,
-  Water: Language.Water,
-  Food: Language.Food,
-  Fuel: Language.Fuel,
-  Electricity: Language.Electricity,
-  Salary: Language.Salary,
-  Equipment: Language.Equipment,
+  Rent: "rent",
+  Water: "water",
+  Food: "food",
+  Fuel: "fuel",
+  Electricity: "electricity",
+  Salary: "salary",
+  Equipment: "equipment",
+}
+
+
+export const ExpenseTypeString = {
+  [ExpenseType.Rent]: Language.Rent,
+  [ExpenseType.Water]: Language.Water,
+  [ExpenseType.Food]: Language.Food,
+  [ExpenseType.Fuel]: Language.Fuel,
+  [ExpenseType.Electricity]: Language.Electricity,
+  [ExpenseType.Salary]: Language.Salary,
+  [ExpenseType.Equipment]: Language.Equipment,
 }
 
 

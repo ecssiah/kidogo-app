@@ -5,6 +5,7 @@ import {
 import { Icon } from 'react-native-elements';
 import { Styles } from '../constants/Style';
 import { Frequency } from '../constants/Enrollment';
+import Language from '../languages'
 
 
 const GuardianEntry = (props) => {
@@ -17,7 +18,7 @@ const GuardianEntry = (props) => {
   return (
     <View>
       <Text style={[Styles.h1, Styles.raleway]} >
-        Guardian
+        { Language.Guardian }
       </Text>
 
       <Image
@@ -32,7 +33,7 @@ const GuardianEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Jina ya Kwanza
+        { Language.FirstName }
       </Text>
 
       <TextInput
@@ -42,7 +43,7 @@ const GuardianEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Ama Familia
+        { Language.LastName }
       </Text>
 
       <TextInput
@@ -52,7 +53,7 @@ const GuardianEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Mahali
+        { Language.Location }
       </Text>
 
       <TextInput
@@ -62,7 +63,7 @@ const GuardianEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Mji
+        { Language.City }
       </Text>
 
       <TextInput
@@ -74,7 +75,7 @@ const GuardianEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Nambari ya Simu
+        { Language.Phone }
       </Text>
 
       <View style={Styles.passwordHolder}>
@@ -98,7 +99,7 @@ const GuardianEntry = (props) => {
       </View>
 
       <Text style={Styles.label} >
-        Nambari ya Kitambulisho
+        { Language.IdentificationNumber }
       </Text>
 
       <View style={Styles.nameHolder}>
@@ -117,7 +118,7 @@ const GuardianEntry = (props) => {
           </View>
 
           <Text style={Styles.label} >
-            Kiwango
+            { Language.Rate }
           </Text>
         </View>
 
@@ -135,7 +136,7 @@ const GuardianEntry = (props) => {
           </View>
 
           <Text style={Styles.label}>
-            Mara ngapi
+            { Language.Frequency }
           </Text>
         </View>
       </View>

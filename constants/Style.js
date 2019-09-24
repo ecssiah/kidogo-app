@@ -28,6 +28,36 @@ export const Colors = {
 
 
 export const Styles = StyleSheet.create({
+  accountCard: {
+    minHeight: 150,
+    margin: 10,
+    padding: 10,
+    flex: 1,
+    backgroundColor: '#635066',
+    borderWidth: 1,
+    borderColor: Colors.mainText,
+  },
+  balance: {
+    fontSize: 36,
+    fontWeight: '100',
+    lineHeight: 70,
+    color: Colors.mainText,
+  },
+  members: {
+    flex: .5,
+    borderColor: 'red',
+    marginTop: 20,
+    marginBottom: 20
+  },
+  childNames: {
+    fontSize: 18,
+    fontWeight:'bold',
+    color: Colors.mainText,
+  },
+  guardianNames: {
+    fontSize: 14,
+    color: Colors.mainText,
+  },
   financePickerContainer: {
     borderBottomWidth: 2,
     borderColor: Colors.mainText,

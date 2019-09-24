@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/components/ExpenseHistoryRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ExpenseHistoryRow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/FinanceHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/FinanceHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/Finances.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Finances.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ChildEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ChildEntry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/Style.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Style.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/languages/English.js" beforeDir="false" afterPath="$PROJECT_DIR$/languages/English.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/languages/Swahili.js" beforeDir="false" afterPath="$PROJECT_DIR$/languages/Swahili.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/languages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/languages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Accounts.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Accounts.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +19,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="109" />
-    <option name="y" value="55" />
+    <option name="x" value="105" />
+    <option name="y" value="53" />
     <option name="width" value="1257" />
     <option name="height" value="724" />
   </component>
@@ -30,9 +30,9 @@
     </navigator>
     <panes>
       <pane id="ProjectPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -66,7 +66,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="109" y="55" width="1257" height="724" extended-state="1" />
+    <frame x="105" y="53" width="1257" height="724" extended-state="1" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.37366256" />

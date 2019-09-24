@@ -1,13 +1,14 @@
 import React from 'react'
 import { Image, Text, TextInput, View } from 'react-native'
 import { Styles } from '../constants/Style';
+import Language from '../languages'
 
 
 const ContactEntry = (props) => {
   return (
     <View>
       <Text style={[Styles.h1, Styles.raleway]} >
-        Emergency Contact
+        { Language.EmergencyContact }
       </Text>
 
       <Image
@@ -22,7 +23,7 @@ const ContactEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Jina ya Kwanza
+        { Language.FirstName }
       </Text>
 
       <TextInput
@@ -32,7 +33,7 @@ const ContactEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Ama Familia
+        { Language.LastName }
       </Text>
 
       <TextInput
@@ -44,7 +45,7 @@ const ContactEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Nambari ya Simu
+        { Language.Phone }
       </Text>
     </View>
   )

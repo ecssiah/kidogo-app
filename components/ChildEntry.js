@@ -16,7 +16,7 @@ const ChildEntry = (props) => {
   return (
     <View>
       <Text style={[Styles.h1, Styles.raleway]} >
-        Child
+        { Language.Child }
       </Text>
 
       <Image
@@ -31,7 +31,7 @@ const ChildEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Jina ya Kwanza
+        { Language.FirstName }
       </Text>
 
       <TextInput
@@ -41,7 +41,7 @@ const ChildEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Ama Familia
+        { Language.LastName }
       </Text>
 
       <View style={Styles.nameHolder} >
@@ -55,7 +55,7 @@ const ChildEntry = (props) => {
           />
 
           <Text style={Styles.label} >
-            Siku ya Kuzaliwa
+            { Language.Birthday }
           </Text>
         </View>
 
@@ -74,7 +74,7 @@ const ChildEntry = (props) => {
           </View>
 
           <Text style={Styles.label} >
-            Mvulana au Msichana
+            { Language.Male } { Language.Or } { Language.Female }
           </Text>
         </View>
       </View>
@@ -97,7 +97,7 @@ const ChildEntry = (props) => {
       </View>
 
       <Text style={Styles.label} >
-        Chanjo
+        { Language.Immunization }
       </Text>
 
 
@@ -110,7 +110,7 @@ const ChildEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Kitu chochote unaweza elezea
+        { Language.Notes }
       </Text>
     </View>
   )

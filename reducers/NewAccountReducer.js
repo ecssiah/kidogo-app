@@ -1,7 +1,10 @@
 import {
   SET_NEW_CHILD, SET_NEW_GUARDIAN, SET_NEW_CONTACT,
-  DELETE_NEW_CHILD, DELETE_NEW_GUARDIAN, DELETE_NEW_CONTACT, Frequency
+  DELETE_NEW_CHILD, DELETE_NEW_GUARDIAN, DELETE_NEW_CONTACT
 } from "../constants/Enrollment"
+import {
+  Frequency,
+} from '../constants/Finances'
 
 const initialState = {
   id: undefined,

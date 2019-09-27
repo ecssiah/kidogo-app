@@ -28,6 +28,11 @@ export const Colors = {
 
 
 export const Styles = StyleSheet.create({
+  frequencyDisplay: {
+    margin: 10,
+    fontSize: 18,
+    color: Colors.mainText,
+  },
   accountCard: {
     minHeight: 150,
     margin: 10,

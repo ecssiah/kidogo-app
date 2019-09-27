@@ -11,7 +11,7 @@ import { Styles, Colors, Size } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import Message from '../components/Message';
 import GuardianEntry from '../components/GuardianEntry';
-import { Frequency, SET_NEW_GUARDIAN } from '../constants/Enrollment';
+import { SET_NEW_GUARDIAN } from '../constants/Enrollment';
 import Backdrop from '../components/Backdrop';
 
 
@@ -25,8 +25,6 @@ const Guardians = (props) => {
   const [govtId, setGovtId] = useState('')
   const [address, setAddress] = useState('')
   const [city, setCity] = useState('')
-  const [rate, setRate] = useState('')
-  const [frequency, setFrequency] = useState(Frequency.Daily)
   const [soundObject, setSoundObject] = useState(null)
   const [message, setMessage] = useState(null)
 
@@ -42,8 +40,6 @@ const Guardians = (props) => {
       govtId,
       address,
       city,
-      rate,
-      frequency,
     }
 
     dispatch({ type: SET_NEW_GUARDIAN, id, guardian })
@@ -74,8 +70,6 @@ const Guardians = (props) => {
     setGovtId('')
     setAddress('')
     setCity('')
-    setRate('')
-    setFrequency(Frequency.Daily)
   }
 
 
@@ -118,10 +112,6 @@ const Guardians = (props) => {
           setAddress={setAddress}
           city={city}
           setCity={setCity}
-          rate={rate}
-          setRate={setRate}
-          frequency={frequency}
-          setFrequency={setFrequency}
         />
 
         <Spacer large />

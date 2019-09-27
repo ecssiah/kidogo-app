@@ -6,13 +6,16 @@ import {
   PAYMENTS, ACCOUNTS, ATTENDANCE, FINANCES, QUESTIONS, EXPENSES,
 } from '../constants/Store';
 import { GetShortDate } from './dates';
-import { Frequency, Gender, CLEAR_NEW_ACCOUNT } from '../constants/Enrollment';
+import { Gender, CLEAR_NEW_ACCOUNT } from '../constants/Enrollment';
 import { SET_GUARDIAN } from '../constants/Guardians';
 import { SET_CHILD } from '../constants/Children';
 import { SET_CONTACT } from '../constants/Contacts';
 import { SET_ATTENDANCE } from '../constants/Attendance';
 import { SET_ACCOUNT } from '../constants/Account';
-import { SET_FINANCES, SET_PAYMENTS, SET_EXPENSES } from '../constants/Finances';
+import {
+  Frequency,
+  SET_FINANCES, SET_PAYMENTS, SET_EXPENSES,
+} from '../constants/Finances';
 
 
 export const TestDataNeeded = async () => {
@@ -46,6 +49,8 @@ export const LoadTestData = async () => {
   const account1 = {
     id: uuid(),
     balance: 0,
+    rate: 600,
+    frequency: Frequency.Weekly,
     children: [],
     guardians: [],
     contacts: [],
@@ -60,8 +65,6 @@ export const LoadTestData = async () => {
     govtId: "485-02-2764",
     address: "123 Shook Street",
     city: "San Francisco",
-    rate: "120",
-    frequency: Frequency.Daily,
   }
 
   const guardian12 = {
@@ -73,8 +76,6 @@ export const LoadTestData = async () => {
     govtId: "321-45-6875",
     address: "345 Apple Street",
     city: "San Francisco",
-    rate: "720",
-    frequency: Frequency.Weekly,
   }
 
   const contact11 = {
@@ -132,6 +133,8 @@ export const LoadTestData = async () => {
   const account2 = {
     id: uuid(),
     balance: 0,
+    rate: 100,
+    frequency: Frequency.Daily,
     children: [],
     guardians: [],
     contacts: [],
@@ -146,8 +149,6 @@ export const LoadTestData = async () => {
     govtId: "675-02-2764",
     address: "3333 Harriet Street",
     city: "La Crosse",
-    rate: "4200",
-    frequency: Frequency.Termly,
   }
 
   const guardian22 = {
@@ -159,8 +160,6 @@ export const LoadTestData = async () => {
     govtId: "321-22-6875",
     address: "1 High Street",
     city: "Denver",
-    rate: "86",
-    frequency: Frequency.Daily,
   }
 
   const contact21 = {

@@ -8,6 +8,20 @@ export const SET_EXPENSES = 'expenses:set_expenses'
 export const DELETE_EXPENSES = 'expenses:delete_expenses'
 
 
+export const Frequency = {
+  Daily: "daily",
+  Weekly: "weekly",
+  Termly: "termly",
+}
+
+
+export const FrequencyStrings = {
+  [Frequency.Daily]: Language.Daily,
+  [Frequency.Weekly]: Language.Weekly,
+  [Frequency.Termly]: Language.Termly,
+}
+
+
 export const ExpenseType = {
   Rent: "rent",
   Water: "water",

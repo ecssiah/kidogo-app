@@ -15,20 +15,6 @@ export const GenderStrings = {
 }
 
 
-export const Frequency = {
-  Daily: "daily",
-  Weekly: "weekly",
-  Termly: "termly",
-}
-
-
-export const FrequencyStrings = {
-  [Frequency.Daily]: Language.Daily,
-  [Frequency.Weekly]: Language.Weekly,
-  [Frequency.Termly]: Language.Termly,
-}
-
-
 export const SET_NEW_CHILD = 'enrollment:set_new_child'
 export const SET_NEW_GUARDIAN = 'enrollment:set_new_guardian'
 export const SET_NEW_CONTACT = 'enrollment:set_new_contact'

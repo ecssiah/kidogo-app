@@ -2,6 +2,7 @@ import { createStackNavigator } from 'react-navigation'
 
 import Accounts from '../screens/Accounts';
 import Account from '../screens/Account';
+import Payments from '../screens/Payments';
 
 
 const routeConfig = {
@@ -13,6 +14,12 @@ const routeConfig = {
   },
   Account: {
     screen: Account,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Payments: {
+    screen: Payments,
     navigationOptions: {
       header: null,
     },

@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import {
-  Image, Picker, Text, TextInput, TouchableOpacity, View
+  Image, Text, TextInput, TouchableOpacity, View
 } from 'react-native'
 import { Icon } from 'react-native-elements';
 import { Styles } from '../constants/Style';
-import { Frequency } from '../constants/Enrollment';
 import Language from '../languages'
 
 
@@ -101,45 +100,6 @@ const GuardianEntry = (props) => {
       <Text style={Styles.label} >
         { Language.IdentificationNumber }
       </Text>
-
-      <View style={Styles.nameHolder}>
-        <View style={{ flex: .5, marginRight: 5 }}>
-          <View style={{ flexDirection: 'row' }}>
-            <Text style={Styles.prefix} >
-              K
-            </Text>
-
-            <TextInput
-              style={[Styles.input, { flex: .8, marginLeft: 0 }]}
-              keyboardType="number-pad"
-              value={props.rate}
-              onChangeText={props.setRate}
-            />
-          </View>
-
-          <Text style={Styles.label} >
-            { Language.Rate }
-          </Text>
-        </View>
-
-        <View style={{ flex: .5, marginLeft: 5 }}>
-          <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >
-            <Picker
-              style={{ color: 'white', marginTop: -10 }}
-              selectedValue={props.frequency}
-              onValueChange={(value, index) => props.setFrequency(value)}
-            >
-              <Picker.Item label={Frequency.Daily} value={Frequency.Daily} />
-              <Picker.Item label={Frequency.Weekly} value={Frequency.Weekly} />
-              <Picker.Item label={Frequency.Termly} value={Frequency.Termly} />
-            </Picker>
-          </View>
-
-          <Text style={Styles.label}>
-            { Language.Frequency }
-          </Text>
-        </View>
-      </View>
     </View>
   )
 }

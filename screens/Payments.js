@@ -1,13 +1,15 @@
 import React from 'react'
 import { View } from 'react-native'
 
+import Backdrop from '../components/Backdrop'
+
 
 const Payments = (props) => {
 
   return (
-    <View>
+    <Backdrop>
 
-    </View>
+    </Backdrop>
   )
 }
 

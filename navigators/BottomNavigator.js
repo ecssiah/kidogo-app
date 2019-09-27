@@ -3,15 +3,17 @@ import { createBottomTabNavigator } from "react-navigation";
 import { Icon } from 'react-native-elements'
 import { Styles } from "../constants/Style";
 
-import Dash from '../navigators/DashNavigator'
+import AccountsNavigator from './AccountsNavigator';
+import DashNavigator from '../navigators/DashNavigator';
 import Upload from '../screens/Upload'
-import Accounts from '../screens/Accounts'
+
 
 const routeConfig = {
-  Dash: Dash,
-  Accounts: Accounts,
+  Dash: DashNavigator,
+  Accounts: AccountsNavigator,
   Upload: Upload,
 }
+
 
 const navConfig = {
   initialRouteName: 'Dash',

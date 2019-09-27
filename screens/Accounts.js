@@ -4,32 +4,35 @@ import { ScrollView, Text } from 'react-native'
 
 import Backdrop from '../components/Backdrop';
 import AccountCard from '../components/AccountCard';
+import { Styles, Size } from '../constants/Style';
+import Spacer from '../components/Spacer';
 
 
 const Accounts = (props) => {
   const accounts = useSelector(state => state.accounts)
-  const children = useSelector(state => state.children)
-  const guardians = useSelector(state => state.guardians)
-  const contacts = useSelector(state => state.contacts)
 
 
   const getAccountCards = () => {
-    return props.accounts.map((account, i) => {
-      return (
+    const accountCards = []
+
+    for (const [id, account] of Object.entries(accounts)) {
+      accountCards.push(
         <AccountCard
-          key={i}
-          id={account.id}
-          balance={account.balance}
-          name={account.guardians[0].lastName}
+          key={id}
+          account={account}
           navigate={props.navigation.navigate}
         />
       )
-    })
+    }
+
+    return accountCards
   }
 
 
   return (
     <Backdrop>
+      <Spacer height={Size.statusbar} />
+
       <ScrollView style={{ flex: 1 }} >
         <Text style={[Styles.h1, Styles.raleway]} >
           Accounts

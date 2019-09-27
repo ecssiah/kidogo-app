@@ -3,7 +3,7 @@ import {
 } from "../constants/Account"
 
 
-const accountReducer = (state = {}, action) => {
+const accountsReducer = (state = {}, action) => {
   const newState = { ...state }
 
   switch (action.type) {
@@ -21,4 +21,4 @@ const accountReducer = (state = {}, action) => {
   }
 }
 
-export default accountReducer
+export default accountsReducer

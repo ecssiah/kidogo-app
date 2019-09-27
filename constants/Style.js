@@ -544,7 +544,7 @@ export const Styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    paddingTop: 62,
+    paddingTop: 78,
     paddingLeft: 32,
     color: Colors.mainText,
     textShadowColor: 'rgba(0, 0, 0, 1.0)',

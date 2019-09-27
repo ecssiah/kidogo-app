@@ -2,17 +2,32 @@ import Language from '../languages'
 
 
 export const Gender = {
-  Male: Language.Male,
-  Female: Language.Female,
-  Other: Language.Other,
+  Male: "male",
+  Female: "female",
+  Other: "other",
+}
+
+
+export const GenderStrings = {
+  [Gender.Male]: Language.Male,
+  [Gender.Female]: Language.Female,
+  [Gender.Other]: Language.Other,
 }
 
 
 export const Frequency = {
-  Daily: Language.Daily,
-  Weekly: Language.Weekly,
-  Termly: Language.Termly,
+  Daily: "daily",
+  Weekly: "weekly",
+  Termly: "termly",
 }
+
+
+export const FrequencyStrings = {
+  [Frequency.Daily]: Language.Daily,
+  [Frequency.Weekly]: Language.Weekly,
+  [Frequency.Termly]: Language.Termly,
+}
+
 
 export const SET_NEW_CHILD = 'enrollment:set_new_child'
 export const SET_NEW_GUARDIAN = 'enrollment:set_new_guardian'

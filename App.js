@@ -11,6 +11,7 @@ import {
   LogTestData,
   InitDatabase,
   UpdateStore,
+  TestDataNeeded,
 } from './utilities/localstore';
 import { createAppContainer } from 'react-navigation';
 import AppNavigator from './navigators/AppNavigator';
@@ -28,7 +29,7 @@ const App = () => {
     ConfigureBcrypt()
     await LoadFonts()
 
-    if (false) {
+    if (await TestDataNeeded()) {
       await LoadTestData()
       await LogTestData()
     }

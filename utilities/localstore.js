@@ -11,7 +11,24 @@ import { SET_GUARDIAN } from '../constants/Guardians';
 import { SET_CHILD } from '../constants/Children';
 import { SET_CONTACT } from '../constants/Contacts';
 import { SET_ATTENDANCE } from '../constants/Attendance';
+import { SET_ACCOUNT } from '../constants/Account';
 import { SET_FINANCES, SET_PAYMENTS, SET_EXPENSES } from '../constants/Finances';
+
+
+export const TestDataNeeded = async () => {
+  const children = await Get(CHILDREN, await GetIds(CHILDREN))
+
+  for (let childData of Object.values(children)) {
+    const firstNameMatch = childData.firstName === 'Tristan'
+    const lastNameMatch = childData.lastName === 'Johnston'
+
+    if (firstNameMatch && lastNameMatch) {
+      return false
+    }
+  }
+
+  return true
+}
 
 
 export const LogTestData = async () => {
@@ -26,10 +43,16 @@ export const LogTestData = async () => {
 
 
 export const LoadTestData = async () => {
-  const accountId1 = uuid()
+  const account1 = {
+    id: uuid(),
+    balance: 0,
+    children: [],
+    guardians: [],
+    contacts: [],
+  }
 
   const guardian11 = {
-    accountId: accountId1,
+    accountId: account1.id,
     id: uuid(),
     firstName: "Alan",
     lastName: "Smith",
@@ -42,7 +65,7 @@ export const LoadTestData = async () => {
   }
 
   const guardian12 = {
-    accountId: accountId1,
+    accountId: account1.id,
     id: uuid(),
     firstName: "Laura",
     lastName: "Tadow",
@@ -55,7 +78,7 @@ export const LoadTestData = async () => {
   }
 
   const contact11 = {
-    accountId: accountId1,
+    accountId: account1.id,
     id: uuid(),
     firstName: "Sam",
     lastName: "Sparro",
@@ -63,7 +86,7 @@ export const LoadTestData = async () => {
   }
 
   const contact12 = {
-    accountId: accountId1,
+    accountId: account1.id,
     id: uuid(),
     firstName: "Arch",
     lastName: "Rech",
@@ -71,7 +94,7 @@ export const LoadTestData = async () => {
   }
 
   const child11 = {
-    accountId: accountId1,
+    accountId: account1.id,
     id: uuid(),
     firstName: "Tristan",
     lastName: "Johnston",
@@ -81,7 +104,7 @@ export const LoadTestData = async () => {
   }
 
   const child12 = {
-    accountId: accountId1,
+    accountId: account1.id,
     id: uuid(),
     firstName: "Darrin",
     lastName: "Snapton",
@@ -90,6 +113,15 @@ export const LoadTestData = async () => {
     note: "This is a note about Darrin.",
   }
 
+  account1.children.push(child11.id)
+  account1.children.push(child12.id)
+  account1.guardians.push(guardian11.id)
+  account1.guardians.push(guardian12.id)
+  account1.contacts.push(contact11.id)
+  account1.contacts.push(contact12.id)
+
+  await Create(ACCOUNTS, account1.id, account1)
+
   await Create(GUARDIANS, guardian11.id, guardian11)
   await Create(GUARDIANS, guardian12.id, guardian12)
   await Create(CONTACTS, contact11.id, contact11)
@@ -97,10 +129,16 @@ export const LoadTestData = async () => {
   await Create(CHILDREN, child11.id, child11)
   await Create(CHILDREN, child12.id, child12)
 
-  const accountId2 = uuid()
+  const account2 = {
+    id: uuid(),
+    balance: 0,
+    children: [],
+    guardians: [],
+    contacts: [],
+  }
 
   const guardian21 = {
-    accountId: accountId2,
+    accountId: account2.id,
     id: uuid(),
     firstName: "Michael",
     lastName: "Chapman",
@@ -113,7 +151,7 @@ export const LoadTestData = async () => {
   }
 
   const guardian22 = {
-    accountId: accountId2,
+    accountId: account2.id,
     id: uuid(),
     firstName: "Masego",
     lastName: "Tadow",
@@ -126,7 +164,7 @@ export const LoadTestData = async () => {
   }
 
   const contact21 = {
-    accountId: accountId2,
+    accountId: account2.id,
     id: uuid(),
     firstName: "Graham",
     lastName: "Tiro",
@@ -134,7 +172,7 @@ export const LoadTestData = async () => {
   }
 
   const contact22 = {
-    accountId: accountId2,
+    accountId: account2.id,
     id: uuid(),
     firstName: "Trent",
     lastName: "Rocht",
@@ -142,7 +180,7 @@ export const LoadTestData = async () => {
   }
 
   const child21 = {
-    accountId: accountId2,
+    accountId: account2.id,
     id: uuid(),
     firstName: "Reselle",
     lastName: "Trepi",
@@ -152,7 +190,7 @@ export const LoadTestData = async () => {
   }
 
   const child22 = {
-    accountId: accountId2,
+    accountId: account2.id,
     id: uuid(),
     firstName: "Grey",
     lastName: "Mark",
@@ -160,6 +198,15 @@ export const LoadTestData = async () => {
     gender: Gender.Male,
     note: "This is a note about Grey.",
   }
+
+  account2.children.push(child21.id)
+  account2.children.push(child22.id)
+  account2.guardians.push(guardian21.id)
+  account2.guardians.push(guardian22.id)
+  account2.contacts.push(contact21.id)
+  account2.contacts.push(contact22.id)
+
+  await Create(ACCOUNTS, account2.id, account2)
 
   await Create(CHILDREN, child21.id, child21)
   await Create(CHILDREN, child22.id, child22)
@@ -171,13 +218,39 @@ export const LoadTestData = async () => {
 
 
 export const UpdateStore = async (dispatch) => {
+  const accounts = await Get(ACCOUNTS, await GetIds(ACCOUNTS))
+  const children = await Get(CHILDREN, await GetIds(CHILDREN))
+  const guardians = await Get(GUARDIANS, await GetIds(GUARDIANS))
+  const contacts = await Get(CONTACTS, await GetIds(CONTACTS))
+
   const attendance = await Get(ATTENDANCE, await GetIds(ATTENDANCE))
   const finances = await Get(FINANCES, await GetIds(FINANCES))
   const payments = await Get(PAYMENTS, await GetIds(PAYMENTS))
   const expenses = await Get(EXPENSES, await GetIds(EXPENSES))
-  const children = await Get(CHILDREN, await GetIds(CHILDREN))
-  const guardians = await Get(GUARDIANS, await GetIds(GUARDIANS))
-  const contacts = await Get(CONTACTS, await GetIds(CONTACTS))
+
+  accounts.forEach((accountData) => {
+    dispatch({
+      type: SET_ACCOUNT, id: accountData.id, account: accountData
+    })
+  })
+
+  children.forEach((childData) => {
+    dispatch({
+      type: SET_CHILD, id: childData.id, child: childData
+    })
+  })
+
+  guardians.forEach((guardianData) => {
+    dispatch({
+      type: SET_GUARDIAN, id: guardianData.id, guardian: guardianData
+    })
+  })
+
+  contacts.forEach((contactData) => {
+    dispatch({
+      type: SET_CONTACT, id: contactData.id, contact: contactData
+    })
+  })
 
   attendance.forEach((attendanceData) => {
     dispatch({
@@ -203,23 +276,6 @@ export const UpdateStore = async (dispatch) => {
     })
   })
 
-  children.forEach((child) => {
-    dispatch({
-      type: SET_CHILD, id: child.id, child
-    })
-  })
-
-  guardians.forEach((guardian) => {
-    dispatch({
-      type: SET_GUARDIAN, id: guardian.id, guardian
-    })
-  })
-
-  contacts.forEach((contact) => {
-    dispatch({
-      type: SET_CONTACT, id: contact.id, contact
-    })
-  })
 }
 
 
@@ -309,11 +365,15 @@ export const SubmitAccount = async (dispatch, account) => {
   const accountData = {
     id: accountId,
     balance: 0,
+    children: [],
+    guardians: [],
+    contacts: [],
   }
 
-  await Create(ACCOUNTS, accountId, accountData)
 
   for (let [id, child] of Object.entries(account.children)) {
+    accountData.children.push(id)
+
     await Create(CHILDREN, id, { accountId, ...child })
 
     const today = GetShortDate()
@@ -326,13 +386,20 @@ export const SubmitAccount = async (dispatch, account) => {
   }
 
   for (let [id, guardian] of Object.entries(account.guardians)) {
+    accountData.guardians.push(id)
+
     await Create(GUARDIANS, id, { accountId, ...guardian })
   }
 
   for (const [id, contact] of Object.entries(account.contacts)) {
+    accountData.contacts.push(id)
+
     await Create(CONTACTS, id, { accountId, ...contact })
   }
 
+  await Create(ACCOUNTS, accountId, accountData)
+
+  dispatch({ type: SET_ACCOUNT, id: accountId, account: accountData })
   dispatch({ type: CLEAR_NEW_ACCOUNT })
 }
 

@@ -14,8 +14,8 @@ const AccountFinances = (props) => {
   }
 
 
-  const onSelectPayment = () => {
-    props.navigation.navigate('Payments', { id: props.account.id })
+  const onNewPayment = () => {
+    props.navigate('Payments', { id: props.account.id })
   }
 
 
@@ -37,7 +37,7 @@ const AccountFinances = (props) => {
       <View style={Styles.rowButtons} >
         <TouchableOpacity
           style={Styles.pairButton}
-          onPress={onSelectPayment}
+          onPress={onNewPayment}
         >
           <Text style={Styles.btnText} >
             { Language.New } { Language.Payment }

@@ -6,6 +6,9 @@ import Backdrop from '../components/Backdrop';
 import { Size, Styles } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import AccountFinances from '../components/AccountFinances';
+import ChildrenDisplay from '../components/ChildrenDisplay';
+import GuardiansDisplay from '../components/GuardiansDisplay';
+import ContactsDisplay from '../components/ContactsDisplay';
 
 
 const Account = (props) => {
@@ -16,9 +19,11 @@ const Account = (props) => {
   const guardians = useSelector(state => state.guardians)
   const contacts = useSelector(state => state.contacts)
 
+
   const getFamilyName = () => {
     return guardians[accounts[id].guardians[0]].lastName
   }
+
 
   return (
     <Backdrop>
@@ -28,7 +33,14 @@ const Account = (props) => {
         { getFamilyName() }
       </Text>
 
-      <AccountFinances account={accounts[id]} />
+      <AccountFinances
+        account={accounts[id]}
+        navigate={props.navigation.navigate}
+      />
+
+      <ChildrenDisplay />
+      <GuardiansDisplay />
+      <ContactsDisplay />
     </Backdrop>
   )
 }

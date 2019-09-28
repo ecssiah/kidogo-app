@@ -1,14 +1,12 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
 import { useSelector } from 'react-redux'
 
 import Backdrop from '../components/Backdrop';
 import { Size, Styles } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import AccountFinances from '../components/AccountFinances';
-import ChildrenDisplay from '../components/ChildrenDisplay';
-import GuardiansDisplay from '../components/GuardiansDisplay';
-import ContactsDisplay from '../components/ContactsDisplay';
+import DisplayMembers from '../components/DisplayMembers';
 
 
 const Account = (props) => {
@@ -38,9 +36,13 @@ const Account = (props) => {
         navigate={props.navigation.navigate}
       />
 
-      <ChildrenDisplay />
-      <GuardiansDisplay />
-      <ContactsDisplay />
+      <Spacer medium />
+
+      <View style={Styles.divider} />
+
+      <DisplayMembers title={"Children"} members={children} />
+      <DisplayMembers title={"Guardians"} members={guardians} />
+      <DisplayMembers title={"Contacts"} members={contacts} />
     </Backdrop>
   )
 }

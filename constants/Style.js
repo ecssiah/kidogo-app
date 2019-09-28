@@ -48,6 +48,10 @@ export const Styles = StyleSheet.create({
     lineHeight: 70,
     color: Colors.mainText,
   },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   members: {
     flex: .5,
     borderColor: 'red',

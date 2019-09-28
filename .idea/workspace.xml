@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/components/GuardianEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/GuardianEntry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/RateEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/RateEntry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/Enrollment.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Enrollment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/Finances.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Finances.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/Style.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Style.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/navigators/AccountsNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigators/AccountsNavigator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reducers/NewAccountReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/reducers/NewAccountReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/Account.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Guardians.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Guardians.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Payments.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Payments.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilities/localstore.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/localstore.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

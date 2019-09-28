@@ -23,6 +23,21 @@ const Account = (props) => {
   }
 
 
+  const onAddChild = () => {
+    props.navigation.navigate('')
+  }
+
+
+  const onAddGuardian = () => {
+    props.navigation.navigate('')
+  }
+
+
+  const onAddContact = () => {
+    props.navigation.navigate('')
+  }
+
+
   return (
     <Backdrop>
       <Spacer height={Size.statusbar} />
@@ -41,9 +56,15 @@ const Account = (props) => {
 
         <View style={Styles.divider} />
 
-        <DisplayMembers title={"Children"} members={children} />
-        <DisplayMembers title={"Guardians"} members={guardians} />
-        <DisplayMembers title={"Contacts"} members={contacts} />
+        <DisplayMembers
+          title={"Children"} addMember={onAddChild} members={children}
+        />
+        <DisplayMembers
+          title={"Guardians"} addMember={onAddGuardian} members={guardians}
+        />
+        <DisplayMembers
+          title={"Contacts"} addMember={onAddContact} members={contacts}
+        />
 
         <Spacer height={Size.keyboard} />
       </ScrollView>

@@ -45,7 +45,7 @@ export const Styles = StyleSheet.create({
     borderColor: Colors.mainText,
   },
   balance: {
-    fontSize: 36,
+    fontSize: 28,
     margin: 6,
     color: Colors.mainText,
   },

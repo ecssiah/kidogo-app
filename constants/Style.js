@@ -20,10 +20,12 @@ export const Size = {
 
 export const Colors = {
   mainText: '#eaeaea',
-  highlightText: '#007c47',
   helpButton: '#3c233d',
   gradient_dark: '#11011b',
   gradient_light: '#3c233d',
+  backgroundHighlight: '#42314b',
+  attendanceSelect: '#c38fff',
+  attendanceEmpty: '#888888',
 }
 
 
@@ -51,6 +53,11 @@ export const Styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  accountHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: Colors.backgroundHighlight,
   },
   members: {
     flex: .5,

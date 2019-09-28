@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { ScrollView, Text, View } from 'react-native'
 import { useSelector } from 'react-redux'
 
 import Backdrop from '../components/Backdrop';
@@ -27,22 +27,26 @@ const Account = (props) => {
     <Backdrop>
       <Spacer height={Size.statusbar} />
 
-      <Text style={[Styles.h1, Styles.raleway]} >
-        { getFamilyName() }
-      </Text>
+      <ScrollView>
+        <Text style={[Styles.h1, Styles.raleway]} >
+          { getFamilyName() }
+        </Text>
 
-      <AccountFinances
-        account={accounts[id]}
-        navigate={props.navigation.navigate}
-      />
+        <AccountFinances
+          account={accounts[id]}
+          navigate={props.navigation.navigate}
+        />
 
-      <Spacer medium />
+        <Spacer medium />
 
-      <View style={Styles.divider} />
+        <View style={Styles.divider} />
 
-      <DisplayMembers title={"Children"} members={children} />
-      <DisplayMembers title={"Guardians"} members={guardians} />
-      <DisplayMembers title={"Contacts"} members={contacts} />
+        <DisplayMembers title={"Children"} members={children} />
+        <DisplayMembers title={"Guardians"} members={guardians} />
+        <DisplayMembers title={"Contacts"} members={contacts} />
+
+        <Spacer height={Size.keyboard} />
+      </ScrollView>
     </Backdrop>
   )
 }

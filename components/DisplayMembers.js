@@ -16,11 +16,10 @@ const DisplayMembers = (props) => {
     if (active) {
       return Object.values(props.members).map((member, i) => {
         return (
-          <View>
-            <Text>
+          <View key={i} >
+            <Text style={Styles.h2} >
               { member.firstName }
             </Text>
-
           </View>
         )
       })
@@ -33,7 +32,7 @@ const DisplayMembers = (props) => {
   return (
     <View>
       <TouchableOpacity
-        style={Styles.header}
+        style={Styles.accountHeader}
         onPress={toggleActive}
       >
         <Text style={Styles.h2} >
@@ -46,6 +45,8 @@ const DisplayMembers = (props) => {
           name={active ? "expand-less" : "expand-more"}
         />
       </TouchableOpacity>
+
+      <View style={Styles.divider} />
 
       { getMemberComponents() }
 

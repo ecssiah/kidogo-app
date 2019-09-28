@@ -31,13 +31,13 @@ const CheckIn = (props) => {
   const getCheckInData = async () => {
     const today = GetShortDate()
 
-    const checkInData = children.map((child) => {
+    const checkInData = Object.values(children).map((child) => {
       const data = {
         id: child.id,
         firstName: child.firstName,
         lastName: child.lastName,
-        checkIn: attendance[today].attendance[id].checkIn,
-        checkOut: attendance[today].attendance[id].checkOut,
+        checkIn: attendance[today].attendance[child.id].checkIn,
+        checkOut: attendance[today].attendance[child.id].checkOut,
       }
 
       return data

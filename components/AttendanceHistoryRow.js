@@ -3,20 +3,29 @@ import { View, Text, Image } from 'react-native'
 import { Styles, Colors } from '../constants/Style';
 
 
+const AttendanceIcon = (props) => {
+  return (
+    <View
+      style={[
+        Styles.dateStatus,
+        {
+          backgroundColor: props.selected
+            ? Colors.attendanceSelect
+            : Colors.attendanceEmpty
+          }
+      ]}
+    />
+  )
+}
+
+
 const AttendanceHistoryRow = (props) => {
   const getAttendanceComponents = () => {
     return (
       props.attendance.map((status, i) => {
         return (
           <View key={i} style={Styles.dateStatusHolder} >
-            <View
-              style={[
-                Styles.dateStatus,
-                status
-                  ? { backgroundColor: Colors.highlightText }
-                  : { backgroundColor: Colors.mainText }
-              ]}
-            />
+            <AttendanceIcon selected={status} />
           </View>
         )
       })

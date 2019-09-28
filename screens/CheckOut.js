@@ -31,7 +31,7 @@ const CheckOut = (props) => {
   const getCheckOutData = async () => {
     const today = GetShortDate()
 
-    const checkOutData = children.map((child) => {
+    const checkOutData = Object.values(children).map((child) => {
       const data = {
         id: child.id,
         firstName: child.firstName,

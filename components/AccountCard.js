@@ -43,6 +43,7 @@ const AccountCard = (props) => {
   return (
     <TouchableOpacity
       style={Styles.accountCard}
+      activeOpacity={0.7}
       onPress={onSelect}
     >
       <Text style={[Styles.h1, Styles.raleway]}>

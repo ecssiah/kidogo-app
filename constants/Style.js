@@ -13,13 +13,13 @@ export const Size = {
   medium: 16,
   large: 64,
   xlarge: 128,
-  statusbar: StatusBar.currentHeight,
   keyboard: 320,
+  statusbar: StatusBar.currentHeight,
 }
 
 
 export const Colors = {
-  mainText: '#eaeaea',
+  mainText: '#dadada',
   helpButton: '#3c233d',
   gradient_dark: '#11011b',
   gradient_light: '#3c233d',
@@ -36,18 +36,17 @@ export const Styles = StyleSheet.create({
     color: Colors.mainText,
   },
   accountCard: {
-    minHeight: 150,
+    flex: 1,
     margin: 10,
     padding: 10,
-    flex: 1,
-    backgroundColor: '#635066',
+    minHeight: 150,
     borderWidth: 1,
+    backgroundColor: '#635066',
     borderColor: Colors.mainText,
   },
   balance: {
     fontSize: 36,
-    fontWeight: '100',
-    lineHeight: 70,
+    margin: 6,
     color: Colors.mainText,
   },
   header: {

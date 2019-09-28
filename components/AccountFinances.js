@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, View } from 'react-native'
 import { Styles } from '../constants/Style'
 import { FrequencyStrings } from '../constants/Finances'
 import Language from '../languages'
+import Spacer from './Spacer'
 
 
 const AccountFinances = (props) => {
@@ -34,6 +35,8 @@ const AccountFinances = (props) => {
         { getRateSummary() }
       </Text>
 
+      <Spacer medium />
+
       <View style={Styles.rowButtons} >
         <TouchableOpacity
           style={Styles.pairButton}
@@ -53,6 +56,8 @@ const AccountFinances = (props) => {
           </Text>
         </TouchableOpacity>
       </View>
+
+      <Spacer medium />
     </View>
   )
 }

@@ -32,12 +32,12 @@ const Account = (props) => {
           { getFamilyName() }
         </Text>
 
+        <View style={Styles.divider} />
+
         <AccountFinances
           account={accounts[id]}
           navigate={props.navigation.navigate}
         />
-
-        <Spacer medium />
 
         <View style={Styles.divider} />
 

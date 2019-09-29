@@ -8,10 +8,13 @@ import { Size, Styles } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import AccountFinances from '../components/AccountFinances';
 import DisplayMembers from '../components/DisplayMembers';
-import { Update, Get } from '../utilities/localstore';
+import { Update } from '../utilities/localstore';
 import { ACCOUNTS } from '../constants/Store';
 import { SET_ACCOUNT } from '../constants/Account';
 import Language from '../languages'
+import ChildModal from '../components/ChildModal';
+import GuardianModal from '../components/GuardianModal';
+import ContactModal from '../components/ContactModal';
 
 
 const Account = (props) => {
@@ -24,6 +27,9 @@ const Account = (props) => {
   const guardians = useSelector(state => state.guardians)
   const contacts = useSelector(state => state.contacts)
 
+  const [childModalVisible, setChildModalVisible] = useState(false)
+  const [guardianModalVisible, setGuardianModalVisible] = useState(false)
+  const [contactModalVisible, setContactModalVisible] = useState(false)
   const [rate, setRate] = useState(accounts[id].rate)
   const [frequency, setFrequency] = useState(accounts[id].frequency)
 
@@ -34,17 +40,35 @@ const Account = (props) => {
 
 
   const onAddChild = () => {
-    props.navigation.navigate('')
+    setChildModalVisible(true)
+
+  }
+
+
+  const onSubmitChild = (child) => {
+
   }
 
 
   const onAddGuardian = () => {
-    props.navigation.navigate('')
+    setGuardianModalVisible(true)
+
+  }
+
+
+  const onSubmitGuardian = (guardian) => {
+
   }
 
 
   const onAddContact = () => {
-    props.navigation.navigate('')
+    setContactModalVisible(true)
+
+  }
+
+
+  const onSubmitContact = (contact) => {
+
   }
 
 
@@ -97,62 +121,40 @@ const Account = (props) => {
         <View style={Styles.divider} />
 
         <DisplayMembers
-          title={Language.Children} addMember={onAddChild} members={children}
+          title={Language.Children}
+          addMember={onAddChild}
+          members={children}
         />
         <DisplayMembers
-          title={Language.Guardians} addMember={onAddGuardian} members={guardians}
+          title={Language.Guardians}
+          addMember={onAddGuardian}
+          members={guardians}
         />
         <DisplayMembers
-          title={Language.Contacts} addMember={onAddContact} members={contacts}
+          title={Language.Contacts}
+          addMember={onAddContact}
+          members={contacts}
         />
 
         <Spacer height={Size.keyboard} />
       </ScrollView>
+
+      <ChildModal
+        visible={childModalVisible}
+        submit={onSubmitChild}
+      />
+
+      <GuardianModal
+        visible={guardianModalVisible}
+        submit={onSubmitGuardian}
+      />
+
+      <ContactModal
+        visible={contactModalVisible}
+        submit={onSubmitContact}
+      />
     </Backdrop>
   )
 }
 
 export default Account
-
-// !!!!!!!!!!!!!!
-//
-// FREQUENCY PICKER
-//
-        // <View style={{ flex: .5, marginLeft: 5 }}>
-        //   <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >
-        //     <Picker
-        //       style={{ color: 'white', marginTop: -10 }}
-        //       selectedValue={props.frequency}
-        //       onValueChange={(value, index) => props.setFrequency(value)}
-        //     >
-        //       <Picker.Item label={Frequency.Daily} value={Frequency.Daily} />
-        //       <Picker.Item label={Frequency.Weekly} value={Frequency.Weekly} />
-        //       <Picker.Item label={Frequency.Termly} value={Frequency.Termly} />
-        //     </Picker>
-        //   </View>
-
-        //   <Text style={Styles.label}>
-        //     { Language.Frequency }
-        //   </Text>
-        // </View>
-
-      // <View style={Styles.nameHolder}>
-      //   <View style={{ flex: .5, marginRight: 5 }}>
-      //     <View style={{ flexDirection: 'row' }}>
-      //       <Text style={Styles.prefix} >
-      //         K
-      //       </Text>
-
-      //       <TextInput
-      //         style={[Styles.input, { flex: .8, marginLeft: 0 }]}
-      //         keyboardType="number-pad"
-      //         value={props.rate}
-      //         onChangeText={props.setRate}
-      //       />
-      //     </View>
-
-      //     <Text style={Styles.label} >
-      //       { Language.Rate }
-      //     </Text>
-      //   </View>
-      // </View>

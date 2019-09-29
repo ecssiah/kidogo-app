@@ -30,32 +30,6 @@ const AccountFinances = (props) => {
         { getRateSummary() }
       </Text>
 
-      <View style={{ flex: .5, marginLeft: 5 }}>
-        <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >
-          <Picker
-            style={{ color: 'white', marginTop: -10 }}
-            selectedValue={props.frequency}
-            onValueChange={(value, index) => props.updateFrequency(value)}
-          >
-            <Picker.Item
-              label={FrequencyStrings[Frequency.Daily]}
-              value={Frequency.Daily}
-            />
-            <Picker.Item
-              label={FrequencyStrings[Frequency.Weekly]}
-              value={Frequency.Weekly}
-            />
-            <Picker.Item
-              label={FrequencyStrings[Frequency.Termly]}
-              value={Frequency.Termly}
-            />
-          </Picker>
-        </View>
-
-        <Text style={Styles.label}>
-          { Language.Frequency }
-        </Text>
-      </View>
 
       <View style={Styles.nameHolder}>
         <View style={{ flex: .5, marginRight: 5 }}>
@@ -76,13 +50,40 @@ const AccountFinances = (props) => {
             { Language.Rate }
           </Text>
         </View>
+
+        <View style={{ flex: .5, marginLeft: 5 }}>
+          <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >
+            <Picker
+              style={{ color: 'white', marginTop: -10 }}
+              selectedValue={props.frequency}
+              onValueChange={(value, index) => props.updateFrequency(value)}
+            >
+              <Picker.Item
+                label={FrequencyStrings[Frequency.Daily]}
+                value={Frequency.Daily}
+              />
+              <Picker.Item
+                label={FrequencyStrings[Frequency.Weekly]}
+                value={Frequency.Weekly}
+              />
+              <Picker.Item
+                label={FrequencyStrings[Frequency.Termly]}
+                value={Frequency.Termly}
+              />
+            </Picker>
+          </View>
+
+          <Text style={Styles.label}>
+            { Language.Frequency }
+          </Text>
+        </View>
       </View>
 
       <Spacer medium />
 
-      <View style={Styles.rowButtons} >
+      <View style={Styles.buttonContainer} >
         <TouchableOpacity
-          style={Styles.pairButton}
+          style={Styles.button}
           onPress={onNewPayment}
         >
           <Text style={Styles.btnText} >

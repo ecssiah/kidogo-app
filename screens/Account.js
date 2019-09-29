@@ -51,14 +51,26 @@ const Account = (props) => {
   const updateRate = async (rate) => {
     setRate(rate)
     await Update(ACCOUNTS, id, { rate })
-    dispatch(SET_ACCOUNT, { id, rate })
+
+    const updatedAccount = {
+      ...accounts[id],
+      rate,
+    }
+
+    dispatch({ type: SET_ACCOUNT, id, account: updatedAccount })
   }
 
 
   const updateFrequency = async (frequency) => {
     setFrequency(frequency)
     await Update(ACCOUNTS, id, { frequency })
-    dispatch(SET_ACCOUNT, { id, frequency })
+
+    const updatedAccount = {
+      ...accounts[id],
+      frequency,
+    }
+
+    dispatch({ type: SET_ACCOUNT, id, account: updatedAccount })
   }
 
 

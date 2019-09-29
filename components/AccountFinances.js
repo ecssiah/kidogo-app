@@ -20,11 +20,6 @@ const AccountFinances = (props) => {
   }
 
 
-  const onEditRate = () => {
-
-  }
-
-
   return (
     <View>
       <Text style={Styles.balance} >
@@ -72,7 +67,7 @@ const AccountFinances = (props) => {
             <TextInput
               style={[Styles.input, { flex: .8, marginLeft: 0 }]}
               keyboardType="number-pad"
-              value={props.rate}
+              value={props.rate.toString()}
               onChangeText={props.updateRate}
             />
           </View>
@@ -92,15 +87,6 @@ const AccountFinances = (props) => {
         >
           <Text style={Styles.btnText} >
             { Language.New } { Language.Payment }
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={Styles.pairButton}
-          onPress={onEditRate}
-        >
-          <Text style={Styles.btnText} >
-            { Language.Edit } { Language.Rate }
           </Text>
         </TouchableOpacity>
       </View>

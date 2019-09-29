@@ -21,7 +21,7 @@ import {
 export const TestDataNeeded = async () => {
   const children = await Get(CHILDREN, await GetIds(CHILDREN))
 
-  for (let childData of Object.values(children)) {
+  for (const childData of Object.values(children)) {
     const firstNameMatch = childData.firstName === 'Tristan'
     const lastNameMatch = childData.lastName === 'Johnston'
 
@@ -364,13 +364,15 @@ export const SubmitAccount = async (dispatch, account) => {
   const accountData = {
     id: accountId,
     balance: 0,
+    rate: account.rate,
+    frequency: account.frequency,
     children: [],
     guardians: [],
     contacts: [],
   }
 
 
-  for (let [id, child] of Object.entries(account.children)) {
+  for (const [id, child] of Object.entries(account.children)) {
     accountData.children.push(id)
 
     await Create(CHILDREN, id, { accountId, ...child })
@@ -384,7 +386,7 @@ export const SubmitAccount = async (dispatch, account) => {
     dispatch({ type: SET_ATTENDANCE, id: today, attendance: attendanceToday })
   }
 
-  for (let [id, guardian] of Object.entries(account.guardians)) {
+  for (const [id, guardian] of Object.entries(account.guardians)) {
     accountData.guardians.push(id)
 
     await Create(GUARDIANS, id, { accountId, ...guardian })

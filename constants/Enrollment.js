@@ -15,6 +15,8 @@ export const GenderStrings = {
 }
 
 
+export const SET_RATE = 'enrollment:set_rate'
+export const SET_FREQUENCY = 'enrollment:set_frequency'
 export const SET_NEW_CHILD = 'enrollment:set_new_child'
 export const SET_NEW_GUARDIAN = 'enrollment:set_new_guardian'
 export const SET_NEW_CONTACT = 'enrollment:set_new_contact'

@@ -4,6 +4,7 @@ import { Icon } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Styles, Colors } from '../constants/Style'
 import Language from '../languages'
+import Spacer from './Spacer'
 
 
 const DisplayMembers = (props) => {
@@ -14,25 +15,21 @@ const DisplayMembers = (props) => {
 
 
   const getMemberComponents = () => {
-    if (active) {
-      return Object.values(props.members).map((member, i) => {
-        return (
-          <View key={i} >
-            <Text style={Styles.h2} >
-              { member.firstName } { member.lastName }
-            </Text>
-          </View>
-        )
-      })
-    } else {
-      return null
-    }
+    return Object.values(props.members).map((member, i) => {
+      return (
+        <View key={i} >
+          <Text style={Styles.h2} >
+            { member.firstName } { member.lastName }
+          </Text>
+        </View>
+      )
+    })
   }
 
 
   const getAddMemberButton = () => {
-    if (active) {
-      return (
+    return (
+      <View style={Styles.buttonContainer} >
         <TouchableOpacity
           style={Styles.button}
           onPress={props.addMember}
@@ -41,11 +38,25 @@ const DisplayMembers = (props) => {
             { Language.New }
           </Text>
         </TouchableOpacity>
+      </View>
+    )
+  }
+
+
+  const getBody = () => {
+    if (active) {
+      return (
+        <View>
+          { getMemberComponents() }
+          { getAddMemberButton() }
+          <Spacer medium />
+        </View>
       )
     } else {
       return null
     }
   }
+
 
   return (
     <View>
@@ -58,6 +69,7 @@ const DisplayMembers = (props) => {
         </Text>
 
         <Icon
+          iconStyle={Styles.expandIcon}
           size={36}
           color={Colors.mainText}
           name={active ? "expand-less" : "expand-more"}
@@ -66,10 +78,7 @@ const DisplayMembers = (props) => {
 
       <View style={Styles.divider} />
 
-      { getMemberComponents() }
-
-      { getAddMemberButton() }
-
+      { getBody() }
 
       <View style={Styles.divider} />
     </View>

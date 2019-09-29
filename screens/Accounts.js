@@ -13,19 +13,13 @@ const Accounts = (props) => {
 
 
   const getAccountCards = () => {
-    const accountCards = []
-
-    for (const [id, account] of Object.entries(accounts)) {
-      accountCards.push(
-        <AccountCard
-          key={id}
-          account={account}
-          navigate={props.navigation.navigate}
-        />
-      )
-    }
-
-    return accountCards
+    return Object.entries(accounts).map(([id, account]) =>
+      <AccountCard
+        key={id}
+        account={account}
+        navigate={props.navigation.navigate}
+      />
+    )
   }
 
 

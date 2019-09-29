@@ -57,21 +57,15 @@ const AttendanceHistory = (props) => {
 
 
   const getAttendanceRowComponents = () => {
-    const rowComponents = []
-
-    for (let [id, child] of Object.entries(children)) {
-      rowComponents.push(
-        <AttendanceHistoryRow
-          key={id}
-          childId={id}
-          firstName={child.firstName}
-          lastName={child.lastName}
-          attendance={getChildAttendance(id)}
-        />
-      )
-    }
-
-    return rowComponents
+    return Object.entries(children).map(([id, child]) =>
+      <AttendanceHistoryRow
+        key={id}
+        childId={id}
+        firstName={child.firstName}
+        lastName={child.lastName}
+        attendance={getChildAttendance(id)}
+      />
+    )
   }
 
 

@@ -28,7 +28,7 @@ const SignIn = (props) => {
     const caregiversResp = await GetCaregiversDB()
     const caregivers = caregiversResp["data"]["listCaregivers"]["items"]
 
-    for (let caregiver of caregivers) {
+    for (const caregiver of caregivers) {
       if (caregiver.username === username) {
         await CreateCaregiver(caregiver)
         break

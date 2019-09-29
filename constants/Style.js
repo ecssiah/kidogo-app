@@ -122,6 +122,10 @@ export const Styles = StyleSheet.create({
     fontSize: 18,
     color: Colors.mainText,
   },
+  buttonContainer: {
+    paddingTop: 16,
+    paddingHorizontal: 36,
+  },
   button: {
     height: 50,
     borderWidth: 1,
@@ -183,6 +187,9 @@ export const Styles = StyleSheet.create({
   iconHolder: {
     flex: 0.19,
     paddingTop: 5,
+  },
+  expandIcon: {
+    marginTop: 8,
   },
   entryIcon: {
     height: 30,

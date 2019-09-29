@@ -8,7 +8,7 @@ const ContactEntry = (props) => {
   return (
     <View>
       <Text style={[Styles.h1, Styles.raleway]} >
-        { Language.EmergencyContact }
+        { Language.Contact }
       </Text>
 
       <Image

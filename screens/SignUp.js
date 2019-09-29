@@ -20,6 +20,7 @@ import ConfirmModal from '../components/ConfirmModal';
 import Message from '../components/Message';
 import { CreateCaregiverDB } from '../utilities/dbstore';
 import Backdrop from '../components/Backdrop';
+import Language from '../languages'
 
 
 const SignUp = (props) => {
@@ -157,7 +158,7 @@ const SignUp = (props) => {
               style={Styles.mainButton}
               onPress={onSignUp}
             >
-              <Text style={Styles.btnText}>Confirm</Text>
+              <Text style={Styles.btnText}>{ Language.Confirm }</Text>
             </TouchableOpacity>
 
             <Spacer height={322} />

@@ -8,6 +8,7 @@ import Loading from '../components/Loading';
 import { GetCaregiversDB } from '../utilities/dbstore';
 import { CreateCaregiver } from '../utilities/localstore';
 import Backdrop from '../components/Backdrop';
+import Language from '../languages'
 
 
 const SignIn = (props) => {
@@ -49,7 +50,7 @@ const SignIn = (props) => {
             <Spacer large />
 
             <Text style={[Styles.h1, { fontSize: 35 }, Styles.raleway]} >
-              Sign In
+              { Language.SignIn }
             </Text>
 
             <TextInput
@@ -60,7 +61,7 @@ const SignIn = (props) => {
             />
 
             <Text style={Styles.label} >
-              Username
+              { Language.Username }
             </Text>
 
             <View style={Styles.passwordHolder}>
@@ -83,7 +84,7 @@ const SignIn = (props) => {
             </View>
 
             <Text style={Styles.label} >
-              Password
+              { Language.Password }
             </Text>
 
             <Spacer large />
@@ -92,7 +93,7 @@ const SignIn = (props) => {
               style={Styles.mainButton}
               onPress={onSignIn}
             >
-              <Text style={Styles.btnText}>Confirm</Text>
+              <Text style={Styles.btnText}>{ Language.Confirm }</Text>
             </TouchableOpacity>
           </View>
       }

@@ -1,21 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { TextInput } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 import { ScrollView, Text, View } from 'react-native'
-import { useSelector } from 'react-redux'
 
 import Backdrop from '../components/Backdrop';
 import { Size, Styles } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import AccountFinances from '../components/AccountFinances';
 import DisplayMembers from '../components/DisplayMembers';
+import { Update, Get } from '../utilities/localstore';
+import { ACCOUNTS } from '../constants/Store';
+import { SET_ACCOUNT } from '../constants/Account';
+import Language from '../languages'
 
 
 const Account = (props) => {
   const { id } = props.navigation.state.params
 
+  const dispatch = useDispatch()
+
   const accounts = useSelector(state => state.accounts)
   const children = useSelector(state => state.children)
   const guardians = useSelector(state => state.guardians)
   const contacts = useSelector(state => state.contacts)
+
+  const [rate, setRate] = useState(accounts[id].rate)
+  const [frequency, setFrequency] = useState(accounts[id].frequency)
 
 
   const getFamilyName = () => {
@@ -38,6 +48,20 @@ const Account = (props) => {
   }
 
 
+  const updateRate = async (rate) => {
+    setRate(rate)
+    await Update(ACCOUNTS, id, { rate })
+    dispatch(SET_ACCOUNT, { id, rate })
+  }
+
+
+  const updateFrequency = async (frequency) => {
+    setFrequency(frequency)
+    await Update(ACCOUNTS, id, { frequency })
+    dispatch(SET_ACCOUNT, { id, frequency })
+  }
+
+
   return (
     <Backdrop>
       <Spacer height={Size.statusbar} />
@@ -52,18 +76,22 @@ const Account = (props) => {
         <AccountFinances
           account={accounts[id]}
           navigate={props.navigation.navigate}
+          rate={rate}
+          updateRate={updateRate}
+          frequency={frequency}
+          updateFrequency={updateFrequency}
         />
 
         <View style={Styles.divider} />
 
         <DisplayMembers
-          title={"Children"} addMember={onAddChild} members={children}
+          title={Language.Children} addMember={onAddChild} members={children}
         />
         <DisplayMembers
-          title={"Guardians"} addMember={onAddGuardian} members={guardians}
+          title={Language.Guardians} addMember={onAddGuardian} members={guardians}
         />
         <DisplayMembers
-          title={"Contacts"} addMember={onAddContact} members={contacts}
+          title={Language.Contacts} addMember={onAddContact} members={contacts}
         />
 
         <Spacer height={Size.keyboard} />

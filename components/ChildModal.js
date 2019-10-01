@@ -25,6 +25,11 @@ const ChildModal = (props) => {
       setLastName(children[props.id].lastName)
       setBirthdate(children[props.id].birthdate)
       setGender(children[props.id].gender)
+    } else {
+      setFirstName('')
+      setLastName('')
+      setBirthdate('')
+      setGender('')
     }
   }, [props.id])
 

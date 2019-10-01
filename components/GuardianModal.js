@@ -32,6 +32,13 @@ const GuardianModal = (props) => {
       setCity(guardians[props.id].city)
       setPhone(guardians[props.id].phone)
       setGovtId(guardians[props.id].govtId)
+    } else {
+      setFirstName('')
+      setLastName('')
+      setAddress('')
+      setCity('')
+      setPhone('')
+      setGovtId('')
     }
   }, [props.id])
 

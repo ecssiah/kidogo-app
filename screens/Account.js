@@ -43,8 +43,8 @@ const Account = (props) => {
 
 
   const onAddChild = () => {
+    setSelectedChildId(null)
     setChildModalVisible(true)
-
   }
 
 
@@ -60,6 +60,7 @@ const Account = (props) => {
 
 
   const onAddGuardian = () => {
+    setSelectedGuardianId(null)
     setGuardianModalVisible(true)
 
   }
@@ -77,6 +78,7 @@ const Account = (props) => {
 
 
   const onAddContact = () => {
+    setSelectedContactId(null)
     setContactModalVisible(true)
   }
 

@@ -23,6 +23,10 @@ const ContactModal = (props) => {
       setFirstName(contacts[props.id].firstName)
       setLastName(contacts[props.id].lastName)
       setPhone(contacts[props.id].phone)
+    } else {
+      setFirstName('')
+      setLastName('')
+      setPhone('')
     }
   }, [props.id])
 

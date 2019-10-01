@@ -126,7 +126,9 @@ const ChildModal = (props) => {
 
             <TouchableOpacity
               style={Styles.pairButton}
-              onPress={props.onSubmitChild}
+              onPress={() => props.submit({
+                firstName, lastName, birthdate, gender,
+              })}
             >
               <Text style={Styles.btnText} >
                 { Language.Confirm }

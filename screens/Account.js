@@ -55,7 +55,7 @@ const Account = (props) => {
 
 
   const onSubmitChild = (child) => {
-
+    console.log(child)
   }
 
 
@@ -73,7 +73,7 @@ const Account = (props) => {
 
 
   const onSubmitGuardian = (guardian) => {
-
+    console.log(guardian)
   }
 
 
@@ -90,7 +90,7 @@ const Account = (props) => {
 
 
   const onSubmitContact = (contact) => {
-
+    console.log(contact)
   }
 
 

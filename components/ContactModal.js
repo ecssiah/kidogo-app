@@ -91,7 +91,9 @@ const ContactModal = (props) => {
 
             <TouchableOpacity
               style={Styles.pairButton}
-              onPress={props.onSubmitContact}
+              onPress={() => props.submit({
+                firstName, lastName, phone,
+              })}
             >
               <Text style={Styles.btnText} >
                 { Language.Confirm }

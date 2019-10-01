@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
-import { TextInput } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
 import { ScrollView, Text, View } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 
 import Backdrop from '../components/Backdrop';
 import { Size, Styles } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import AccountFinances from '../components/AccountFinances';
 import DisplayMembers from '../components/DisplayMembers';
-import { Update } from '../utilities/localstore';
+import { Update, Get } from '../utilities/localstore';
 import { ACCOUNTS } from '../constants/Store';
 import { SET_ACCOUNT } from '../constants/Account';
 import Language from '../languages'
@@ -54,15 +53,20 @@ const Account = (props) => {
   }
 
 
-  const onSubmitChild = (child) => {
-    console.log(child)
+  const onSubmitChild = async (child) => {
+    const curAccount = await Get(ACCOUNTS, id)
+    const updatedAccount = { ...curAccount }
+    updatedAccount.children.push(child)
+
+    await Update(ACCOUNTS, id, updatedAccount)
+
+    dispatch({ type: SET_ACCOUNT, id, account: updatedAccount })
   }
 
 
   const onAddGuardian = () => {
     setSelectedGuardianId(null)
     setGuardianModalVisible(true)
-
   }
 
 
@@ -72,8 +76,14 @@ const Account = (props) => {
   }
 
 
-  const onSubmitGuardian = (guardian) => {
-    console.log(guardian)
+  const onSubmitGuardian = async (guardian) => {
+    const curAccount = await Get(ACCOUNTS, id)
+    const updatedAccount = { ...curAccount }
+    updatedAccount.guardians.push(guardian)
+
+    await Update(ACCOUNTS, id, updatedAccount)
+
+    dispatch({ type: SET_ACCOUNT, id, account: updatedAccount })
   }
 
 
@@ -89,8 +99,14 @@ const Account = (props) => {
   }
 
 
-  const onSubmitContact = (contact) => {
-    console.log(contact)
+  const onSubmitContact = async (contact) => {
+    const curAccount = await Get(ACCOUNTS, id)
+    const updatedAccount = { ...curAccount }
+    updatedAccount.contacts.push(contact)
+
+    await Update(ACCOUNTS, id, updatedAccount)
+
+    dispatch({ type: SET_ACCOUNT, id, account: updatedAccount })
   }
 
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import {
-  Image, Modal, Picker, ScrollView, Text, TextInput, TouchableOpacity, View
+  Image, Modal, ScrollView, Text, TextInput, TouchableOpacity, View
 } from 'react-native'
 import Language from '../languages'
 import { Styles, Size } from '../constants/Style'

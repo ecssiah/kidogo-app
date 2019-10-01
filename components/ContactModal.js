@@ -1,13 +1,30 @@
-import React, { useState } from 'react'
-import { Image, Modal, Picker, Text, TextInput, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import {
+  Image, Modal, Picker, ScrollView, Text, TextInput, TouchableOpacity, View
+} from 'react-native'
 import Language from '../languages'
-import { Styles } from '../constants/Style'
+import { Styles, Size } from '../constants/Style'
+import Spacer from './Spacer'
+
+import Backdrop from '../components/Backdrop'
 
 
 const ContactModal = (props) => {
+  const contacts = useSelector(state => state.contacts)
+
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [phone, setPhone] = useState('')
+
+
+  useEffect(() => {
+    if (props.id) {
+      setFirstName(contacts[props.id].firstName)
+      setLastName(contacts[props.id].lastName)
+      setPhone(contacts[props.id].phone)
+    }
+  }, [props.id])
 
 
   return (
@@ -17,44 +34,70 @@ const ContactModal = (props) => {
       visible={props.visible}
       onRequestClose={() => { }}
     >
-      <Text style={[Styles.h1, Styles.raleway]} >
-        { Language.Contact }
-      </Text>
+      <Backdrop>
+        <ScrollView>
+          <Text style={[Styles.h1, Styles.raleway]} >
+            { Language.Contact }
+          </Text>
 
-      <Image
-        style={Styles.img}
-        source={require('../assets/images/child.png')}
-      />
+          <Image
+            style={Styles.img}
+            source={require('../assets/images/child.png')}
+          />
 
-      <TextInput
-        style={Styles.input}
-        value={firstName}
-        onChangeText={setFirstName}
-      />
+          <TextInput
+            style={Styles.input}
+            value={firstName}
+            onChangeText={setFirstName}
+          />
 
-      <Text style={Styles.label} >
-        { Language.FirstName }
-      </Text>
+          <Text style={Styles.label} >
+            { Language.FirstName }
+          </Text>
 
-      <TextInput
-        style={Styles.input}
-        value={lastName}
-        onChangeText={setLastName}
-      />
+          <TextInput
+            style={Styles.input}
+            value={lastName}
+            onChangeText={setLastName}
+          />
 
-      <Text style={Styles.label} >
-        { Language.LastName }
-      </Text>
+          <Text style={Styles.label} >
+            { Language.LastName }
+          </Text>
 
-      <TextInput
-        style={Styles.input}
-        value={phone}
-        onChangeText={setPhone}
-      />
+          <TextInput
+            style={Styles.input}
+            value={phone}
+            onChangeText={setPhone}
+          />
 
-      <Text style={Styles.label} >
-        { Language.Phone }
-      </Text>
+          <Text style={Styles.label} >
+            { Language.Phone }
+          </Text>
+
+          <View style={Styles.rowButtons} >
+            <TouchableOpacity
+              style={Styles.pairButton}
+              onPress={() => props.setVisible(false)}
+            >
+              <Text style={Styles.btnText} >
+                { Language.Cancel }
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={Styles.pairButton}
+              onPress={props.onSubmitContact}
+            >
+              <Text style={Styles.btnText} >
+                { Language.Confirm }
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          <Spacer height={Size.keyboard} />
+        </ScrollView>
+      </Backdrop>
     </Modal>
   )
 }

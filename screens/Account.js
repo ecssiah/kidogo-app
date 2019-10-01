@@ -27,6 +27,9 @@ const Account = (props) => {
   const guardians = useSelector(state => state.guardians)
   const contacts = useSelector(state => state.contacts)
 
+  const [selectedChildId, setSelectedChildId] = useState(null)
+  const [selectedGuardianId, setSelectedGuardianId] = useState(null)
+  const [selectedContactId, setSelectedContactId] = useState(null)
   const [childModalVisible, setChildModalVisible] = useState(false)
   const [guardianModalVisible, setGuardianModalVisible] = useState(false)
   const [contactModalVisible, setContactModalVisible] = useState(false)
@@ -45,6 +48,12 @@ const Account = (props) => {
   }
 
 
+  const onUpdateChild = (id) => {
+    setSelectedChildId(id)
+    setChildModalVisible(true)
+  }
+
+
   const onSubmitChild = (child) => {
 
   }
@@ -56,6 +65,12 @@ const Account = (props) => {
   }
 
 
+  const onUpdateGuardian = (id) => {
+    setSelectedGuardianId(id)
+    setGuardianModalVisible(true)
+  }
+
+
   const onSubmitGuardian = (guardian) => {
 
   }
@@ -63,7 +78,12 @@ const Account = (props) => {
 
   const onAddContact = () => {
     setContactModalVisible(true)
+  }
 
+
+  const onUpdateContact = (id) => {
+    setSelectedContactId(id)
+    setContactModalVisible(true)
   }
 
 
@@ -123,16 +143,19 @@ const Account = (props) => {
         <DisplayMembers
           title={Language.Children}
           addMember={onAddChild}
+          updateMember={onUpdateChild}
           members={children}
         />
         <DisplayMembers
           title={Language.Guardians}
           addMember={onAddGuardian}
+          updateMember={onUpdateGuardian}
           members={guardians}
         />
         <DisplayMembers
           title={Language.Contacts}
           addMember={onAddContact}
+          updateMember={onUpdateContact}
           members={contacts}
         />
 
@@ -140,17 +163,23 @@ const Account = (props) => {
       </ScrollView>
 
       <ChildModal
+        id={selectedChildId}
         visible={childModalVisible}
+        setVisible={setChildModalVisible}
         submit={onSubmitChild}
       />
 
       <GuardianModal
+        id={selectedGuardianId}
         visible={guardianModalVisible}
+        setVisible={setGuardianModalVisible}
         submit={onSubmitGuardian}
       />
 
       <ContactModal
+        id={selectedContactId}
         visible={contactModalVisible}
+        setVisible={setContactModalVisible}
         submit={onSubmitContact}
       />
     </Backdrop>

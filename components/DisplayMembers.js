@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Text, View } from 'react-native'
+import { TouchableOpacity, Text, View } from 'react-native'
 import { Icon } from 'react-native-elements'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Styles, Colors } from '../constants/Style'
 import Language from '../languages'
 import Spacer from './Spacer'
@@ -17,11 +16,14 @@ const DisplayMembers = (props) => {
   const getMemberComponents = () => {
     return Object.values(props.members).map((member, i) => {
       return (
-        <View key={i} >
+        <TouchableOpacity
+          key={i}
+          onPress={() => props.updateMember(member.id)}
+        >
           <Text style={Styles.h2} >
             { member.firstName } { member.lastName }
           </Text>
-        </View>
+        </TouchableOpacity>
       )
     })
   }
@@ -32,7 +34,7 @@ const DisplayMembers = (props) => {
       <View style={Styles.buttonContainer} >
         <TouchableOpacity
           style={Styles.button}
-          onPress={props.addMember}
+          onPress={() => props.addMember()}
         >
           <Text style={Styles.btnText} >
             { Language.New }

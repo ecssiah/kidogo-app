@@ -519,12 +519,11 @@ export const Styles = StyleSheet.create({
     marginVertical: 10,
   },
   rowButtons: {
-    height: 50,
     flexDirection: 'row',
     marginHorizontal: 4,
   },
   prefix: {
-    flex: .2,
+    flex: 0.2,
     fontSize: 18,
     fontWeight: 'bold',
     borderBottomWidth: 2,

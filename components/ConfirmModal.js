@@ -6,6 +6,7 @@ import { Styles } from '../constants/Style';
 
 import Spacer from './Spacer';
 import Backdrop from './Backdrop';
+import Language from '../languages'
 
 
 const ConfirmModal = (props) => {
@@ -37,8 +38,7 @@ const ConfirmModal = (props) => {
     >
       <Backdrop>
         <Text style={Styles.codeMessage} >
-          You will receive a text message with a 6-digit code.
-          Please enter the code below:
+          { Language.CodeMessage }
         </Text>
 
         <Spacer medium />
@@ -62,7 +62,7 @@ const ConfirmModal = (props) => {
             onPress={onResend}
           >
             <Text style={Styles.btnText}>
-              Resend
+              { Language.Resend }
             </Text>
           </TouchableOpacity>
 
@@ -71,11 +71,10 @@ const ConfirmModal = (props) => {
             onPress={onCodeSubmit}
           >
             <Text style={Styles.btnText}>
-              Confirm
+              { Language.Confirm }
             </Text>
           </TouchableOpacity>
         </View>
-
       </Backdrop>
     </Modal>
   )

@@ -8,6 +8,7 @@ import { Styles, Size } from '../constants/Style'
 import { Gender, GenderStrings } from '../constants/Enrollment'
 import Backdrop from './Backdrop'
 import Spacer from './Spacer'
+import uuid from 'uuid'
 
 
 const ChildModal = (props) => {
@@ -127,7 +128,7 @@ const ChildModal = (props) => {
             <TouchableOpacity
               style={Styles.pairButton}
               onPress={() => props.submit({
-                firstName, lastName, birthdate, gender,
+                id: uuid(), firstName, lastName, birthdate, gender,
               })}
             >
               <Text style={Styles.btnText} >

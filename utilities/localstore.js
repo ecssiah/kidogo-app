@@ -462,8 +462,6 @@ export const Create = async (key, id, data) => {
   const result = await SecureStore.setItemAsync(
     `${key}_${id}`, JSON.stringify(data)
   )
-
-  return result
 }
 
 

@@ -6,6 +6,7 @@ import {
 import { Icon } from 'react-native-elements'
 import { Styles, Size } from '../constants/Style'
 import Language from '../languages'
+import uuid from 'uuid'
 
 
 import Backdrop from '../components/Backdrop'
@@ -155,7 +156,7 @@ const GuardianModal = (props) => {
             <TouchableOpacity
               style={Styles.pairButton}
               onPress={() => props.submit({
-                firstName, lastName, address, city, phone, govtId,
+                id: uuid(), firstName, lastName, address, city, phone, govtId,
               })}
             >
               <Text style={Styles.btnText} >

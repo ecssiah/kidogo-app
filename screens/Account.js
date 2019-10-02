@@ -7,17 +7,18 @@ import { Size, Styles } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import AccountFinances from '../components/AccountFinances';
 import DisplayMembers from '../components/DisplayMembers';
-import { Update, Get } from '../utilities/localstore';
-import { ACCOUNTS } from '../constants/Store';
+import { Update, Get, GetIds, Create } from '../utilities/localstore';
+import { ACCOUNTS, CHILDREN } from '../constants/Store';
 import { SET_ACCOUNT } from '../constants/Account';
 import Language from '../languages'
 import ChildModal from '../components/ChildModal';
 import GuardianModal from '../components/GuardianModal';
 import ContactModal from '../components/ContactModal';
+import { SET_CHILD } from '../constants/Children';
 
 
 const Account = (props) => {
-  const { id } = props.navigation.state.params
+  const { accountId } = props.navigation.state.params
 
   const dispatch = useDispatch()
 
@@ -32,12 +33,12 @@ const Account = (props) => {
   const [childModalVisible, setChildModalVisible] = useState(false)
   const [guardianModalVisible, setGuardianModalVisible] = useState(false)
   const [contactModalVisible, setContactModalVisible] = useState(false)
-  const [rate, setRate] = useState(accounts[id].rate)
-  const [frequency, setFrequency] = useState(accounts[id].frequency)
+  const [rate, setRate] = useState(accounts[accountId].rate)
+  const [frequency, setFrequency] = useState(accounts[accountId].frequency)
 
 
   const getFamilyName = () => {
-    return guardians[accounts[id].guardians[0]].lastName
+    return guardians[accounts[accountId].guardians[0]].lastName
   }
 
 
@@ -54,13 +55,30 @@ const Account = (props) => {
 
 
   const onSubmitChild = async (child) => {
-    const curAccount = await Get(ACCOUNTS, id)
-    const updatedAccount = { ...curAccount }
-    updatedAccount.children.push(child)
+    const childIds = await GetIds(CHILDREN)
 
-    await Update(ACCOUNTS, id, updatedAccount)
+    if (childIds.find(id => id === child.id)) {
+      const curAccount = await Get(ACCOUNTS, accountId)
+      const updatedAccount = { ...curAccount }
+      updatedAccount.children.push(child.id)
 
-    dispatch({ type: SET_ACCOUNT, id, account: updatedAccount })
+      await Update(ACCOUNTS, accountId, { children: updatedAccount.children })
+      await Update(CHILDREN, child)
+
+      const modAccount = await Get(ACCOUNTS, accountId)
+      const modChildren = await Get(CHILDREN, GetIds(CHILDREN))
+
+      console.log("Modified Items:")
+      console.log(modAccount)
+      console.log(modChildren)
+
+      dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
+      dispatch({ type: SET_CHILD, id: child.id, child })
+    } else {
+      await Create(CHILDREN, child.id, { accountId, ...child })
+
+      dispatch({ type: SET_CHILD, id: child.id, child })
+    }
   }
 
 
@@ -77,13 +95,13 @@ const Account = (props) => {
 
 
   const onSubmitGuardian = async (guardian) => {
-    const curAccount = await Get(ACCOUNTS, id)
+    const curAccount = await Get(ACCOUNTS, accountId)
     const updatedAccount = { ...curAccount }
     updatedAccount.guardians.push(guardian)
 
-    await Update(ACCOUNTS, id, updatedAccount)
+    await Update(ACCOUNTS, accountId, { guardians: updatedAccount.guardians })
 
-    dispatch({ type: SET_ACCOUNT, id, account: updatedAccount })
+    dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
   }
 
 
@@ -100,39 +118,39 @@ const Account = (props) => {
 
 
   const onSubmitContact = async (contact) => {
-    const curAccount = await Get(ACCOUNTS, id)
+    const curAccount = await Get(ACCOUNTS, accountId)
     const updatedAccount = { ...curAccount }
     updatedAccount.contacts.push(contact)
 
-    await Update(ACCOUNTS, id, updatedAccount)
+    await Update(ACCOUNTS, accountId, { contacts: updatedAccount.contacts })
 
-    dispatch({ type: SET_ACCOUNT, id, account: updatedAccount })
+    dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
   }
 
 
   const updateRate = async (rate) => {
     setRate(rate)
-    await Update(ACCOUNTS, id, { rate })
+    await Update(ACCOUNTS, accountId, { rate })
 
     const updatedAccount = {
-      ...accounts[id],
+      ...accounts[accountId],
       rate,
     }
 
-    dispatch({ type: SET_ACCOUNT, id, account: updatedAccount })
+    dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
   }
 
 
   const updateFrequency = async (frequency) => {
     setFrequency(frequency)
-    await Update(ACCOUNTS, id, { frequency })
+    await Update(ACCOUNTS, accountId, { frequency })
 
     const updatedAccount = {
-      ...accounts[id],
+      ...accounts[accountId],
       frequency,
     }
 
-    dispatch({ type: SET_ACCOUNT, id, account: updatedAccount })
+    dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
   }
 
 
@@ -148,7 +166,7 @@ const Account = (props) => {
         <View style={Styles.divider} />
 
         <AccountFinances
-          account={accounts[id]}
+          account={accounts[accountId]}
           navigate={props.navigation.navigate}
           rate={rate}
           updateRate={updateRate}

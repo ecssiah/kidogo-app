@@ -6,6 +6,7 @@ import {
 import Language from '../languages'
 import { Styles, Size } from '../constants/Style'
 import Spacer from './Spacer'
+import uuid from 'uuid'
 
 import Backdrop from '../components/Backdrop'
 
@@ -92,7 +93,7 @@ const ContactModal = (props) => {
             <TouchableOpacity
               style={Styles.pairButton}
               onPress={() => props.submit({
-                firstName, lastName, phone,
+                id: uuid(), firstName, lastName, phone,
               })}
             >
               <Text style={Styles.btnText} >

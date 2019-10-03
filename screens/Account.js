@@ -9,13 +9,15 @@ import Spacer from '../components/Spacer';
 import AccountFinances from '../components/AccountFinances';
 import DisplayMembers from '../components/DisplayMembers';
 import { Update, Get, GetIds, Create } from '../utilities/localstore';
-import { ACCOUNTS, CHILDREN } from '../constants/Store';
+import { ACCOUNTS, CHILDREN, ATTENDANCE } from '../constants/Store';
 import { SET_ACCOUNT } from '../constants/Account';
 import Language from '../languages'
 import ChildModal from '../components/ChildModal';
 import GuardianModal from '../components/GuardianModal';
 import ContactModal from '../components/ContactModal';
-import { SET_CHILD } from '../constants/Children';
+import { SET_CHILD, UPDATE_CHILD } from '../constants/Children';
+import { GetShortDate } from '../utilities/dates';
+import { SET_ATTENDANCE } from '../constants/Attendance';
 
 
 const Account = (props) => {
@@ -57,14 +59,9 @@ const Account = (props) => {
 
   const onSubmitChild = async (childData) => {
     if (childData.id) {
-      await Update(CHILDREN, childData)
+      dispatch({ type: UPDATE_CHILD, id: childData.id, update: childData })
+      await Update(CHILDREN, childData.id, childData)
 
-      const modChildren = await Get(CHILDREN, GetIds(CHILDREN))
-
-      dispatch({ type: SET_CHILD, id: childData.id, child: childData })
-
-      console.log("Updated Child: ")
-      console.log(modChildren)
     } else {
       const child = { accountId, ...childData }
       child.id = uuid()
@@ -72,22 +69,25 @@ const Account = (props) => {
       const updatedAccount = { ...await Get(ACCOUNTS, accountId) }
       updatedAccount.children.push(child.id)
 
-      await Update(ACCOUNTS, accountId, { children: updatedAccount.children })
+      dispatch({ type: SET_CHILD, id: child.id, child })
       await Create(CHILDREN, child.id, child)
 
-      const modAccount = await Get(ACCOUNTS, accountId)
-      const newChildren = await Get(CHILDREN, GetIds(CHILDREN))
-
-      dispatch({ type: SET_CHILD, id: child.id, child })
       dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
+      await Update(ACCOUNTS, accountId, { children: updatedAccount.children })
 
-      console.log("Updated Account: ")
-      console.log(modAccount)
-      console.log("New Child: ")
-      console.log(newChildren)
+      const today = GetShortDate()
+      const attendanceToday = await Get(ATTENDANCE, today)
+      attendanceToday.attendance[child.id] = { checkIn: true, checkOut: false }
+
+      dispatch({ type: SET_ATTENDANCE, id: today, attendance: attendanceToday })
+      await Update(ATTENDANCE, today, { attendance: attendanceToday.attendance })
+
+      const newAttendance = await Get(ATTENDANCE, today)
+
+      console.log(newAttendance)
     }
 
-    // setChildModalVisible(false)
+    setChildModalVisible(false)
   }
 
 

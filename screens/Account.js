@@ -9,7 +9,7 @@ import Spacer from '../components/Spacer';
 import AccountFinances from '../components/AccountFinances';
 import DisplayMembers from '../components/DisplayMembers';
 import { Update, Get, GetIds, Create } from '../utilities/localstore';
-import { ACCOUNTS, CHILDREN, ATTENDANCE } from '../constants/Store';
+import { ACCOUNTS, CHILDREN, ATTENDANCE, GUARDIANS, CONTACTS } from '../constants/Store';
 import { SET_ACCOUNT } from '../constants/Account';
 import Language from '../languages'
 import ChildModal from '../components/ChildModal';
@@ -18,6 +18,8 @@ import ContactModal from '../components/ContactModal';
 import { SET_CHILD, UPDATE_CHILD } from '../constants/Children';
 import { GetShortDate } from '../utilities/dates';
 import { SET_ATTENDANCE } from '../constants/Attendance';
+import { UPDATE_GUARDIAN, SET_GUARDIAN } from '../constants/Guardians';
+import { UPDATE_CONTACT, SET_CONTACT } from '../constants/Contacts';
 
 
 const Account = (props) => {
@@ -48,6 +50,12 @@ const Account = (props) => {
   const onAddChild = () => {
     setSelectedChildId(null)
     setChildModalVisible(true)
+  }
+
+
+  const onDeleteChild = (id) => {
+    console.log("Delete not implemented!")
+    console.log(id)
   }
 
 
@@ -93,20 +101,38 @@ const Account = (props) => {
   }
 
 
+  const onDeleteGuardian = (id) => {
+    console.log("Delete not implemented!")
+    console.log(id)
+  }
+
+
   const onUpdateGuardian = (id) => {
     setSelectedGuardianId(id)
     setGuardianModalVisible(true)
   }
 
 
-  const onSubmitGuardian = async (guardian) => {
-    const curAccount = await Get(ACCOUNTS, accountId)
-    const updatedAccount = { ...curAccount }
-    updatedAccount.guardians.push(guardian)
+  const onSubmitGuardian = async (guardianData) => {
+    if (guardianData.id) {
+      dispatch({ type: UPDATE_GUARDIAN, id: guardianData.id, update: guardianData })
+      await Update(GUARDIANS, guardianData.id, guardianData)
 
-    await Update(ACCOUNTS, accountId, { guardians: updatedAccount.guardians })
+    } else {
+      const guardian = { accountId, ...guardianData }
+      guardian.id = uuid()
 
-    dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
+      const updatedAccount = { ...await Get(ACCOUNTS, accountId) }
+      updatedAccount.guardians.push(guardian.id)
+
+      dispatch({ type: SET_GUARDIAN, id: guardian.id, guardian })
+      await Create(GUARDIANS, guardian.id, guardian)
+
+      dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
+      await Update(ACCOUNTS, accountId, { guardians: updatedAccount.guardians })
+    }
+
+    setGuardianModalVisible(false)
   }
 
 
@@ -116,20 +142,38 @@ const Account = (props) => {
   }
 
 
+  const onDeleteContact = (id) => {
+    console.log("Delete not implemented!")
+    console.log(id)
+  }
+
+
   const onUpdateContact = (id) => {
     setSelectedContactId(id)
     setContactModalVisible(true)
   }
 
 
-  const onSubmitContact = async (contact) => {
-    const curAccount = await Get(ACCOUNTS, accountId)
-    const updatedAccount = { ...curAccount }
-    updatedAccount.contacts.push(contact)
+  const onSubmitContact = async (contactData) => {
+    if (contactData.id) {
+      dispatch({ type: UPDATE_CONTACT, id: contactData.id, update: contactData })
+      await Update(CONTACTS, contactData.id, contactData)
 
-    await Update(ACCOUNTS, accountId, { contacts: updatedAccount.contacts })
+    } else {
+      const contact = { accountId, ...contactData }
+      contact.id = uuid()
 
-    dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
+      const updatedAccount = { ...await Get(ACCOUNTS, accountId) }
+      updatedAccount.contacts.push(contact.id)
+
+      dispatch({ type: SET_CONTACT, id: contact.id, contact })
+      await Create(CONTACTS, contact.id, contact)
+
+      dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
+      await Update(ACCOUNTS, accountId, { contacts: updatedAccount.contacts })
+    }
+
+    setContactModalVisible(false)
   }
 
 
@@ -208,6 +252,7 @@ const Account = (props) => {
         visible={childModalVisible}
         setVisible={setChildModalVisible}
         submit={onSubmitChild}
+        delete={onDeleteChild}
       />
 
       <GuardianModal
@@ -215,6 +260,7 @@ const Account = (props) => {
         visible={guardianModalVisible}
         setVisible={setGuardianModalVisible}
         submit={onSubmitGuardian}
+        delete={onDeleteGuardian}
       />
 
       <ContactModal
@@ -222,6 +268,7 @@ const Account = (props) => {
         visible={contactModalVisible}
         setVisible={setContactModalVisible}
         submit={onSubmitContact}
+        delete={onDeleteContact}
       />
     </Backdrop>
   )

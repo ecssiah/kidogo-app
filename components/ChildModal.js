@@ -8,7 +8,6 @@ import { Styles, Size } from '../constants/Style'
 import { Gender, GenderStrings } from '../constants/Enrollment'
 import Backdrop from './Backdrop'
 import Spacer from './Spacer'
-import uuid from 'uuid'
 
 
 const ChildModal = (props) => {
@@ -133,6 +132,17 @@ const ChildModal = (props) => {
             >
               <Text style={Styles.btnText} >
                 { Language.Confirm }
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={Styles.buttonContainer} >
+            <TouchableOpacity
+              style={Styles.button}
+              onPress={() => props.delete(props.id)}
+            >
+              <Text style={Styles.btnText} >
+                { Language.Delete }
               </Text>
             </TouchableOpacity>
           </View>

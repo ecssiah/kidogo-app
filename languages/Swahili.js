@@ -58,6 +58,7 @@ export default Swahili = {
   Amount: "Kiasi",
   WeekTotal: "Jumla ya Wiki",
   Submit: "Peana",
+  Delete: "Futa",
   Resend: "Tuma tena",
   CodeMessage: `
     Utapokea ujumbe wa maandishi na nambari ya nambari 6.

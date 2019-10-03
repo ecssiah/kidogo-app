@@ -6,7 +6,6 @@ import {
 import Language from '../languages'
 import { Styles, Size } from '../constants/Style'
 import Spacer from './Spacer'
-import uuid from 'uuid'
 
 import Backdrop from '../components/Backdrop'
 
@@ -98,6 +97,17 @@ const ContactModal = (props) => {
             >
               <Text style={Styles.btnText} >
                 { Language.Confirm }
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={Styles.buttonContainer} >
+            <TouchableOpacity
+              style={Styles.button}
+              onPress={() => props.delete(props.id)}
+            >
+              <Text style={Styles.btnText} >
+                { Language.Delete }
               </Text>
             </TouchableOpacity>
           </View>

@@ -15,7 +15,9 @@ const DisplayMembers = (props) => {
 
   const getMemberComponents = () => {
     const members = Object.values(props.members)
-    const sortedMembers = members.sort((a, b) => a.lastName > b.lastName)
+    const sortedMembers = members.sort((a, b) => {
+      return (a.lastName + a.firstName) > (b.lastName + b.firstName)
+    })
 
     return sortedMembers.map((member, i) => {
       return (

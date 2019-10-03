@@ -58,6 +58,7 @@ export default English = {
   Amount: "Amount",
   WeekTotal: "Week Total",
   Submit: "Submit",
+  Delete: "Delete",
   Resend: "Resend",
   CodeMessage: `
     You will receive a text message with a 6-digit code.

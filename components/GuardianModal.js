@@ -6,7 +6,6 @@ import {
 import { Icon } from 'react-native-elements'
 import { Styles, Size } from '../constants/Style'
 import Language from '../languages'
-import uuid from 'uuid'
 
 
 import Backdrop from '../components/Backdrop'
@@ -161,6 +160,17 @@ const GuardianModal = (props) => {
             >
               <Text style={Styles.btnText} >
                 { Language.Confirm }
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={Styles.buttonContainer} >
+            <TouchableOpacity
+              style={Styles.button}
+              onPress={() => props.delete(props.id)}
+            >
+              <Text style={Styles.btnText} >
+                { Language.Delete }
               </Text>
             </TouchableOpacity>
           </View>

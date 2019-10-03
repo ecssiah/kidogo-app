@@ -381,7 +381,7 @@ export const SubmitAccount = async (dispatch, account) => {
     const attendanceToday = await Get(ATTENDANCE, today)
     attendanceToday.attendance[id] = { checkIn: true, checkOut: false }
 
-    await Update(ATTENDANCE, today, attendanceToday)
+    await Update(ATTENDANCE, today, { attendance: attendanceToday })
 
     dispatch({ type: SET_ATTENDANCE, id: today, attendance: attendanceToday })
   }

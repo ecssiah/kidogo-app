@@ -81,10 +81,6 @@ const Account = (props) => {
 
       dispatch({ type: SET_ATTENDANCE, id: today, attendance: attendanceToday })
       await Update(ATTENDANCE, today, { attendance: attendanceToday.attendance })
-
-      const newAttendance = await Get(ATTENDANCE, today)
-
-      console.log(newAttendance)
     }
 
     setChildModalVisible(false)

@@ -14,7 +14,10 @@ const DisplayMembers = (props) => {
 
 
   const getMemberComponents = () => {
-    return Object.values(props.members).map((member, i) => {
+    const members = Object.values(props.members)
+    const sortedMembers = members.sort((a, b) => a.lastName > b.lastName)
+
+    return sortedMembers.map((member, i) => {
       return (
         <TouchableOpacity
           key={i}

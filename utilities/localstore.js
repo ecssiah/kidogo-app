@@ -378,8 +378,8 @@ export const SubmitAccount = async (dispatch, account) => {
     await Create(CHILDREN, id, { accountId, ...child })
 
     const today = GetShortDate()
-    const attendanceToday = Get(ATTENDANCE, today)
-    attendanceToday[id] = { checkIn: true, checkOut: false }
+    const attendanceToday = await Get(ATTENDANCE, today)
+    attendanceToday.attendance[id] = { checkIn: true, checkOut: false }
 
     await Update(ATTENDANCE, today, attendanceToday)
 

@@ -413,9 +413,7 @@ export const GetCaregiver = async () => {
 
 
 export const CreateCaregiver = async (caregiverData) => {
-  return await SecureStore.setItemAsync(
-    CAREGIVER, JSON.stringify(caregiverData)
-  )
+  await SecureStore.setItemAsync(CAREGIVER, JSON.stringify(caregiverData))
 }
 
 
@@ -454,14 +452,8 @@ export const Get = async (key, ids) => {
 
 export const Create = async (key, id, data) => {
   const ids = await GetIds(key)
-
-  await SecureStore.setItemAsync(
-    `${key}`, JSON.stringify([id, ...ids])
-  )
-
-  const result = await SecureStore.setItemAsync(
-    `${key}_${id}`, JSON.stringify(data)
-  )
+  await SecureStore.setItemAsync(`${key}`, JSON.stringify([id, ...ids]))
+  await SecureStore.setItemAsync(`${key}_${id}`, JSON.stringify(data))
 }
 
 
@@ -471,20 +463,10 @@ export const Update = async (key, id, data) => {
 
   if (typeof currentData === "object") {
     const mergedData = Object.assign({}, currentData, data)
-
-    const result = await SecureStore.setItemAsync(
-      `${key}_${id}`, JSON.stringify(mergedData)
-    )
-
-    return result
+    await SecureStore.setItemAsync(`${key}_${id}`, JSON.stringify(mergedData))
   } else if (Array.isArray(data)) {
     const mergedData = currentData.concat(data)
-
-    const result = await SecureStore.setItemAsync(
-      `${key}_${id}`, JSON.stringify(mergedData)
-    )
-
-    return result
+    await SecureStore.setItemAsync(`${key}_${id}`, JSON.stringify(mergedData))
   } else {
     let dataString
 
@@ -494,6 +476,6 @@ export const Update = async (key, id, data) => {
       dataString = JSON.stringify(dataString)
     }
 
-    return await SecureStore.setItemAsync(`${key}_${id}`, dataString)
+    await SecureStore.setItemAsync(`${key}_${id}`, dataString)
   }
 }

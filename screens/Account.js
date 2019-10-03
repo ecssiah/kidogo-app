@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ScrollView, Text, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
+import uuid from 'uuid'
 
 import Backdrop from '../components/Backdrop';
 import { Size, Styles } from '../constants/Style';
@@ -54,31 +55,39 @@ const Account = (props) => {
   }
 
 
-  const onSubmitChild = async (child) => {
-    const childIds = await GetIds(CHILDREN)
+  const onSubmitChild = async (childData) => {
+    if (childData.id) {
+      await Update(CHILDREN, childData)
 
-    if (childIds.find(id => id === child.id)) {
-      const curAccount = await Get(ACCOUNTS, accountId)
-      const updatedAccount = { ...curAccount }
+      const modChildren = await Get(CHILDREN, GetIds(CHILDREN))
+
+      dispatch({ type: SET_CHILD, id: childData.id, child: childData })
+
+      console.log("Updated Child: ")
+      console.log(modChildren)
+    } else {
+      const child = { accountId, ...childData }
+      child.id = uuid()
+
+      const updatedAccount = { ...await Get(ACCOUNTS, accountId) }
       updatedAccount.children.push(child.id)
 
       await Update(ACCOUNTS, accountId, { children: updatedAccount.children })
-      await Update(CHILDREN, child)
+      await Create(CHILDREN, child.id, child)
 
       const modAccount = await Get(ACCOUNTS, accountId)
-      const modChildren = await Get(CHILDREN, GetIds(CHILDREN))
+      const newChildren = await Get(CHILDREN, GetIds(CHILDREN))
 
-      console.log("Modified Items:")
-      console.log(modAccount)
-      console.log(modChildren)
-
+      dispatch({ type: SET_CHILD, id: child.id, child })
       dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
-      dispatch({ type: SET_CHILD, id: child.id, child })
-    } else {
-      await Create(CHILDREN, child.id, { accountId, ...child })
 
-      dispatch({ type: SET_CHILD, id: child.id, child })
+      console.log("Updated Account: ")
+      console.log(modAccount)
+      console.log("New Child: ")
+      console.log(newChildren)
     }
+
+    // setChildModalVisible(false)
   }
 
 

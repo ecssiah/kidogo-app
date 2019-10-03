@@ -128,7 +128,7 @@ const ChildModal = (props) => {
             <TouchableOpacity
               style={Styles.pairButton}
               onPress={() => props.submit({
-                id: uuid(), firstName, lastName, birthdate, gender,
+                id: props.id, firstName, lastName, birthdate, gender,
               })}
             >
               <Text style={Styles.btnText} >

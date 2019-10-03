@@ -93,7 +93,7 @@ const ContactModal = (props) => {
             <TouchableOpacity
               style={Styles.pairButton}
               onPress={() => props.submit({
-                id: uuid(), firstName, lastName, phone,
+                firstName, lastName, phone,
               })}
             >
               <Text style={Styles.btnText} >

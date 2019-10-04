@@ -7,12 +7,13 @@ import { Styles } from '../constants/Style'
 const AccountCard = (props) => {
   const children = useSelector(state => state.children)
   const guardians = useSelector(state => state.guardians)
-  const contacts = useSelector(state => state.contacts)
 
 
   const getChildNames = () => {
     const childNames = props.account.children.reduce((acc, id) => {
-      acc.push(children[id].firstName + ' ' + children[id].lastName)
+      if (id in children) {
+        acc.push(children[id].firstName + ' ' + children[id].lastName)
+      }
       return acc
     }, [])
 
@@ -22,7 +23,9 @@ const AccountCard = (props) => {
 
   const getGuardianNames = () => {
     const guardianNames = props.account.guardians.reduce((acc, id) => {
-      acc.push(guardians[id].firstName + ' ' + guardians[id].lastName)
+      if (id in guardians) {
+        acc.push(guardians[id].firstName + ' ' + guardians[id].lastName)
+      }
       return acc
     }, [])
 
@@ -46,7 +49,7 @@ const AccountCard = (props) => {
       activeOpacity={0.7}
       onPress={onSelect}
     >
-      <Text style={[Styles.h1, Styles.raleway]}>
+      <Text style={[Styles.h1, Styles.raleway]} >
         { getAccountName() }
       </Text>
 

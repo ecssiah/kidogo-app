@@ -479,3 +479,8 @@ export const Update = async (key, id, data) => {
     await SecureStore.setItemAsync(`${key}_${id}`, dataString)
   }
 }
+
+
+export const Delete = async (key, id) => {
+  await SecureStore.deleteItemAsync(`${key}_${id}`)
+}

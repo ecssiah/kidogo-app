@@ -8,14 +8,14 @@ import { Size, Styles } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import AccountFinances from '../components/AccountFinances';
 import DisplayMembers from '../components/DisplayMembers';
-import { Update, Get, GetIds, Create } from '../utilities/localstore';
+import { Update, Get, GetIds, Create, Delete } from '../utilities/localstore';
 import { ACCOUNTS, CHILDREN, ATTENDANCE, GUARDIANS, CONTACTS } from '../constants/Store';
 import { SET_ACCOUNT } from '../constants/Account';
 import Language from '../languages'
 import ChildModal from '../components/ChildModal';
 import GuardianModal from '../components/GuardianModal';
 import ContactModal from '../components/ContactModal';
-import { SET_CHILD, UPDATE_CHILD } from '../constants/Children';
+import { SET_CHILD, UPDATE_CHILD, DELETE_CHILD } from '../constants/Children';
 import { GetShortDate } from '../utilities/dates';
 import { SET_ATTENDANCE } from '../constants/Attendance';
 import { UPDATE_GUARDIAN, SET_GUARDIAN } from '../constants/Guardians';
@@ -47,15 +47,43 @@ const Account = (props) => {
   }
 
 
+  const getChildren = () => {
+    return Object.values(children).filter((child) => child.accountId === accountId)
+  }
+
+
+  const getGuardians = () => {
+    return Object.values(guardians).filter((guardian) => guardian.accountId === accountId)
+  }
+
+
+  const getContacts = () => {
+    return Object.values(contacts).filter((contact) => contact.accountId === accountId)
+  }
+
+
   const onAddChild = () => {
     setSelectedChildId(null)
     setChildModalVisible(true)
   }
 
 
-  const onDeleteChild = (id) => {
-    console.log("Delete not implemented!")
-    console.log(id)
+  const onDeleteChild = async (id) => {
+    const curAccount = { ...await Get(ACCOUNTS, accountId) }
+    const updatedChildren = curAccount.children.filter((childId) => childId !== id)
+
+    const updatedAccount = {
+      ...curAccount,
+      children: updatedChildren,
+    }
+
+    dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
+    await Update(ACCOUNTS, accountId, { children: updatedAccount.children })
+
+    dispatch({ type: DELETE_CHILD, id })
+    await Delete(CHILDREN, id)
+
+    setChildModalVisible(false)
   }
 
 
@@ -69,7 +97,6 @@ const Account = (props) => {
     if (childData.id) {
       dispatch({ type: UPDATE_CHILD, id: childData.id, update: childData })
       await Update(CHILDREN, childData.id, childData)
-
     } else {
       const child = { accountId, ...childData }
       child.id = uuid()
@@ -101,9 +128,8 @@ const Account = (props) => {
   }
 
 
-  const onDeleteGuardian = (id) => {
-    console.log("Delete not implemented!")
-    console.log(id)
+  const onDeleteGuardian = async (id) => {
+    await Delete(GUARDIANS, id)
   }
 
 
@@ -117,7 +143,6 @@ const Account = (props) => {
     if (guardianData.id) {
       dispatch({ type: UPDATE_GUARDIAN, id: guardianData.id, update: guardianData })
       await Update(GUARDIANS, guardianData.id, guardianData)
-
     } else {
       const guardian = { accountId, ...guardianData }
       guardian.id = uuid()
@@ -142,9 +167,8 @@ const Account = (props) => {
   }
 
 
-  const onDeleteContact = (id) => {
-    console.log("Delete not implemented!")
-    console.log(id)
+  const onDeleteContact = async (id) => {
+    await Delete(CONTACTS, id)
   }
 
 
@@ -229,19 +253,19 @@ const Account = (props) => {
           title={Language.Children}
           addMember={onAddChild}
           updateMember={onUpdateChild}
-          members={children}
+          members={getChildren()}
         />
         <DisplayMembers
           title={Language.Guardians}
           addMember={onAddGuardian}
           updateMember={onUpdateGuardian}
-          members={guardians}
+          members={getGuardians()}
         />
         <DisplayMembers
           title={Language.Contacts}
           addMember={onAddContact}
           updateMember={onUpdateContact}
-          members={contacts}
+          members={getContacts()}
         />
 
         <Spacer height={Size.keyboard} />

@@ -21,14 +21,16 @@ import {
 export const TestDataNeeded = async () => {
   const children = await Get(CHILDREN, await GetIds(CHILDREN))
 
-  for (const childData of Object.values(children)) {
+  console.log(children)
+
+  Object.values(children).forEach((childData) => {
     const firstNameMatch = childData.firstName === 'Tristan'
     const lastNameMatch = childData.lastName === 'Johnston'
 
     if (firstNameMatch && lastNameMatch) {
       return false
     }
-  }
+  })
 
   return true
 }
@@ -407,7 +409,6 @@ export const SubmitAccount = async (dispatch, account) => {
 
 export const GetCaregiver = async () => {
   const caregiverResp = await SecureStore.getItemAsync(CAREGIVER)
-
   return caregiverResp === null ? {} : JSON.parse(caregiverResp)
 }
 
@@ -418,7 +419,7 @@ export const CreateCaregiver = async (caregiverData) => {
 
 
 export const GetIds = async (key) => {
-  const idsResp = await SecureStore.getItemAsync(`${key}`)
+  const idsResp = await SecureStore.getItemAsync(key)
   const ids = idsResp === null ? [] : JSON.parse(idsResp)
 
   return ids
@@ -452,7 +453,7 @@ export const Get = async (key, ids) => {
 
 export const Create = async (key, id, data) => {
   const ids = await GetIds(key)
-  await SecureStore.setItemAsync(`${key}`, JSON.stringify([id, ...ids]))
+  await SecureStore.setItemAsync(key, JSON.stringify([id, ...ids]))
   await SecureStore.setItemAsync(`${key}_${id}`, JSON.stringify(data))
 }
 
@@ -482,5 +483,9 @@ export const Update = async (key, id, data) => {
 
 
 export const Delete = async (key, id) => {
+  const ids = await GetIds(key)
+  const newIds = ids.filter((curId) => curId === id)
+
+  await SecureStore.setItemAsync(key, JSON.stringify(newIds))
   await SecureStore.deleteItemAsync(`${key}_${id}`)
 }

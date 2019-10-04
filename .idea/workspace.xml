@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/components/AccountCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AccountCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/DisplayMembers.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/DisplayMembers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ChildModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ChildModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ContactModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ContactModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/GuardianModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/GuardianModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/Account.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Account.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utilities/localstore.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/localstore.js" afterDir="false" />
     </list>

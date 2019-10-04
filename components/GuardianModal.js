@@ -46,6 +46,26 @@ const GuardianModal = (props) => {
   const toggleHideId = () => setHideId(!hideId)
 
 
+  const getDeleteButton = () => {
+    if (props.id) {
+      return (
+        <View style={Styles.buttonContainer} >
+          <TouchableOpacity
+            style={Styles.button}
+            onPress={() => props.delete(props.id)}
+          >
+            <Text style={Styles.btnText} >
+              { Language.Delete }
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )
+    } else {
+      return null
+    }
+  }
+
+
   return (
     <Modal
       animationType="slide"
@@ -164,16 +184,7 @@ const GuardianModal = (props) => {
             </TouchableOpacity>
           </View>
 
-          <View style={Styles.buttonContainer} >
-            <TouchableOpacity
-              style={Styles.button}
-              onPress={() => props.delete(props.id)}
-            >
-              <Text style={Styles.btnText} >
-                { Language.Delete }
-              </Text>
-            </TouchableOpacity>
-          </View>
+          { getDeleteButton() }
 
           <Spacer height={Size.keyboard} />
         </ScrollView>

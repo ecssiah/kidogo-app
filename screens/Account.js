@@ -212,7 +212,6 @@ const Account = (props) => {
     if (contactData.id) {
       dispatch({ type: UPDATE_CONTACT, id: contactData.id, update: contactData })
       await Update(CONTACTS, contactData.id, contactData)
-
     } else {
       const contact = { accountId, ...contactData }
       contact.id = uuid()

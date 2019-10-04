@@ -19,31 +19,8 @@ import {
 
 
 export const TestDataNeeded = async () => {
-  const children = await Get(CHILDREN, await GetIds(CHILDREN))
-
-  console.log(children)
-
-  Object.values(children).forEach((childData) => {
-    const firstNameMatch = childData.firstName === 'Tristan'
-    const lastNameMatch = childData.lastName === 'Johnston'
-
-    if (firstNameMatch && lastNameMatch) {
-      return false
-    }
-  })
-
-  return true
-}
-
-
-export const LogTestData = async () => {
-  const guardians = await Get(GUARDIANS)
-  const contacts = await Get(CONTACTS)
-  const children = await Get(CHILDREN)
-
-  console.log(GUARDIANS, guardians)
-  console.log(CONTACTS, contacts)
-  console.log(CHILDREN, children)
+  const childrenIds = await GetIds(CHILDREN)
+  return !childrenIds || !childrenIds.length
 }
 
 
@@ -124,7 +101,6 @@ export const LoadTestData = async () => {
   account1.contacts.push(contact12.id)
 
   await Create(ACCOUNTS, account1.id, account1)
-
   await Create(GUARDIANS, guardian11.id, guardian11)
   await Create(GUARDIANS, guardian12.id, guardian12)
   await Create(CONTACTS, contact11.id, contact11)
@@ -208,13 +184,23 @@ export const LoadTestData = async () => {
   account2.contacts.push(contact22.id)
 
   await Create(ACCOUNTS, account2.id, account2)
-
   await Create(CHILDREN, child21.id, child21)
   await Create(CHILDREN, child22.id, child22)
   await Create(GUARDIANS, guardian21.id, guardian21)
   await Create(GUARDIANS, guardian22.id, guardian22)
   await Create(CONTACTS, contact21.id, contact21)
   await Create(CONTACTS, contact22.id, contact22)
+}
+
+
+export const LogTestData = async () => {
+  const guardians = await Get(GUARDIANS)
+  const contacts = await Get(CONTACTS)
+  const children = await Get(CHILDREN)
+
+  console.log(GUARDIANS, guardians)
+  console.log(CONTACTS, contacts)
+  console.log(CHILDREN, children)
 }
 
 
@@ -484,7 +470,7 @@ export const Update = async (key, id, data) => {
 
 export const Delete = async (key, id) => {
   const ids = await GetIds(key)
-  const newIds = ids.filter((curId) => curId === id)
+  const newIds = ids.filter((curId) => curId !== id)
 
   await SecureStore.setItemAsync(key, JSON.stringify(newIds))
   await SecureStore.deleteItemAsync(`${key}_${id}`)

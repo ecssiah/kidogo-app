@@ -9,17 +9,19 @@ import Spacer from '../components/Spacer';
 import AccountFinances from '../components/AccountFinances';
 import DisplayMembers from '../components/DisplayMembers';
 import { Update, Get, GetIds, Create, Delete } from '../utilities/localstore';
-import { ACCOUNTS, CHILDREN, ATTENDANCE, GUARDIANS, CONTACTS } from '../constants/Store';
-import { SET_ACCOUNT } from '../constants/Account';
 import Language from '../languages'
 import ChildModal from '../components/ChildModal';
 import GuardianModal from '../components/GuardianModal';
 import ContactModal from '../components/ContactModal';
-import { SET_CHILD, UPDATE_CHILD, DELETE_CHILD } from '../constants/Children';
 import { GetShortDate } from '../utilities/dates';
+import {
+  ACCOUNTS, CHILDREN, ATTENDANCE, GUARDIANS, CONTACTS
+} from '../constants/Store';
+import { SET_ACCOUNT } from '../constants/Account';
 import { SET_ATTENDANCE } from '../constants/Attendance';
-import { UPDATE_GUARDIAN, SET_GUARDIAN } from '../constants/Guardians';
-import { UPDATE_CONTACT, SET_CONTACT } from '../constants/Contacts';
+import { UPDATE_CHILD, SET_CHILD, DELETE_CHILD } from '../constants/Children';
+import { UPDATE_GUARDIAN, SET_GUARDIAN, DELETE_GUARDIAN } from '../constants/Guardians';
+import { UPDATE_CONTACT, SET_CONTACT, DELETE_CONTACT } from '../constants/Contacts';
 
 
 const Account = (props) => {
@@ -129,7 +131,21 @@ const Account = (props) => {
 
 
   const onDeleteGuardian = async (id) => {
+    const curAccount = { ...await Get(ACCOUNTS, accountId) }
+    const updatedGuardians = curAccount.guardians.filter((guardianId) => guardianId !== id)
+
+    const updatedAccount = {
+      ...curAccount,
+      guardians: updatedGuardians,
+    }
+
+    dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
+    await Update(ACCOUNTS, accountId, { guardians: updatedAccount.guardians })
+
+    dispatch({ type: DELETE_GUARDIAN, id })
     await Delete(GUARDIANS, id)
+
+    setGuardianModalVisible(false)
   }
 
 
@@ -168,7 +184,21 @@ const Account = (props) => {
 
 
   const onDeleteContact = async (id) => {
+    const curAccount = { ...await Get(ACCOUNTS, accountId) }
+    const updatedContacts = curAccount.contacts.filter((contactId) => contactId !== id)
+
+    const updatedAccount = {
+      ...curAccount,
+      contacts: updatedContacts,
+    }
+
+    dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
+    await Update(ACCOUNTS, accountId, { contacts: updatedAccount.contacts })
+
+    dispatch({ type: DELETE_CONTACT, id })
     await Delete(CONTACTS, id)
+
+    setContactModalVisible(false)
   }
 
 

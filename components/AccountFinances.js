@@ -16,7 +16,7 @@ const AccountFinances = (props) => {
 
 
   const onNewPayment = () => {
-    props.navigate('Payments', { id: props.account.id })
+    props.navigate('Payments', { accountId: props.account.id })
   }
 
 

@@ -5,11 +5,12 @@ import { ScrollView, TouchableOpacity, Text, View } from 'react-native'
 import uuid from 'uuid'
 import { Colors, Styles, Size } from '../constants/Style';
 import { Icon } from 'react-native-elements';
+import Language from '../languages'
 
 import Spacer from '../components/Spacer';
 import ChildEntry from '../components/ChildEntry';
 import Backdrop from '../components/Backdrop';
-import { SET_NEW_CHILD } from '../constants/Enrollment'
+import { SET_NEW_CHILD, Relation } from '../constants/Enrollment'
 import Message from '../components/Message'
 
 
@@ -21,6 +22,7 @@ const Children = (props) => {
   const [lastName, setLastName] = useState('')
   const [birthdate, setBirthdate] = useState('')
   const [gender, setGender] = useState('')
+  const [relation, setRelation] = useState(Relation.Mother)
   const [immunization, setImmunization] = useState(false)
   const [note, setNote] = useState('')
   const [soundObject, setSoundObject] = useState(null)
@@ -111,6 +113,8 @@ const Children = (props) => {
           setBirthdate={setBirthdate}
           gender={gender}
           setGender={setGender}
+          relation={relation}
+          setRelation={setRelation}
           immunization={immunization}
           setImmunization={setImmunization}
           note={note}
@@ -124,14 +128,14 @@ const Children = (props) => {
             style={Styles.pairButton}
             onPress={onSubmitChild}
           >
-            <Text style={Styles.btnText}>Submit</Text>
+            <Text style={Styles.btnText}>{ Language.Submit }</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={Styles.pairButton}
             onPress={onNextChild}
           >
-            <Text style={Styles.btnText}>Next</Text>
+            <Text style={Styles.btnText}>{ Language.Next }</Text>
           </TouchableOpacity>
         </View>
 
@@ -141,7 +145,9 @@ const Children = (props) => {
           style={Styles.mainButton}
           onPress={onAddGuardians}
         >
-          <Text style={Styles.btnText}>Add Guardians</Text>
+          <Text style={Styles.btnText}>
+            { Language.Add } { Language.Guardians }
+          </Text>
         </TouchableOpacity>
 
         <Spacer height={Size.keyboard} />

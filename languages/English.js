@@ -45,6 +45,7 @@ export default English = {
   Attendance: "Attendance",
   Finances: "Finances",
   DailyQuestions: "Daily Questions",
+  Add: "Add",
   AddFamily: "Add Family",
   AddExpense: "Add Expense",
   SignIn: "Sign In",
@@ -57,12 +58,22 @@ export default English = {
   Type: "Type",
   Amount: "Amount",
   WeekTotal: "Week Total",
+  Balance: "Balance",
   Submit: "Submit",
+  Next: "Next",
   Delete: "Delete",
   Resend: "Resend",
   CodeMessage: `
     You will receive a text message with a 6-digit code.
     Please enter the code below:
   `,
-
+  Relationship: "Relationship",
+  Mother: "Mother",
+  Father: "Father",
+  Sister: "Sister",
+  Brother: "Brother",
+  Aunt: "Aunt",
+  Uncle: "Uncle",
+  Grandmother: "Grandmother",
+  Grandfather: "Grandfather",
 }

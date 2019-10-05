@@ -3,13 +3,38 @@ import {
   Image, Picker, Text, TextInput, TouchableOpacity, View
 } from 'react-native'
 import { Styles } from '../constants/Style';
-import { Gender } from '../constants/Enrollment';
+import { Gender, Relation, RelationStrings, GenderStrings } from '../constants/Enrollment';
 import Language from '../languages';
 
 
 const ChildEntry = (props) => {
   const onImmunizationChange = (immunization, i) => {
     props.setImmunization(immunization)
+  }
+
+
+  const getGenderItems = () => {
+    return Object.values(Gender).map((gender, i) => {
+      return (
+        <Picker.Item
+          key={i}
+          label={GenderStrings[gender]}
+          value={gender}
+        />
+      )
+    })
+  }
+
+  const getRelationItems = () => {
+    return Object.values(Relation).map((relation, i) => {
+      return (
+        <Picker.Item
+          key={i}
+          label={RelationStrings[relation]}
+          value={relation}
+        />
+      )
+    })
   }
 
 
@@ -66,10 +91,7 @@ const ChildEntry = (props) => {
               selectedValue={props.gender}
               onValueChange={(value, pos) => props.setGender(value)}
             >
-              <Picker.Item label="" value={null} />
-              <Picker.Item label={Gender.Female} value={Gender.Female} />
-              <Picker.Item label={Gender.Male} value={Gender.Male} />
-              <Picker.Item label={Gender.Other} value={Gender.Other} />
+              { getGenderItems() }
             </Picker>
           </View>
 
@@ -79,26 +101,41 @@ const ChildEntry = (props) => {
         </View>
       </View>
 
-      <TextInput
-        style={Styles.input}
-        value={props.immunization}
-        onChangeText={props.setImmunization}
-      />
+      <View style={Styles.nameHolder} >
+        <View style={{ flex: .5, marginLeft: 5}} >
+          <View style={Styles.financePickerContainer} >
+            <Picker
+              style={Styles.financePicker}
+              selectedValue={props.relation}
+              onValueChange={(value, pos) => props.setRelation(value)}
+            >
+              { getRelationItems() }
+            </Picker>
+          </View>
 
-      <View style={Styles.financePickerContainer} >
-        <Picker
-          selectedValue={props.immunization}
-          style={Styles.financePicker}
-          onValueChange={onImmunizationChange}
-        >
-          <Picker.Item label={Language.True} value={true} />
-          <Picker.Item label={Language.False} value={false} />
-        </Picker>
+          <Text style={Styles.label} >
+            { Language.Relationship }
+          </Text>
+        </View>
+
+        <View style={{ flex: .5, marginLeft: 5}} >
+          <View style={Styles.financePickerContainer} >
+            <Picker
+              selectedValue={props.immunization}
+              style={Styles.financePicker}
+              onValueChange={onImmunizationChange}
+            >
+              <Picker.Item label={Language.True} value={true} />
+              <Picker.Item label={Language.False} value={false} />
+            </Picker>
+          </View>
+
+          <Text style={Styles.label} >
+            { Language.Immunization }
+          </Text>
+        </View>
       </View>
 
-      <Text style={Styles.label} >
-        { Language.Immunization }
-      </Text>
 
 
       <TextInput

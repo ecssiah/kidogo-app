@@ -45,6 +45,7 @@ export default Swahili = {
   Attendance: "Mahudhurio",
   Finances: "Fedha",
   DailyQuestions: "Maswali ya Kila siku",
+  Add: "Ongeza",
   AddFamily: "Ongeza Familia",
   AddExpense: "Ongeza Gharama",
   SignIn: "Weka Sahihi",
@@ -57,12 +58,23 @@ export default Swahili = {
   Type: "Chapa",
   Amount: "Kiasi",
   WeekTotal: "Jumla ya Wiki",
+  Balance: "Mizani",
   Submit: "Peana",
+  Next: "Ifuatayo",
   Delete: "Futa",
   Resend: "Tuma tena",
   CodeMessage: `
     Utapokea ujumbe wa maandishi na nambari ya nambari 6.
     Tafadhali ingiza msimbo hapa chini:
-  `
+  `,
+  Relationship: "Urafiki",
+  Mother: "Mama",
+  Father: "Baba",
+  Sister: "Dada",
+  Brother: "Ndugu",
+  Aunt: "Shangazi",
+  Uncle: "Mjomba",
+  Grandmother: "Bibi",
+  Grandfather: "Babu",
 }
 

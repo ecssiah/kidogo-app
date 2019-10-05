@@ -7,10 +7,16 @@ import {
 import { Styles } from '../constants/Style';
 import Backdrop from '../components/Backdrop';
 import Language from '../languages'
+import { UpdateFees } from '../utilities/localstore';
 
 
 const Dash = (props) => {
   const [hour, setHour] = useState(new Date().getHours())
+
+
+  useEffect(() => {
+    UpdateFees()
+  }, [])
 
 
   const getGreeting = () => {

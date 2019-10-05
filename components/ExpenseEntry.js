@@ -101,7 +101,7 @@ const ExpenseEntry = (props) => {
             style={Styles.pairButton}
             onPress={() => setEntryActive(false)}
           >
-            <Text style={Styles.btnText}>
+            <Text style={Styles.btnText} >
               { Language.Cancel }
             </Text>
           </TouchableOpacity>
@@ -110,7 +110,7 @@ const ExpenseEntry = (props) => {
             style={Styles.pairButton}
             onPress={() => props.addExpense({ date, type, amount })}
           >
-            <Text style={Styles.btnText}>
+            <Text style={Styles.btnText} >
               { Language.Submit }
             </Text>
           </TouchableOpacity>

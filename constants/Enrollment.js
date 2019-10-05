@@ -15,6 +15,30 @@ export const GenderStrings = {
 }
 
 
+export const Relation = {
+  Mother: "mother",
+  Father: "father",
+  Sister: "sister",
+  Brother: "brother",
+  Aunt: "aunt",
+  Uncle: "uncle",
+  Grandmother: "grandmother",
+  Grandfather: "grandfather",
+}
+
+
+export const RelationStrings = {
+  [Relation.Mother]: Language.Mother,
+  [Relation.Father]: Language.Father,
+  [Relation.Sister]: Language.Sister,
+  [Relation.Brother]: Language.Brother,
+  [Relation.Aunt]: Language.Aunt,
+  [Relation.Uncle]: Language.Uncle,
+  [Relation.Grandmother]: Language.Grandmother,
+  [Relation.Grandfather]: Language.Grandfather,
+}
+
+
 export const SET_RATE = 'enrollment:set_rate'
 export const SET_FREQUENCY = 'enrollment:set_frequency'
 export const SET_NEW_CHILD = 'enrollment:set_new_child'

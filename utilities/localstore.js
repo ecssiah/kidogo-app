@@ -205,15 +205,15 @@ export const LogTestData = async () => {
 
 
 export const UpdateStore = async (dispatch) => {
-  const accounts = await Get(ACCOUNTS, await GetIds(ACCOUNTS))
-  const children = await Get(CHILDREN, await GetIds(CHILDREN))
-  const guardians = await Get(GUARDIANS, await GetIds(GUARDIANS))
-  const contacts = await Get(CONTACTS, await GetIds(CONTACTS))
+  const accounts = await Get(ACCOUNTS)
+  const children = await Get(CHILDREN)
+  const guardians = await Get(GUARDIANS)
+  const contacts = await Get(CONTACTS)
 
-  const attendance = await Get(ATTENDANCE, await GetIds(ATTENDANCE))
-  const finances = await Get(FINANCES, await GetIds(FINANCES))
-  const payments = await Get(PAYMENTS, await GetIds(PAYMENTS))
-  const expenses = await Get(EXPENSES, await GetIds(EXPENSES))
+  const attendance = await Get(ATTENDANCE)
+  const finances = await Get(FINANCES)
+  const payments = await Get(PAYMENTS)
+  const expenses = await Get(EXPENSES)
 
   accounts.forEach((accountData) => {
     dispatch({
@@ -393,6 +393,11 @@ export const SubmitAccount = async (dispatch, account) => {
 }
 
 
+export const UpdateFees = async () => {
+
+}
+
+
 export const GetCaregiver = async () => {
   const caregiverResp = await SecureStore.getItemAsync(CAREGIVER)
   return caregiverResp === null ? {} : JSON.parse(caregiverResp)
@@ -417,18 +422,27 @@ export const Get = async (key, ids) => {
     const elementResp = await SecureStore.getItemAsync(`${key}_${ids}`)
     const element = JSON.parse(elementResp)
 
-    return element
+    // return element
+
+    return { [ids]: element }
   } else {
     if (ids === undefined) {
       ids = await GetIds(key)
     }
 
-    const elementPromises = ids.map(async (id) => {
-      const elementResp = await SecureStore.getItemAsync(`${key}_${id}`)
-      const element = JSON.parse(elementResp)
+    // const elementPromises = ids.map(async (id) => {
+    //   const elementResp = await SecureStore.getItemAsync(`${key}_${id}`)
+    //   const element = JSON.parse(elementResp)
 
-      return element
-    })
+    //   return element
+    // })
+
+    const elementPromises = ids.reduce(async (acc, id) => {
+      const elementResp = await SecureStore.getItemAsync(`${key}_${id}`)
+      acc[id] = JSON.parse(elementResp)
+
+      return acc
+    }, {})
 
     const elements = await Promise.all(elementPromises)
 
@@ -439,7 +453,7 @@ export const Get = async (key, ids) => {
 
 export const Create = async (key, id, data) => {
   const ids = await GetIds(key)
-  await SecureStore.setItemAsync(key, JSON.stringify([id, ...ids]))
+  await SecureStore.setItemAsync(key, JSON.stringify([...ids, id]))
   await SecureStore.setItemAsync(`${key}_${id}`, JSON.stringify(data))
 }
 

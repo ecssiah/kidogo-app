@@ -5,6 +5,7 @@ import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
 import { GetFullDate, GetShortDate } from '../utilities/dates';
 import { Styles, Size } from '../constants/Style';
+import Language from '../languages'
 
 import Spacer from '../components/Spacer';
 import Backdrop from '../components/Backdrop';
@@ -32,15 +33,13 @@ const CheckOut = (props) => {
     const today = GetShortDate()
 
     const checkOutData = Object.values(children).map((child) => {
-      const data = {
+      return {
         id: child.id,
         firstName: child.firstName,
         lastName: child.lastName,
         checkIn: attendance[today].attendance[child.id].checkIn,
         checkOut: attendance[today].attendance[child.id].checkOut,
       }
-
-      return data
     })
 
     setCheckOutData(checkOutData)
@@ -50,8 +49,7 @@ const CheckOut = (props) => {
   const toggleCheckOut = async (id) => {
     const today = GetShortDate()
     const attendanceToday = { ...attendance[today] }
-    attendanceToday.attendance[id].checkOut =
-      !attendanceToday.attendance[id].checkOut
+    attendanceToday[id].checkOut = !attendanceToday[id].checkOut
 
     await Update(ATTENDANCE, today, attendanceToday)
 
@@ -62,6 +60,10 @@ const CheckOut = (props) => {
 
 
   const getAttendanceCards = () => {
+    if (!checkOutData) {
+      return null
+    }
+
     return (
       checkOutData.map((data, i) =>
         <AttendanceCard
@@ -81,16 +83,16 @@ const CheckOut = (props) => {
 
 
   const getCheckedOutTotals = () => {
-    const currentAttendance = getCurrentCheckedOut()
+    const currentCheckOut = getCurrentCheckedOut()
 
-    if (currentAttendance === checkOutData.length) {
+    if (currentCheckOut === checkOutData.length) {
       return 'All children are checked out'
-    } else if (currentAttendance === 0) {
+    } else if (currentCheckOut === 0) {
       return 'No children are checked out'
-    } else if (currentAttendance === 1) {
+    } else if (currentCheckOut === 1) {
       return '1 child is checked out'
     } else {
-      return `${currentAttendance} children are checked out`
+      return `${currentCheckOut} children are checked out`
     }
   }
 
@@ -119,7 +121,7 @@ const CheckOut = (props) => {
       <Spacer height={Size.statusbar} />
 
       <Text style={[Styles.h1, Styles.raleway]}>
-        Check Out
+        { Language.CheckOut }
       </Text>
 
       <Text style={Styles.h2}>
@@ -127,11 +129,11 @@ const CheckOut = (props) => {
       </Text>
 
       <Text style={[Styles.text, { marginLeft: 10, marginBottom: 20 }]} >
-        { checkOutData ? getCheckedOutTotals() : null }
+        { getCheckedOutTotals() }
       </Text>
 
       <ScrollView contentContainerStyle={Styles.attendanceHolder} >
-        { checkOutData ? getAttendanceCards() : null }
+        { getAttendanceCards() }
       </ScrollView>
 
       <TouchableOpacity

@@ -9,6 +9,8 @@ export default Swahili = {
   New: "Mpya",
   Edit: "Hariri",
   Other: "Nyingine",
+  CheckIn: "Ingia",
+  CheckOut: "Angalia",
   Child: "Mtoto",
   Children: "Watoto",
   Guardian: "Mlezi",

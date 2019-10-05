@@ -9,6 +9,8 @@ export default English = {
   Male: "Male",
   Female: "Female",
   Other: "Other",
+  CheckIn: "Check In",
+  CheckOut: "Check Out",
   Child: "Child",
   Children: "Children",
   Guardian: "Guardian",

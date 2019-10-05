@@ -5,6 +5,7 @@ import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av'
 import { GetFullDate, GetShortDate } from '../utilities/dates';
 import { Styles, Size } from '../constants/Style';
+import Language from '../languages'
 
 import Spacer from '../components/Spacer';
 import Backdrop from '../components/Backdrop';
@@ -32,15 +33,13 @@ const CheckIn = (props) => {
     const today = GetShortDate()
 
     const checkInData = Object.values(children).map((child) => {
-      const data = {
+      return {
         id: child.id,
         firstName: child.firstName,
         lastName: child.lastName,
         checkIn: attendance[today][child.id].checkIn,
         checkOut: attendance[today][child.id].checkOut,
       }
-
-      return data
     })
 
     setCheckInData(checkInData)
@@ -61,37 +60,41 @@ const CheckIn = (props) => {
 
 
   const getAttendanceCards = () => {
+    if (!checkInData) {
+      return null
+    }
+
     return (
-      checkInData.map((data, i) => {
-        return (
-          <AttendanceCard
-            key={i}
-            data={data}
-            selected={data.checkIn}
-            onPress={() => toggleCheckIn(data.id)}
-          />
-        )
-      })
+      checkInData.map((data, i) =>
+        <AttendanceCard
+          key={i}
+          data={data}
+          selected={data.checkIn}
+          onPress={() => toggleCheckIn(data.id)}
+        />
+      )
     )
   }
 
 
-  const getCurrentAttendance = () => {
+  const getCurrentCheckIn = () => {
     return checkInData.reduce((acc, data) => data.checkIn ? acc + 1 : acc, 0)
   }
 
 
   const getAttendanceTotals = () => {
-    const currentAttendance = getCurrentAttendance()
+    const currentCheckIn = getCurrentCheckIn()
 
-    if (currentAttendance === checkInData.length) {
+    if (!checkInData) {
+      return null
+    } else if (currentCheckIn === checkInData.length) {
       return 'All children are checked in'
-    } else if (currentAttendance === 0) {
+    } else if (currentCheckIn === 0) {
       return 'No children are checked in'
-    } else if (currentAttendance === 1) {
+    } else if (currentCheckIn === 1) {
       return '1 child is checked in'
     } else {
-      return `${currentAttendance} children are checked in`
+      return `${currentCheckIn} children are checked in`
     }
   }
 
@@ -120,7 +123,7 @@ const CheckIn = (props) => {
       <Spacer height={Size.statusbar} />
 
       <Text style={[Styles.h1, Styles.raleway]}>
-        Check In
+        { Language.CheckIn }
       </Text>
 
       <Text style={Styles.h2}>
@@ -128,7 +131,7 @@ const CheckIn = (props) => {
       </Text>
 
       <Text style={[Styles.text, { marginLeft: 10, marginBottom: 20 }]} >
-        { checkInData ? getAttendanceTotals() : null }
+        { getAttendanceTotals() }
       </Text>
 
       <ScrollView contentContainerStyle={Styles.attendanceHolder} >

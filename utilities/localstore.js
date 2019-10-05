@@ -194,75 +194,44 @@ export const LoadTestData = async () => {
 
 
 export const LogTestData = async () => {
-  const guardians = await Get(GUARDIANS)
-  const contacts = await Get(CONTACTS)
-  const children = await Get(CHILDREN)
-
-  console.log(GUARDIANS, guardians)
-  console.log(CONTACTS, contacts)
-  console.log(CHILDREN, children)
+  console.log(GUARDIANS, await Get(GUARDIANS))
+  console.log(CONTACTS, await Get(CONTACTS))
+  console.log(CHILDREN, await Get(CHILDREN))
 }
 
 
 export const UpdateStore = async (dispatch) => {
-  const accounts = await Get(ACCOUNTS)
-  const children = await Get(CHILDREN)
-  const guardians = await Get(GUARDIANS)
-  const contacts = await Get(CONTACTS)
+  for (const [id, account] of Object.entries(await Get(ACCOUNTS))) {
+    dispatch({ type: SET_ACCOUNT, id, account })
+  }
 
-  const attendance = await Get(ATTENDANCE)
-  const finances = await Get(FINANCES)
-  const payments = await Get(PAYMENTS)
-  const expenses = await Get(EXPENSES)
+  for (const [id, child] of Object.entries(await Get(CHILDREN))) {
+    dispatch({ type: SET_CHILD, id, child })
+  }
 
-  accounts.forEach((accountData) => {
-    dispatch({
-      type: SET_ACCOUNT, id: accountData.id, account: accountData
-    })
-  })
+  for (const [id, guardian] of Object.entries(await Get(GUARDIANS))) {
+    dispatch({ type: SET_GUARDIAN, id, guardian })
+  }
 
-  children.forEach((childData) => {
-    dispatch({
-      type: SET_CHILD, id: childData.id, child: childData
-    })
-  })
+  for (const [id, contact] of Object.entries(await Get(CONTACTS))) {
+    dispatch({ type: SET_CONTACT, id, contact })
+  }
 
-  guardians.forEach((guardianData) => {
-    dispatch({
-      type: SET_GUARDIAN, id: guardianData.id, guardian: guardianData
-    })
-  })
+  for (const [date, attendance] of Object.entries(await Get(ATTENDANCE))) {
+    dispatch({ type: SET_ATTENDANCE, id: date, attendance })
+  }
 
-  contacts.forEach((contactData) => {
-    dispatch({
-      type: SET_CONTACT, id: contactData.id, contact: contactData
-    })
-  })
+  for (const [date, finances] of Object.entries(await Get(FINANCES))) {
+    dispatch({ type: SET_FINANCES, id: date, finances })
+  }
 
-  attendance.forEach((attendanceData) => {
-    dispatch({
-      type: SET_ATTENDANCE, id: attendanceData.date, attendance: attendanceData
-    })
-  })
+  for (const [date, payments] of Object.entries(await Get(PAYMENTS))) {
+    dispatch({ type: SET_PAYMENTS, id: date, payments })
+  }
 
-  finances.forEach((financesData) => {
-    dispatch({
-      type: SET_FINANCES, id: financesData.date, finances: financesData
-    })
-  })
-
-  payments.forEach((paymentsData) => {
-    dispatch({
-      type: SET_PAYMENTS, id: paymentsData.date, payments: paymentsData
-    })
-  })
-
-  expenses.forEach((expensesData) => {
-    dispatch({
-      type: SET_EXPENSES, id: expensesData.date, expenses: expensesData
-    })
-  })
-
+  for (const [date, expenses] of Object.entries(await Get(EXPENSES))) {
+    dispatch({ type: SET_EXPENSES, id: date, expenses })
+  }
 }
 
 
@@ -271,15 +240,11 @@ const InitAttendance = async (today) => {
   const attendanceTodayId = attendanceIds.find((date) => date === today)
 
   if (attendanceTodayId === undefined) {
-    const attendanceToday = {
-      date: today,
-      attendance: {},
-    }
-
+    const attendanceToday = {}
     const children = await Get(CHILDREN)
 
     children.forEach((childData) => {
-      attendanceToday.attendance[childData.id] = {
+      attendanceToday[childData.id] = {
         checkIn: true,
         checkOut: false,
       }
@@ -296,7 +261,6 @@ const InitFinances = async (today) => {
 
   if (financesTodayId === undefined) {
     const financesToday = {
-      date: today,
       income: 0,
       expenses: 0,
     }
@@ -311,12 +275,7 @@ const InitExpenses = async (today) => {
   const expenseTodayId = expensesIds.find((date) => date === today)
 
   if (expenseTodayId === undefined) {
-    const expensesToday = {
-      date: today,
-      expenses: [],
-    }
-
-    await Create(EXPENSES, today, expensesToday)
+    await Create(EXPENSES, today, {})
   }
 }
 
@@ -326,12 +285,7 @@ const InitPayments = async (today) => {
   const paymentTodayId = paymentsIds.find((date) => date === today)
 
   if (paymentTodayId === undefined) {
-    const paymentsToday = {
-      date: today,
-      payments: [],
-    }
-
-    await Create(PAYMENTS, today, paymentsToday)
+    await Create(PAYMENTS, today, {})
   }
 }
 
@@ -367,9 +321,9 @@ export const SubmitAccount = async (dispatch, account) => {
 
     const today = GetShortDate()
     const attendanceToday = await Get(ATTENDANCE, today)
-    attendanceToday.attendance[id] = { checkIn: true, checkOut: false }
+    attendanceToday[id] = { checkIn: true, checkOut: false }
 
-    await Update(ATTENDANCE, today, { attendance: attendanceToday })
+    await Update(ATTENDANCE, today, attendanceToday)
 
     dispatch({ type: SET_ATTENDANCE, id: today, attendance: attendanceToday })
   }

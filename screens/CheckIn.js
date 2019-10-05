@@ -78,15 +78,10 @@ const CheckIn = (props) => {
 
 
   const getCurrentAttendance = () => {
-    let total = 0
-
-    checkInData.forEach((data) => {
-      if (data.checkIn) {
-        total += 1
-      }
+    return checkInData.reduce((acc, data) => {
+      acc += data.checkIn ? 1 : 0
+      return acc
     })
-
-    return total
   }
 
 

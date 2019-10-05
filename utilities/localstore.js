@@ -300,21 +300,21 @@ export const InitDatabase = async () => {
 }
 
 
-export const SubmitAccount = async (dispatch, account) => {
+export const SubmitAccount = async (dispatch, newAccount) => {
   const accountId = uuid()
 
   const accountData = {
     id: accountId,
     balance: 0,
-    rate: account.rate,
-    frequency: account.frequency,
+    rate: newAccount.rate,
+    frequency: newAccount.frequency,
     children: [],
     guardians: [],
     contacts: [],
   }
 
 
-  for (const [id, child] of Object.entries(account.children)) {
+  for (const [id, child] of Object.entries(newAccount.children)) {
     accountData.children.push(id)
 
     await Create(CHILDREN, id, { accountId, ...child })
@@ -328,13 +328,13 @@ export const SubmitAccount = async (dispatch, account) => {
     dispatch({ type: SET_ATTENDANCE, id: today, attendance: attendanceToday })
   }
 
-  for (const [id, guardian] of Object.entries(account.guardians)) {
+  for (const [id, guardian] of Object.entries(newAccount.guardians)) {
     accountData.guardians.push(id)
 
     await Create(GUARDIANS, id, { accountId, ...guardian })
   }
 
-  for (const [id, contact] of Object.entries(account.contacts)) {
+  for (const [id, contact] of Object.entries(newAccount.contacts)) {
     accountData.contacts.push(id)
 
     await Create(CONTACTS, id, { accountId, ...contact })

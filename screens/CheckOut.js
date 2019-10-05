@@ -76,15 +76,7 @@ const CheckOut = (props) => {
 
 
   const getCurrentCheckedOut = () => {
-    let total = 0
-
-    checkOutData.forEach((data) => {
-      if (data.checkOut) {
-        total += 1
-      }
-    })
-
-    return total
+    return checkOutData.reduce((acc, data) => data.checkOut ? acc + 1 : acc, 0)
   }
 
 

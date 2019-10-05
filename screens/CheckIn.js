@@ -36,8 +36,8 @@ const CheckIn = (props) => {
         id: child.id,
         firstName: child.firstName,
         lastName: child.lastName,
-        checkIn: attendance[today].attendance[child.id].checkIn,
-        checkOut: attendance[today].attendance[child.id].checkOut,
+        checkIn: attendance[today][child.id].checkIn,
+        checkOut: attendance[today][child.id].checkOut,
       }
 
       return data
@@ -50,8 +50,7 @@ const CheckIn = (props) => {
   const toggleCheckIn = async (id) => {
     const today = GetShortDate()
     const attendanceToday = { ...attendance[today] }
-    attendanceToday.attendance[id].checkIn =
-      !attendanceToday.attendance[id].checkIn
+    attendanceToday[id].checkIn = !attendanceToday[id].checkIn
 
     await Update(ATTENDANCE, today, attendanceToday)
 
@@ -78,10 +77,7 @@ const CheckIn = (props) => {
 
 
   const getCurrentAttendance = () => {
-    return checkInData.reduce((acc, data) => {
-      acc += data.checkIn ? 1 : 0
-      return acc
-    })
+    return checkInData.reduce((acc, data) => data.checkIn ? acc + 1 : acc, 0)
   }
 
 

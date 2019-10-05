@@ -423,14 +423,7 @@ export const Update = async (key, id, data) => {
     const mergedData = currentData.concat(data)
     await SecureStore.setItemAsync(`${key}_${id}`, JSON.stringify(mergedData))
   } else {
-    let dataString
-
-    if (typeof data === "string") {
-      dataString = data
-    } else {
-      dataString = JSON.stringify(dataString)
-    }
-
+    const dataStr = typeof data === "string" ? data : JSON.stringify(dataStr)
     await SecureStore.setItemAsync(`${key}_${id}`, dataString)
   }
 }

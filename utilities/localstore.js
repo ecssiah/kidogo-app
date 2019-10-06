@@ -19,14 +19,13 @@ import {
 
 
 export const TestDataNeeded = async () => {
-  const childrenIds = await GetIds(CHILDREN)
-  return !childrenIds || !childrenIds.length
+  const accountIds = await GetIds(ACCOUNTS)
+  return !accountIds || !accountIds.length
 }
 
 
 export const LoadTestData = async () => {
   const account1 = {
-    id: uuid(),
     balance: 0,
     rate: 600,
     frequency: Frequency.Weekly,
@@ -35,9 +34,23 @@ export const LoadTestData = async () => {
     contacts: [],
   }
 
+  const account1Id = uuid()
+  const child11Id = uuid()
+  const child12Id = uuid()
+  const guardian11Id = uuid()
+  const guardian12Id = uuid()
+  const contact11Id = uuid()
+  const contact12Id = uuid()
+
+  account1.children.push(child11Id)
+  account1.children.push(child12Id)
+  account1.guardians.push(guardian11Id)
+  account1.guardians.push(guardian12Id)
+  account1.contacts.push(contact11Id)
+  account1.contacts.push(contact12Id)
+
   const guardian11 = {
-    accountId: account1.id,
-    id: uuid(),
+    accountId: account1Id,
     firstName: "Alan",
     lastName: "Smith",
     phone: "608-519-6875",
@@ -47,8 +60,7 @@ export const LoadTestData = async () => {
   }
 
   const guardian12 = {
-    accountId: account1.id,
-    id: uuid(),
+    accountId: account1Id,
     firstName: "Laura",
     lastName: "Tadow",
     phone: "621-675-1236",
@@ -58,24 +70,21 @@ export const LoadTestData = async () => {
   }
 
   const contact11 = {
-    accountId: account1.id,
-    id: uuid(),
+    accountId: account1Id,
     firstName: "Sam",
     lastName: "Sparro",
     phone: "435-678-1542",
   }
 
   const contact12 = {
-    accountId: account1.id,
-    id: uuid(),
+    accountId: account1Id,
     firstName: "Arch",
     lastName: "Rech",
     phone: "765-132-4568",
   }
 
   const child11 = {
-    accountId: account1.id,
-    id: uuid(),
+    accountId: account1Id,
     firstName: "Tristan",
     lastName: "Johnston",
     birthdate: "1-28-1983",
@@ -84,8 +93,7 @@ export const LoadTestData = async () => {
   }
 
   const child12 = {
-    accountId: account1.id,
-    id: uuid(),
+    accountId: account1Id,
     firstName: "Darrin",
     lastName: "Snapton",
     birthdate: "6-12-1999",
@@ -93,23 +101,24 @@ export const LoadTestData = async () => {
     note: "This is a note about Darrin.",
   }
 
-  account1.children.push(child11.id)
-  account1.children.push(child12.id)
-  account1.guardians.push(guardian11.id)
-  account1.guardians.push(guardian12.id)
-  account1.contacts.push(contact11.id)
-  account1.contacts.push(contact12.id)
+  await Create(ACCOUNTS, account1Id, account1)
 
-  await Create(ACCOUNTS, account1.id, account1)
-  await Create(GUARDIANS, guardian11.id, guardian11)
-  await Create(GUARDIANS, guardian12.id, guardian12)
-  await Create(CONTACTS, contact11.id, contact11)
-  await Create(CONTACTS, contact12.id, contact12)
-  await Create(CHILDREN, child11.id, child11)
-  await Create(CHILDREN, child12.id, child12)
+  await Create(CHILDREN, child11Id, child11)
+  await Create(CHILDREN, child12Id, child12)
+  await Create(GUARDIANS, guardian11Id, guardian11)
+  await Create(GUARDIANS, guardian12Id, guardian12)
+  await Create(CONTACTS, contact11Id, contact11)
+  await Create(CONTACTS, contact12Id, contact12)
+
+  const account2Id = uuid()
+  const child21Id = uuid()
+  const child22Id = uuid()
+  const guardian21Id = uuid()
+  const guardian22Id = uuid()
+  const contact21Id = uuid()
+  const contact22Id = uuid()
 
   const account2 = {
-    id: uuid(),
     balance: 0,
     rate: 100,
     frequency: Frequency.Daily,
@@ -118,9 +127,15 @@ export const LoadTestData = async () => {
     contacts: [],
   }
 
+  account2.children.push(child21Id)
+  account2.children.push(child22Id)
+  account2.guardians.push(guardian21Id)
+  account2.guardians.push(guardian22Id)
+  account2.contacts.push(contact21Id)
+  account2.contacts.push(contact22Id)
+
   const guardian21 = {
-    accountId: account2.id,
-    id: uuid(),
+    accountId: account2Id,
     firstName: "Michael",
     lastName: "Chapman",
     phone: "608-120-6875",
@@ -130,8 +145,7 @@ export const LoadTestData = async () => {
   }
 
   const guardian22 = {
-    accountId: account2.id,
-    id: uuid(),
+    accountId: account2Id,
     firstName: "Masego",
     lastName: "Tadow",
     phone: "621-675-4555",
@@ -141,24 +155,21 @@ export const LoadTestData = async () => {
   }
 
   const contact21 = {
-    accountId: account2.id,
-    id: uuid(),
+    accountId: account2Id,
     firstName: "Graham",
     lastName: "Tiro",
     phone: "234-678-1111",
   }
 
   const contact22 = {
-    accountId: account2.id,
-    id: uuid(),
+    accountId: account2Id,
     firstName: "Trent",
     lastName: "Rocht",
     phone: "765-333-6655",
   }
 
   const child21 = {
-    accountId: account2.id,
-    id: uuid(),
+    accountId: account2Id,
     firstName: "Reselle",
     lastName: "Trepi",
     birthdate: "8-2-2001",
@@ -167,8 +178,7 @@ export const LoadTestData = async () => {
   }
 
   const child22 = {
-    accountId: account2.id,
-    id: uuid(),
+    accountId: account2Id,
     firstName: "Grey",
     lastName: "Mark",
     birthdate: "9-12-1994",
@@ -176,20 +186,13 @@ export const LoadTestData = async () => {
     note: "This is a note about Grey.",
   }
 
-  account2.children.push(child21.id)
-  account2.children.push(child22.id)
-  account2.guardians.push(guardian21.id)
-  account2.guardians.push(guardian22.id)
-  account2.contacts.push(contact21.id)
-  account2.contacts.push(contact22.id)
-
-  await Create(ACCOUNTS, account2.id, account2)
-  await Create(CHILDREN, child21.id, child21)
-  await Create(CHILDREN, child22.id, child22)
-  await Create(GUARDIANS, guardian21.id, guardian21)
-  await Create(GUARDIANS, guardian22.id, guardian22)
-  await Create(CONTACTS, contact21.id, contact21)
-  await Create(CONTACTS, contact22.id, contact22)
+  await Create(ACCOUNTS, account2Id, account2)
+  await Create(CHILDREN, child21Id, child21)
+  await Create(CHILDREN, child22Id, child22)
+  await Create(GUARDIANS, guardian21Id, guardian21)
+  await Create(GUARDIANS, guardian22Id, guardian22)
+  await Create(CONTACTS, contact21Id, contact21)
+  await Create(CONTACTS, contact22Id, contact22)
 }
 
 
@@ -217,37 +220,32 @@ export const UpdateStore = async (dispatch) => {
     dispatch({ type: SET_CONTACT, id, contact })
   }
 
-  for (const [date, attendance] of Object.entries(await Get(ATTENDANCE))) {
-    dispatch({ type: SET_ATTENDANCE, id: date, attendance })
+  for (const [id, attendance] of Object.entries(await Get(ATTENDANCE))) {
+    dispatch({ type: SET_ATTENDANCE, id, attendance })
   }
 
-  for (const [date, finances] of Object.entries(await Get(FINANCES))) {
-    dispatch({ type: SET_FINANCES, id: date, finances })
+  for (const [id, finances] of Object.entries(await Get(FINANCES))) {
+    dispatch({ type: SET_FINANCES, id, finances })
   }
 
-  for (const [date, payments] of Object.entries(await Get(PAYMENTS))) {
-    dispatch({ type: SET_PAYMENTS, id: date, payments })
+  for (const [id, payments] of Object.entries(await Get(PAYMENTS))) {
+    dispatch({ type: SET_PAYMENTS, id, payments })
   }
 
-  for (const [date, expenses] of Object.entries(await Get(EXPENSES))) {
-    dispatch({ type: SET_EXPENSES, id: date, expenses })
+  for (const [id, expenses] of Object.entries(await Get(EXPENSES))) {
+    dispatch({ type: SET_EXPENSES, id, expenses })
   }
 }
 
 
 const InitAttendance = async (today) => {
-  const attendanceIds = await GetIds(ATTENDANCE)
-  const attendanceTodayId = attendanceIds.find((date) => date === today)
+  const attendanceDates = await GetIds(ATTENDANCE)
 
-  if (attendanceTodayId === undefined) {
-    const attendanceToday = {}
+  if (!attendanceDates.find((date) => date === today)) {
     const children = await Get(CHILDREN)
 
-    children.forEach((childData) => {
-      attendanceToday[childData.id] = {
-        checkIn: true,
-        checkOut: false,
-      }
+    const attendanceToday = Object.keys(children).map((id) => {
+      return { checkIn: true, checkOut: false }
     })
 
     await Create(ATTENDANCE, today, attendanceToday)
@@ -256,10 +254,9 @@ const InitAttendance = async (today) => {
 
 
 const InitFinances = async (today) => {
-  const financesIds = await GetIds(FINANCES)
-  const financesTodayId = financesIds.find((date) => date === today)
+  const financesDates = await GetIds(FINANCES)
 
-  if (financesTodayId === undefined) {
+  if (!financesDates.find((date) => date === today)) {
     const financesToday = {
       income: 0,
       expenses: 0,
@@ -271,20 +268,18 @@ const InitFinances = async (today) => {
 
 
 const InitExpenses = async (today) => {
-  const expensesIds = await GetIds(EXPENSES)
-  const expenseTodayId = expensesIds.find((date) => date === today)
+  const expensesDates = await GetIds(EXPENSES)
 
-  if (expenseTodayId === undefined) {
+  if (!expensesDates.find((date) => date === today)) {
     await Create(EXPENSES, today, {})
   }
 }
 
 
 const InitPayments = async (today) => {
-  const paymentsIds = await GetIds(PAYMENTS)
-  const paymentTodayId = paymentsIds.find((date) => date === today)
+  const paymentsDates = await GetIds(PAYMENTS)
 
-  if (paymentTodayId === undefined) {
+  if (!paymentsDates.find((date) => date === today)) {
     await Create(PAYMENTS, today, {})
   }
 }
@@ -330,13 +325,11 @@ export const SubmitAccount = async (dispatch, newAccount) => {
 
   for (const [id, guardian] of Object.entries(newAccount.guardians)) {
     accountData.guardians.push(id)
-
     await Create(GUARDIANS, id, { accountId, ...guardian })
   }
 
   for (const [id, contact] of Object.entries(newAccount.contacts)) {
     accountData.contacts.push(id)
-
     await Create(CONTACTS, id, { accountId, ...contact })
   }
 
@@ -376,29 +369,18 @@ export const Get = async (key, ids) => {
     const elementResp = await SecureStore.getItemAsync(`${key}_${ids}`)
     const element = JSON.parse(elementResp)
 
-    // return element
-
     return { [ids]: element }
   } else {
     if (ids === undefined) {
       ids = await GetIds(key)
     }
 
-    // const elementPromises = ids.map(async (id) => {
-    //   const elementResp = await SecureStore.getItemAsync(`${key}_${id}`)
-    //   const element = JSON.parse(elementResp)
+    const elements = {}
 
-    //   return element
-    // })
-
-    const elementPromises = ids.reduce(async (acc, id) => {
+    for (const id of ids) {
       const elementResp = await SecureStore.getItemAsync(`${key}_${id}`)
-      acc[id] = JSON.parse(elementResp)
-
-      return acc
-    }, {})
-
-    const elements = await Promise.all(elementPromises)
+      elements[id] = JSON.parse(elementResp)
+    }
 
     return elements
   }
@@ -412,7 +394,7 @@ export const Create = async (key, id, data) => {
 }
 
 
-export const Update = async (key, id, data) => {
+export const Update = async (data, key, id) => {
   const currentDataResp = await SecureStore.getItemAsync(`${key}_${id}`)
   const currentData = JSON.parse(currentDataResp)
 

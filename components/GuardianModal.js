@@ -174,9 +174,10 @@ const GuardianModal = (props) => {
 
             <TouchableOpacity
               style={Styles.pairButton}
-              onPress={() => props.submit({
-                firstName, lastName, address, city, phone, govtId,
-              })}
+              onPress={() => props.submit(
+                props.id,
+                { firstName, lastName, address, city, phone, govtId }
+              )}
             >
               <Text style={Styles.btnText} >
                 { Language.Confirm }

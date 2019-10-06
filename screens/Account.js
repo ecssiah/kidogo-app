@@ -20,8 +20,12 @@ import {
 import { SET_ACCOUNT } from '../constants/Account';
 import { SET_ATTENDANCE } from '../constants/Attendance';
 import { UPDATE_CHILD, SET_CHILD, DELETE_CHILD } from '../constants/Children';
-import { UPDATE_GUARDIAN, SET_GUARDIAN, DELETE_GUARDIAN } from '../constants/Guardians';
-import { UPDATE_CONTACT, SET_CONTACT, DELETE_CONTACT } from '../constants/Contacts';
+import {
+  UPDATE_GUARDIAN, SET_GUARDIAN, DELETE_GUARDIAN
+} from '../constants/Guardians';
+import {
+  UPDATE_CONTACT, SET_CONTACT, DELETE_CONTACT
+} from '../constants/Contacts';
 
 
 const Account = (props) => {
@@ -50,17 +54,41 @@ const Account = (props) => {
 
 
   const getChildren = () => {
-    return Object.values(children).filter((child) => child.accountId === accountId)
+    return Object.keys(children).reduce(
+      (res, id) => {
+        if (accountId === children[id].accountId) {
+          res[id] = children[id]
+          res[id].id = id
+        }
+        return res
+      }, {}
+    )
   }
 
 
   const getGuardians = () => {
-    return Object.values(guardians).filter((guardian) => guardian.accountId === accountId)
+    return Object.keys(guardians).reduce(
+      (res, id) => {
+        if (accountId === guardians[id].accountId) {
+          res[id] = guardians[id]
+          res[id].id = id
+        }
+        return res
+      }, {}
+    )
   }
 
 
   const getContacts = () => {
-    return Object.values(contacts).filter((contact) => contact.accountId === accountId)
+    return Object.keys(contacts).reduce(
+      (res, id) => {
+        if (accountId === contacts[id].accountId) {
+          res[id] = contacts[id]
+          res[id].id = id
+        }
+        return res
+      }, {}
+    )
   }
 
 
@@ -72,14 +100,16 @@ const Account = (props) => {
 
   const onDeleteChild = async (id) => {
     const curAccount = { ...await Get(ACCOUNTS, accountId) }
-    const updatedChildren = curAccount.children.filter((childId) => childId !== id)
+    const updatedChildren = curAccount.children.filter((childId) =>
+      id !== childId
+    )
 
     const updatedAccount = {
       ...curAccount,
       children: updatedChildren,
     }
 
-    dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
+    dispatch({ type: SET_ACCOUNT, id: accountIdj, account: updatedAccount })
     await Update(ACCOUNTS, accountId, { children: updatedAccount.children })
 
     dispatch({ type: DELETE_CHILD, id })
@@ -95,29 +125,29 @@ const Account = (props) => {
   }
 
 
-  const onSubmitChild = async (childData) => {
-    if (childData.id) {
-      dispatch({ type: UPDATE_CHILD, id: childData.id, update: childData })
-      await Update(CHILDREN, childData.id, childData)
+  const onSubmitChild = async (id, childData) => {
+    if (id) {
+      dispatch({ type: UPDATE_CHILD, id, update: childData })
+      await Update(CHILDREN, id, childData)
     } else {
+      const newChildId = uuid()
       const child = { accountId, ...childData }
-      child.id = uuid()
 
       const updatedAccount = { ...await Get(ACCOUNTS, accountId) }
-      updatedAccount.children.push(child.id)
+      updatedAccount.children.push(newChildId)
 
-      dispatch({ type: SET_CHILD, id: child.id, child })
-      await Create(CHILDREN, child.id, child)
+      dispatch({ type: SET_CHILD, id: newChildId, child })
+      await Create(CHILDREN, newChildId, child)
 
       dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
       await Update(ACCOUNTS, accountId, { children: updatedAccount.children })
 
       const today = GetShortDate()
       const attendanceToday = await Get(ATTENDANCE, today)
-      attendanceToday.attendance[child.id] = { checkIn: true, checkOut: false }
+      attendanceToday[newChildId] = { checkIn: true, checkOut: false }
 
       dispatch({ type: SET_ATTENDANCE, id: today, attendance: attendanceToday })
-      await Update(ATTENDANCE, today, { attendance: attendanceToday.attendance })
+      await Update(ATTENDANCE, today, attendanceToday.attendance)
     }
 
     setChildModalVisible(false)
@@ -132,7 +162,9 @@ const Account = (props) => {
 
   const onDeleteGuardian = async (id) => {
     const curAccount = { ...await Get(ACCOUNTS, accountId) }
-    const updatedGuardians = curAccount.guardians.filter((guardianId) => guardianId !== id)
+    const updatedGuardians = curAccount.guardians.filter((guardianId) =>
+      guardianId !== id
+    )
 
     const updatedAccount = {
       ...curAccount,
@@ -140,7 +172,7 @@ const Account = (props) => {
     }
 
     dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
-    await Update(ACCOUNTS, accountId, { guardians: updatedAccount.guardians })
+    await Update(ACCOUNTS, accountId, updatedAccount.guardians)
 
     dispatch({ type: DELETE_GUARDIAN, id })
     await Delete(GUARDIANS, id)
@@ -155,22 +187,22 @@ const Account = (props) => {
   }
 
 
-  const onSubmitGuardian = async (guardianData) => {
-    if (guardianData.id) {
-      dispatch({ type: UPDATE_GUARDIAN, id: guardianData.id, update: guardianData })
-      await Update(GUARDIANS, guardianData.id, guardianData)
+  const onSubmitGuardian = async (id, guardianData) => {
+    if (id) {
+      dispatch({ type: UPDATE_GUARDIAN, id, update: guardianData })
+      await Update(GUARDIANS, id, guardianData)
     } else {
+      const newGuardianId = uuid()
       const guardian = { accountId, ...guardianData }
-      guardian.id = uuid()
 
       const updatedAccount = { ...await Get(ACCOUNTS, accountId) }
-      updatedAccount.guardians.push(guardian.id)
+      updatedAccount.guardians.push(newGuardianId)
 
-      dispatch({ type: SET_GUARDIAN, id: guardian.id, guardian })
-      await Create(GUARDIANS, guardian.id, guardian)
+      dispatch({ type: SET_GUARDIAN, id: newGuardianId, guardian })
+      await Create(GUARDIANS, newGuardianId, guardian)
 
       dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
-      await Update(ACCOUNTS, accountId, { guardians: updatedAccount.guardians })
+      await Update(ACCOUNTS, accountId, updatedAccount.guardians)
     }
 
     setGuardianModalVisible(false)
@@ -185,7 +217,9 @@ const Account = (props) => {
 
   const onDeleteContact = async (id) => {
     const curAccount = { ...await Get(ACCOUNTS, accountId) }
-    const updatedContacts = curAccount.contacts.filter((contactId) => contactId !== id)
+    const updatedContacts = curAccount.contacts.filter((contactId) =>
+      contactId !== id
+    )
 
     const updatedAccount = {
       ...curAccount,
@@ -208,22 +242,22 @@ const Account = (props) => {
   }
 
 
-  const onSubmitContact = async (contactData) => {
-    if (contactData.id) {
-      dispatch({ type: UPDATE_CONTACT, id: contactData.id, update: contactData })
-      await Update(CONTACTS, contactData.id, contactData)
+  const onSubmitContact = async (id, contactData) => {
+    if (id) {
+      dispatch({ type: UPDATE_CONTACT, id, update: contactData })
+      await Update(CONTACTS, id, contactData)
     } else {
+      const newContactId = uuid()
       const contact = { accountId, ...contactData }
-      contact.id = uuid()
 
-      const updatedAccount = { ...await Get(ACCOUNTS, accountId) }
-      updatedAccount.contacts.push(contact.id)
+      const updatedAccount = { ...await Get(ACCOUNTS, accountIdj) }
+      updatedAccount.contacts.push(newContactId)
 
-      dispatch({ type: SET_CONTACT, id: contact.id, contact })
-      await Create(CONTACTS, contact.id, contact)
+      dispatch({ type: SET_CONTACT, id: newContactId, contact })
+      await Create(CONTACTS, newContactId, contact)
 
-      dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
-      await Update(ACCOUNTS, accountId, { contacts: updatedAccount.contacts })
+      dispatch({ type: SET_ACCOUNT, newContactId, account: updatedAccount })
+      await Update(ACCOUNTS, newContactId, { contacts: updatedAccount.contacts })
     }
 
     setContactModalVisible(false)

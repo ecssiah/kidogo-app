@@ -5,9 +5,6 @@ import { Styles } from '../constants/Style'
 
 
 const PaymentHeader = (props) => {
-
-  console.log(props.account)
-
   return (
     <View>
       <Text style={Styles.h1} >

@@ -39,7 +39,7 @@ const AccountCard = (props) => {
 
 
   const onSelect = () => {
-    props.navigate('Account', { accountId: props.account.id })
+    props.navigate('Account', { accountId: props.id })
   }
 
 

@@ -93,7 +93,7 @@ const SignUp = (props) => {
 
       props.navigation.navigate('Dash')
     } else {
-      console.log("Caregiver confirmation failed")
+      console.error("Caregiver confirmation failed")
     }
   }
 

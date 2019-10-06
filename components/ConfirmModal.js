@@ -25,7 +25,7 @@ const ConfirmModal = (props) => {
 
 
   const onResend = async () => {
-    console.log("resend code")
+
   }
 
 

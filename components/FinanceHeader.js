@@ -6,6 +6,9 @@ import { Icon } from 'react-native-elements';
 import Language from '../languages'
 
 
+// TODO: Calculate whole week
+
+
 const FinanceHeader = (props) => {
   const getFinanceSummary = () => {
     const income = Number(props.financesToday.income)

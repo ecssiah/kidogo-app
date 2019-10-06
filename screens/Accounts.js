@@ -16,6 +16,7 @@ const Accounts = (props) => {
     return Object.entries(accounts).map(([id, account]) =>
       <AccountCard
         key={id}
+        id={id}
         account={account}
         navigate={props.navigation.navigate}
       />

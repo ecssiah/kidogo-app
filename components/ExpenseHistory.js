@@ -11,7 +11,7 @@ const ExpenseHistory = (props) => {
     const rowData = []
 
     for (const [date, expensesData] of Object.entries(props.expenses)) {
-      for (const expense of expensesData.expenses) {
+      for (const expense of Object.values(expensesData)) {
         rowData.push({
           date,
           type: expense.type,

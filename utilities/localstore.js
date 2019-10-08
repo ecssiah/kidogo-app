@@ -244,9 +244,10 @@ const InitAttendance = async (today) => {
   if (!attendanceDates.find((date) => date === today)) {
     const children = await Get(CHILDREN)
 
-    const attendanceToday = Object.keys(children).map((id) => {
-      return { checkIn: true, checkOut: false }
-    })
+    const attendanceToday = Object.keys(children).reduce((res, id) => {
+      res[id] = { checkIn: true, checkOut: false }
+      return res
+    }, {})
 
     await Create(ATTENDANCE, today, attendanceToday)
   }
@@ -394,7 +395,7 @@ export const Create = async (key, id, data) => {
 }
 
 
-export const Update = async (data, key, id) => {
+export const Update = async (key, id, data) => {
   const currentDataResp = await SecureStore.getItemAsync(`${key}_${id}`)
   const currentData = JSON.parse(currentDataResp)
 

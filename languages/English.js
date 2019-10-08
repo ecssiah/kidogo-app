@@ -8,6 +8,7 @@ export default English = {
   Edit: "Edit",
   Male: "Male",
   Female: "Female",
+  Gender: "Gender",
   Other: "Other",
   CheckIn: "Check In",
   CheckOut: "Check Out",

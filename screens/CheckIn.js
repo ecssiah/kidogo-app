@@ -32,13 +32,13 @@ const CheckIn = (props) => {
   const getCheckInData = async () => {
     const today = GetShortDate()
 
-    const checkInData = Object.values(children).map((child) => {
+    const checkInData = Object.keys(children).map((id) => {
       return {
-        id: child.id,
-        firstName: child.firstName,
-        lastName: child.lastName,
-        checkIn: attendance[today][child.id].checkIn,
-        checkOut: attendance[today][child.id].checkOut,
+        id,
+        firstName: children[id].firstName,
+        lastName: children[id].lastName,
+        checkIn: attendance[today][id].checkIn,
+        checkOut: attendance[today][id].checkOut,
       }
     })
 
@@ -135,7 +135,7 @@ const CheckIn = (props) => {
       </Text>
 
       <ScrollView contentContainerStyle={Styles.attendanceHolder} >
-        { checkInData ? getAttendanceCards() : null }
+        { getAttendanceCards() }
       </ScrollView>
 
       <TouchableOpacity

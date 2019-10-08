@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/components/ConfirmModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ConfirmModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/FinanceHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/FinanceHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/PaymentHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/PaymentHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ChildEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ChildEntry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/languages/English.js" beforeDir="false" afterPath="$PROJECT_DIR$/languages/English.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/languages/Swahili.js" beforeDir="false" afterPath="$PROJECT_DIR$/languages/Swahili.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/Account.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/CheckIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/CheckIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/CheckOut.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/CheckOut.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utilities/localstore.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/localstore.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

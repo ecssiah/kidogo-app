@@ -4,6 +4,7 @@ export default Swahili = {
   False: "Uongo",
   Male: "Mwanaume",
   Female: "Kike",
+  Gender: "Jinsia",
   And: "na",
   Or: "au",
   New: "Mpya",

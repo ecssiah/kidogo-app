@@ -48,8 +48,14 @@ const Account = (props) => {
   const [frequency, setFrequency] = useState(accounts[accountId].frequency)
 
 
-  const getFamilyName = () => {
-    return guardians[accounts[accountId].guardians[0]].lastName
+  const getAccountName = () => {
+    const guardianNames = Object.values(accounts[accountId].guardians).map((id) => {
+      return guardians[id].lastName
+    })
+
+    const nameList = guardianNames.join(',')
+
+    return nameList
   }
 
 
@@ -296,7 +302,7 @@ const Account = (props) => {
 
       <ScrollView>
         <Text style={[Styles.h1, Styles.raleway]} >
-          { getFamilyName() }
+          { getAccountName() }
         </Text>
 
         <View style={Styles.divider} />

@@ -96,7 +96,7 @@ const ChildEntry = (props) => {
           </View>
 
           <Text style={Styles.label} >
-            { Language.Male } { Language.Or } { Language.Female }
+            { Language.Gender }
           </Text>
         </View>
       </View>

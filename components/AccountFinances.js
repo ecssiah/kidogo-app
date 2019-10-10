@@ -15,8 +15,12 @@ const AccountFinances = (props) => {
   }
 
 
-  const onNewPayment = () => {
-    props.navigate('Payments', { accountId: props.account.id })
+  const getFrequencyItems = () => {
+    return Object.values(Frequency).map((frequency, i) =>
+      <Picker.Item
+        key={i} label={FrequencyStrings[frequency]} type={frequency}
+      />
+    )
   }
 
 
@@ -29,7 +33,6 @@ const AccountFinances = (props) => {
       <Text style={Styles.frequencyDisplay} >
         { getRateSummary() }
       </Text>
-
 
       <View style={Styles.nameHolder}>
         <View style={{ flex: .5, marginRight: 5 }}>
@@ -58,18 +61,7 @@ const AccountFinances = (props) => {
               selectedValue={props.frequency}
               onValueChange={(value, index) => props.updateFrequency(value)}
             >
-              <Picker.Item
-                label={FrequencyStrings[Frequency.Daily]}
-                value={Frequency.Daily}
-              />
-              <Picker.Item
-                label={FrequencyStrings[Frequency.Weekly]}
-                value={Frequency.Weekly}
-              />
-              <Picker.Item
-                label={FrequencyStrings[Frequency.Termly]}
-                value={Frequency.Termly}
-              />
+              { getFrequencyItems() }
             </Picker>
           </View>
 
@@ -78,21 +70,6 @@ const AccountFinances = (props) => {
           </Text>
         </View>
       </View>
-
-      <Spacer medium />
-
-      <View style={Styles.buttonContainer} >
-        <TouchableOpacity
-          style={Styles.button}
-          onPress={onNewPayment}
-        >
-          <Text style={Styles.btnText} >
-            { Language.New } { Language.Payment }
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      <Spacer medium />
     </View>
   )
 }

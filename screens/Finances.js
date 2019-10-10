@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ScrollView } from 'react-native'
+import uuid from 'uuid'
 
 import Backdrop from '../components/Backdrop';
 import FinanceHeader from '../components/FinanceHeader';
@@ -27,8 +28,8 @@ const Finances = (props) => {
 
   const addExpense = async (expense) => {
     const today = GetShortDate()
-    const expensesToday = await Get(EXPENSES, today)
-    expensesToday.expenses.push(expense)
+    const expensesToday = { ...expenses[today] }
+    expensesToday[uuid()] = expense
 
     await Update(EXPENSES, today, expensesToday)
 

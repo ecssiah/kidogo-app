@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import uuid from 'uuid'
 
@@ -26,6 +26,7 @@ import {
 import {
   UPDATE_CONTACT, SET_CONTACT, DELETE_CONTACT
 } from '../constants/Contacts';
+import PaymentModal from '../components/PaymentModal';
 
 
 const Account = (props) => {
@@ -41,6 +42,7 @@ const Account = (props) => {
   const [selectedChildId, setSelectedChildId] = useState(null)
   const [selectedGuardianId, setSelectedGuardianId] = useState(null)
   const [selectedContactId, setSelectedContactId] = useState(null)
+  const [paymentModalVisible, setPaymentModalVisible] = useState(false)
   const [childModalVisible, setChildModalVisible] = useState(false)
   const [guardianModalVisible, setGuardianModalVisible] = useState(false)
   const [contactModalVisible, setContactModalVisible] = useState(false)
@@ -51,7 +53,7 @@ const Account = (props) => {
   const getAccountName = () => {
     const guardiansList = Object.values(accounts[accountId].guardians)
     const guardianNames = guardiansList.map((id) => guardians[id].lastName)
-    return guardianNames.join(',')
+    return guardianNames.join(', ')
   }
 
 
@@ -91,6 +93,11 @@ const Account = (props) => {
         return res
       }, {}
     )
+  }
+
+
+  const onAddPayment = () => {
+    setPaymentModalVisible(true)
   }
 
 
@@ -305,12 +312,24 @@ const Account = (props) => {
 
         <AccountFinances
           account={accounts[accountId]}
-          navigate={props.navigation.navigate}
           rate={rate}
           updateRate={updateRate}
           frequency={frequency}
           updateFrequency={updateFrequency}
         />
+
+        <View style={Styles.buttonContainer} >
+          <TouchableOpacity
+            style={Styles.button}
+            onPress={onAddPayment}
+          >
+            <Text style={Styles.btnText} >
+              { Language.New } { Language.Payment }
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <Spacer medium />
 
         <View style={Styles.divider} />
 
@@ -335,6 +354,12 @@ const Account = (props) => {
 
         <Spacer height={Size.keyboard} />
       </ScrollView>
+
+      <PaymentModal
+        accountId={accountId}
+        visible={paymentModalVisible}
+        setVisible={setPaymentModalVisible}
+      />
 
       <ChildModal
         id={selectedChildId}

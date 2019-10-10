@@ -48,6 +48,7 @@ export default Swahili = {
   Attendance: "Mahudhurio",
   Finances: "Fedha",
   DailyQuestions: "Maswali ya Kila siku",
+  Fee: "Ada",
   Add: "Ongeza",
   AddFamily: "Ongeza Familia",
   AddExpense: "Ongeza Gharama",

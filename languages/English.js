@@ -48,6 +48,7 @@ export default English = {
   Attendance: "Attendance",
   Finances: "Finances",
   DailyQuestions: "Daily Questions",
+  Fee: "Fee",
   Add: "Add",
   AddFamily: "Add Family",
   AddExpense: "Add Expense",

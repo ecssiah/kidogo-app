@@ -42,6 +42,7 @@ export default English = {
   Salary: "Salary",
   Equipment: "Equipment",
   Payment: "Payment",
+  Expense: "Expense",
   MorningGreeting: "Who's here today?",
   AfternoonGreeting: "Has anyone left?",
   EveningGreeting: "Did you buy anything today?",

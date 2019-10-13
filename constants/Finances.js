@@ -2,6 +2,8 @@ import Language from '../languages'
 
 export const SET_FINANCES = 'expenses:set_finances'
 export const DELETE_FINANCES = 'expenses:delete_finances'
+export const UPDATE_EXPENSES = 'expenses:update_expenses'
+export const UPDATE_INCOME = 'expenses:update_income'
 export const SET_PAYMENTS = 'expenses:set_payments'
 export const DELETE_PAYMENTS = 'expenses:delete_payments'
 export const ADD_PAYMENT = 'expenses:add_payment'

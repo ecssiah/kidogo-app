@@ -9,37 +9,22 @@ import ExpenseEntry from '../components/ExpenseEntry';
 import ExpenseHistory from '../components/ExpenseHistory';
 import Spacer from '../components/Spacer';
 import { Size } from '../constants/Style';
-import { Get, Update } from '../utilities/localstore';
-import { FINANCES, EXPENSES, PAYMENTS } from '../constants/Store';
 import { GetShortDate } from '../utilities/dates';
-import { SET_EXPENSES, SET_FINANCES } from '../constants/Finances';
+import { SET_EXPENSES, SET_FINANCES, ADD_EXPENSE, UPDATE_EXPENSES } from '../constants/Finances';
+import ExpenseModal from '../components/ExpenseModal';
 
 
 const Finances = (props) => {
   const dispatch = useDispatch()
+
   const finances = useSelector(state => state.finances)
   const expenses = useSelector(state => state.expenses)
+
+  const [expensesModalVisible, setExpenseModalVisible] = useState(false)
 
 
   const getFinancesToday = () => {
     return finances[GetShortDate()]
-  }
-
-
-  const addExpense = async (expense) => {
-    const today = GetShortDate()
-    const expensesToday = { ...expenses[today] }
-    expensesToday[uuid()] = expense
-
-    await Update(EXPENSES, today, expensesToday)
-
-    const financesToday = await Get(FINANCES, today)
-    financesToday.expenses += parseFloat(expense.amount)
-
-    await Update(FINANCES, today, financesToday)
-
-    dispatch({ type: SET_FINANCES, id: today, finances: financesToday })
-    dispatch({ type: SET_EXPENSES, id: today, expenses: expensesToday })
   }
 
 
@@ -49,11 +34,15 @@ const Finances = (props) => {
 
       <ScrollView>
         <FinanceHeader financesToday={getFinancesToday()} />
-        <ExpenseEntry addExpense={addExpense} />
         <ExpenseHistory expenses={expenses} />
 
         <Spacer height={Size.keyboard} />
       </ScrollView>
+
+      <ExpenseModal
+        visible={expenseModalVisible}
+        setVisible={setExpenseModalVisible}
+      />
     </Backdrop>
   )
 }

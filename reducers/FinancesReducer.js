@@ -8,6 +8,14 @@ const financesReducer = (state = {}, action) => {
       newState[action.id] = action.finances
       return newState
     }
+    case UPDATE_EXPENSES: {
+      newState[action.id].expenses += action.amount
+      return newState
+    }
+    case UPDATE_INCOME: {
+      newState[action.id].income += action.amount
+      return newState
+    }
     default: {
       return newState
     }

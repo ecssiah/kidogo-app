@@ -51,9 +51,7 @@ const Account = (props) => {
 
 
   const getAccountName = () => {
-    const guardiansList = Object.values(accounts[accountId].guardians)
-    const guardianNames = guardiansList.map((id) => guardians[id].lastName)
-    return guardianNames.join(', ')
+    return guardians[props.account.guardians[0]].lastName
   }
 
 

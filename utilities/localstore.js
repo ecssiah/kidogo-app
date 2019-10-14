@@ -14,7 +14,7 @@ import { SET_ATTENDANCE, Day } from '../constants/Attendance';
 import { SET_ACCOUNT, UPDATE_ACCOUNT } from '../constants/Accounts';
 import {
   Frequency,
-  SET_FINANCES, SET_PAYMENTS, SET_EXPENSES,
+  SET_FINANCES, SET_PAYMENTS, SET_EXPENSES, FeeDelta,
 } from '../constants/Finances';
 
 
@@ -358,48 +358,22 @@ export const UpdateFees = async (dispatch) => {
   const accounts = await Get(ACCOUNTS)
 
   for (const [id, account] of Object.entries(accounts)) {
-    const update = { lastFee: account.lastFee, balance: account.balance }
+    const curDate = GetDateNoTime(new Date())
+    const update = {
+      balance: account.balance,
+      lastFee: account.lastFee,
+    }
 
-    switch (account.frequency) {
-      case Frequency.Daily: {
-        const curDate = new Date()
-        const nextFeeToApply = new Date(account.lastFee)
-        nextFeeToApply.setDate(nextFeeToApply.getDate() + 1)
+    const nextDateToApplyFee = new Date(account.lastFee)
+    nextDateToApplyFee.setDate(
+      nextDateToApplyFee.getDate() + FeeDelta[account.frequency]
+    )
 
-        while (GetDateNoTime(nextFeeToApply) < GetDateNoTime(curDate)) {
-          update.balance -= account.rate
-          nextFeeToApply.setDate(nextFeeToApply.getDate() + 1)
-        }
-
-        break
-      }
-      case Frequency.Weekly: {
-        const curDate = new Date()
-        const nextFeeToApply = new Date(account.lastFee)
-        nextFeeToApply.setDate(nextFeeToApply.getDate() + 7)
-
-        while (GetDateNoTime(nextFeeToApply) < GetDateNoTime(curDate)) {
-          update.balance -= account.rate
-          nextFeeToApply.setDate(nextFeeToApply.getDate() + 7)
-        }
-
-        break
-      }
-      case Frequency.Termly: {
-        const curDate = new Date()
-        const nextFeeToApply = new Date(account.lastFee)
-        nextFeeToApply.setDate(nextFeeToApply.getDate() + 90)
-
-        while (GetDateNoTime(nextFeeToApply) < GetDateNoTime(curDate)) {
-          update.balance -= account.rate
-          nextFeeToApply.setDate(nextFeeToApply.getDate() + 90)
-        }
-
-        break
-      }
-      default: {
-        console.error("Invalid Frequency: " + account.frequency)
-      }
+    while (GetDateNoTime(nextDateToApplyFee) < curDate) {
+      update.balance -= account.rate
+      nextDateToApplyFee.setDate(
+        nextDateToApplyFee.getDate() + FeeDelta[account.frequency]
+      )
     }
 
     dispatch({ type: UPDATE_ACCOUNT, id, update })

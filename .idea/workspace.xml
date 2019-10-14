@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/components/ExpenseModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ExpenseModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reducers/ExpensesReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/reducers/ExpensesReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/localstore.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/localstore.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

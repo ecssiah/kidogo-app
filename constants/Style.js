@@ -30,8 +30,8 @@ export const Colors = {
 
 
 export const Styles = StyleSheet.create({
-  tableContainer: {
-
+  tabLabel: {
+    color: Colors.mainText,
   },
   frequencyDisplay: {
     margin: 10,

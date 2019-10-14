@@ -19,6 +19,13 @@ export const Frequency = {
 }
 
 
+export const FeeDelta = {
+  [Frequency.Daily]: 1,
+  [Frequency.Weekly]: 7,
+  [Frequency.Termly]: 90,
+}
+
+
 export const FrequencyStrings = {
   [Frequency.Daily]: Language.Daily,
   [Frequency.Weekly]: Language.Weekly,

@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { ScrollView, Text } from 'react-native'
 
+import Language from '../languages'
 import Backdrop from '../components/Backdrop';
 import AccountCard from '../components/AccountCard';
 import { Styles, Size } from '../constants/Style';
@@ -30,7 +31,7 @@ const Accounts = (props) => {
 
       <ScrollView style={{ flex: 1 }} >
         <Text style={[Styles.h1, Styles.raleway]} >
-          Accounts
+          { Language.Families }
         </Text>
 
         { getAccountCards() }

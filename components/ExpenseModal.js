@@ -42,8 +42,6 @@ const ExpenseModal = (props) => {
     const expenseAmount = parseFloat(expense.amount)
     const finances = await Get(FINANCES)
 
-    console.log(finances[today])
-
     const financesUpdate = {
       expenses: parseFloat(finances[today].expenses) + expenseAmount
     }
@@ -52,8 +50,6 @@ const ExpenseModal = (props) => {
     await Update(FINANCES, today, financesUpdate)
 
     const newFinances = await Get(FINANCES)
-
-    console.log(newFinances)
 
     props.setVisible(false)
   }

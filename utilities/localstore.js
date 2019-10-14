@@ -362,52 +362,37 @@ export const UpdateFees = async (dispatch) => {
 
     switch (account.frequency) {
       case Frequency.Daily: {
-        let dateIndex = -1
-        let nextFeeToApply = new Date()
-        nextFeeToApply.setDate(nextFeeToApply.getDate() + dateIndex)
+        const curDate = new Date()
+        const nextFeeToApply = new Date(account.lastFee)
+        nextFeeToApply.setDate(nextFeeToApply.getDate() + 1)
 
-        while (GetDateNoTime(nextFeeToApply) > account.lastFee) {
-          update.lastFee = new Date(nextFeeToApply)
+        while (GetDateNoTime(nextFeeToApply) < GetDateNoTime(curDate)) {
           update.balance -= account.rate
-
-          dateIndex--
-          nextFeeToApply.setDate(nextFeeToApply.getDate() + dateIndex)
+          nextFeeToApply.setDate(nextFeeToApply.getDate() + 1)
         }
 
         break
       }
       case Frequency.Weekly: {
-        let dateIndex = -1
-        let nextFeeToApply = NextDay(Day.SUNDAY, dateIndex)
+        const curDate = new Date()
+        const nextFeeToApply = new Date(account.lastFee)
+        nextFeeToApply.setDate(nextFeeToApply.getDate() + 7)
 
-        while (GetDateNoTime(nextFeeToApply) > account.lastFee) {
-          update.lastFee = new Date(nextFeeToApply)
+        while (GetDateNoTime(nextFeeToApply) < GetDateNoTime(curDate)) {
           update.balance -= account.rate
-
-          dateIndex--
-          nextFeeToApply = NextDay(Day.SUNDAY, dateIndex)
+          nextFeeToApply.setDate(nextFeeToApply.getDate() + 7)
         }
 
         break
       }
       case Frequency.Termly: {
-        let nextFeeToApply = new Date()
+        const curDate = new Date()
+        const nextFeeToApply = new Date(account.lastFee)
+        nextFeeToApply.setDate(nextFeeToApply.getDate() + 90)
 
-        if (nextFeeToApply.getMonth() > 0 && nextFeeToApply.getMonth() < 3) {
-          nextFeeToApply.setMonth(0)
-        } else if (nextFeeToApply.getMonth() >= 3 && nextFeeToApply.getMonth() < 6) {
-          nextFeeToApply.setMonth(3)
-        } else if (nextFeeToApply.getMonth() >= 6 && nextFeeToApply.getMonth() < 9) {
-          nextFeeToApply.setMonth(6)
-        } else {
-          nextFeeToApply.setMonth(9)
-        }
-
-        while (GetDateNoTime(nextFeeToApply) > account.lastFee) {
-          update.lastFee = new Date(nextFeeToApply)
+        while (GetDateNoTime(nextFeeToApply) < GetDateNoTime(curDate)) {
           update.balance -= account.rate
-
-          nextFeeToApply.setMonth(nextFeeToApply.getMonth() - 3)
+          nextFeeToApply.setDate(nextFeeToApply.getDate() + 90)
         }
 
         break

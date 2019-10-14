@@ -30,6 +30,9 @@ export const Colors = {
 
 
 export const Styles = StyleSheet.create({
+  tableContainer: {
+
+  },
   frequencyDisplay: {
     margin: 10,
     fontSize: 18,

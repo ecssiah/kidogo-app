@@ -1,9 +1,10 @@
 import React from 'react'
-import { Text, View } from 'react-native'
-import { Styles } from '../constants/Style';
+import { ScrollView, Text, View } from 'react-native'
+import { Styles, Size } from '../constants/Style';
 import Language from '../languages'
 
 import ExpenseHistoryRow from './ExpenseHistoryRow';
+import Spacer from './Spacer';
 
 
 const ExpenseHistory = (props) => {
@@ -54,7 +55,11 @@ const ExpenseHistory = (props) => {
         </Text>
       </View>
 
-      { getHistoryRowComponents() }
+      <ScrollView>
+        { getHistoryRowComponents() }
+
+        <Spacer height={Size.keyboard} />
+      </ScrollView>
     </View>
   )
 }

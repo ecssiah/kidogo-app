@@ -38,24 +38,20 @@ const Finances = (props) => {
     <Backdrop>
       <Spacer height={Size.statusbar} />
 
-      <ScrollView>
-        <FinanceHeader financesToday={getFinancesToday()} />
+      <FinanceHeader financesToday={getFinancesToday()} />
 
-        <View style={Styles.buttonContainer} >
-          <TouchableOpacity
-            style={Styles.button}
-            onPress={onAddExpense}
-          >
-            <Text style={Styles.btnText} >
-              { Language.New } { Language.Expense }
-            </Text>
-          </TouchableOpacity>
-        </View>
+      <View style={Styles.buttonContainer} >
+        <TouchableOpacity
+          style={Styles.button}
+          onPress={onAddExpense}
+        >
+          <Text style={Styles.btnText} >
+            { Language.New } { Language.Expense }
+          </Text>
+        </TouchableOpacity>
+      </View>
 
-        <ExpenseHistory expenses={expenses} />
-
-        <Spacer height={Size.keyboard} />
-      </ScrollView>
+      <ExpenseHistory expenses={expenses} />
 
       <ExpenseModal
         visible={expensesModalVisible}

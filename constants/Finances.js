@@ -6,9 +6,9 @@ export const UPDATE_EXPENSES = 'expenses:update_expenses'
 export const UPDATE_INCOME = 'expenses:update_income'
 export const SET_PAYMENTS = 'expenses:set_payments'
 export const DELETE_PAYMENTS = 'expenses:delete_payments'
-export const ADD_PAYMENT = 'expenses:add_payment'
 export const SET_EXPENSES = 'expenses:set_expenses'
 export const DELETE_EXPENSES = 'expenses:delete_expenses'
+export const ADD_PAYMENT = 'expenses:add_payment'
 export const ADD_EXPENSE = 'expenses:add_expense'
 
 

@@ -18,8 +18,6 @@ import ExpenseModal from '../components/ExpenseModal';
 
 
 const Finances = (props) => {
-  const dispatch = useDispatch()
-
   const finances = useSelector(state => state.finances)
   const expenses = useSelector(state => state.expenses)
 

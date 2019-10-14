@@ -9,7 +9,7 @@ const paymentsReducer = (state = {}, action) => {
       return newState
     }
     case ADD_PAYMENT: {
-      newState[action.id] = Object.assign({}, newState, action.update)
+      newState[action.id] = Object.assign({}, newState[action.id], action.payment)
       return newState
     }
     default: {

@@ -32,19 +32,19 @@ const ExpenseModal = (props) => {
 
 
   const onSubmitExpense = async (expense) => {
-    const update = { [uuid()]: { type, amount }}
     const today = GetShortDate()
+    const update = { [uuid()]: { type, amount }}
 
-    dispatch({ type: ADD_EXPENSE, id: today, update })
+    dispatch({ type: ADD_EXPENSE, id: today, expense: update })
     await Update(EXPENSES, today, update)
 
     const expenseAmount = parseFloat(expense.amount)
     const financesToday = await Get(FINANCES, today)
 
-    const financeUpdate = { expenses: financesToday.expenses + expenseAmount }
+    const financesUpdate = { expenses: financesToday.expenses + expenseAmount }
 
     dispatch({ type: UPDATE_EXPENSES, id: today, amount: expenseAmount })
-    await Update(FINANCES, today, financeUpdate)
+    await Update(FINANCES, today, financesUpdate)
 
     props.setVisible(false)
   }

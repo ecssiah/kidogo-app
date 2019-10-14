@@ -32,8 +32,8 @@ const PaymentModal = (props) => {
   const onSubmitPayment = async () => {
     const update = { [uuid()]: { type, amount } }
 
+    dispatch({ type: ADD_PAYMENT, id: date, payment: update })
     await Update(PAYMENTS, date, update)
-    dispatch({ type: ADD_PAYMENT, id: date, update })
 
     props.setVisible(false)
   }

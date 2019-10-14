@@ -43,6 +43,8 @@ export default Swahili = {
   Equipment: "Vifaa",
   Payment: "Malipo",
   Expense: "Gharama",
+  MPesa: "M-Pesa",
+  Cash: "Cash",
   MorningGreeting: "Nani hako Leo?",
   AfternoonGreeting: "Kuna aliyetoka?",
   EveningGreeting: "Uli nunua kitu chochote leo?",

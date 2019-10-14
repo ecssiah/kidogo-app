@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import {
   Image, ImageBackground,
   TouchableHighlight, TouchableOpacity,
@@ -11,11 +12,12 @@ import { UpdateFees } from '../utilities/localstore';
 
 
 const Dash = (props) => {
+  const dispatch = useDispatch()
   const [hour, setHour] = useState(new Date().getHours())
 
 
   useEffect(() => {
-    UpdateFees()
+    UpdateFees(dispatch)
   }, [])
 
 

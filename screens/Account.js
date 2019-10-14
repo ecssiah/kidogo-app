@@ -17,7 +17,7 @@ import { GetShortDate } from '../utilities/dates';
 import {
   ACCOUNTS, CHILDREN, ATTENDANCE, GUARDIANS, CONTACTS
 } from '../constants/Store';
-import { SET_ACCOUNT } from '../constants/Account';
+import { SET_ACCOUNT } from '../constants/Accounts';
 import { SET_ATTENDANCE } from '../constants/Attendance';
 import { UPDATE_CHILD, SET_CHILD, DELETE_CHILD } from '../constants/Children';
 import {

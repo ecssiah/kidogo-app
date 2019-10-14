@@ -1,4 +1,7 @@
 
+export const Terms = [ 1, 3, 6, 9 ]
+
+
 const WeekDays = [
   "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
 ]
@@ -9,7 +12,15 @@ const Months = [
 ]
 
 
-export const NextDay = (dateObj, dayIndex, week = 0) => {
+export const GetDateNoTime = (dateObj = new Date()) => {
+  const tempDateObj = new Date(dateObj)
+  tempDateObj.setHours(0, 0, 0, 0)
+
+  return tempDateObj
+}
+
+
+export const NextDay = (dayIndex, week = 0, dateObj = new Date()) => {
   const newDateObj = new Date(dateObj)
   newDateObj.setDate(
     newDateObj.getDate() + (dayIndex + (7 - newDateObj.getDay())) % 7
@@ -20,7 +31,7 @@ export const NextDay = (dateObj, dayIndex, week = 0) => {
 }
 
 
-export const GetShortDate = (dateObj = new Date(), offset = 0) => {
+export const GetShortDate = (offset = 0, dateObj = new Date()) => {
   const tempDateObj = new Date(dateObj)
   tempDateObj.setDate(tempDateObj.getDate() + offset)
 

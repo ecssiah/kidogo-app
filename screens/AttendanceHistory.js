@@ -33,10 +33,10 @@ const AttendanceHistory = (props) => {
 
 
   const getDateRange = () => {
-    const targetSunday = NextDay(new Date(), Day.SUNDAY, offset)
+    const targetSunday = NextDay(Day.SUNDAY, offset)
 
     return [-6, -5, -4, -3, -2, -1, 0].map((i) =>
-      GetShortDate(targetSunday, i)
+      GetShortDate(i, targetSunday)
     )
   }
 

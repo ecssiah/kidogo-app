@@ -60,15 +60,18 @@ export const ExpenseTypeIcons = {
 
 
 export const PaymentType = {
-  Fee: "fee",
+  MPesa: "M-Pesa",
+  Cash: "Cash",
 }
 
 
 export const PaymentTypeString = {
-  [PaymentType.Fee]: Language.Fee,
+  [PaymentType.MPesa]: Language.MPesa,
+  [PaymentType.Cash]: Language.Cash,
 }
 
 
 export const PaymentTypeIcons = {
-  [PaymentType.PAYMENT]: "money-bill",
+  [PaymentType.MPesa]: "money-bill",
+  [PaymentType.Cash]: "money-bill",
 }

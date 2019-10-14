@@ -1,4 +1,6 @@
-import { SET_FINANCES } from "../constants/Finances"
+import {
+  SET_FINANCES, UPDATE_EXPENSES, UPDATE_INCOME
+} from "../constants/Finances"
 
 const financesReducer = (state = {}, action) => {
   const newState = { ...state }

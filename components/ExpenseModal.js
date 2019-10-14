@@ -12,8 +12,6 @@ import {
 } from '../constants/Finances'
 import { Get, Update } from '../utilities/localstore';
 import { FINANCES, EXPENSES, PAYMENTS } from '../constants/Store';
-import { Update, Get } from '../utilities/localstore'
-import { EXPENSES, FINANCES } from '../constants/Store'
 import { GetShortDate } from '../utilities/dates'
 import uuid from 'uuid'
 

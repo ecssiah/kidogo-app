@@ -5,13 +5,13 @@ import {
   GUARDIANS, CONTACTS, CHILDREN,
   PAYMENTS, ACCOUNTS, ATTENDANCE, FINANCES, QUESTIONS, EXPENSES,
 } from '../constants/Store';
-import { GetShortDate } from './dates';
+import { GetShortDate, NextDay, GetDateNoTime } from './dates';
 import { Gender, CLEAR_NEW_ACCOUNT } from '../constants/Enrollment';
 import { SET_GUARDIAN } from '../constants/Guardians';
 import { SET_CHILD } from '../constants/Children';
 import { SET_CONTACT } from '../constants/Contacts';
-import { SET_ATTENDANCE } from '../constants/Attendance';
-import { SET_ACCOUNT } from '../constants/Account';
+import { SET_ATTENDANCE, Day } from '../constants/Attendance';
+import { SET_ACCOUNT, UPDATE_ACCOUNT } from '../constants/Accounts';
 import {
   Frequency,
   SET_FINANCES, SET_PAYMENTS, SET_EXPENSES,
@@ -26,15 +26,18 @@ export const TestDataNeeded = async () => {
 
 export const LoadTestData = async () => {
   const account1 = {
+    created: new Date(),
     balance: 0,
     rate: 600,
     frequency: Frequency.Weekly,
+    lastFee: GetDateNoTime(),
     children: [],
     guardians: [],
     contacts: [],
   }
 
   const account1Id = uuid()
+
   const child11Id = uuid()
   const child12Id = uuid()
   const guardian11Id = uuid()
@@ -111,6 +114,7 @@ export const LoadTestData = async () => {
   await Create(CONTACTS, contact12Id, contact12)
 
   const account2Id = uuid()
+
   const child21Id = uuid()
   const child22Id = uuid()
   const guardian21Id = uuid()
@@ -119,9 +123,11 @@ export const LoadTestData = async () => {
   const contact22Id = uuid()
 
   const account2 = {
+    created: new Date(),
     balance: 0,
     rate: 100,
     frequency: Frequency.Daily,
+    lastFee: GetDateNoTime(),
     children: [],
     guardians: [],
     contacts: [],
@@ -187,6 +193,7 @@ export const LoadTestData = async () => {
   }
 
   await Create(ACCOUNTS, account2Id, account2)
+
   await Create(CHILDREN, child21Id, child21)
   await Create(CHILDREN, child22Id, child22)
   await Create(GUARDIANS, guardian21Id, guardian21)
@@ -197,9 +204,13 @@ export const LoadTestData = async () => {
 
 
 export const LogTestData = async () => {
+  console.log("=-----Test Data-----=")
+  console.log(ACCOUNTS, await Get(ACCOUNTS))
+
   console.log(GUARDIANS, await Get(GUARDIANS))
   console.log(CONTACTS, await Get(CONTACTS))
   console.log(CHILDREN, await Get(CHILDREN))
+  console.log("=-----Test Data-----=")
 }
 
 
@@ -300,10 +311,11 @@ export const SubmitAccount = async (dispatch, newAccount) => {
   const accountId = uuid()
 
   const accountData = {
-    id: accountId,
+    created: new Date(),
     balance: 0,
     rate: newAccount.rate,
     frequency: newAccount.frequency,
+    lastFee: GetDateNoTime(),
     children: [],
     guardians: [],
     contacts: [],
@@ -313,36 +325,101 @@ export const SubmitAccount = async (dispatch, newAccount) => {
   for (const [id, child] of Object.entries(newAccount.children)) {
     accountData.children.push(id)
 
+    dispatch({ type: SET_CHILD, id, child })
     await Create(CHILDREN, id, { accountId, ...child })
 
     const today = GetShortDate()
     const attendanceToday = await Get(ATTENDANCE, today)
     attendanceToday[id] = { checkIn: true, checkOut: false }
 
-    await Update(ATTENDANCE, today, attendanceToday)
-
     dispatch({ type: SET_ATTENDANCE, id: today, attendance: attendanceToday })
+    await Update(ATTENDANCE, today, attendanceToday)
   }
 
   for (const [id, guardian] of Object.entries(newAccount.guardians)) {
     accountData.guardians.push(id)
+    dispatch({ type: SET_GUARDIAN, id, guardian })
     await Create(GUARDIANS, id, { accountId, ...guardian })
   }
 
   for (const [id, contact] of Object.entries(newAccount.contacts)) {
     accountData.contacts.push(id)
+    dispatch({ type: SET_CONTACT, id, contact })
     await Create(CONTACTS, id, { accountId, ...contact })
   }
 
-  await Create(ACCOUNTS, accountId, accountData)
-
-  dispatch({ type: SET_ACCOUNT, id: accountId, account: accountData })
   dispatch({ type: CLEAR_NEW_ACCOUNT })
+  dispatch({ type: SET_ACCOUNT, id: accountId, account: accountData })
+  await Create(ACCOUNTS, accountId, accountData)
 }
 
 
-export const UpdateFees = async () => {
+export const UpdateFees = async (dispatch) => {
+  const accounts = await Get(ACCOUNTS)
 
+  for (const [id, account] of Object.entries(accounts)) {
+    const update = { lastFee: account.lastFee, balance: account.balance }
+
+    switch (account.frequency) {
+      case Frequency.Daily: {
+        let dateIndex = -1
+        let nextFeeToApply = new Date()
+        nextFeeToApply.setDate(nextFeeToApply.getDate() + dateIndex)
+
+        while (GetDateNoTime(nextFeeToApply) > account.lastFee) {
+          update.lastFee = new Date(nextFeeToApply)
+          update.balance -= account.rate
+
+          dateIndex--
+          nextFeeToApply.setDate(nextFeeToApply.getDate() + dateIndex)
+        }
+
+        break
+      }
+      case Frequency.Weekly: {
+        let dateIndex = -1
+        let nextFeeToApply = NextDay(Day.SUNDAY, dateIndex)
+
+        while (GetDateNoTime(nextFeeToApply) > account.lastFee) {
+          update.lastFee = new Date(nextFeeToApply)
+          update.balance -= account.rate
+
+          dateIndex--
+          nextFeeToApply = NextDay(Day.SUNDAY, dateIndex)
+        }
+
+        break
+      }
+      case Frequency.Termly: {
+        let nextFeeToApply = new Date()
+
+        if (nextFeeToApply.getMonth() > 0 && nextFeeToApply.getMonth() < 3) {
+          nextFeeToApply.setMonth(0)
+        } else if (nextFeeToApply.getMonth() >= 3 && nextFeeToApply.getMonth() < 6) {
+          nextFeeToApply.setMonth(3)
+        } else if (nextFeeToApply.getMonth() >= 6 && nextFeeToApply.getMonth() < 9) {
+          nextFeeToApply.setMonth(6)
+        } else {
+          nextFeeToApply.setMonth(9)
+        }
+
+        while (GetDateNoTime(nextFeeToApply) > account.lastFee) {
+          update.lastFee = new Date(nextFeeToApply)
+          update.balance -= account.rate
+
+          nextFeeToApply.setMonth(nextFeeToApply.getMonth() - 3)
+        }
+
+        break
+      }
+      default: {
+        console.error("Invalid Frequency: " + account.frequency)
+      }
+    }
+
+    dispatch({ type: UPDATE_ACCOUNT, id, update })
+    await Update(ACCOUNTS, id, update)
+  }
 }
 
 

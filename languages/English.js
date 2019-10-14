@@ -43,6 +43,8 @@ export default English = {
   Equipment: "Equipment",
   Payment: "Payment",
   Expense: "Expense",
+  MPesa: "M-Pesa",
+  Cash: "Cash",
   MorningGreeting: "Who's here today?",
   AfternoonGreeting: "Has anyone left?",
   EveningGreeting: "Did you buy anything today?",

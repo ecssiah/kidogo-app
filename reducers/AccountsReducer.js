@@ -1,6 +1,6 @@
 import {
-  SET_ACCOUNT, DELETE_ACCOUNT
-} from "../constants/Account"
+  SET_ACCOUNT, UPDATE_ACCOUNT, DELETE_ACCOUNT
+} from "../constants/Accounts"
 
 
 const accountsReducer = (state = {}, action) => {
@@ -9,6 +9,10 @@ const accountsReducer = (state = {}, action) => {
   switch (action.type) {
     case SET_ACCOUNT: {
       newState[action.id] = action.account
+      return newState
+    }
+    case UPDATE_ACCOUNT: {
+      newState[action.id] = Object.assign({}, newState[action.id], action.update)
       return newState
     }
     case DELETE_ACCOUNT: {

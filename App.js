@@ -28,9 +28,9 @@ const App = () => {
 
     if (await TestDataNeeded()) {
       await LoadTestData()
-      await LogTestData()
     }
 
+    await LogTestData()
     await InitDatabase()
     await UpdateStore(store.dispatch)
   }

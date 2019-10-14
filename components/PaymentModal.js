@@ -18,7 +18,7 @@ const PaymentModal = (props) => {
   const dispatch = useDispatch()
 
   const [date, setDate] = useState(GetShortDate())
-  const [type, setType] = useState(PaymentType.Fee)
+  const [type, setType] = useState(PaymentType.MPesa)
   const [amount, setAmount] = useState('100')
 
 

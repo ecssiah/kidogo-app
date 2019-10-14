@@ -40,14 +40,13 @@ const ExpenseModal = (props) => {
     await Update(EXPENSES, today, update)
 
     const expenseAmount = parseFloat(expense.amount)
-    console.log(expenseAmount)
-    const financesToday = await Get(FINANCES, today)
-    console.log(financesToday)
-    const financesUpdate = {
-      expenses: parseFloat(financesToday.expenses) + expenseAmount
-    }
+    const finances = await Get(FINANCES)
 
-    console.log(financesUpdate)
+    console.log(finances[today])
+
+    const financesUpdate = {
+      expenses: parseFloat(finances[today].expenses) + expenseAmount
+    }
 
     dispatch({ type: UPDATE_EXPENSES, id: today, amount: expenseAmount })
     await Update(FINANCES, today, financesUpdate)

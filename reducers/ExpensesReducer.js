@@ -10,7 +10,6 @@ const expensesReducer = (state = {}, action) => {
     }
     case ADD_EXPENSE: {
       newState[action.id] = Object.assign({}, newState[action.id], action.expense)
-      console.log(newState)
       return newState
     }
     default: {

@@ -11,6 +11,7 @@ import { Size, Styles } from '../constants/Style';
 import { GetShortDate } from '../utilities/dates';
 import ExpenseModal from '../components/ExpenseModal';
 import PaymentModal from '../components/PaymentModal'
+import FinanceHistory from '../components/FinanceHistory';
 
 
 const Finances = (props) => {
@@ -65,7 +66,10 @@ const Finances = (props) => {
         </TouchableOpacity>
       </View>
 
-      <ExpenseHistory expenses={expenses} />
+      <FinanceHistory
+        payments={payments}
+        expenses={expenses}
+      />
 
       <PaymentModal
         visible={paymentsModalVisible}

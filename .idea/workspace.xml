@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/constants/Finances.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Finances.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Finances.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Finances.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ExpenseHistory.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ExpenseHistoryRow.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ExpenseModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ExpenseModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/PaymentModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/PaymentModal.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

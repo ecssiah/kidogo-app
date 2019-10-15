@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import { Picker, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { Styles } from '../constants/Style';
 import { GetShortDate } from '../utilities/dates';
-import { ExpenseType, ExpenseTypeString } from '../constants/Finances';
+import { ExpenseType, ExpenseTypeString, FinanceType, FinanceTypeNames } from '../constants/Finances';
 import Language from '../languages'
 
 
 const ExpenseEntry = (props) => {
   const [date, setDate] = useState(GetShortDate())
   const [amount, setAmount] = useState('100')
-  const [type, setType] = useState(ExpenseType.Rent)
+  const [type, setType] = useState(FinanceType.Rent)
   const [entryActive, setEntryActive] = useState(false)
 
 
@@ -17,10 +17,10 @@ const ExpenseEntry = (props) => {
 
 
   const getTypeItems = () => {
-    return Object.values(ExpenseType).map((expenseType, i) => {
+    return Object.values(FinanceType).map((expenseType, i) => {
       return <Picker.Item
         key={i}
-        label={ExpenseTypeString[expenseType]}
+        label={FinanceTypeNames[expenseType]}
         value={expenseType}
       />
     })

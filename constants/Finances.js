@@ -33,7 +33,13 @@ export const FrequencyStrings = {
 }
 
 
-export const FinanceType = {
+export const PaymentType = {
+  MPesa: "M-Pesa",
+  Cash: "Cash",
+}
+
+
+export const ExpenseType = {
   Rent: "rent",
   Water: "water",
   Food: "food",
@@ -41,8 +47,12 @@ export const FinanceType = {
   Electricity: "electricity",
   Salary: "salary",
   Equipment: "equipment",
-  MPesa: "m-pesa",
-  Cash: "cash",
+}
+
+
+export const FinanceType = {
+  ...PaymentType,
+  ...ExpenseType,
 }
 
 
@@ -72,17 +82,6 @@ export const FinanceTypeIcons = {
 }
 
 
-export const ExpenseType = {
-  Rent: "rent",
-  Water: "water",
-  Food: "food",
-  Fuel: "fuel",
-  Electricity: "electricity",
-  Salary: "salary",
-  Equipment: "equipment",
-}
-
-
 export const ExpenseTypeString = {
   [ExpenseType.Rent]: Language.Rent,
   [ExpenseType.Water]: Language.Water,
@@ -102,12 +101,6 @@ export const ExpenseTypeIcons = {
   [ExpenseType.Electricity]: 'bolt',
   [ExpenseType.Salary]: 'money',
   [ExpenseType.Equipment]: 'book',
-}
-
-
-export const PaymentType = {
-  MPesa: "M-Pesa",
-  Cash: "Cash",
 }
 
 

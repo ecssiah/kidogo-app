@@ -7,7 +7,7 @@ import Language from '../languages'
 import { Styles, Size } from '../constants/Style'
 import Backdrop from './Backdrop'
 import Spacer from './Spacer'
-import { PaymentType, PaymentTypeString, ADD_PAYMENT } from '../constants/Finances'
+import { ADD_PAYMENT, FinanceType, FinanceTypeNames, PaymentType } from '../constants/Finances'
 import { Update, Get } from '../utilities/localstore'
 import { PAYMENTS } from '../constants/Store'
 import { GetShortDate } from '../utilities/dates'
@@ -21,13 +21,13 @@ const PaymentModal = (props) => {
 
   const [accountId, setAccountId] = useState(null)
   const [date, setDate] = useState(GetShortDate())
-  const [type, setType] = useState(PaymentType.MPesa)
+  const [type, setType] = useState(FinanceType.MPesa)
   const [amount, setAmount] = useState('100')
 
 
   const getPaymentTypeItems = () => {
     return Object.values(PaymentType).map((type, i) =>
-      <Picker.Item key={i} label={PaymentTypeString[type]} value={type} />
+      <Picker.Item key={i} label={FinanceTypeNames[type]} value={type} />
     )
   }
 

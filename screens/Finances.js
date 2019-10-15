@@ -5,7 +5,6 @@ import Language from '../languages'
 
 import Backdrop from '../components/Backdrop';
 import FinanceHeader from '../components/FinanceHeader';
-import ExpenseHistory from '../components/ExpenseHistory';
 import Spacer from '../components/Spacer';
 import { Size, Styles } from '../constants/Style';
 import { GetShortDate } from '../utilities/dates';

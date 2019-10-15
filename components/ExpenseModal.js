@@ -8,7 +8,7 @@ import { Styles, Size } from '../constants/Style'
 import Backdrop from './Backdrop'
 import Spacer from './Spacer'
 import {
-  ExpenseType, ExpenseTypeString, ADD_EXPENSE, UPDATE_EXPENSES
+  ADD_EXPENSE, UPDATE_EXPENSES, FinanceType, FinanceTypeNames, ExpenseType
 } from '../constants/Finances'
 import { Get, Update } from '../utilities/localstore';
 import { FINANCES, EXPENSES, PAYMENTS } from '../constants/Store';
@@ -20,13 +20,13 @@ const ExpenseModal = (props) => {
   const dispatch = useDispatch()
 
   const [date, setDate] = useState(GetShortDate())
-  const [type, setType] = useState(ExpenseType.Rent)
+  const [type, setType] = useState(FinanceType.Rent)
   const [amount, setAmount] = useState('100')
 
 
   const getExpenseTypeItems = () => {
     return Object.values(ExpenseType).map((type, i) =>
-      <Picker.Item key={i} label={ExpenseTypeString[type]} value={type} />
+      <Picker.Item key={i} label={FinanceTypeNames[type]} value={type} />
     )
   }
 
@@ -48,8 +48,6 @@ const ExpenseModal = (props) => {
 
     dispatch({ type: UPDATE_EXPENSES, id: today, amount: expenseAmount })
     await Update(FINANCES, today, financesUpdate)
-
-    const newFinances = await Get(FINANCES)
 
     props.setVisible(false)
   }

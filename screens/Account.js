@@ -8,7 +8,7 @@ import { Size, Styles } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import AccountFinances from '../components/AccountFinances';
 import DisplayMembers from '../components/DisplayMembers';
-import { Update, Get, GetIds, Create, Delete } from '../utilities/localstore';
+import { Update, Get, Create, Delete } from '../utilities/localstore';
 import Language from '../languages'
 import ChildModal from '../components/ChildModal';
 import GuardianModal from '../components/GuardianModal';
@@ -26,32 +26,29 @@ import {
 import {
   UPDATE_CONTACT, SET_CONTACT, DELETE_CONTACT
 } from '../constants/Contacts';
-import PaymentModal from '../components/PaymentModal';
 
 
 const Account = (props) => {
   const { accountId } = props.navigation.state.params
 
   const dispatch = useDispatch()
-
   const accounts = useSelector(state => state.accounts)
   const children = useSelector(state => state.children)
   const guardians = useSelector(state => state.guardians)
   const contacts = useSelector(state => state.contacts)
 
+  const [rate, setRate] = useState(accounts[accountId].rate)
+  const [frequency, setFrequency] = useState(accounts[accountId].frequency)
   const [selectedChildId, setSelectedChildId] = useState(null)
   const [selectedGuardianId, setSelectedGuardianId] = useState(null)
   const [selectedContactId, setSelectedContactId] = useState(null)
-  const [paymentModalVisible, setPaymentModalVisible] = useState(false)
   const [childModalVisible, setChildModalVisible] = useState(false)
   const [guardianModalVisible, setGuardianModalVisible] = useState(false)
   const [contactModalVisible, setContactModalVisible] = useState(false)
-  const [rate, setRate] = useState(accounts[accountId].rate)
-  const [frequency, setFrequency] = useState(accounts[accountId].frequency)
 
 
   const getAccountName = () => {
-    return guardians[props.account.guardians[0]].lastName
+    return guardians[accounts[accountId].guardians[0]].lastName
   }
 
 
@@ -91,11 +88,6 @@ const Account = (props) => {
         return res
       }, {}
     )
-  }
-
-
-  const onAddPayment = () => {
-    setPaymentModalVisible(true)
   }
 
 
@@ -316,17 +308,6 @@ const Account = (props) => {
           updateFrequency={updateFrequency}
         />
 
-        <View style={Styles.buttonContainer} >
-          <TouchableOpacity
-            style={Styles.button}
-            onPress={onAddPayment}
-          >
-            <Text style={Styles.btnText} >
-              { Language.New } { Language.Payment }
-            </Text>
-          </TouchableOpacity>
-        </View>
-
         <Spacer medium />
 
         <View style={Styles.divider} />
@@ -352,12 +333,6 @@ const Account = (props) => {
 
         <Spacer height={Size.keyboard} />
       </ScrollView>
-
-      <PaymentModal
-        accountId={accountId}
-        visible={paymentModalVisible}
-        setVisible={setPaymentModalVisible}
-      />
 
       <ChildModal
         id={selectedChildId}

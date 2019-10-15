@@ -1,31 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Text, TouchableOpacity, View, ScrollView } from 'react-native'
-import uuid from 'uuid'
 import Language from '../languages'
 
 import Backdrop from '../components/Backdrop';
 import FinanceHeader from '../components/FinanceHeader';
-import ExpenseEntry from '../components/ExpenseEntry';
 import ExpenseHistory from '../components/ExpenseHistory';
 import Spacer from '../components/Spacer';
 import { Size, Styles } from '../constants/Style';
 import { GetShortDate } from '../utilities/dates';
-import {
-  SET_EXPENSES, SET_FINANCES, ADD_EXPENSE, UPDATE_EXPENSES
-} from '../constants/Finances';
 import ExpenseModal from '../components/ExpenseModal';
+import PaymentModal from '../components/PaymentModal'
 
 
 const Finances = (props) => {
   const finances = useSelector(state => state.finances)
+  const payments = useSelector(state => state.payments)
   const expenses = useSelector(state => state.expenses)
 
+  const [paymentsModalVisible, setPaymentsModalVisible] = useState(false)
   const [expensesModalVisible, setExpensesModalVisible] = useState(false)
 
 
   const getFinancesToday = () => {
     return finances[GetShortDate()]
+  }
+
+
+  const onAddPayment = () => {
+    setPaymentsModalVisible(true)
   }
 
 
@@ -43,6 +46,17 @@ const Finances = (props) => {
       <View style={Styles.buttonContainer} >
         <TouchableOpacity
           style={Styles.button}
+          onPress={onAddPayment}
+        >
+          <Text style={Styles.btnText} >
+            { Language.New } { Language.Payment }
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={Styles.buttonContainer} >
+        <TouchableOpacity
+          style={Styles.button}
           onPress={onAddExpense}
         >
           <Text style={Styles.btnText} >
@@ -52,6 +66,11 @@ const Finances = (props) => {
       </View>
 
       <ExpenseHistory expenses={expenses} />
+
+      <PaymentModal
+        visible={paymentsModalVisible}
+        setVisible={setPaymentsModalVisible}
+      />
 
       <ExpenseModal
         visible={expensesModalVisible}

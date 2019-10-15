@@ -16,7 +16,10 @@ import uuid from 'uuid'
 
 const PaymentModal = (props) => {
   const dispatch = useDispatch()
+  const accounts = useSelector(state => state.accounts)
+  const guardians = useSelector(state => state.guardians)
 
+  const [accountId, setAccountId] = useState(null)
   const [date, setDate] = useState(GetShortDate())
   const [type, setType] = useState(PaymentType.MPesa)
   const [amount, setAmount] = useState('100')
@@ -29,8 +32,19 @@ const PaymentModal = (props) => {
   }
 
 
+  const getFamilyItems = () => {
+    return Object.entries(accounts).map(([id, account]) =>
+      <Picker.Item
+        key={id}
+        label={guardians[account.guardians[0]].lastName}
+        value={id}
+      />
+    )
+  }
+
+
   const onSubmitPayment = async () => {
-    const update = { [uuid()]: { type, amount } }
+    const update = { [uuid()]: { accountId, type, amount } }
 
     dispatch({ type: ADD_PAYMENT, id: date, payment: update })
     await Update(PAYMENTS, date, update)
@@ -52,17 +66,37 @@ const PaymentModal = (props) => {
             { Language.Payment }
           </Text>
 
-          <TextInput
-            style={Styles.dateInput}
-            maxLength={10}
-            keyboardType="number-pad"
-            value={date}
-            onChangeText={setDate}
-          />
+          <View style={Styles.nameHolder} >
+            <View style={{ flex: .5, marginLeft: 5}} >
+              <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >
+                <Picker
+                  style={{ color: 'white', marginTop: -10 }}
+                  selectedValue={accountId}
+                  onValueChange={(value, pos) => setAccountId(value)}
+                >
+                  { getFamilyItems() }
+                </Picker>
+              </View>
 
-          <Text style={Styles.label} >
-            { Language.Date }
-          </Text>
+              <Text style={Styles.label} >
+                { Language.Family }
+              </Text>
+            </View>
+
+            <View style={{ flex: .5, marginLeft: 5}} >
+              <TextInput
+                style={Styles.dateInput}
+                maxLength={10}
+                keyboardType="number-pad"
+                value={date}
+                onChangeText={setDate}
+              />
+
+              <Text style={Styles.label} >
+                { Language.Date }
+              </Text>
+            </View>
+          </View>
 
           <View style={Styles.nameHolder} >
             <View style={{ flex: .5, marginLeft: 5}} >

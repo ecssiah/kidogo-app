@@ -19,6 +19,7 @@ export default Swahili = {
   Contact: "Wasiliana",
   Contacts: "Mawasiliano",
   Dash: "Dash",
+  Family: "Familia",
   Families: "Familia",
   Upload: "Pakia",
   FirstName: "Jina ya Kwanza",

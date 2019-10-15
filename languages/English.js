@@ -19,6 +19,7 @@ export default English = {
   Contact: "Contact",
   Contacts: "Contacts",
   Dash: "Dash",
+  Family: "Family",
   Families: "Families",
   Upload: "Upload",
   FirstName: "First Name",

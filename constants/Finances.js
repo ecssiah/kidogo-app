@@ -77,40 +77,6 @@ export const FinanceTypeIcons = {
   [FinanceType.Electricity]: 'bolt',
   [FinanceType.Salary]: 'money',
   [FinanceType.Equipment]: 'book',
-  [FinanceType.MPesa]: 'sms',
-  [FinanceType.Cash]: 'ad',
-}
-
-
-export const ExpenseTypeString = {
-  [ExpenseType.Rent]: Language.Rent,
-  [ExpenseType.Water]: Language.Water,
-  [ExpenseType.Food]: Language.Food,
-  [ExpenseType.Fuel]: Language.Fuel,
-  [ExpenseType.Electricity]: Language.Electricity,
-  [ExpenseType.Salary]: Language.Salary,
-  [ExpenseType.Equipment]: Language.Equipment,
-}
-
-
-export const ExpenseTypeIcons = {
-  [ExpenseType.Rent]: 'home',
-  [ExpenseType.Water]: 'tint',
-  [ExpenseType.Food]: 'spoon',
-  [ExpenseType.Fuel]: 'fire',
-  [ExpenseType.Electricity]: 'bolt',
-  [ExpenseType.Salary]: 'money',
-  [ExpenseType.Equipment]: 'book',
-}
-
-
-export const PaymentTypeString = {
-  [PaymentType.MPesa]: Language.MPesa,
-  [PaymentType.Cash]: Language.Cash,
-}
-
-
-export const PaymentTypeIcons = {
-  [PaymentType.MPesa]: "comment-dollar",
-  [PaymentType.Cash]: "money-bill",
+  [FinanceType.MPesa]: 'comment',
+  [FinanceType.Cash]: 'dollar',
 }

@@ -7,9 +7,9 @@ import Language from '../languages'
 import { Styles, Size } from '../constants/Style'
 import Backdrop from './Backdrop'
 import Spacer from './Spacer'
-import { ADD_PAYMENT, FinanceType, FinanceTypeNames, PaymentType } from '../constants/Finances'
+import { ADD_PAYMENT, FinanceType, FinanceTypeNames, PaymentType, UPDATE_INCOME } from '../constants/Finances'
 import { Update, Get } from '../utilities/localstore'
-import { PAYMENTS } from '../constants/Store'
+import { PAYMENTS, FINANCES } from '../constants/Store'
 import { GetShortDate } from '../utilities/dates'
 import uuid from 'uuid'
 
@@ -44,10 +44,21 @@ const PaymentModal = (props) => {
 
 
   const onSubmitPayment = async () => {
-    const update = { [uuid()]: { accountId, type, amount } }
+    const payment = { accountId, type, amount }
+    const update = { [uuid()]: payment }
 
     dispatch({ type: ADD_PAYMENT, id: date, payment: update })
     await Update(PAYMENTS, date, update)
+
+    const paymentAmount = parseFloat(payment.amount)
+    const finances = await Get(FINANCES)
+
+    const financesUpdate = {
+      income: parseFloat(finances[date].income) + paymentAmount
+    }
+
+    dispatch({ type: UPDATE_INCOME, id: date, amount: paymentAmount })
+    await Update(FINANCES, date, financesUpdate)
 
     props.setVisible(false)
   }

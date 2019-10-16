@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/components/ExpenseModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ExpenseModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/PaymentModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/PaymentModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/FinanceHistory.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/FinanceHistory.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,8 +15,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="85" />
-    <option name="y" value="86" />
+    <option name="x" value="149" />
+    <option name="y" value="54" />
     <option name="width" value="1257" />
     <option name="height" value="724" />
   </component>
@@ -62,10 +62,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="85" y="86" width="1257" height="724" extended-state="0" />
+    <frame x="149" y="54" width="1257" height="724" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.37366256" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.37366256" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />

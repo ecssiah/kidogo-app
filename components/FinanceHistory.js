@@ -68,7 +68,7 @@ const FinanceHistory = (props) => {
       <ScrollView>
         { getHistoryRowComponents() }
 
-        <Spacer height={Size.keyboard} />
+        <Spacer height={1.2 * Size.keyboard} />
       </ScrollView>
     </View>
   )

@@ -74,5 +74,4 @@ const FinanceHistory = (props) => {
   )
 }
 
-
 export default FinanceHistory

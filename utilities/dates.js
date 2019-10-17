@@ -47,7 +47,15 @@ export const GetShortDate = (offset = 0, dateObj = new Date()) => {
 }
 
 
-export const GetFullDate = (dateObj = new Date(), offset = 0) => {
+export const GetShortDateRange = (start = 0, end) => {
+  return Array.from(
+    { length: end - start },
+    (_, id) => GetShortDate((id + 1) - (end - start))
+  )
+}
+
+
+export const GetFullDate = (offset = 0, dateObj = new Date()) => {
   dateObj.setDate(dateObj.getDate() + offset)
 
   const weekday = WeekDays[dateObj.getDay()]
@@ -56,10 +64,3 @@ export const GetFullDate = (dateObj = new Date(), offset = 0) => {
   return `${weekday}, ${dateObj.getDate()} ${month}, ${dateObj.getFullYear()}`
 }
 
-
-export const GetDateRange = (start, end) => {
-  return Array.from(
-    { length: end - start },
-    (_, id) => GetDate(offset - id)
-  )
-}

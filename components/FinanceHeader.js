@@ -3,29 +3,31 @@ import { useSelector } from 'react-redux'
 import { Text, View } from 'react-native'
 import { Styles } from '../constants/Style';
 import { Icon } from 'react-native-elements';
+import { GetShortDateRange } from '../utilities/dates';
 import Language from '../languages'
 
 
-// TODO: Calculate whole week
-
-
 const FinanceHeader = (props) => {
+  const finances = useSelector(state => state.finances)
+
+
   const getFinanceSummary = () => {
-    const income = Number(props.financesToday.income)
-    const expenses = Number(props.financesToday.expenses)
+    const results = GetShortDateRange(0, 7).reduce((result, date) => {
+      if (date in finances) {
+        result.income += finances[date].income
+        result.expenses += finances[date].expenses
+      }
 
-    if (income === expenses) {
+      return result
+    }, { income: 0, expenses: 0 })
+
+    if (results.income === results.expenses) {
       return `${Language.WeekTotal}: K0`
-    } else if (income > expenses) {
-      return `${Language.WeekTotal}: + K${income - expenses}`
+    } else if (results.income > results.expenses) {
+      return `${Language.WeekTotal}: + K${results.income - results.expenses}`
     } else {
-      return `${Language.WeekTotal}: - K${expenses - income}`
+      return `${Language.WeekTotal}: - K${results.expenses - results.income}`
     }
-  }
-
-
-  if (!props.financesToday) {
-    return null
   }
 
 

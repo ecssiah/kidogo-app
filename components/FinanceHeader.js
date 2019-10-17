@@ -12,22 +12,16 @@ const FinanceHeader = (props) => {
 
 
   const getFinanceSummary = () => {
-    const results = GetShortDateRange(0, 7).reduce((result, date) => {
+    const totals = GetShortDateRange(0, 7).reduce((res, date) => {
       if (date in finances) {
-        result.income += finances[date].income
-        result.expenses += finances[date].expenses
+        res.income += finances[date].income
+        res.expenses += finances[date].expenses
       }
 
-      return result
+      return res
     }, { income: 0, expenses: 0 })
 
-    if (results.income === results.expenses) {
-      return `${Language.WeekTotal}: K0`
-    } else if (results.income > results.expenses) {
-      return `${Language.WeekTotal}: + K${results.income - results.expenses}`
-    } else {
-      return `${Language.WeekTotal}: - K${results.expenses - results.income}`
-    }
+    return `${Language.WeekTotal}: ${totals.income - totals.expenses}`
   }
 
 

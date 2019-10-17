@@ -53,13 +53,26 @@ const AttendanceHistory = (props) => {
 
 
   const getAttendanceRowComponents = () => {
-    return Object.entries(children).map(([id, child]) =>
+    const attendanceRowData = Object.entries(children).map(([id, child]) => {
+      return {
+        id,
+        firstName: child.firstName,
+        lastName: child.lastName,
+        attendance: getChildAttendance(id),
+      }
+    })
+
+    attendanceRowData.sort((a, b) =>
+      a.lastName + a.firstName > b.lastName + b.firstName
+    )
+
+    return attendanceRowData.map((data) =>
       <AttendanceHistoryRow
-        key={id}
-        childId={id}
-        firstName={child.firstName}
-        lastName={child.lastName}
-        attendance={getChildAttendance(id)}
+        key={data.id}
+        childId={data.id}
+        firstName={data.firstName}
+        lastName={data.lastName}
+        attendance={data.attendance}
       />
     )
   }

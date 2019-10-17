@@ -34,16 +34,14 @@ const ContactModal = (props) => {
   const getDeleteButton = () => {
     if (props.id) {
       return (
-        <View style={Styles.buttonContainer} >
-          <TouchableOpacity
-            style={Styles.button}
-            onPress={() => props.delete(props.id)}
-          >
-            <Text style={Styles.buttonText} >
-              { Language.Delete }
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={Styles.mainButton}
+          onPress={() => props.delete(props.id)}
+        >
+          <Text style={Styles.buttonText} >
+            { Language.Delete }
+          </Text>
+        </TouchableOpacity>
       )
     } else {
       return null

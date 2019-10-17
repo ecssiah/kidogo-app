@@ -56,9 +56,9 @@ const ConfirmModal = (props) => {
 
         <Spacer medium />
 
-        <View style={{ flexDirection: 'row', margin: 10 }}>
+        <View style={Styles.rowElements}>
           <TouchableOpacity
-            style={[Styles.button, { flex: 0.5, marginRight: 5 }]}
+            style={Styles.rowButton}
             onPress={onResend}
           >
             <Text style={Styles.buttonText}>
@@ -67,7 +67,7 @@ const ConfirmModal = (props) => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[Styles.button, Styles.rowElement]}
+            style={Styles.rowButton}
             onPress={onCodeSubmit}
           >
             <Text style={Styles.buttonText}>

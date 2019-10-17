@@ -70,7 +70,7 @@ const ChildEntry = (props) => {
       </Text>
 
       <View style={Styles.rowElements} >
-        <View style={{ flex: .5, marginRight: 5 }} >
+        <View style={Styles.rowElement} >
           <TextInput
             style={Styles.dateInput}
             maxLength={10}
@@ -84,7 +84,7 @@ const ChildEntry = (props) => {
           </Text>
         </View>
 
-        <View style={{ flex: .5, marginLeft: 5}} >
+        <View style={Styles.rowElement} >
           <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >
             <Picker
               style={{ color: 'white', marginTop: -10 }}
@@ -102,7 +102,7 @@ const ChildEntry = (props) => {
       </View>
 
       <View style={Styles.rowElements} >
-        <View style={{ flex: .5, marginLeft: 5}} >
+        <View style={Styles.rowElement} >
           <View style={Styles.financePickerContainer} >
             <Picker
               style={Styles.financePicker}
@@ -118,7 +118,7 @@ const ChildEntry = (props) => {
           </Text>
         </View>
 
-        <View style={{ flex: .5, marginLeft: 5}} >
+        <View style={Styles.rowElement} >
           <View style={Styles.financePickerContainer} >
             <Picker
               selectedValue={props.immunization}
@@ -135,8 +135,6 @@ const ChildEntry = (props) => {
           </Text>
         </View>
       </View>
-
-
 
       <TextInput
         style={Styles.textArea}

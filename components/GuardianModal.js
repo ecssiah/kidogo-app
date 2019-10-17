@@ -10,6 +10,7 @@ import Language from '../languages'
 
 import Backdrop from '../components/Backdrop'
 import Spacer from './Spacer'
+import SecureInput from './SecureInput'
 
 
 const GuardianModal = (props) => {
@@ -20,7 +21,6 @@ const GuardianModal = (props) => {
   const [address, setAddress] = useState('')
   const [city, setCity] = useState('')
   const [phone, setPhone] = useState('')
-  const [hideId, setHideId] = useState(true)
   const [govtId, setGovtId] = useState('')
 
 
@@ -43,22 +43,17 @@ const GuardianModal = (props) => {
   }, [props.id])
 
 
-  const toggleHideId = () => setHideId(!hideId)
-
-
   const getDeleteButton = () => {
     if (props.id) {
       return (
-        <View style={Styles.buttonContainer} >
-          <TouchableOpacity
-            style={Styles.button}
-            onPress={() => props.delete(props.id)}
-          >
-            <Text style={Styles.buttonText} >
-              { Language.Delete }
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={Styles.mainButton}
+          onPress={() => props.delete(props.id)}
+        >
+          <Text style={Styles.buttonText} >
+            { Language.Delete }
+          </Text>
+        </TouchableOpacity>
       )
     } else {
       return null
@@ -136,25 +131,10 @@ const GuardianModal = (props) => {
             { Language.Phone }
           </Text>
 
-          <View style={Styles.passwordHolder}>
-            <TextInput
-              keyboardType="number-pad"
-              style={[Styles.input, { flex: 0.9, marginRight: 0 }]}
-              maxLength={8}
-              secureTextEntry={hideId}
-              value={govtId}
-              onChangeText={setGovtId}
-            />
-
-            <View style={Styles.showButton} >
-              <TouchableOpacity onPress={toggleHideId} >
-                <Icon
-                  color="white"
-                  name={hideId ? "visibility-off" : 'visibility'}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
+          <SecureInput
+            value={govtId}
+            setValue={setGovtId}
+          />
 
           <Text style={Styles.label} >
             { Language.IdentificationNumber }
@@ -184,6 +164,8 @@ const GuardianModal = (props) => {
               </Text>
             </TouchableOpacity>
           </View>
+
+          <Spacer medium />
 
           { getDeleteButton() }
 

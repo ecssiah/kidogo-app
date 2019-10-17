@@ -5,6 +5,7 @@ import {
 import { Icon } from 'react-native-elements';
 import { Styles } from '../constants/Style';
 import Language from '../languages'
+import SecureInput from './SecureInput';
 
 
 const GuardianEntry = (props) => {
@@ -77,25 +78,10 @@ const GuardianEntry = (props) => {
         { Language.Phone }
       </Text>
 
-      <View style={Styles.passwordHolder}>
-        <TextInput
-          keyboardType="number-pad"
-          style={[Styles.input, { flex: 0.9, marginRight: 0 }]}
-          maxLength={8}
-          secureTextEntry={hideId}
-          value={props.govtId}
-          onChangeText={props.setGovtId}
-        />
-
-        <View style={Styles.showButton} >
-          <TouchableOpacity onPress={toggleHideId} >
-            <Icon
-              color="white"
-              name={hideId ? "visibility-off" : 'visibility'}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <SecureInput
+        value={props.govtId}
+        setValue={props.setGovtId}
+      />
 
       <Text style={Styles.label} >
         { Language.IdentificationNumber }

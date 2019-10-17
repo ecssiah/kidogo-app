@@ -35,16 +35,14 @@ const DisplayMembers = (props) => {
 
   const getAddMemberButton = () => {
     return (
-      <View style={Styles.buttonContainer} >
-        <TouchableOpacity
-          style={Styles.button}
-          onPress={() => props.addMember()}
-        >
-          <Text style={Styles.buttonText} >
-            { Language.New }
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        style={Styles.mainButton}
+        onPress={props.addMember}
+      >
+        <Text style={Styles.buttonText} >
+          { Language.New }
+        </Text>
+      </TouchableOpacity>
     )
   }
 

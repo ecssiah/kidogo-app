@@ -4,6 +4,7 @@ import { Styles } from '../constants/Style'
 import { Frequency, FrequencyStrings } from '../constants/Finances'
 import Language from '../languages'
 import Spacer from './Spacer'
+import CurrencyInput from './CurrencyInput'
 
 
 const AccountFinances = (props) => {
@@ -35,24 +36,11 @@ const AccountFinances = (props) => {
       </Text>
 
       <View style={Styles.rowElements} >
-        <View style={Styles.rowElement} >
-          <View style={{ flexDirection: 'row' }}>
-            <Text style={Styles.prefix} >
-              K
-            </Text>
-
-            <TextInput
-              style={[Styles.input, { flex: .8, marginLeft: 0 }]}
-              keyboardType="number-pad"
-              value={props.rate.toString()}
-              onChangeText={props.updateRate}
-            />
-          </View>
-
-          <Text style={Styles.label} >
-            { Language.Rate }
-          </Text>
-        </View>
+        <CurrencyInput
+          label={Language.Rate}
+          amount={props.rate.toString()}
+          setAmount={props.updateRate}
+        />
 
         <View style={Styles.rowElement}>
           <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >

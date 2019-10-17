@@ -132,7 +132,7 @@ const PaymentModal = (props) => {
               </Text>
             </View>
 
-            <View style={{ flex: 0.5, marginRight: 5 }} >
+            <View style={Styles.rowElement} >
               <TextInput
                 style={Styles.dateInput}
                 maxLength={10}

@@ -128,14 +128,18 @@ const Children = (props) => {
             style={Styles.rowButton}
             onPress={onSubmitChild}
           >
-            <Text style={Styles.buttonText}>{ Language.Submit }</Text>
+            <Text style={Styles.buttonText} >
+              { Language.Submit }
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={Styles.rowButton}
             onPress={onNextChild}
           >
-            <Text style={Styles.buttonText}>{ Language.Next }</Text>
+            <Text style={Styles.buttonText} >
+              { Language.Next }
+            </Text>
           </TouchableOpacity>
         </View>
 

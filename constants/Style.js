@@ -137,12 +137,6 @@ export const Styles = StyleSheet.create({
     borderRadius: 2,
   },
   buttonText: {
-    color: Colors.mainText,
-    lineHeight: 50,
-    textAlign: 'center',
-    fontSize: 24,
-  },
-  buttonText: {
     fontSize: 16,
     textAlign: 'center',
     color: Colors.mainText,
@@ -176,6 +170,17 @@ export const Styles = StyleSheet.create({
     marginLeft: 10,
     paddingLeft: 10,
     lineHeight: 34,
+  },
+  currencyInput: {
+    flex: 0.8,
+    fontSize: 18,
+    color: Colors.mainText,
+    borderColor: Colors.mainText,
+    borderBottomWidth: 2,
+    marginLeft: 0,
+    marginRight: 10,
+    marginVertical: 10,
+    paddingLeft: 10,
   },
   label: {
     fontSize: 14,
@@ -218,7 +223,6 @@ export const Styles = StyleSheet.create({
     flex: 0.27,
     color: Colors.mainText,
   },
-  // end finances
   container: {
     flex: 1,
     padding: 5,
@@ -383,7 +387,6 @@ export const Styles = StyleSheet.create({
   nameHolder: {
     flexDirection: 'row'
   },
-
   focused: {
     fontSize: 18
   },
@@ -476,24 +479,6 @@ export const Styles = StyleSheet.create({
     borderColor: Colors.mainText,
     paddingHorizontal: 10,
   },
-  rowButton: {
-    flex: 0.5,
-    borderWidth: 1,
-    borderColor: Colors.mainText,
-    paddingHorizontal: 10,
-    marginHorizontal: 4,
-  },
-  mainButton: {
-    borderWidth: 1,
-    borderColor: Colors.mainText,
-    marginHorizontal: 8,
-  },
-  buttonText: {
-    fontSize: 24,
-    lineHeight: 50,
-    color: Colors.mainText,
-    textAlign: 'center'
-  },
   modal: {
     position: 'absolute',
     top: 0,
@@ -524,24 +509,26 @@ export const Styles = StyleSheet.create({
   },
   rowElements: {
     flexDirection: 'row',
-    marginHorizontal: 4,
   },
   rowElement: {
     flex: 0.5,
-    marginLeft: 5,
   },
-  prefix: {
-    flex: 0.2,
-    fontSize: 18,
-    fontWeight: 'bold',
-    borderBottomWidth: 2,
+  rowButton: {
+    flex: 0.5,
+    borderWidth: 1,
     borderColor: Colors.mainText,
+    marginHorizontal: 8,
+  },
+  mainButton: {
+    borderWidth: 1,
+    borderColor: Colors.mainText,
+    marginHorizontal: 8,
+  },
+  buttonText: {
+    fontSize: 24,
+    lineHeight: 50,
     color: Colors.mainText,
-    height: 30,
-    marginVertical: 10,
-    marginLeft: 10,
-    paddingLeft: 10,
-    lineHeight: 34
+    textAlign: 'center'
   },
   raleway: {
     fontFamily: 'Raleway-Bold',

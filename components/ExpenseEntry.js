@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Picker, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { Styles } from '../constants/Style';
 import { GetShortDate } from '../utilities/dates';
-import { ExpenseType, ExpenseTypeString, FinanceType, FinanceTypeNames } from '../constants/Finances';
+import { FinanceType, FinanceTypeNames } from '../constants/Finances';
 import Language from '../languages'
 
 
@@ -61,25 +61,12 @@ const ExpenseEntry = (props) => {
           { Language.Type }
         </Text>
 
-        <View style={{ flexDirection: 'row' }} >
-          <View style={{ flex: 0.5 }} >
-            <View style={{ flexDirection: 'row' }} >
-              <Text style={Styles.prefix} >
-                K
-              </Text>
-
-              <TextInput
-                style={[Styles.input, { flex: 0.8, marginLeft: 0 }]}
-                keyboardType="number-pad"
-                value={amount}
-                onChangeText={setAmount}
-              />
-            </View>
-
-            <Text style={Styles.label} >
-              { Language.Amount }
-            </Text>
-          </View>
+        <View style={Styles.rowElements} >
+          <CurrencyInput
+            label={Language.Amount}
+            amount={amount}
+            setAmount={setAmount}
+          />
 
           <View style={Styles.rowElement} >
             <TextInput

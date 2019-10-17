@@ -37,16 +37,14 @@ const ChildModal = (props) => {
   const getDeleteButton = () => {
     if (props.id) {
       return (
-        <View style={Styles.buttonContainer} >
-          <TouchableOpacity
-            style={Styles.button}
-            onPress={() => props.delete(props.id)}
-          >
-            <Text style={Styles.buttonText} >
-              { Language.Delete }
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={Styles.mainButton}
+          onPress={() => props.delete(props.id)}
+        >
+          <Text style={Styles.buttonText} >
+            { Language.Delete }
+          </Text>
+        </TouchableOpacity>
       )
     } else {
       return null
@@ -93,7 +91,7 @@ const ChildModal = (props) => {
           </Text>
 
           <View style={Styles.rowElements} >
-            <View style={{ flex: .5, marginRight: 5 }} >
+            <View style={Styles.rowElement} >
               <TextInput
                 style={Styles.dateInput}
                 maxLength={10}
@@ -156,6 +154,8 @@ const ChildModal = (props) => {
               </Text>
             </TouchableOpacity>
           </View>
+
+          <Spacer medium />
 
           { getDeleteButton() }
 

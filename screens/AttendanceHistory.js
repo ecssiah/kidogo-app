@@ -34,10 +34,7 @@ const AttendanceHistory = (props) => {
 
   const getDateRange = () => {
     const targetSunday = NextDay(Day.SUNDAY, offset)
-
-    return [-6, -5, -4, -3, -2, -1, 0].map((i) =>
-      GetShortDate(i, targetSunday)
-    )
+    return [-6, -5, -4, -3, -2, -1, 0].map((i) => GetShortDate(i, targetSunday))
   }
 
 
@@ -66,13 +63,13 @@ const AttendanceHistory = (props) => {
       a.lastName + a.firstName > b.lastName + b.firstName
     )
 
-    return attendanceRowData.map((data) =>
+    return attendanceRowData.map((rowData) =>
       <AttendanceHistoryRow
-        key={data.id}
-        childId={data.id}
-        firstName={data.firstName}
-        lastName={data.lastName}
-        attendance={data.attendance}
+        key={rowData.id}
+        childId={rowData.id}
+        firstName={rowData.firstName}
+        lastName={rowData.lastName}
+        attendance={rowData.attendance}
       />
     )
   }

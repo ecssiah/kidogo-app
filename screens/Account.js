@@ -18,7 +18,7 @@ import {
   ACCOUNTS, CHILDREN, ATTENDANCE, GUARDIANS, CONTACTS
 } from '../constants/Store';
 import { SET_ACCOUNT } from '../constants/Accounts';
-import { SET_ATTENDANCE } from '../constants/Attendance';
+import { SET_ATTENDANCE, UPDATE_ATTENDANCE } from '../constants/Attendance';
 import { UPDATE_CHILD, SET_CHILD, DELETE_CHILD } from '../constants/Children';
 import {
   UPDATE_GUARDIAN, SET_GUARDIAN, DELETE_GUARDIAN
@@ -108,7 +108,7 @@ const Account = (props) => {
       children: updatedChildren,
     }
 
-    dispatch({ type: SET_ACCOUNT, id: accountIdj, account: updatedAccount })
+    dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
     await Update(ACCOUNTS, accountId, { children: updatedAccount.children })
 
     dispatch({ type: DELETE_CHILD, id })
@@ -132,21 +132,20 @@ const Account = (props) => {
       const newChildId = uuid()
       const child = { accountId, ...childData }
 
-      const updatedAccount = { ...await Get(ACCOUNTS, accountId) }
-      updatedAccount.children.push(newChildId)
-
       dispatch({ type: SET_CHILD, id: newChildId, child })
       await Create(CHILDREN, newChildId, child)
+
+      const updatedAccount = { ...await Get(ACCOUNTS, accountId) }
+      updatedAccount.children.push(newChildId)
 
       dispatch({ type: SET_ACCOUNT, id: accountId, account: updatedAccount })
       await Update(ACCOUNTS, accountId, { children: updatedAccount.children })
 
       const today = GetShortDate()
-      const attendanceToday = await Get(ATTENDANCE, today)
-      attendanceToday[newChildId] = { checkIn: true, checkOut: false }
+      const update = { [newChildId]: { checkIn: true, checkOut: false }}
 
-      dispatch({ type: SET_ATTENDANCE, id: today, attendance: attendanceToday })
-      await Update(ATTENDANCE, today, attendanceToday.attendance)
+      dispatch({ type: UPDATE_ATTENDANCE, id: today, update })
+      await Update(ATTENDANCE, today, update)
     }
 
     setChildModalVisible(false)
@@ -249,7 +248,7 @@ const Account = (props) => {
       const newContactId = uuid()
       const contact = { accountId, ...contactData }
 
-      const updatedAccount = { ...await Get(ACCOUNTS, accountIdj) }
+      const updatedAccount = { ...await Get(ACCOUNTS, accountId) }
       updatedAccount.contacts.push(newContactId)
 
       dispatch({ type: SET_CONTACT, id: newContactId, contact })

@@ -11,6 +11,7 @@ const CaregiverEntry = (props) => {
 
   const toggleHidePassword = () => setHidePassword(!hidePassword)
 
+  // TODO: Use SecureInput component
 
   return (
     <View style={Styles.container} >

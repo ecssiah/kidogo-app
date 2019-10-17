@@ -11,6 +11,7 @@
     "@aws-amplify/api": "^1.0.42",
     "@aws-amplify/pubsub": "^1.1.0",
     "@expo/vector-icons": "^10.0.5",
+    "@react-native-community/datetimepicker": "^2.1.0",
     "aws-amplify": "^1.1.36",
     "aws-amplify-react-native": "^2.1.19",
     "expo": "^34.0.1",

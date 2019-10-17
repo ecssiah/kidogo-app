@@ -12,7 +12,9 @@ const accountsReducer = (state = {}, action) => {
       return newState
     }
     case UPDATE_ACCOUNT: {
-      newState[action.id] = Object.assign({}, newState[action.id], action.update)
+      newState[action.id] = Object.assign(
+        {}, newState[action.id], action.update
+      )
       return newState
     }
     case DELETE_ACCOUNT: {

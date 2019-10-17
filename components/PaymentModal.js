@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import DateTimePicker from '@react-native-community/datetimepicker'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   Image, Modal, Picker, ScrollView, Text, TextInput, View, TouchableOpacity,
@@ -40,6 +41,10 @@ const PaymentModal = (props) => {
         value={id}
       />
     )
+  }
+
+
+  const onDateSelection = () => {
   }
 
 
@@ -95,13 +100,14 @@ const PaymentModal = (props) => {
             </View>
 
             <View style={{ flex: .5, marginLeft: 5}} >
-              <TextInput
-                style={Styles.dateInput}
-                maxLength={10}
-                keyboardType="number-pad"
-                value={date}
-                onChangeText={setDate}
-              />
+              <TouchableOpacity
+                style={Styles.pairButton}
+                onPress={onDateSelection}
+              >
+                <Text style={Styles.btnText} >
+                  { date }
+                </Text>
+              </TouchableOpacity>
 
               <Text style={Styles.label} >
                 { Language.Date }

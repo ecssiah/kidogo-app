@@ -403,10 +403,7 @@ export const GetIds = async (key) => {
 
 export const Get = async (key, ids) => {
   if (typeof ids === "string") {
-    const elementResp = await SecureStore.getItemAsync(`${key}_${ids}`)
-    const element = JSON.parse(elementResp)
-
-    return { [ids]: element }
+    return JSON.parse(await SecureStore.getItemAsync(`${key}_${ids}`))
   } else {
     if (ids === undefined) {
       ids = await GetIds(key)
@@ -415,8 +412,7 @@ export const Get = async (key, ids) => {
     const elements = {}
 
     for (const id of ids) {
-      const elementResp = await SecureStore.getItemAsync(`${key}_${id}`)
-      elements[id] = JSON.parse(elementResp)
+      elements[id] = JSON.parse(await SecureStore.getItemAsync(`${key}_${id}`))
     }
 
     return elements

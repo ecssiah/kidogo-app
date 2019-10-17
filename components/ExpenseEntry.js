@@ -34,7 +34,7 @@ const ExpenseEntry = (props) => {
           style={Styles.button}
           onPress={() => setEntryActive(true)}
         >
-          <Text style={Styles.btnText}>
+          <Text style={Styles.buttonText}>
             { Language.AddExpense }
           </Text>
         </TouchableOpacity>
@@ -81,7 +81,7 @@ const ExpenseEntry = (props) => {
             </Text>
           </View>
 
-          <View style={{ flex: 0.5, marginLeft: 5 }} >
+          <View style={Styles.rowElement} >
             <TextInput
               style={Styles.dateInput}
               maxLength={10}
@@ -96,21 +96,21 @@ const ExpenseEntry = (props) => {
           </View>
         </View>
 
-        <View style={Styles.rowButtons} >
+        <View style={Styles.rowElements} >
           <TouchableOpacity
-            style={Styles.pairButton}
+            style={Styles.rowButton}
             onPress={() => setEntryActive(false)}
           >
-            <Text style={Styles.btnText} >
+            <Text style={Styles.buttonText} >
               { Language.Cancel }
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={Styles.pairButton}
+            style={Styles.rowButton}
             onPress={() => props.addExpense({ date, type, amount })}
           >
-            <Text style={Styles.btnText} >
+            <Text style={Styles.buttonText} >
               { Language.Submit }
             </Text>
           </TouchableOpacity>

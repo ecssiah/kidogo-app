@@ -123,19 +123,19 @@ const Children = (props) => {
 
         <Spacer medium />
 
-        <View style={Styles.rowButtons} >
+        <View style={Styles.rowElements} >
           <TouchableOpacity
-            style={Styles.pairButton}
+            style={Styles.rowButton}
             onPress={onSubmitChild}
           >
-            <Text style={Styles.btnText}>{ Language.Submit }</Text>
+            <Text style={Styles.buttonText}>{ Language.Submit }</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={Styles.pairButton}
+            style={Styles.rowButton}
             onPress={onNextChild}
           >
-            <Text style={Styles.btnText}>{ Language.Next }</Text>
+            <Text style={Styles.buttonText}>{ Language.Next }</Text>
           </TouchableOpacity>
         </View>
 
@@ -145,7 +145,7 @@ const Children = (props) => {
           style={Styles.mainButton}
           onPress={onAddGuardians}
         >
-          <Text style={Styles.btnText}>
+          <Text style={Styles.buttonText}>
             { Language.Add } { Language.Guardians }
           </Text>
         </TouchableOpacity>

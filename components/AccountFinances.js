@@ -34,8 +34,8 @@ const AccountFinances = (props) => {
         { getRateSummary() }
       </Text>
 
-      <View style={Styles.nameHolder}>
-        <View style={{ flex: .5, marginRight: 5 }}>
+      <View style={Styles.rowElements} >
+        <View style={Styles.rowElement} >
           <View style={{ flexDirection: 'row' }}>
             <Text style={Styles.prefix} >
               K
@@ -54,7 +54,7 @@ const AccountFinances = (props) => {
           </Text>
         </View>
 
-        <View style={{ flex: .5, marginLeft: 5 }}>
+        <View style={Styles.rowElement}>
           <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >
             <Picker
               style={{ color: 'white', marginTop: -10 }}

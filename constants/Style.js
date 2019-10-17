@@ -142,7 +142,7 @@ export const Styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 24,
   },
-  btnText: {
+  buttonText: {
     fontSize: 16,
     textAlign: 'center',
     color: Colors.mainText,
@@ -383,6 +383,7 @@ export const Styles = StyleSheet.create({
   nameHolder: {
     flexDirection: 'row'
   },
+
   focused: {
     fontSize: 18
   },
@@ -475,7 +476,7 @@ export const Styles = StyleSheet.create({
     borderColor: Colors.mainText,
     paddingHorizontal: 10,
   },
-  pairButton: {
+  rowButton: {
     flex: 0.5,
     borderWidth: 1,
     borderColor: Colors.mainText,
@@ -487,7 +488,7 @@ export const Styles = StyleSheet.create({
     borderColor: Colors.mainText,
     marginHorizontal: 8,
   },
-  btnText: {
+  buttonText: {
     fontSize: 24,
     lineHeight: 50,
     color: Colors.mainText,
@@ -521,9 +522,13 @@ export const Styles = StyleSheet.create({
     borderRadius: 100,
     marginVertical: 10,
   },
-  rowButtons: {
+  rowElements: {
     flexDirection: 'row',
     marginHorizontal: 4,
+  },
+  rowElement: {
+    flex: 0.5,
+    marginLeft: 5,
   },
   prefix: {
     flex: 0.2,

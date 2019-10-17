@@ -61,16 +61,16 @@ const ConfirmModal = (props) => {
             style={[Styles.button, { flex: 0.5, marginRight: 5 }]}
             onPress={onResend}
           >
-            <Text style={Styles.btnText}>
+            <Text style={Styles.buttonText}>
               { Language.Resend }
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[Styles.button, { flex: 0.5, marginLeft: 5 }]}
+            style={[Styles.button, Styles.rowElement]}
             onPress={onCodeSubmit}
           >
-            <Text style={Styles.btnText}>
+            <Text style={Styles.buttonText}>
               { Language.Confirm }
             </Text>
           </TouchableOpacity>

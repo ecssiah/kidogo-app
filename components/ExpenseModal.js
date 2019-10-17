@@ -79,7 +79,7 @@ const ExpenseModal = (props) => {
             { Language.Date }
           </Text>
 
-          <View style={Styles.nameHolder} >
+          <View style={Styles.rowElements} >
             <View style={{ flex: .5, marginLeft: 5}} >
               <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >
                 <Picker
@@ -113,21 +113,21 @@ const ExpenseModal = (props) => {
 
           <Spacer medium />
 
-          <View style={Styles.rowButtons} >
+          <View style={Styles.rowElements} >
             <TouchableOpacity
-              style={Styles.pairButton}
+              style={Styles.rowButton}
               onPress={() => props.setVisible(false)}
             >
-              <Text style={Styles.btnText} >
+              <Text style={Styles.buttonText} >
                 { Language.Cancel }
               </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={Styles.pairButton}
+              style={Styles.rowButton}
               onPress={onSubmitExpense}
             >
-              <Text style={Styles.btnText} >
+              <Text style={Styles.buttonText} >
                 { Language.Confirm }
               </Text>
             </TouchableOpacity>

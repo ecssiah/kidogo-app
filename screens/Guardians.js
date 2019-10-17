@@ -116,19 +116,19 @@ const Guardians = (props) => {
 
         <Spacer large />
 
-        <View style={Styles.rowButtons} >
+        <View style={Styles.rowElements} >
           <TouchableOpacity
-            style={Styles.pairButton}
+            style={Styles.rowButton}
             onPress={onSubmitGuardian}
           >
-            <Text style={Styles.btnText}>Submit</Text>
+            <Text style={Styles.buttonText} >Submit</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={Styles.pairButton}
+            style={Styles.rowButton}
             onPress={onNextGuardian}
           >
-            <Text style={Styles.btnText}>Next</Text>
+            <Text style={Styles.buttonText} >Next</Text>
           </TouchableOpacity>
         </View>
 
@@ -138,7 +138,7 @@ const Guardians = (props) => {
           style={Styles.mainButton}
           onPress={onAddContacts}
         >
-          <Text style={Styles.btnText}>Add Contacts</Text>
+          <Text style={Styles.buttonText} >Add Contacts</Text>
         </TouchableOpacity>
 
         <Spacer height={Size.keyboard} />

@@ -204,13 +204,16 @@ export const LoadTestData = async () => {
 
 
 export const LogTestData = async () => {
-  console.log("=-----Test Data-----=")
+  console.log("=---------------------------=")
   console.log(ACCOUNTS, await Get(ACCOUNTS))
-
   console.log(GUARDIANS, await Get(GUARDIANS))
   console.log(CONTACTS, await Get(CONTACTS))
   console.log(CHILDREN, await Get(CHILDREN))
-  console.log("=-----Test Data-----=")
+  console.log(FINANCES, await Get(FINANCES))
+  console.log(PAYMENTS, await Get(PAYMENTS))
+  console.log(EXPENSES, await Get(EXPENSES))
+  console.log(QUESTIONS, await Get(QUESTIONS))
+  console.log("=---------------------------=")
 }
 
 

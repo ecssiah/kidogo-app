@@ -39,7 +39,7 @@ const ContactModal = (props) => {
             style={Styles.button}
             onPress={() => props.delete(props.id)}
           >
-            <Text style={Styles.btnText} >
+            <Text style={Styles.buttonText} >
               { Language.Delete }
             </Text>
           </TouchableOpacity>
@@ -99,24 +99,24 @@ const ContactModal = (props) => {
             { Language.Phone }
           </Text>
 
-          <View style={Styles.rowButtons} >
+          <View style={Styles.rowElements} >
             <TouchableOpacity
-              style={Styles.pairButton}
+              style={Styles.rowButton}
               onPress={() => props.setVisible(false)}
             >
-              <Text style={Styles.btnText} >
+              <Text style={Styles.buttonText} >
                 { Language.Cancel }
               </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={Styles.pairButton}
+              style={Styles.rowButton}
               onPress={() => props.submit(
                 props.id,
                 { firstName, lastName, phone }
               )}
             >
-              <Text style={Styles.btnText} >
+              <Text style={Styles.buttonText} >
                 { Language.Confirm }
               </Text>
             </TouchableOpacity>

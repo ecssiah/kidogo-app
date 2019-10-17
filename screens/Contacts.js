@@ -109,19 +109,19 @@ const Contacts = (props) => {
 
             <Spacer large />
 
-            <View style={Styles.rowButtons} >
+            <View style={Styles.rowElements} >
               <TouchableOpacity
-                style={Styles.pairButton}
+                style={Styles.rowButton}
                 onPress={onSubmitContact}
               >
-                <Text style={Styles.btnText}>Submit</Text>
+                <Text style={Styles.buttonText}>Submit</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={Styles.pairButton}
+                style={Styles.rowButton}
                 onPress={onNextContact}
               >
-                <Text style={Styles.btnText}>Next</Text>
+                <Text style={Styles.buttonText}>Next</Text>
               </TouchableOpacity>
             </View>
 
@@ -131,7 +131,7 @@ const Contacts = (props) => {
               style={Styles.mainButton}
               onPress={onSubmitFamily}
             >
-              <Text style={Styles.btnText}>Submit Family</Text>
+              <Text style={Styles.buttonText}>Submit Family</Text>
             </TouchableOpacity>
 
             <Spacer height={Size.keyboard} />

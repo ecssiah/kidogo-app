@@ -93,7 +93,7 @@ const SignIn = (props) => {
               style={Styles.mainButton}
               onPress={onSignIn}
             >
-              <Text style={Styles.btnText}>{ Language.Confirm }</Text>
+              <Text style={Styles.buttonText}>{ Language.Confirm }</Text>
             </TouchableOpacity>
           </View>
       }

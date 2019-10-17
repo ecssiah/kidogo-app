@@ -40,7 +40,7 @@ const DisplayMembers = (props) => {
           style={Styles.button}
           onPress={() => props.addMember()}
         >
-          <Text style={Styles.btnText} >
+          <Text style={Styles.buttonText} >
             { Language.New }
           </Text>
         </TouchableOpacity>

@@ -48,7 +48,7 @@ const Finances = (props) => {
           style={Styles.button}
           onPress={onAddPayment}
         >
-          <Text style={Styles.btnText} >
+          <Text style={Styles.buttonText} >
             { Language.New } { Language.Payment }
           </Text>
         </TouchableOpacity>
@@ -59,7 +59,7 @@ const Finances = (props) => {
           style={Styles.button}
           onPress={onAddExpense}
         >
-          <Text style={Styles.btnText} >
+          <Text style={Styles.buttonText} >
             { Language.New } { Language.Expense }
           </Text>
         </TouchableOpacity>

@@ -64,7 +64,7 @@ const Home = (props) => {
         style={Styles.mainButton}
         onPress={() => props.navigation.navigate('SignUp')}
       >
-        <Text style={Styles.btnText}>Sign Up</Text>
+        <Text style={Styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
 
       <Spacer medium />
@@ -73,7 +73,7 @@ const Home = (props) => {
         style={Styles.mainButton}
         onPress={() => props.navigation.navigate('SignIn')}
       >
-        <Text style={Styles.btnText}>Recover Account</Text>
+        <Text style={Styles.buttonText}>Recover Account</Text>
       </TouchableOpacity>
 
       <TouchableOpacity

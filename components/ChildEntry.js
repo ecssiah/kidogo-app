@@ -69,7 +69,7 @@ const ChildEntry = (props) => {
         { Language.LastName }
       </Text>
 
-      <View style={Styles.nameHolder} >
+      <View style={Styles.rowElements} >
         <View style={{ flex: .5, marginRight: 5 }} >
           <TextInput
             style={Styles.dateInput}
@@ -101,7 +101,7 @@ const ChildEntry = (props) => {
         </View>
       </View>
 
-      <View style={Styles.nameHolder} >
+      <View style={Styles.rowElements} >
         <View style={{ flex: .5, marginLeft: 5}} >
           <View style={Styles.financePickerContainer} >
             <Picker

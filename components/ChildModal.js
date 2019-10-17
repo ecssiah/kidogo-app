@@ -42,7 +42,7 @@ const ChildModal = (props) => {
             style={Styles.button}
             onPress={() => props.delete(props.id)}
           >
-            <Text style={Styles.btnText} >
+            <Text style={Styles.buttonText} >
               { Language.Delete }
             </Text>
           </TouchableOpacity>
@@ -92,7 +92,7 @@ const ChildModal = (props) => {
             { Language.LastName }
           </Text>
 
-          <View style={Styles.nameHolder} >
+          <View style={Styles.rowElements} >
             <View style={{ flex: .5, marginRight: 5 }} >
               <TextInput
                 style={Styles.dateInput}
@@ -134,24 +134,24 @@ const ChildModal = (props) => {
 
           <Spacer medium />
 
-          <View style={Styles.rowButtons} >
+          <View style={Styles.rowElements} >
             <TouchableOpacity
-              style={Styles.pairButton}
+              style={Styles.rowButton}
               onPress={() => props.setVisible(false)}
             >
-              <Text style={Styles.btnText} >
+              <Text style={Styles.buttonText} >
                 { Language.Cancel }
               </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={Styles.pairButton}
+              style={Styles.rowButton}
               onPress={() => props.submit(
                 props.id,
                 { firstName, lastName, birthdate, gender }
               )}
             >
-              <Text style={Styles.btnText} >
+              <Text style={Styles.buttonText} >
                 { Language.Confirm }
               </Text>
             </TouchableOpacity>

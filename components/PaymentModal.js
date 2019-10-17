@@ -82,8 +82,8 @@ const PaymentModal = (props) => {
             { Language.Payment }
           </Text>
 
-          <View style={Styles.nameHolder} >
-            <View style={{ flex: .5, marginLeft: 5}} >
+          <View style={Styles.rowElements} >
+            <View style={Styles.rowElement} >
               <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >
                 <Picker
                   style={{ color: 'white', marginTop: -10 }}
@@ -99,12 +99,12 @@ const PaymentModal = (props) => {
               </Text>
             </View>
 
-            <View style={{ flex: .5, marginLeft: 5}} >
+            <View style={Styles.rowElement} >
               <TouchableOpacity
-                style={Styles.pairButton}
+                style={Styles.rowButton}
                 onPress={onDateSelection}
               >
-                <Text style={Styles.btnText} >
+                <Text style={Styles.buttonText} >
                   { date }
                 </Text>
               </TouchableOpacity>
@@ -115,8 +115,8 @@ const PaymentModal = (props) => {
             </View>
           </View>
 
-          <View style={Styles.nameHolder} >
-            <View style={{ flex: .5, marginLeft: 5}} >
+          <View style={Styles.rowElements} >
+            <View style={Styles.rowElement} >
               <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >
                 <Picker
                   style={{ color: 'white', marginTop: -10 }}
@@ -132,7 +132,7 @@ const PaymentModal = (props) => {
               </Text>
             </View>
 
-            <View style={{ flex: .5, marginRight: 5 }} >
+            <View style={{ flex: 0.5, marginRight: 5 }} >
               <TextInput
                 style={Styles.dateInput}
                 maxLength={10}
@@ -149,21 +149,21 @@ const PaymentModal = (props) => {
 
           <Spacer medium />
 
-          <View style={Styles.rowButtons} >
+          <View style={Styles.rowElements} >
             <TouchableOpacity
-              style={Styles.pairButton}
+              style={Styles.rowButton}
               onPress={() => props.setVisible(false)}
             >
-              <Text style={Styles.btnText} >
+              <Text style={Styles.buttonText} >
                 { Language.Cancel }
               </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={Styles.pairButton}
+              style={Styles.rowButton}
               onPress={onSubmitPayment}
             >
-              <Text style={Styles.btnText} >
+              <Text style={Styles.buttonText} >
                 { Language.Confirm }
               </Text>
             </TouchableOpacity>

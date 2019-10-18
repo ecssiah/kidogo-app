@@ -1,7 +1,3 @@
-
-export const Terms = [ 1, 3, 6, 9 ]
-
-
 const WeekDays = [
   "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
 ]

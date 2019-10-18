@@ -48,12 +48,11 @@ const CheckIn = (props) => {
 
   const toggleCheckIn = async (id) => {
     const today = GetShortDate()
-    const attendanceToday = { ...attendance[today] }
-    attendanceToday[id].checkIn = !attendanceToday[id].checkIn
+    const update = { ...attendance[today] }
+    update[id].checkIn = !update[id].checkIn
 
-    await Update(ATTENDANCE, today, attendanceToday)
-
-    dispatch({ type: SET_ATTENDANCE, id: today, attendance: attendanceToday })
+    dispatch({ type: SET_ATTENDANCE, id: today, attendance: update })
+    await Update(ATTENDANCE, today, update)
 
     getCheckInData()
   }

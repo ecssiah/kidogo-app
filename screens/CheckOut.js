@@ -48,12 +48,11 @@ const CheckOut = (props) => {
 
   const toggleCheckOut = async (id) => {
     const today = GetShortDate()
-    const attendanceToday = { ...attendance[today] }
-    attendanceToday[id].checkOut = !attendanceToday[id].checkOut
+    const update = { ...attendance[today] }
+    update[id].checkOut = !update[id].checkOut
 
-    await Update(ATTENDANCE, today, attendanceToday)
-
-    dispatch({ type: SET_ATTENDANCE, id: today, attendance: attendanceToday })
+    dispatch({ type: SET_ATTENDANCE, id: today, attendance: update })
+    await Update(ATTENDANCE, today, update)
 
     getCheckOutData()
   }

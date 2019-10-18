@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import DateTimePicker from '@react-native-community/datetimepicker'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  Image, Modal, Picker, ScrollView, Text, TextInput, View, TouchableOpacity,
+  DatePickerAndroid, Modal, Picker, ScrollView, Text, TextInput, View, TouchableOpacity,
 } from 'react-native'
 import Language from '../languages'
-import { Styles, Size } from '../constants/Style'
+import { Styles, Size, Colors } from '../constants/Style'
 import Backdrop from './Backdrop'
 import Spacer from './Spacer'
-import { ADD_PAYMENT, FinanceType, FinanceTypeNames, PaymentType, UPDATE_INCOME } from '../constants/Finances'
+import {
+  ADD_PAYMENT, UPDATE_INCOME,
+  FinanceType, FinanceTypeNames, PaymentType,
+} from '../constants/Finances'
 import { Update, Get } from '../utilities/localstore'
 import { PAYMENTS, FINANCES } from '../constants/Store'
 import { GetShortDate } from '../utilities/dates'
@@ -44,10 +46,6 @@ const PaymentModal = (props) => {
   }
 
 
-  const onDateSelection = () => {
-  }
-
-
   const onSubmitPayment = async () => {
     const payment = { accountId, type, amount }
     const update = { [uuid()]: payment }
@@ -66,6 +64,22 @@ const PaymentModal = (props) => {
     await Update(FINANCES, date, financesUpdate)
 
     props.setVisible(false)
+  }
+
+
+  const onDateSelection = async () => {
+    try {
+      const { action, year, month, day } = await DatePickerAndroid.open({
+        date: new Date(),
+      })
+
+      if (action === DatePickerAndroid.dateSetAction) {
+        const newDate = new Date(year, month, day)
+        setDate(GetShortDate(0, newDate))
+      }
+    } catch ({ code, message }) {
+      console.warn(' Cannot open date picker', message)
+    }
   }
 
 
@@ -101,10 +115,9 @@ const PaymentModal = (props) => {
 
             <View style={Styles.rowElement} >
               <TouchableOpacity
-                style={Styles.rowButton}
                 onPress={onDateSelection}
               >
-                <Text style={Styles.buttonText} >
+                <Text style={Styles.dateInput} >
                   { date }
                 </Text>
               </TouchableOpacity>
@@ -134,7 +147,7 @@ const PaymentModal = (props) => {
 
             <View style={Styles.rowElement} >
               <TextInput
-                style={Styles.dateInput}
+                style={Styles.input}
                 maxLength={10}
                 keyboardType="number-pad"
                 value={amount}

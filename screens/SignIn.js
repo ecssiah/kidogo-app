@@ -9,6 +9,7 @@ import { GetCaregiversDB } from '../utilities/dbstore';
 import { CreateCaregiver } from '../utilities/localstore';
 import Backdrop from '../components/Backdrop';
 import Language from '../languages'
+import SecureInput from '../components/SecureInput';
 
 
 const SignIn = (props) => {
@@ -64,24 +65,10 @@ const SignIn = (props) => {
               { Language.Username }
             </Text>
 
-            <View style={Styles.passwordHolder}>
-              <TextInput
-                style={[Styles.input, { flex: 0.9, marginRight: 0 }]}
-                secureTextEntry={hidePassword}
-                value={password}
-                onChangeText={setPassword}
-                blurOnSubmit={false}
-              />
-
-              <View style={Styles.showButton} >
-                <TouchableOpacity onPress={toggleHidePassword} >
-                  <Icon
-                    color="white"
-                    name={hidePassword ? "visibility-off" : 'visibility'}
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
+            <SecureInput
+              value={password}
+              setValue={setPassword}
+            />
 
             <Text style={Styles.label} >
               { Language.Password }

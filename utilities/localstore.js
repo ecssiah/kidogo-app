@@ -5,12 +5,12 @@ import {
   GUARDIANS, CONTACTS, CHILDREN,
   PAYMENTS, ACCOUNTS, ATTENDANCE, FINANCES, QUESTIONS, EXPENSES,
 } from '../constants/Store';
-import { GetShortDate, NextDay, GetDateNoTime } from './dates';
+import { GetShortDate, GetDateNoTime } from './dates';
 import { Gender, CLEAR_NEW_ACCOUNT } from '../constants/Enrollment';
 import { SET_GUARDIAN } from '../constants/Guardians';
 import { SET_CHILD } from '../constants/Children';
 import { SET_CONTACT } from '../constants/Contacts';
-import { SET_ATTENDANCE, Day } from '../constants/Attendance';
+import { SET_ATTENDANCE } from '../constants/Attendance';
 import { SET_ACCOUNT, UPDATE_ACCOUNT } from '../constants/Accounts';
 import {
   Frequency,
@@ -90,7 +90,7 @@ export const LoadTestData = async () => {
     accountId: account1Id,
     firstName: "Tristan",
     lastName: "Johnston",
-    birthdate: "1-28-1983",
+    birthdate: new Date(1983, 0, 28),
     gender: Gender.Male,
     note: "This is a note about Tristan.",
   }
@@ -99,7 +99,7 @@ export const LoadTestData = async () => {
     accountId: account1Id,
     firstName: "Darrin",
     lastName: "Snapton",
-    birthdate: "6-12-1999",
+    birthdate: new Date(1992, 4, 12),
     gender: Gender.Other,
     note: "This is a note about Darrin.",
   }
@@ -178,7 +178,7 @@ export const LoadTestData = async () => {
     accountId: account2Id,
     firstName: "Reselle",
     lastName: "Trepi",
-    birthdate: "8-2-2001",
+    birthdate: new Date(1993, 6, 8),
     gender: Gender.Other,
     note: "This is a note about Reselle.",
   }
@@ -187,7 +187,7 @@ export const LoadTestData = async () => {
     accountId: account2Id,
     firstName: "Grey",
     lastName: "Mark",
-    birthdate: "9-12-1994",
+    birthdate: new Date(1989, 4, 18),
     gender: Gender.Male,
     note: "This is a note about Grey.",
   }
@@ -209,6 +209,7 @@ export const LogTestData = async () => {
   console.log(GUARDIANS, await Get(GUARDIANS))
   console.log(CONTACTS, await Get(CONTACTS))
   console.log(CHILDREN, await Get(CHILDREN))
+  console.log(ATTENDANCE, await Get(ATTENDANCE))
   console.log(FINANCES, await Get(FINANCES))
   console.log(PAYMENTS, await Get(PAYMENTS))
   console.log(EXPENSES, await Get(EXPENSES))

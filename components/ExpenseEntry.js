@@ -70,7 +70,7 @@ const ExpenseEntry = (props) => {
 
           <View style={Styles.rowElement} >
             <TextInput
-              style={Styles.dateInput}
+              style={Styles.input}
               maxLength={10}
               keyboardType="number-pad"
               value={date}

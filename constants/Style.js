@@ -150,12 +150,13 @@ export const Styles = StyleSheet.create({
     paddingLeft: 10,
   },
   dateInput: {
-    flexDirection: 'row',
     borderBottomWidth: 2,
     borderColor: Colors.mainText,
     margin: 10,
     fontSize: 18,
     color: Colors.mainText,
+    height: 30,
+    paddingTop: 3,
     paddingLeft: 10,
   },
   prefix: {

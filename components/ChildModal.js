@@ -93,7 +93,7 @@ const ChildModal = (props) => {
           <View style={Styles.rowElements} >
             <View style={Styles.rowElement} >
               <TextInput
-                style={Styles.dateInput}
+                style={Styles.input}
                 maxLength={10}
                 keyboardType="number-pad"
                 value={birthdate}

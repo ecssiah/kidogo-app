@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  Image, Modal, Picker, ScrollView, Text, TextInput, View, TouchableOpacity,
+  DatePickerAndroid, Modal, Picker, ScrollView,
+  Text, TextInput, View, TouchableOpacity,
 } from 'react-native'
 import Language from '../languages'
 import { Styles, Size } from '../constants/Style'
@@ -52,6 +53,20 @@ const ExpenseModal = (props) => {
   }
 
 
+  const onDateSelection = async () => {
+    try {
+      const { action, year, month, day } = await DatePickerAndroid.open({
+        date: new Date(),
+      })
+
+      if (action === DatePickerAndroid.dateSetAction) {
+        const newDate = new Date(year, month, day)
+        setDate(GetShortDate(0, newDate))
+      }
+    } catch ({ code, message }) {
+      console.warn(' Cannot open date picker', message)
+    }
+  }
 
 
   return (
@@ -67,13 +82,13 @@ const ExpenseModal = (props) => {
             { Language.Expense }
           </Text>
 
-          <TextInput
-            style={Styles.input}
-            maxLength={10}
-            keyboardType="number-pad"
-            value={date}
-            onChangeText={setDate}
-          />
+          <TouchableOpacity
+            onPress={onDateSelection}
+          >
+            <Text style={Styles.dateInput} >
+              { date }
+            </Text>
+          </TouchableOpacity>
 
           <Text style={Styles.label} >
             { Language.Date }

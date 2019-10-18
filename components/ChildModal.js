@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import {
-  Image, Modal, Picker, ScrollView, Text, TextInput, View, TouchableOpacity,
+  DatePickerAndroid, Image, Modal, Picker, ScrollView,
+  Text, TextInput, View, TouchableOpacity,
 } from 'react-native'
 import Language from '../languages'
 import { Styles, Size } from '../constants/Style'
 import { Gender, GenderStrings } from '../constants/Enrollment'
 import Backdrop from './Backdrop'
 import Spacer from './Spacer'
+import { GetShortDate } from '../utilities/dates'
 
 
 const ChildModal = (props) => {
@@ -48,6 +50,20 @@ const ChildModal = (props) => {
       )
     } else {
       return null
+    }
+  }
+
+  const onDateSelection = async () => {
+    try {
+      const { action, year, month, day } = await DatePickerAndroid.open({
+        date: new Date(birthdate),
+      })
+
+      if (action === DatePickerAndroid.dateSetAction) {
+        setBirthdate(new Date(year, month, day))
+      }
+    } catch ({ code, message }) {
+      console.warn(' Cannot open date picker', message)
     }
   }
 
@@ -92,13 +108,13 @@ const ChildModal = (props) => {
 
           <View style={Styles.rowElements} >
             <View style={Styles.rowElement} >
-              <TextInput
-                style={Styles.input}
-                maxLength={10}
-                keyboardType="number-pad"
-                value={birthdate}
-                onChangeText={setBirthdate}
-              />
+              <TouchableOpacity
+                onPress={onDateSelection}
+              >
+                <Text style={Styles.dateInput} >
+                  { GetShortDate(0, birthdate) }
+                </Text>
+              </TouchableOpacity>
 
               <Text style={Styles.label} >
                 { Language.Birthday }
@@ -125,7 +141,7 @@ const ChildModal = (props) => {
               </View>
 
               <Text style={Styles.label} >
-                { Language.Male } { Language.Or } { Language.Female }
+                { Language.Gender }
               </Text>
             </View>
           </View>

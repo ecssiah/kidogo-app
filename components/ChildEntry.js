@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import {
-  Image, Picker, Text, TextInput, TouchableOpacity, View
+  DatePickerAndroid, Image, Picker, Text, TextInput, TouchableOpacity, View
 } from 'react-native'
 import { Styles } from '../constants/Style';
-import { Gender, Relation, RelationStrings, GenderStrings } from '../constants/Enrollment';
+import {
+  Gender, Relation, RelationStrings, GenderStrings
+} from '../constants/Enrollment';
 import Language from '../languages';
+import { GetShortDate } from '../utilities/dates';
 
 
 const ChildEntry = (props) => {
@@ -35,6 +38,21 @@ const ChildEntry = (props) => {
         />
       )
     })
+  }
+
+
+  const onDateSelection = async () => {
+    try {
+      const { action, year, month, day } = await DatePickerAndroid.open({
+        date: new Date(1990, 0),
+      })
+
+      if (action === DatePickerAndroid.dateSetAction) {
+        props.setBirthdate(new Date(year, month, day))
+      }
+    } catch ({ code, message }) {
+      console.warn(' Cannot open date picker', message)
+    }
   }
 
 
@@ -71,13 +89,13 @@ const ChildEntry = (props) => {
 
       <View style={Styles.rowElements} >
         <View style={Styles.rowElement} >
-          <TextInput
-            style={Styles.input}
-            maxLength={10}
-            keyboardType="number-pad"
-            value={props.birthdate}
-            onChangeText={props.setBirthdate}
-          />
+          <TouchableOpacity
+            onPress={onDateSelection}
+          >
+            <Text style={Styles.dateInput} >
+              { GetShortDate(0, props.birthdate) }
+            </Text>
+          </TouchableOpacity>
 
           <Text style={Styles.label} >
             { Language.Birthday }

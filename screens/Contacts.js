@@ -114,14 +114,14 @@ const Contacts = (props) => {
                 style={Styles.rowButton}
                 onPress={onSubmitContact}
               >
-                <Text style={Styles.buttonText}>Submit</Text>
+                <Text style={Styles.btnText}>Submit</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
                 style={Styles.rowButton}
                 onPress={onNextContact}
               >
-                <Text style={Styles.buttonText}>Next</Text>
+                <Text style={Styles.btnText}>Next</Text>
               </TouchableOpacity>
             </View>
 
@@ -131,7 +131,7 @@ const Contacts = (props) => {
               style={Styles.mainButton}
               onPress={onSubmitFamily}
             >
-              <Text style={Styles.buttonText}>Submit Family</Text>
+              <Text style={Styles.btnText}>Submit Family</Text>
             </TouchableOpacity>
 
             <Spacer height={Size.keyboard} />

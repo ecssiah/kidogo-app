@@ -7,7 +7,7 @@ import Backdrop from '../components/Backdrop';
 import FinanceHeader from '../components/FinanceHeader';
 import Spacer from '../components/Spacer';
 import { Size, Styles } from '../constants/Style';
-import { GetShortDate } from '../utilities/dates';
+import { GetShortDate, GetShortDateRange } from '../utilities/dates';
 import ExpenseModal from '../components/ExpenseModal';
 import PaymentModal from '../components/PaymentModal'
 import FinanceHistory from '../components/FinanceHistory';
@@ -22,8 +22,15 @@ const Finances = (props) => {
   const [expensesModalVisible, setExpensesModalVisible] = useState(false)
 
 
-  const getFinancesToday = () => {
-    return finances[GetShortDate()]
+  const getWeekFinances = () => {
+    return GetShortDateRange(0, 7).reduce((res, date) => {
+      if (date in finances) {
+        res.income += finances[date].income
+        res.expenses += finances[date].expenses
+      }
+
+      return res
+    }, { income: 0, expenses: 0 })
   }
 
 
@@ -41,7 +48,7 @@ const Finances = (props) => {
     <Backdrop>
       <Spacer height={Size.statusbar} />
 
-      <FinanceHeader financesToday={getFinancesToday()} />
+      <FinanceHeader weekFinances={getWeekFinances()} />
 
       <View style={Styles.buttonContainer} >
         <TouchableOpacity

@@ -253,10 +253,10 @@ export const UpdateStore = async (dispatch) => {
 }
 
 
-const InitAttendance = async (today) => {
+export const InitAttendance = async (dispatch, targetDate) => {
   const attendanceDates = await GetIds(ATTENDANCE)
 
-  if (!attendanceDates.find((date) => date === today)) {
+  if (!attendanceDates.find((date) => date === targetDate)) {
     const children = await Get(CHILDREN)
 
     const attendanceToday = Object.keys(children).reduce((res, id) => {
@@ -264,50 +264,56 @@ const InitAttendance = async (today) => {
       return res
     }, {})
 
-    await Create(ATTENDANCE, today, attendanceToday)
+    dispatch({
+      type: SET_ATTENDANCE, id: targetDate, attendance: attendanceToday
+    })
+    await Create(ATTENDANCE, targetDate, attendanceToday)
   }
 }
 
 
-const InitFinances = async (today) => {
+export const InitFinances = async (dispatch, targetDate) => {
   const financesDates = await GetIds(FINANCES)
 
-  if (!financesDates.find((date) => date === today)) {
+  if (!financesDates.find((date) => date === targetDate)) {
     const financesToday = {
       income: 0,
       expenses: 0,
     }
 
-    await Create(FINANCES, today, financesToday)
+    dispatch({ type: SET_FINANCES, id: targetDate, finances: financesToday })
+    await Create(FINANCES, targetDate, financesToday)
   }
 }
 
 
-const InitExpenses = async (today) => {
+export const InitExpenses = async (dispatch, targetDate) => {
   const expensesDates = await GetIds(EXPENSES)
 
-  if (!expensesDates.find((date) => date === today)) {
-    await Create(EXPENSES, today, {})
+  if (!expensesDates.find((date) => date === targetDate)) {
+    dispatch({ type: SET_EXPENSES, id: targetDate, expenses: {} })
+    await Create(EXPENSES, targetDate, {})
   }
 }
 
 
-const InitPayments = async (today) => {
+export const InitPayments = async (dispatch, targetDate) => {
   const paymentsDates = await GetIds(PAYMENTS)
 
-  if (!paymentsDates.find((date) => date === today)) {
-    await Create(PAYMENTS, today, {})
+  if (!paymentsDates.find((date) => date === targetDate)) {
+    dispatch({ type: SET_PAYMENTS, id: targetDate, payments: {} })
+    await Create(PAYMENTS, targetDate, {})
   }
 }
 
 
-export const InitDatabase = async () => {
+export const InitDatabase = async (dispatch) => {
   const today = GetShortDate()
 
-  InitAttendance(today)
-  InitFinances(today)
-  InitPayments(today)
-  InitExpenses(today)
+  InitAttendance(dispatch, today)
+  InitFinances(dispatch, today)
+  InitPayments(dispatch, today)
+  InitExpenses(dispatch, today)
 }
 
 

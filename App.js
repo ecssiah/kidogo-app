@@ -31,7 +31,7 @@ const App = () => {
     }
 
     await LogTestData()
-    await InitDatabase()
+    await InitDatabase(store.dispatch)
     await UpdateStore(store.dispatch)
   }
 

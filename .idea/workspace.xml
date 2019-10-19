@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/screens/CheckIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/CheckIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/CheckOut.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/CheckOut.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ExpenseEntry.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ExpenseModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ExpenseModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/PaymentEntry.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/PaymentModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/PaymentModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigators/AccountsNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigators/AccountsNavigator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reducers/FinancesReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/reducers/FinancesReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Contacts.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Contacts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Payments.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/utilities/localstore.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/localstore.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,9 +22,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="149" />
-    <option name="y" value="54" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="115" />
+    <option name="y" value="112" />
     <option name="width" value="1257" />
     <option name="height" value="724" />
   </component>
@@ -63,7 +70,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="149" y="54" width="1257" height="724" extended-state="1" />
+    <frame x="115" y="112" width="1257" height="724" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.37366256" />

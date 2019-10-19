@@ -12,16 +12,7 @@ const FinanceHeader = (props) => {
 
 
   const getFinanceSummary = () => {
-    const totals = GetShortDateRange(0, 7).reduce((res, date) => {
-      if (date in finances) {
-        res.income += finances[date].income
-        res.expenses += finances[date].expenses
-      }
-
-      return res
-    }, { income: 0, expenses: 0 })
-
-    return `${Language.WeekTotal}: ${totals.income - totals.expenses}`
+    return `${Language.WeekTotal}: ${props.weekFinances.income - props.weekFinances.expenses}`
   }
 
 
@@ -34,11 +25,11 @@ const FinanceHeader = (props) => {
       <View style={Styles.financeHeader} >
         <View style={{ flexDirection: 'row' }} >
           <Text style={[Styles.financeDisplay, { color: 'green' }]} >
-            K{props.financesToday.income}
+            K{props.weekFinances.income}
           </Text>
 
           <Text style={[Styles.financeDisplay, { color: 'red' }]} >
-            K{props.financesToday.expenses}
+            K{props.weekFinances.expenses}
           </Text>
         </View>
       </View>

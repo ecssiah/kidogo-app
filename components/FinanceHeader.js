@@ -1,18 +1,15 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { Text, View } from 'react-native'
 import { Styles } from '../constants/Style';
-import { Icon } from 'react-native-elements';
-import { GetShortDateRange } from '../utilities/dates';
 import Language from '../languages'
 
 
 const FinanceHeader = (props) => {
-  const finances = useSelector(state => state.finances)
-
-
   const getFinanceSummary = () => {
-    return `${Language.WeekTotal}: ${props.weekFinances.income - props.weekFinances.expenses}`
+    return (
+      `${Language.WeekTotal}: ` +
+      `${props.weekFinances.income - props.weekFinances.expenses}`
+    )
   }
 
 

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Text, TouchableOpacity, View, ScrollView } from 'react-native'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Text, TouchableOpacity, View } from 'react-native'
 import Language from '../languages'
 
 import Backdrop from '../components/Backdrop';
 import FinanceHeader from '../components/FinanceHeader';
 import Spacer from '../components/Spacer';
 import { Size, Styles } from '../constants/Style';
-import { GetShortDate, GetShortDateRange } from '../utilities/dates';
+import { GetShortDateRange } from '../utilities/dates';
 import ExpenseModal from '../components/ExpenseModal';
 import PaymentModal from '../components/PaymentModal'
 import FinanceHistory from '../components/FinanceHistory';

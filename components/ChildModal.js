@@ -17,7 +17,7 @@ const ChildModal = (props) => {
 
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [birthdate, setBirthdate] = useState('')
+  const [birthdate, setBirthdate] = useState(null)
   const [gender, setGender] = useState('')
 
 
@@ -30,7 +30,7 @@ const ChildModal = (props) => {
     } else {
       setFirstName('')
       setLastName('')
-      setBirthdate('')
+      setBirthdate(null)
       setGender('')
     }
   }, [props.id])
@@ -56,7 +56,7 @@ const ChildModal = (props) => {
   const onDateSelection = async () => {
     try {
       const { action, year, month, day } = await DatePickerAndroid.open({
-        date: new Date(birthdate),
+        date: new Date(1990, 0),
       })
 
       if (action === DatePickerAndroid.dateSetAction) {

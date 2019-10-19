@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  DatePickerAndroid, Modal, Picker, ScrollView, Text, TextInput, View, TouchableOpacity,
+  DatePickerAndroid, Modal, Picker, ScrollView, Text,
+  TextInput, View, TouchableOpacity,
 } from 'react-native'
 import Language from '../languages'
-import { Styles, Size, Colors } from '../constants/Style'
+import { Styles, Size } from '../constants/Style'
 import Backdrop from './Backdrop'
 import Spacer from './Spacer'
 import {
   ADD_PAYMENT, UPDATE_INCOME,
   FinanceType, FinanceTypeNames, PaymentType,
 } from '../constants/Finances'
-import { Update, Get } from '../utilities/localstore'
+import { Update, Get, InitPayments, InitFinances } from '../utilities/localstore'
 import { PAYMENTS, FINANCES } from '../constants/Store'
 import { GetShortDate } from '../utilities/dates'
 import uuid from 'uuid'
@@ -22,8 +23,8 @@ const PaymentModal = (props) => {
   const accounts = useSelector(state => state.accounts)
   const guardians = useSelector(state => state.guardians)
 
-  const [accountId, setAccountId] = useState(null)
-  const [date, setDate] = useState(GetShortDate())
+  const [accountId, setAccountId] = useState(Object.keys[0])
+  const [date, setDate] = useState(new Date())
   const [type, setType] = useState(FinanceType.MPesa)
   const [amount, setAmount] = useState('100')
 
@@ -47,21 +48,24 @@ const PaymentModal = (props) => {
 
 
   const onSubmitPayment = async () => {
+    const shortDate = GetShortDate(0, date)
     const payment = { accountId, type, amount }
     const update = { [uuid()]: payment }
 
-    dispatch({ type: ADD_PAYMENT, id: date, payment: update })
-    await Update(PAYMENTS, date, update)
+    await InitPayments(dispatch, shortDate)
+    await InitFinances(dispatch, shortDate)
 
-    const paymentAmount = parseFloat(payment.amount)
+    dispatch({ type: ADD_PAYMENT, id: shortDate, payment: update })
+    await Update(PAYMENTS, shortDate, update)
+
     const finances = await Get(FINANCES)
-
+    const paymentAmount = parseFloat(payment.amount)
     const financesUpdate = {
-      income: parseFloat(finances[date].income) + paymentAmount
+      income: parseFloat(finances[shortDate].income) + paymentAmount
     }
 
-    dispatch({ type: UPDATE_INCOME, id: date, amount: paymentAmount })
-    await Update(FINANCES, date, financesUpdate)
+    dispatch({ type: UPDATE_INCOME, id: shortDate, amount: paymentAmount })
+    await Update(FINANCES, shortDate, financesUpdate)
 
     props.setVisible(false)
   }
@@ -74,8 +78,7 @@ const PaymentModal = (props) => {
       })
 
       if (action === DatePickerAndroid.dateSetAction) {
-        const newDate = new Date(year, month, day)
-        setDate(GetShortDate(0, newDate))
+        setDate(new Date(year, month, day))
       }
     } catch ({ code, message }) {
       console.warn(' Cannot open date picker', message)
@@ -118,7 +121,7 @@ const PaymentModal = (props) => {
                 onPress={onDateSelection}
               >
                 <Text style={Styles.dateInput} >
-                  { date }
+                  { GetShortDate(0, date) }
                 </Text>
               </TouchableOpacity>
 

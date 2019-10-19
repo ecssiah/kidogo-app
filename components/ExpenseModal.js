@@ -11,7 +11,7 @@ import Spacer from './Spacer'
 import {
   ADD_EXPENSE, UPDATE_EXPENSES, FinanceType, FinanceTypeNames, ExpenseType
 } from '../constants/Finances'
-import { Get, Update } from '../utilities/localstore';
+import { Get, Update, InitExpenses, InitFinances } from '../utilities/localstore';
 import { FINANCES, EXPENSES, PAYMENTS } from '../constants/Store';
 import { GetShortDate } from '../utilities/dates'
 import uuid from 'uuid'
@@ -20,7 +20,7 @@ import uuid from 'uuid'
 const ExpenseModal = (props) => {
   const dispatch = useDispatch()
 
-  const [date, setDate] = useState(GetShortDate())
+  const [date, setDate] = useState(new Date())
   const [type, setType] = useState(FinanceType.Rent)
   const [amount, setAmount] = useState('100')
 
@@ -33,21 +33,24 @@ const ExpenseModal = (props) => {
 
 
   const onSubmitExpense = async () => {
+    const shortDate = GetShortDate(0, date)
     const expense = { type, amount }
     const update = { [uuid()]: expense }
 
-    dispatch({ type: ADD_EXPENSE, id: date, expense: update })
-    await Update(EXPENSES, date, update)
+    await InitExpenses(dispatch, shortDate)
+    await InitFinances(dispatch, shortDate)
 
-    const expenseAmount = parseFloat(expense.amount)
+    dispatch({ type: ADD_EXPENSE, id: shortDate, expense: update })
+    await Update(EXPENSES, shortDate, update)
+
     const finances = await Get(FINANCES)
-
+    const expenseAmount = parseFloat(expense.amount)
     const financesUpdate = {
-      expenses: parseFloat(finances[date].expenses) + expenseAmount
+      expenses: parseFloat(finances[shortDate].expenses) + expenseAmount
     }
 
-    dispatch({ type: UPDATE_EXPENSES, id: date, amount: expenseAmount })
-    await Update(FINANCES, date, financesUpdate)
+    dispatch({ type: UPDATE_EXPENSES, id: shortDate, amount: expenseAmount })
+    await Update(FINANCES, shortDate, financesUpdate)
 
     props.setVisible(false)
   }
@@ -60,8 +63,7 @@ const ExpenseModal = (props) => {
       })
 
       if (action === DatePickerAndroid.dateSetAction) {
-        const newDate = new Date(year, month, day)
-        setDate(GetShortDate(0, newDate))
+        setDate(new Date(year, month, day))
       }
     } catch ({ code, message }) {
       console.warn(' Cannot open date picker', message)
@@ -86,7 +88,7 @@ const ExpenseModal = (props) => {
             onPress={onDateSelection}
           >
             <Text style={Styles.dateInput} >
-              { date }
+              { GetShortDate(0, date) }
             </Text>
           </TouchableOpacity>
 

@@ -1,5 +1,7 @@
 
 export default Swahili = {
+  Yes: "Ndio",
+  No: "Hapana",
   True: "Kweli",
   False: "Uongo",
   Male: "Mwanaume",
@@ -19,7 +21,6 @@ export default Swahili = {
   Contact: "Wasiliana",
   Contacts: "Mawasiliano",
   Dash: "Dash",
-  Family: "Familia",
   Families: "Familia",
   Upload: "Pakia",
   FirstName: "Jina ya Kwanza",

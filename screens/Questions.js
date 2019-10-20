@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { } from 'react-native'
+import { useDispatch } from 'react-redux'
+import { TouchableOpacity, Text, View } from 'react-native'
+import { Icon } from 'react-native-elements'
 
 import Backdrop from '../components/Backdrop'
+import { Styles, Size } from '../constants/Style'
+import { Answer, UPDATE_QUESTIONS } from '../constants/Questions'
+import Language from '../languages'
+import { GetTOD, GetShortDate } from '../utilities/dates'
+import Spacer from '../components/Spacer'
+import { InitQuestions, Update } from '../utilities/localstore'
+import { QUESTIONS } from '../constants/Store'
 
 
 const Questions = (props) => {
+  const dispatch = useDispatch()
+
+  const [tod, setTOD] = useState(GetTOD())
+  const [curQuestionIndex, setCurQuestionIndex] = useState(0)
   const [questions, setQuestions] = useState()
 
   useEffect(() => {
@@ -41,8 +54,95 @@ const Questions = (props) => {
   }
 
 
+  const answer = async (response) => {
+    if (!questions) {
+      return
+    }
+
+    const today = GetShortDate()
+    const update = { [questions[tod][curQuestionIndex]]: response }
+
+    dispatch({ type: UPDATE_QUESTIONS, id: today, update })
+    await Update(QUESTIONS, today, update)
+  }
+
+
+  const back = () => {
+    const nextIndex = curQuestionIndex - 1 >= 0
+      ? curQuestionIndex - 1 : curQuestionIndex
+
+    setCurQuestionIndex(nextIndex)
+  }
+
+
+  const forward = () => {
+    const numQuestions = tod < 15
+      ? questions.morning.length : questions.afternoon.length
+    const nextIndex = curQuestionIndex + 1 < numQuestions
+      ? curQuestionIndex + 1 : curQuestionIndex
+
+    setCurQuestionIndex(nextIndex)
+  }
+
+
+  const getCurrentQuestion = () => {
+    if (!questions) {
+      return null
+    }
+
+    return (
+      <Text style={Styles.h2} >
+        { questions[tod][curQuestionIndex] }
+      </Text>
+    )
+  }
+
+
   return (
     <Backdrop>
+      <Spacer height={Size.statusbar} />
+
+      <View style={Styles.rowElements} >
+        <TouchableOpacity
+          style={{ flex: 0.5 }}
+          onPress={back}
+        >
+          <Icon name="chevron-left" size={48} color='#ffffff80' />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{ flex: 0.5 }}
+          onPress={forward}
+        >
+          <Icon name="chevron-right" size={48} color='#ffffff80' />
+        </TouchableOpacity>
+      </View>
+
+      <View style={{ flex: 0.7 }} >
+        <View style={Styles.questionHolder} >
+          { getCurrentQuestion() }
+        </View>
+
+        <View style={Styles.buttonBlock} >
+          <TouchableOpacity
+            style={Styles.button}
+            onPress={() => answer(Answer.Yes)}
+          >
+            <Text style={Styles.buttonText} >
+              { Language.Yes }
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[Styles.button, { marginRight: 0, marginLeft: 5 }]}
+            onPress={() => answer(Answer.No)}
+          >
+            <Text style={Styles.buttonText} >
+              { Language.No }
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
 
     </Backdrop>
   )

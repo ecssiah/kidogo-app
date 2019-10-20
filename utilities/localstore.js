@@ -16,6 +16,7 @@ import {
   Frequency,
   SET_FINANCES, SET_PAYMENTS, SET_EXPENSES, FeeDelta,
 } from '../constants/Finances';
+import { SET_QUESTIONS } from '../constants/Questions';
 
 
 export const TestDataNeeded = async () => {
@@ -307,6 +308,16 @@ export const InitPayments = async (dispatch, targetDate) => {
 }
 
 
+export const InitQuestions = async (dispatch, targetDate) => {
+  const questionsDates = await GetIds(QUESTIONS)
+
+  if (!questionsDates.find((date) => date === targetDate)) {
+    dispatch({ type: SET_QUESTIONS, id: targetDate, questions: {} })
+    await Create(QUESTIONS, targetDate, {})
+  }
+}
+
+
 export const InitDatabase = async (dispatch) => {
   const today = GetShortDate()
 
@@ -314,6 +325,7 @@ export const InitDatabase = async (dispatch) => {
   InitFinances(dispatch, today)
   InitPayments(dispatch, today)
   InitExpenses(dispatch, today)
+  InitQuestions(dispatch, today)
 }
 
 

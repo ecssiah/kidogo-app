@@ -1,5 +1,7 @@
 
 export default English = {
+  Yes: "Yes",
+  No: "No",
   True: "True",
   False: "False",
   And: "and",

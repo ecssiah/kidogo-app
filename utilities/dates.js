@@ -1,3 +1,4 @@
+
 const WeekDays = [
   "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
 ]
@@ -6,6 +7,13 @@ const Months = [
   "January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ]
+
+
+export const TOD = {
+  Morning: "morning",
+  Afternoon: "afternoon",
+}
+
 
 
 export const GetDateNoTime = (dateObj = new Date()) => {
@@ -62,5 +70,10 @@ export const GetFullDate = (offset = 0, dateObj = new Date()) => {
   const month = Months[dateObj.getMonth()]
 
   return `${weekday}, ${dateObj.getDate()} ${month}, ${dateObj.getFullYear()}`
+}
+
+
+export const GetTOD = () => {
+  return new Date().getHours() < 15 ? TOD.Morning : TOD.Afternoon
 }
 

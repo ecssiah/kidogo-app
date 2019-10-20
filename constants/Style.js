@@ -31,7 +31,6 @@ export const Colors = {
 
 export const Styles = StyleSheet.create({
   questionHolder: {
-    flex: 0.7,
     alignItems: 'center',
   },
   buttonBlock: {

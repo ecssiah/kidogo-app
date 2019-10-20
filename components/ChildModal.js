@@ -53,10 +53,13 @@ const ChildModal = (props) => {
     }
   }
 
+
   const onDateSelection = async () => {
     try {
+      const initialDate = props.id ? new Date(birthdate) : new Date(1990, 0)
+
       const { action, year, month, day } = await DatePickerAndroid.open({
-        date: new Date(1990, 0),
+        date: initialDate,
       })
 
       if (action === DatePickerAndroid.dateSetAction) {
@@ -65,6 +68,19 @@ const ChildModal = (props) => {
     } catch ({ code, message }) {
       console.warn(' Cannot open date picker', message)
     }
+  }
+
+
+  const getGenderItems = () => {
+    return Object.values(Gender).map((gender, i) => {
+      return (
+        <Picker.Item
+          key={i}
+          label={GenderStrings[gender]}
+          value={gender}
+        />
+      )
+    })
   }
 
 
@@ -128,15 +144,7 @@ const ChildModal = (props) => {
                   selectedValue={gender}
                   onValueChange={(value, pos) => setGender(value)}
                 >
-                  <Picker.Item
-                    label={GenderStrings[Gender.Female]} value={Gender.Female}
-                  />
-                  <Picker.Item
-                    label={GenderStrings[Gender.Male]} value={Gender.Male}
-                  />
-                  <Picker.Item
-                    label={GenderStrings[Gender.Other]} value={Gender.Other}
-                  />
+                  { getGenderItems() }
                 </Picker>
               </View>
 

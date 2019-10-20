@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
 import { Text, TouchableOpacity, View } from 'react-native'
 import Language from '../languages'
 
@@ -7,31 +6,14 @@ import Backdrop from '../components/Backdrop';
 import FinanceHeader from '../components/FinanceHeader';
 import Spacer from '../components/Spacer';
 import { Size, Styles } from '../constants/Style';
-import { GetShortDateRange } from '../utilities/dates';
 import ExpenseModal from '../components/ExpenseModal';
 import PaymentModal from '../components/PaymentModal'
 import FinanceHistory from '../components/FinanceHistory';
 
 
 const Finances = (props) => {
-  const finances = useSelector(state => state.finances)
-  const payments = useSelector(state => state.payments)
-  const expenses = useSelector(state => state.expenses)
-
   const [paymentsModalVisible, setPaymentsModalVisible] = useState(false)
   const [expensesModalVisible, setExpensesModalVisible] = useState(false)
-
-
-  const getWeekFinances = () => {
-    return GetShortDateRange(0, 7).reduce((res, date) => {
-      if (date in finances) {
-        res.income += finances[date].income
-        res.expenses += finances[date].expenses
-      }
-
-      return res
-    }, { income: 0, expenses: 0 })
-  }
 
 
   const onAddPayment = () => {
@@ -48,7 +30,7 @@ const Finances = (props) => {
     <Backdrop>
       <Spacer height={Size.statusbar} />
 
-      <FinanceHeader weekFinances={getWeekFinances()} />
+      <FinanceHeader />
 
       <View style={Styles.buttonContainer} >
         <TouchableOpacity
@@ -72,10 +54,7 @@ const Finances = (props) => {
         </TouchableOpacity>
       </View>
 
-      <FinanceHistory
-        payments={payments}
-        expenses={expenses}
-      />
+      <FinanceHistory />
 
       <PaymentModal
         visible={paymentsModalVisible}

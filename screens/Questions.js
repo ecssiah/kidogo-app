@@ -9,7 +9,7 @@ import { Answer, UPDATE_QUESTIONS } from '../constants/Questions'
 import Language from '../languages'
 import { GetTOD, GetShortDate } from '../utilities/dates'
 import Spacer from '../components/Spacer'
-import { InitQuestions, Update } from '../utilities/localstore'
+import { Update } from '../utilities/localstore'
 import { QUESTIONS } from '../constants/Store'
 
 
@@ -18,7 +18,7 @@ const Questions = (props) => {
 
   const [tod, setTOD] = useState(GetTOD())
   const [curQuestionIndex, setCurQuestionIndex] = useState(0)
-  const [questions, setQuestions] = useState()
+  const [questions, setQuestions] = useState({ morning: [], afternoon: [] })
 
   useEffect(() => {
     getQuestions()
@@ -55,15 +55,13 @@ const Questions = (props) => {
 
 
   const answer = async (response) => {
-    if (!questions) {
-      return
-    }
-
     const today = GetShortDate()
     const update = { [questions[tod][curQuestionIndex]]: response }
 
     dispatch({ type: UPDATE_QUESTIONS, id: today, update })
     await Update(QUESTIONS, today, update)
+
+    forward()
   }
 
 
@@ -102,48 +100,51 @@ const Questions = (props) => {
     <Backdrop>
       <Spacer height={Size.statusbar} />
 
+      <Spacer medium />
+
       <View style={Styles.rowElements} >
         <TouchableOpacity
-          style={{ flex: 0.5 }}
+          style={Styles.rowElement}
           onPress={back}
         >
           <Icon name="chevron-left" size={48} color='#ffffff80' />
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={{ flex: 0.5 }}
+          style={Styles.rowElement}
           onPress={forward}
         >
           <Icon name="chevron-right" size={48} color='#ffffff80' />
         </TouchableOpacity>
       </View>
 
-      <View style={{ flex: 0.7 }} >
-        <View style={Styles.questionHolder} >
-          { getCurrentQuestion() }
-        </View>
+      <Spacer medium />
 
-        <View style={Styles.buttonBlock} >
-          <TouchableOpacity
-            style={Styles.button}
-            onPress={() => answer(Answer.Yes)}
-          >
-            <Text style={Styles.buttonText} >
-              { Language.Yes }
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={[Styles.button, { marginRight: 0, marginLeft: 5 }]}
-            onPress={() => answer(Answer.No)}
-          >
-            <Text style={Styles.buttonText} >
-              { Language.No }
-            </Text>
-          </TouchableOpacity>
-        </View>
+      <View style={Styles.questionHolder} >
+        { getCurrentQuestion() }
       </View>
 
+      <Spacer large />
+
+      <View style={Styles.rowElements} >
+        <TouchableOpacity
+          style={Styles.rowButton}
+          onPress={() => answer(Answer.Yes)}
+        >
+          <Text style={Styles.buttonText} >
+            { Language.Yes }
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={Styles.rowButton}
+          onPress={() => answer(Answer.No)}
+        >
+          <Text style={Styles.buttonText} >
+            { Language.No }
+          </Text>
+        </TouchableOpacity>
+      </View>
     </Backdrop>
   )
 }

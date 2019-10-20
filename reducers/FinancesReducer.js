@@ -15,7 +15,6 @@ const financesReducer = (state = {}, action) => {
       return newState
     }
     case UPDATE_INCOME: {
-      console.log(newState)
       newState[action.id].income += action.amount
       return newState
     }

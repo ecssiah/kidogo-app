@@ -28,6 +28,7 @@ const ChildEntry = (props) => {
     })
   }
 
+
   const getRelationItems = () => {
     return Object.values(Relation).map((relation, i) => {
       return (

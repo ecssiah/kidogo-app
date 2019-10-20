@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { ScrollView, Text, View } from 'react-native'
 import { Styles, Size } from '../constants/Style';
 import Language from '../languages'
@@ -8,10 +9,14 @@ import FinanceHistoryRow from './FinanceHistoryRow';
 
 
 const FinanceHistory = (props) => {
+  const payments = useSelector(state => state.payments)
+  const expenses = useSelector(state => state.expenses)
+
+
   const getHistoryRowComponents = () => {
     const rowData = []
 
-    for (const [date, expensesData] of Object.entries(props.expenses)) {
+    for (const [date, expensesData] of Object.entries(expenses)) {
       for (const expense of Object.values(expensesData)) {
         rowData.push({
           date,
@@ -21,7 +26,7 @@ const FinanceHistory = (props) => {
       }
     }
 
-    for (const [date, paymentsData] of Object.entries(props.payments)) {
+    for (const [date, paymentsData] of Object.entries(payments)) {
       for (const payments of Object.values(paymentsData)) {
         rowData.push({
           date,
@@ -44,7 +49,7 @@ const FinanceHistory = (props) => {
   }
 
 
-  if (!props.payments || !props.expenses) {
+  if (!payments || !expenses) {
     return null
   }
 

@@ -20,7 +20,7 @@ export default Swahili = {
   Guardians: "Walezi",
   Contact: "Wasiliana",
   Contacts: "Mawasiliano",
-  Dash: "Dash",
+  Dash: "Menyu",
   Families: "Familia",
   Upload: "Pakia",
   FirstName: "Jina ya Kwanza",

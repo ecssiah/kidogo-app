@@ -20,7 +20,7 @@ export default English = {
   Guardians: "Guardians",
   Contact: "Contact",
   Contacts: "Contacts",
-  Dash: "Dash",
+  Dash: "Menu",
   Family: "Family",
   Families: "Families",
   Upload: "Upload",

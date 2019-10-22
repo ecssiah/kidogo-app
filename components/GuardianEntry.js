@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import {
-  Image, Text, TextInput, TouchableOpacity, View
+  Image, Picker, Text, TextInput, TouchableOpacity, View
 } from 'react-native'
 import { Icon } from 'react-native-elements';
 import { Styles } from '../constants/Style';
 import Language from '../languages'
 import SecureInput from './SecureInput';
+import { Relation, RelationStrings } from '../constants/Enrollment';
 
 
 const GuardianEntry = (props) => {
@@ -13,6 +14,19 @@ const GuardianEntry = (props) => {
 
 
   const toggleHideId = () => setHideId(!hideId)
+
+
+  const getRelationItems = () => {
+    return Object.values(Relation).map((relation, i) => {
+      return (
+        <Picker.Item
+          key={i}
+          label={RelationStrings[relation]}
+          value={relation}
+        />
+      )
+    })
+  }
 
 
   return (
@@ -78,14 +92,34 @@ const GuardianEntry = (props) => {
         { Language.Phone }
       </Text>
 
-      <SecureInput
-        value={props.govtId}
-        setValue={props.setGovtId}
-      />
+      <View style={Styles.rowElements} >
+        <View style={Styles.rowElement} >
+          <View style={Styles.financePickerContainer} >
+            <Picker
+              style={Styles.financePicker}
+              selectedValue={props.relation}
+              onValueChange={(value, pos) => props.setRelation(value)}
+            >
+              { getRelationItems() }
+            </Picker>
+          </View>
 
-      <Text style={Styles.label} >
-        { Language.IdentificationNumber }
-      </Text>
+          <Text style={Styles.label} >
+            { Language.Relationship }
+          </Text>
+        </View>
+
+        <View style={Styles.rowElement} >
+          <SecureInput
+            value={props.govtId}
+            setValue={props.setGovtId}
+          />
+
+          <Text style={Styles.label} >
+            { Language.IdentificationNumber }
+          </Text>
+        </View>
+      </View>
     </View>
   )
 }

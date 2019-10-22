@@ -10,4 +10,77 @@ type Caregiver @model {
   location: String!
   address: String!
   city: String!
+  accounts: [Account] @connection(name: "CaregiverAccounts")
+}
+
+type Account @model {
+  id: ID!
+  balance: Float!
+  rate: Float!
+  frequency: String!
+  lastFee: String!
+  children: [Children] @connection(name: "AccountChildren")
+  guardians: [Guardian] @connection(name: "AccountGuardians")
+  contacts: [Contact] @connection(name: "AccountContacts")
+  attendance: [Attendance] @connection(name: "AccountAttendance")
+  finances: [Finances] @connection(name: "AccountFinances")
+  payments: [Payment] @connection(name: "AccountPayments")
+  expenses: [Expense] @connection(name: "AccountExpenses")
+  questions: [Question] @connection(name: "AccountQuestions")
+}
+
+type Child @model {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  birthdate: String!
+  gender: String!
+  note: String!
+}
+
+type Guardian @model {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  phone: String!
+  govtId: String!
+  address: String!
+  city: String!
+  relation: String!
+}
+
+type Contact @model {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  phone: String!
+}
+
+type Attendance @model {
+  date: String!
+  checkIn: Boolean!
+  checkOut: Boolean!
+}
+
+type Finances @model {
+  date: String!
+  income: Float!
+  expenses: Float!
+}
+
+type Payment @model {
+  date: String!
+  type: String!
+  amount: Float!
+}
+
+type Expense @model {
+  date: String!
+  type: String!
+  amount: Float!
+}
+
+type Question @model {
+  text: String!
+  response: Boolean!
 }

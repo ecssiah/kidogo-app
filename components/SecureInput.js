@@ -15,7 +15,7 @@ const SecureInput = (props) => {
     <View style={Styles.passwordHolder}>
       <TextInput
         keyboardType="number-pad"
-        style={[Styles.input, { flex: 0.9, marginRight: 0 }]}
+        style={[Styles.input, { flex: 0.85, marginRight: 0 }]}
         secureTextEntry={hideId}
         value={props.value}
         onChangeText={props.setValue}

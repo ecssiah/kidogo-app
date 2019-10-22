@@ -27,7 +27,6 @@ export const TestDataNeeded = async () => {
 
 export const LoadTestData = async () => {
   const account1 = {
-    created: new Date(),
     balance: 0,
     rate: 600,
     frequency: Frequency.Weekly,
@@ -52,6 +51,24 @@ export const LoadTestData = async () => {
   account1.guardians.push(guardian12Id)
   account1.contacts.push(contact11Id)
   account1.contacts.push(contact12Id)
+
+  const child11 = {
+    accountId: account1Id,
+    firstName: "Tristan",
+    lastName: "Johnston",
+    birthdate: new Date(1983, 0, 28),
+    gender: Gender.Male,
+    note: "This is a note about Tristan.",
+  }
+
+  const child12 = {
+    accountId: account1Id,
+    firstName: "Darrin",
+    lastName: "Snapton",
+    birthdate: new Date(1992, 4, 12),
+    gender: Gender.Other,
+    note: "This is a note about Darrin.",
+  }
 
   const guardian11 = {
     accountId: account1Id,
@@ -87,24 +104,6 @@ export const LoadTestData = async () => {
     phone: "765-132-4568",
   }
 
-  const child11 = {
-    accountId: account1Id,
-    firstName: "Tristan",
-    lastName: "Johnston",
-    birthdate: new Date(1983, 0, 28),
-    gender: Gender.Male,
-    note: "This is a note about Tristan.",
-  }
-
-  const child12 = {
-    accountId: account1Id,
-    firstName: "Darrin",
-    lastName: "Snapton",
-    birthdate: new Date(1992, 4, 12),
-    gender: Gender.Other,
-    note: "This is a note about Darrin.",
-  }
-
   await Create(ACCOUNTS, account1Id, account1)
 
   await Create(CHILDREN, child11Id, child11)
@@ -124,7 +123,6 @@ export const LoadTestData = async () => {
   const contact22Id = uuid()
 
   const account2 = {
-    created: new Date(),
     balance: 0,
     rate: 100,
     frequency: Frequency.Daily,
@@ -333,7 +331,6 @@ export const SubmitAccount = async (dispatch, newAccount) => {
   const accountId = uuid()
 
   const accountData = {
-    created: new Date(),
     balance: 0,
     rate: newAccount.rate,
     frequency: newAccount.frequency,

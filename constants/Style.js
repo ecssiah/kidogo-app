@@ -95,6 +95,12 @@ export const Styles = StyleSheet.create({
   financePicker: {
     height: 30,
     color: Colors.mainText,
+    backgroundColor: 'transparent',
+  },
+  genderPicker: {
+    color: 'white',
+    marginTop: -10,
+    backgroundColor: 'transparent',
   },
   divider: {
     height: 1,
@@ -386,7 +392,7 @@ export const Styles = StyleSheet.create({
     flexDirection: 'row',
   },
   showButton: {
-    flex: 0.1,
+    flex: 0.15,
     borderColor: Colors.mainText,
     borderBottomWidth: 2,
     marginVertical: 10,

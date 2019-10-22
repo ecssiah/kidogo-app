@@ -4,7 +4,7 @@ import {
 } from 'react-native'
 import { Styles } from '../constants/Style';
 import {
-  Gender, Relation, RelationStrings, GenderStrings
+  Gender, GenderStrings
 } from '../constants/Enrollment';
 import Language from '../languages';
 import { GetShortDate } from '../utilities/dates';
@@ -23,19 +23,6 @@ const ChildEntry = (props) => {
           key={i}
           label={GenderStrings[gender]}
           value={gender}
-        />
-      )
-    })
-  }
-
-
-  const getRelationItems = () => {
-    return Object.values(Relation).map((relation, i) => {
-      return (
-        <Picker.Item
-          key={i}
-          label={RelationStrings[relation]}
-          value={relation}
         />
       )
     })
@@ -106,7 +93,7 @@ const ChildEntry = (props) => {
         <View style={Styles.rowElement} >
           <View style={[Styles.input, { height: 30, paddingLeft: 0 }]} >
             <Picker
-              style={{ color: 'white', marginTop: -10 }}
+              style={Styles.genderPicker}
               selectedValue={props.gender}
               onValueChange={(value, pos) => props.setGender(value)}
             >
@@ -124,22 +111,6 @@ const ChildEntry = (props) => {
         <View style={Styles.rowElement} >
           <View style={Styles.financePickerContainer} >
             <Picker
-              style={Styles.financePicker}
-              selectedValue={props.relation}
-              onValueChange={(value, pos) => props.setRelation(value)}
-            >
-              { getRelationItems() }
-            </Picker>
-          </View>
-
-          <Text style={Styles.label} >
-            { Language.Relationship }
-          </Text>
-        </View>
-
-        <View style={Styles.rowElement} >
-          <View style={Styles.financePickerContainer} >
-            <Picker
               selectedValue={props.immunization}
               style={Styles.financePicker}
               onValueChange={onImmunizationChange}
@@ -153,6 +124,8 @@ const ChildEntry = (props) => {
             { Language.Immunization }
           </Text>
         </View>
+
+        <View style={Styles.rowElement} />
       </View>
 
       <TextInput

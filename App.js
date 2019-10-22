@@ -26,11 +26,11 @@ const App = () => {
     ConfigureBcrypt()
     await LoadFonts()
 
-    if (await TestDataNeeded()) {
-      await LoadTestData()
-    }
+    // if (await TestDataNeeded()) {
+    //   await LoadTestData()
+    // }
 
-    await LogTestData()
+    // await LogTestData()
     await InitDatabase(store.dispatch)
     await UpdateStore(store.dispatch)
   }

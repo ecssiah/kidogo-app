@@ -12,6 +12,7 @@ import { Styles, Colors, Size } from '../constants/Style';
 import { SubmitAccount } from '../utilities/localstore';
 import { SET_NEW_CONTACT } from '../constants/Enrollment';
 import Loading from '../components/Loading';
+import Language from '../languages'
 
 
 const Contacts = (props) => {
@@ -114,14 +115,18 @@ const Contacts = (props) => {
                 style={Styles.rowButton}
                 onPress={onSubmitContact}
               >
-                <Text style={Styles.btnText}>Submit</Text>
+                <Text style={Styles.buttonText} >
+                  { Language.Submit }
+                </Text>
               </TouchableOpacity>
 
               <TouchableOpacity
                 style={Styles.rowButton}
                 onPress={onNextContact}
               >
-                <Text style={Styles.btnText}>Next</Text>
+                <Text style={Styles.buttonText} >
+                  { Language.Next }
+                </Text>
               </TouchableOpacity>
             </View>
 
@@ -131,7 +136,9 @@ const Contacts = (props) => {
               style={Styles.mainButton}
               onPress={onSubmitFamily}
             >
-              <Text style={Styles.btnText}>Submit Family</Text>
+              <Text style={Styles.buttonText} >
+                { Language.Submit } { Language.Family }
+              </Text>
             </TouchableOpacity>
 
             <Spacer height={Size.keyboard} />

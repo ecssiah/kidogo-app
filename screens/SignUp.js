@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux'
 import {
   View, Text, TouchableOpacity, ScrollView
 } from 'react-native';
@@ -8,7 +9,7 @@ import { Icon } from 'react-native-elements'
 import {
   SignUpCaregiver, SignInCaregiver, ConfirmCaregiver
 } from '../utilities/auth'
-import { CreateCaregiver } from '../utilities/localstore';
+import { CreateCaregiver, InitDatabase, UpdateStore } from '../utilities/localstore';
 import bcrypt from 'react-native-bcrypt'
 import uuid from 'uuid'
 
@@ -24,6 +25,8 @@ import Language from '../languages'
 
 
 const SignUp = (props) => {
+  const dispatch = useDispatch()
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
@@ -90,6 +93,9 @@ const SignUp = (props) => {
       await CreateCaregiverDB(caregiverData)
 
       setConfirmModalVisible(false)
+
+      await InitDatabase(dispatch)
+      await UpdateStore(dispatch)
 
       props.navigation.navigate('Dash')
     } else {

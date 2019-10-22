@@ -22,7 +22,6 @@ const Children = (props) => {
   const [lastName, setLastName] = useState('')
   const [birthdate, setBirthdate] = useState('')
   const [gender, setGender] = useState('')
-  const [relation, setRelation] = useState(Relation.Mother)
   const [immunization, setImmunization] = useState(false)
   const [note, setNote] = useState('')
   const [soundObject, setSoundObject] = useState(null)
@@ -113,8 +112,6 @@ const Children = (props) => {
           setBirthdate={setBirthdate}
           gender={gender}
           setGender={setGender}
-          relation={relation}
-          setRelation={setRelation}
           immunization={immunization}
           setImmunization={setImmunization}
           note={note}

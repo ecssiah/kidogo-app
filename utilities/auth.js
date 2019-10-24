@@ -18,7 +18,7 @@ export const SignUpCaregiver = async (caregiverData) => {
   const phone_number = '+1' + caregiverData.phone.split('-').join('')
 
   try {
-    await Auth.signUp({
+    return await Auth.signUp({
       username: caregiverData.username,
       password: caregiverData.password,
       attributes: {
@@ -27,7 +27,7 @@ export const SignUpCaregiver = async (caregiverData) => {
       },
     })
   } catch(error) {
-    console.error(error)
+    return error
   }
 }
 

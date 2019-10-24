@@ -4,7 +4,7 @@ import {
   View, Text, TouchableOpacity, ScrollView
 } from 'react-native';
 import { Audio } from 'expo-av'
-import { Styles } from '../constants/Style';
+import { Styles, Size } from '../constants/Style';
 import { Icon } from 'react-native-elements'
 import {
   SignUpCaregiver, SignInCaregiver, ConfirmCaregiver
@@ -53,10 +53,16 @@ const SignUp = (props) => {
       phone,
     }
 
-    await SignUpCaregiver(userData)
+    const signUpResult = await SignUpCaregiver(userData)
 
     setLoading(false)
-    setConfirmModalVisible(true)
+
+    if (signUpResult.message) {
+      setMessage(signUpResult.message)
+      setTimeout(() => setMessage(null), 4000)
+    } else {
+      setConfirmModalVisible(true)
+    }
   }
 
 
@@ -125,6 +131,8 @@ const SignUp = (props) => {
 
   return (
     <Backdrop>
+      <Spacer height={Size.statusbar} />
+
       <Message text={message} />
 
       {loading

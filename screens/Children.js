@@ -10,7 +10,7 @@ import Language from '../languages'
 import Spacer from '../components/Spacer';
 import ChildEntry from '../components/ChildEntry';
 import Backdrop from '../components/Backdrop';
-import { SET_NEW_CHILD, Relation } from '../constants/Enrollment'
+import { SET_NEW_CHILD } from '../constants/Enrollment'
 import Message from '../components/Message'
 
 

@@ -36,7 +36,7 @@ export const ConfirmCaregiver = async (username, code) => {
   try {
     return await Auth.confirmSignUp(username, code)
   } catch(error) {
-    console.error(error)
+    return error
   }
 }
 

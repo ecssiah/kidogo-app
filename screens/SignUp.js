@@ -105,7 +105,8 @@ const SignUp = (props) => {
 
       props.navigation.navigate('Dash')
     } else {
-      console.error("Caregiver confirmation failed")
+      console.log(consfirmResult)
+      return confirmResult
     }
   }
 

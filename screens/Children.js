@@ -25,6 +25,7 @@ const Children = (props) => {
   const [immunization, setImmunization] = useState(false)
   const [note, setNote] = useState('')
   const [soundObject, setSoundObject] = useState(null)
+  const [callbackId, setCallbackId] = useState(null)
   const [message, setMessage] = useState(null)
 
   const scrollRef = useRef(null)
@@ -43,8 +44,7 @@ const Children = (props) => {
 
     dispatch({ type: SET_NEW_CHILD, id, child })
 
-    setMessage("Child information submitted")
-    setTimeout(() => setMessage(null), 2000)
+    setError("Child information submitted")
   }
 
 
@@ -93,6 +93,13 @@ const Children = (props) => {
     } catch(error) {
       console.error(error)
     }
+  }
+
+
+  const setError = (text) => {
+    clearTimeout(callbackId)
+    setMessage(text)
+    setCallbackId(setTimeout(() => setMessage(null), 4000))
   }
 
 

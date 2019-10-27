@@ -13,19 +13,9 @@ const ConfirmModal = (props) => {
   const [code, setCode] = useState('')
 
 
-  const onCodeSubmit = async () => {
-    try {
-      const codeCache = code
-      setCode('')
-      await props.onConfirmAttempt(codeCache)
-    } catch(error) {
-      console.error(error)
-    }
-  }
-
-
   const onResend = async () => {
-
+    setCode('')
+    props.onResendAttempt()
   }
 
 
@@ -68,7 +58,7 @@ const ConfirmModal = (props) => {
 
           <TouchableOpacity
             style={Styles.rowButton}
-            onPress={onCodeSubmit}
+            onPress={() => props.onConfirmAttempt(code)}
           >
             <Text style={Styles.buttonText}>
               { Language.Confirm }

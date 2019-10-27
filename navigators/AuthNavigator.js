@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation'
 import Home from '../screens/Home'
 import SignUp from '../screens/SignUp'
 import SignIn from '../screens/SignIn'
+import Confirm from '../screens/Confirm'
 
 
 const routeConfig = {
@@ -20,6 +21,12 @@ const routeConfig = {
   },
   SignIn: {
     screen: SignIn,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Confirm: {
+    screen: Confirm,
     navigationOptions: {
       header: null,
     },

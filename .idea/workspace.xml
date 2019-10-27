@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ConfirmModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ConfirmModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/Style.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigators/AuthNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigators/AuthNavigator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Children.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Children.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/SignUp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/auth.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +20,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="69" />
-    <option name="y" value="113" />
+    <option name="x" value="96" />
+    <option name="y" value="68" />
     <option name="width" value="1257" />
     <option name="height" value="724" />
   </component>
@@ -24,10 +30,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -61,7 +67,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="69" y="113" width="1257" height="724" extended-state="0" />
+    <frame x="96" y="68" width="1257" height="724" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.37366256" />
@@ -78,11 +84,11 @@
       <window_info anchor="bottom" id="Terminal" order="3" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Android Profiler" order="5" show_stripe_button="false" />
-      <window_info anchor="right" id="Assistant" weight="0.32921812" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Assistant" order="4" weight="0.32921812" />
     </layout>
   </component>
 </project>

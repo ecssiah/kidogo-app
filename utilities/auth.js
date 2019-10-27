@@ -4,12 +4,7 @@ import { GetCaregiver } from './localstore';
 
 export const SignedIn = async () => {
   const caregiver = await GetCaregiver()
-
-  if ("id" in caregiver) {
-    return true
-  } else {
-    return false
-  }
+  return "id" in caregiver
 }
 
 
@@ -43,19 +38,17 @@ export const ConfirmCaregiver = async (username, code) => {
 
 export const ResendConfirmCode = async (username) => {
   try {
-    await Auth.resendSignUp(username)
+    return await Auth.resendSignUp(username)
   } catch(error) {
-    console.error(error)
+    return error
   }
 }
 
 
 export const SignInCaregiver = async (username, password) => {
   try {
-    await Auth.signIn(username, password)
-
-
+    return await Auth.signIn(username, password)
   } catch(error) {
-    console.error(error)
+    return error
   }
 }

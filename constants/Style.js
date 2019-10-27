@@ -446,7 +446,7 @@ export const Styles = StyleSheet.create({
   },
   message: {
     position: 'absolute',
-    zIndex: 100,
+    zIndex: 1000,
     top: Size.statusbar,
     right: 0,
     left: 0,

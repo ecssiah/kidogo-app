@@ -1,32 +1,23 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux'
 import {
   View, Text, TouchableOpacity, ScrollView
 } from 'react-native';
 import { Audio } from 'expo-av'
 import { Styles, Size } from '../constants/Style';
 import { Icon } from 'react-native-elements'
-import {
-  SignUpCaregiver, SignInCaregiver, ConfirmCaregiver
-} from '../utilities/auth'
-import { CreateCaregiver, InitDatabase, UpdateStore } from '../utilities/localstore';
-import bcrypt from 'react-native-bcrypt'
+import { SignUpCaregiver } from '../utilities/auth'
 import uuid from 'uuid'
 
 import Loading from '../components/Loading'
 import Spacer from '../components/Spacer'
 import CaregiverEntry from '../components/CaregiverEntry'
 import CentreEntry from '../components/CentreEntry'
-import ConfirmModal from '../components/ConfirmModal';
 import Message from '../components/Message';
-import { CreateCaregiverDB } from '../utilities/dbstore';
 import Backdrop from '../components/Backdrop';
 import Language from '../languages'
 
 
 const SignUp = (props) => {
-  const dispatch = useDispatch()
-
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
@@ -37,10 +28,10 @@ const SignUp = (props) => {
   const [address, setAddress] = useState('')
   const [location, setLocation] = useState('')
   const [city, setCity] = useState('')
+  const [callbackId, setCallbackId] = useState(null)
   const [message, setMessage] = useState(null)
   const [loading, setLoading] = useState(false)
   const [soundObject, setSoundObject] = useState(null)
-  const [confirmModalVisible, setConfirmModalVisible] = useState(false)
 
 
   const onSignUp = async () => {
@@ -53,60 +44,28 @@ const SignUp = (props) => {
       phone,
     }
 
+    const caregiverData = {
+      id: uuid(),
+      username,
+      password,
+      email,
+      firstName,
+      lastName,
+      phone,
+      centreName,
+      address,
+      location,
+      city,
+    }
+
     const signUpResult = await SignUpCaregiver(userData)
 
     setLoading(false)
 
     if (signUpResult.message) {
-      setMessage(signUpResult.message)
-      setTimeout(() => setMessage(null), 4000)
+      setError(signUpResult.message)
     } else {
-      setConfirmModalVisible(true)
-    }
-  }
-
-
-  const onConfirmAttempt = async (code) => {
-    const confirmResult = await ConfirmCaregiver(username, code)
-
-    if (confirmResult === 'SUCCESS') {
-      const hashedPassword = await new Promise((resolve, reject) => {
-        bcrypt.hash(password, 10, (err, hash) => {
-          if (err) {
-            reject(err)
-          }
-          resolve(hash)
-        })
-      })
-
-      const caregiverData = {
-        id: uuid(),
-        username,
-        password: hashedPassword,
-        email,
-        firstName,
-        lastName,
-        phone,
-        centreName,
-        address,
-        location,
-        city,
-      }
-
-      await SignInCaregiver(username, password)
-
-      await CreateCaregiver(caregiverData)
-      await CreateCaregiverDB(caregiverData)
-
-      setConfirmModalVisible(false)
-
-      await InitDatabase(dispatch)
-      await UpdateStore(dispatch)
-
-      props.navigation.navigate('Dash')
-    } else {
-      console.log(consfirmResult)
-      return confirmResult
+      props.navigation.navigate('Confirm', { caregiverData })
     }
   }
 
@@ -115,18 +74,23 @@ const SignUp = (props) => {
     try {
       if (soundObject) {
         await soundObject.stopAsync()
-
         setSoundObject(null)
       } else {
         const soundObject = new Audio.Sound()
         await soundObject.loadAsync(require('../assets/audio/signup.mp3'))
         await soundObject.playAsync()
-
         setSoundObject(soundObject)
       }
     } catch(error) {
-      console.error(error)
+      setError(error)
     }
+  }
+
+
+  const setError = (text) => {
+    clearTimeout(callbackId)
+    setMessage(text)
+    setCallbackId(setTimeout(() => setMessage(null), 4000))
   }
 
 
@@ -188,11 +152,6 @@ const SignUp = (props) => {
           <Icon name="record-voice-over" color="#3C233D" size={36} />
         </View>
       </TouchableOpacity>
-
-      <ConfirmModal
-        visible={confirmModalVisible}
-        onConfirmAttempt={onConfirmAttempt}
-      />
     </Backdrop>
   )
 }

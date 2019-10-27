@@ -20,6 +20,7 @@ import Language from '../languages'
 const SignUp = (props) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [passwordConfirm, setPasswordConfirm] = useState('')
   const [email, setEmail] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -37,35 +38,43 @@ const SignUp = (props) => {
   const onSignUp = async () => {
     setLoading(true)
 
-    const userData = {
-      username,
-      password,
-      email,
-      phone,
-    }
+    if (password !== passwordConfirm) {
+      setError('Password confirmation does not match')
+      setPassword('')
+      setPasswordConfirm('')
 
-    const caregiverData = {
-      id: uuid(),
-      username,
-      password,
-      email,
-      firstName,
-      lastName,
-      phone,
-      centreName,
-      address,
-      location,
-      city,
-    }
-
-    const signUpResult = await SignUpCaregiver(userData)
-
-    setLoading(false)
-
-    if (signUpResult.message) {
-      setError(signUpResult.message)
+      setLoading(false)
     } else {
-      props.navigation.navigate('Confirm', { caregiverData })
+      const userData = {
+        username,
+        password,
+        email,
+        phone,
+      }
+
+      const caregiverData = {
+        id: uuid(),
+        username,
+        password,
+        email,
+        firstName,
+        lastName,
+        phone,
+        centreName,
+        address,
+        location,
+        city,
+      }
+
+      const signUpResult = await SignUpCaregiver(userData)
+
+      setLoading(false)
+
+      if (signUpResult.message) {
+        setError(signUpResult.message)
+      } else {
+        props.navigation.navigate('Confirm', { caregiverData })
+      }
     }
   }
 
@@ -103,17 +112,17 @@ const SignUp = (props) => {
       {loading
         ? <Loading />
         : <ScrollView >
-            <Spacer height={40} />
-
             <CaregiverEntry
               username={username}
               password={password}
+              passwordConfirm={passwordConfirm}
               email={email}
               firstName={firstName}
               lastName={lastName}
               phone={phone}
               onChangeUsername={setUsername}
               onChangePassword={setPassword}
+              onChangePasswordConfirm={setPasswordConfirm}
               onChangeEmail={setEmail}
               onChangeFirstName={setFirstName}
               onChangeLastName={setLastName}

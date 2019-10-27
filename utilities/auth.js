@@ -9,8 +9,8 @@ export const SignedIn = async () => {
 
 
 export const SignUpCaregiver = async (caregiverData) => {
-  // const phone_number = '+254' + phone.split('-').join('')
-  const phone_number = '+1' + caregiverData.phone.split('-').join('')
+  const phone_number = '+254' + phone.split('-').join('')
+  // const phone_number = '+1' + caregiverData.phone.split('-').join('')
 
   try {
     return await Auth.signUp({

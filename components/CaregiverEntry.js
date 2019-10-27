@@ -1,22 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
-  View, Text, TextInput, Image, TouchableOpacity
+  View, Text, TextInput, Image
 } from 'react-native'
-import { Icon } from 'react-native-elements'
 import { Styles } from '../constants/Style';
+import SecureInput from './SecureInput';
+import Language from '../languages'
 
 
 const CaregiverEntry = (props) => {
-  const [hidePassword, setHidePassword] = useState(true)
-
-  const toggleHidePassword = () => setHidePassword(!hidePassword)
-
-  // TODO: Use SecureInput component
-
   return (
     <View style={Styles.container} >
       <Text style={[Styles.h1, { fontSize: 35 }, Styles.raleway]} >
-        Caregiver
+        { Language.Caregiver }
       </Text>
 
       <Image
@@ -32,33 +27,25 @@ const CaregiverEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Username
+        { Language.Username }
       </Text>
 
-      <View style={Styles.passwordHolder}>
-        <TextInput
-          style={[
-            Styles.input,
-            { flex: 0.9, marginRight: 0 },
-          ]}
-          secureTextEntry={hidePassword}
-          value={props.password}
-          onChangeText={props.onChangePassword}
-          blurOnSubmit={false}
-        />
-
-        <View style={Styles.showButton} >
-          <TouchableOpacity onPress={toggleHidePassword} >
-            <Icon
-              color="white"
-              name={hidePassword ? "visibility-off" : 'visibility'}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <SecureInput
+        value={props.password}
+        setValue={props.onChangePassword}
+      />
 
       <Text style={Styles.label} >
-        Password
+        { Language.Password }
+      </Text>
+
+      <SecureInput
+        value={props.passwordConfirm}
+        setValue={props.onChangePasswordConfirm}
+      />
+
+      <Text style={Styles.label} >
+        { Language.Confirm } { Language.Password }
       </Text>
 
       <TextInput
@@ -69,7 +56,7 @@ const CaregiverEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Name
+        { Language.FirstName }
       </Text>
 
       <TextInput
@@ -80,7 +67,7 @@ const CaregiverEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Surname
+        { Language.LastName }
       </Text>
 
       <TextInput
@@ -90,7 +77,7 @@ const CaregiverEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Email
+        { Language.Email }
       </Text>
 
       <TextInput
@@ -101,7 +88,7 @@ const CaregiverEntry = (props) => {
       />
 
       <Text style={Styles.label} >
-        Phone
+        { Language.Phone }
       </Text>
     </View>
   )

@@ -25,6 +25,7 @@ const Contacts = (props) => {
   const [phone, setPhone] = useState('')
   const [loading, setLoading] = useState(false)
   const [soundObject, setSoundObject] = useState(null)
+  const [callbackId, setCallbackId] = useState(null)
   const [message, setMessage] = useState(null)
 
   const scrollRef = useRef(null)
@@ -39,9 +40,7 @@ const Contacts = (props) => {
     }
 
     dispatch({ type: SET_NEW_CONTACT, id, contact })
-
-    setMessage("Contact information submitted")
-    setTimeout(() => setMessage(null), 2000)
+    setError("Contact information submitted")
   }
 
 
@@ -54,11 +53,8 @@ const Contacts = (props) => {
 
   const onSubmitFamily = async () => {
     setLoading(true)
-
     await SubmitAccount(dispatch, newAccount)
-
     setLoading(false)
-
     props.navigation.navigate('Dash')
   }
 
@@ -86,9 +82,17 @@ const Contacts = (props) => {
         setSoundObject(soundObject)
       }
     } catch(error) {
-      console.error(error)
+      setError(error)
     }
   }
+
+
+  const setError = (text) => {
+    clearTimeout(callbackId)
+    setMessage(text)
+    setCallbackId(setTimeout(() => setMessage(null), 4000))
+  }
+
 
   return (
     <Backdrop>

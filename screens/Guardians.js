@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import {
-  Image, ScrollView, Text, TextInput, TouchableOpacity, View
+  ScrollView, Text, TouchableOpacity, View
 } from 'react-native'
 import uuid from 'uuid'
 import { Audio } from 'expo-av'
@@ -28,6 +28,7 @@ const Guardians = (props) => {
   const [address, setAddress] = useState('')
   const [city, setCity] = useState('')
   const [soundObject, setSoundObject] = useState(null)
+  const [callbackId, setCallbackId] = useState(null)
   const [message, setMessage] = useState(null)
 
   const scrollRef = useRef(null)
@@ -46,9 +47,7 @@ const Guardians = (props) => {
     }
 
     dispatch({ type: SET_NEW_GUARDIAN, id, guardian })
-
-    setMessage("Guardian information submitted")
-    setTimeout(() => setMessage(null), 2000)
+    setError("Guardian information submitted")
   }
 
 
@@ -91,8 +90,15 @@ const Guardians = (props) => {
         setSoundObject(soundObject)
       }
     } catch(error) {
-      console.error(error)
+      setError(error)
     }
+  }
+
+
+  const setError = (text) => {
+    clearTimeout(callbackId)
+    setMessage(text)
+    setCallbackId(setTimeout(() => setMessage(null), 4000))
   }
 
 

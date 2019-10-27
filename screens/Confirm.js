@@ -116,7 +116,7 @@ const Confirm = (props) => {
               />
             </View>
 
-            <Spacer medium />
+            <Spacer large />
 
             <View style={Styles.rowElements}>
               <TouchableOpacity

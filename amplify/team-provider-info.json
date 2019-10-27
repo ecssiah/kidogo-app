@@ -15,5 +15,22 @@
                 "cognito3dfe9ca6": {}
             }
         }
+    },
+    "kidogoapp": {
+        "awscloudformation": {
+            "AuthRoleName": "kidogoapp-kidogoapp-20191027115149-authRole",
+            "UnauthRoleArn": "arn:aws:iam::894706014111:role/kidogoapp-kidogoapp-20191027115149-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::894706014111:role/kidogoapp-kidogoapp-20191027115149-authRole",
+            "Region": "eu-west-2",
+            "DeploymentBucketName": "kidogoapp-kidogoapp-20191027115149-deployment",
+            "UnauthRoleName": "kidogoapp-kidogoapp-20191027115149-unauthRole",
+            "StackName": "kidogoapp-kidogoapp-20191027115149",
+            "StackId": "arn:aws:cloudformation:eu-west-2:894706014111:stack/kidogoapp-kidogoapp-20191027115149/d6582f50-f8ea-11e9-987b-02317fefc7aa"
+        },
+        "categories": {
+            "auth": {
+                "cognito3dfe9ca6": {}
+            }
+        }
     }
 }

@@ -131,7 +131,7 @@ const Dash = (props) => {
               source={require('../assets/images/enrollment.png')}
             >
               <Text style={[Styles.actionText, Styles.raleway]} >
-                { Language.AddFamily }
+                { Language.Add } { Language.Family }
               </Text>
             </ImageBackground>
           </TouchableOpacity>

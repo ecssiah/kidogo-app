@@ -21,3 +21,9 @@ export const GetCaregiversDB = async () => {
 
   return caregiversResp
 }
+
+
+export const UpdateDB = async (localData) => {
+
+
+}

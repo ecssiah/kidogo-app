@@ -1,5 +1,17 @@
+const App = {
+  Dash: "Menyu",
+  Upload: "Pakia",
+  CheckIn: "Ingia",
+  CheckOut: "Angalia",
+  Attendance: "Mahudhurio",
+  Finances: "Fedha",
+  SignIn: "Weka Sahihi",
+  SignOut: "Toka",
+  DailyQuestions: "Maswali ya Kila siku",
+}
 
-export default Swahili = {
+
+const General = {
   Yes: "Ndio",
   No: "Hapana",
   True: "Kweli",
@@ -9,11 +21,27 @@ export default Swahili = {
   Gender: "Jinsia",
   And: "na",
   Or: "au",
+}
+
+
+const Keywords = {
+  Add: "Ongeza",
+  Submit: "Peana",
+  Date: "Tarehe",
+  Next: "Ifuatayo",
+  Delete: "Futa",
   New: "Mpya",
   Edit: "Hariri",
   Other: "Nyingine",
-  CheckIn: "Ingia",
-  CheckOut: "Angalia",
+  Confirm: "Thibitisha",
+  Cancel: "Ghairi",
+  Resend: "Tuma tena",
+  Username: "Jina la Mtumiaji",
+  Password: "Nywila",
+}
+
+
+const Members = {
   Caregiver: "Mlezi",
   Child: "Mtoto",
   Children: "Watoto",
@@ -21,23 +49,44 @@ export default Swahili = {
   Guardians: "Walezi",
   Contact: "Wasiliana",
   Contacts: "Mawasiliano",
-  Dash: "Menyu",
   Families: "Familia",
-  Upload: "Pakia",
-  Email: "Barua Pepe",
+}
+
+
+const Relations = {
+  Relationship: "Urafiki",
+  Mother: "Mama",
+  Father: "Baba",
+  Sister: "Dada",
+  Brother: "Ndugu",
+  Aunt: "Shangazi",
+  Uncle: "Mjomba",
+  Grandmother: "Bibi",
+  Grandfather: "Babu",
+}
+
+
+const Attributes = {
   FirstName: "Jina ya Kwanza",
   LastName: "Ama Familia",
+  Email: "Barua Pepe",
   Birthday: "Siku ya Kuzaliwa",
   Location: "Mahali",
   City: "Mji",
   Phone: "Simu",
+  Notes: "Vidokezo",
+  Immunization: "Chanjo",
   IdentificationNumber: "Nambari ya Kitambulisho",
+}
+
+
+const Finances = {
+  Fee: "Ada",
   Balance: "Usawa",
-  ThisAccountPays: "Akaunti hii inalipa",
+  Type: "Chapa",
+  Amount: "Kiasi",
   Rate: "Kiwango",
   Frequency: "Mara ngapi",
-  Immunization: "Chanjo",
-  Notes: "Vidokezo",
   Daily: "Kila Siku",
   Weekly: "Kila Wiki",
   Termly: "Kila Muhula",
@@ -52,43 +101,30 @@ export default Swahili = {
   Expense: "Gharama",
   MPesa: "M-Pesa",
   Cash: "Cash",
+  WeekTotal: "Jumla ya Wiki",
+  ThisAccountPays: "Akaunti hii inalipa",
+}
+
+
+const Other = {
   MorningGreeting: "Nani hako Leo?",
   AfternoonGreeting: "Kuna aliyetoka?",
   EveningGreeting: "Uli nunua kitu chochote leo?",
-  Attendance: "Mahudhurio",
-  Finances: "Fedha",
-  DailyQuestions: "Maswali ya Kila siku",
-  Fee: "Ada",
-  Add: "Ongeza",
-  AddFamily: "Ongeza Familia",
-  AddExpense: "Ongeza Gharama",
-  SignIn: "Weka Sahihi",
-  SignOut: "Toka",
-  Username: "Jina la Mtumiaji",
-  Password: "Nywila",
-  Confirm: "Thibitisha",
-  Cancel: "Ghairi",
-  Date: "Tarehe",
-  Type: "Chapa",
-  Amount: "Kiasi",
-  WeekTotal: "Jumla ya Wiki",
-  Balance: "Mizani",
-  Submit: "Peana",
-  Next: "Ifuatayo",
-  Delete: "Futa",
-  Resend: "Tuma tena",
   CodeMessage: `
     Utapokea ujumbe wa maandishi na nambari ya nambari 6.
     Tafadhali ingiza msimbo hapa chini:
   `,
-  Relationship: "Urafiki",
-  Mother: "Mama",
-  Father: "Baba",
-  Sister: "Dada",
-  Brother: "Ndugu",
-  Aunt: "Shangazi",
-  Uncle: "Mjomba",
-  Grandmother: "Bibi",
-  Grandfather: "Babu",
+}
+
+
+export default Swahili = {
+  ...App,
+  ...General,
+  ...Keywords,
+  ...Members,
+  ...Relations,
+  ...Attributes,
+  ...Finances,
+  ...Other,
 }
 

@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/utilities/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/kidogoapp/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/api/kidogoapp/schema.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/queries.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/schema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/subscriptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/subscriptions.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

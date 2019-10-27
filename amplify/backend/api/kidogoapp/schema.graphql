@@ -19,7 +19,8 @@ type Account @model {
   rate: Float!
   frequency: String!
   lastFee: String!
-  children: [Children] @connection(name: "AccountChildren")
+  caregiver: Caregiver @connection(name: "CaregiverAccounts")
+  children: [Child] @connection(name: "AccountChildren")
   guardians: [Guardian] @connection(name: "AccountGuardians")
   contacts: [Contact] @connection(name: "AccountContacts")
   attendance: [Attendance] @connection(name: "AccountAttendance")
@@ -31,6 +32,7 @@ type Account @model {
 
 type Child @model {
   id: ID!
+  account: Account @connection(name: "AccountChildren")
   firstName: String!
   lastName: String!
   birthdate: String!
@@ -40,6 +42,7 @@ type Child @model {
 
 type Guardian @model {
   id: ID!
+  account: Account @connection(name: "AccountGuardians")
   firstName: String!
   lastName: String!
   phone: String!
@@ -51,6 +54,7 @@ type Guardian @model {
 
 type Contact @model {
   id: ID!
+  account: Account @connection(name: "AccountContacts")
   firstName: String!
   lastName: String!
   phone: String!
@@ -58,29 +62,34 @@ type Contact @model {
 
 type Attendance @model {
   date: String!
+  account: Account @connection(name: "AccountAttendance")
   checkIn: Boolean!
   checkOut: Boolean!
 }
 
 type Finances @model {
   date: String!
+  account: Account @connection(name: "AccountFinances")
   income: Float!
   expenses: Float!
 }
 
 type Payment @model {
   date: String!
+  account: Account @connection(name: "AccountPayments")
   type: String!
   amount: Float!
 }
 
 type Expense @model {
   date: String!
+  account: Account @connection(name: "AccountExpenses")
   type: String!
   amount: Float!
 }
 
 type Question @model {
   text: String!
+  account: Account @connection(name: "AccountQuestions")
   response: Boolean!
 }

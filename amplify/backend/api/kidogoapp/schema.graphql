@@ -44,9 +44,9 @@ type Guardian @model {
   lastName: String!
   phone: String!
   govtId: String!
+  relation: String!
   address: String!
   city: String!
-  relation: String!
 }
 
 type Contact @model {

@@ -43,8 +43,6 @@ const Children = (props) => {
     }
 
     dispatch({ type: SET_NEW_CHILD, id, child })
-
-    setError("Child information submitted")
   }
 
 
@@ -55,12 +53,15 @@ const Children = (props) => {
 
   const onNextChild = () => {
     onSubmitChild()
+    setError("Child information submitted")
     setId(uuid())
     resetForm()
   }
 
 
   const onAddGuardians = async () => {
+    onSubmitChild()
+    clearTimeout(callbackId)
     props.navigation.navigate('Guardians')
   }
 
@@ -91,7 +92,7 @@ const Children = (props) => {
         setSoundObject(soundObject)
       }
     } catch(error) {
-      console.error(error)
+      setError(error)
     }
   }
 
@@ -127,25 +128,14 @@ const Children = (props) => {
 
         <Spacer medium />
 
-        <View style={Styles.rowElements} >
-          <TouchableOpacity
-            style={Styles.rowButton}
-            onPress={onSubmitChild}
-          >
-            <Text style={Styles.buttonText} >
-              { Language.Submit }
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={Styles.rowButton}
-            onPress={onNextChild}
-          >
-            <Text style={Styles.buttonText} >
-              { Language.Next }
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={Styles.mainButton}
+          onPress={onNextChild}
+        >
+          <Text style={Styles.buttonText} >
+            { Language.Next } { Language.Child }
+          </Text>
+        </TouchableOpacity>
 
         <Spacer medium />
 

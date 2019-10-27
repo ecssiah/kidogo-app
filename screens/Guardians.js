@@ -47,18 +47,20 @@ const Guardians = (props) => {
     }
 
     dispatch({ type: SET_NEW_GUARDIAN, id, guardian })
-    setError("Guardian information submitted")
   }
 
 
   const onNextGuardian = () => {
     onSubmitGuardian()
+    setError("Guardian information submitted")
     setId(uuid())
     resetForm()
   }
 
 
   const onAddContacts = async () => {
+    onSubmitGuardian()
+    clearTimeout(callbackId)
     props.navigation.navigate('Contacts')
   }
 
@@ -128,25 +130,14 @@ const Guardians = (props) => {
 
         <Spacer large />
 
-        <View style={Styles.rowElements} >
-          <TouchableOpacity
-            style={Styles.rowButton}
-            onPress={onSubmitGuardian}
-          >
-            <Text style={Styles.buttonText} >
-              { Language.Submit }
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={Styles.rowButton}
-            onPress={onNextGuardian}
-          >
-            <Text style={Styles.buttonText} >
-              { Language.Next }
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={Styles.mainButton}
+          onPress={onNextGuardian}
+        >
+          <Text style={Styles.buttonText} >
+            { Language.Next } { Language.Guardian }
+          </Text>
+        </TouchableOpacity>
 
         <Spacer medium />
 

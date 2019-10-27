@@ -40,12 +40,12 @@ const Contacts = (props) => {
     }
 
     dispatch({ type: SET_NEW_CONTACT, id, contact })
-    setError("Contact information submitted")
   }
 
 
   const onNextContact = async () => {
     onSubmitContact()
+    setError("Contact information submitted")
     setId(uuid())
     resetForm()
   }
@@ -53,8 +53,11 @@ const Contacts = (props) => {
 
   const onSubmitFamily = async () => {
     setLoading(true)
+    onSubmitContact()
+    clearTimeout(callbackId)
     await SubmitAccount(dispatch, newAccount)
     setLoading(false)
+
     props.navigation.navigate('Dash')
   }
 
@@ -114,25 +117,14 @@ const Contacts = (props) => {
 
             <Spacer large />
 
-            <View style={Styles.rowElements} >
-              <TouchableOpacity
-                style={Styles.rowButton}
-                onPress={onSubmitContact}
-              >
-                <Text style={Styles.buttonText} >
-                  { Language.Submit }
-                </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={Styles.rowButton}
-                onPress={onNextContact}
-              >
-                <Text style={Styles.buttonText} >
-                  { Language.Next }
-                </Text>
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+              style={Styles.mainButton}
+              onPress={onNextContact}
+            >
+              <Text style={Styles.buttonText} >
+                { Language.Next } { Language.Contact }
+              </Text>
+            </TouchableOpacity>
 
             <Spacer medium />
 

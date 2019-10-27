@@ -146,7 +146,9 @@ const SignUp = (props) => {
               style={Styles.mainButton}
               onPress={onSignUp}
             >
-              <Text style={Styles.buttonText}>{ Language.Confirm }</Text>
+              <Text style={Styles.buttonText}>
+                { Language.Confirm }
+              </Text>
             </TouchableOpacity>
 
             <Spacer height={322} />

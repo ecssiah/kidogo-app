@@ -83,10 +83,10 @@ const Attributes = {
 
 const Finances = {
   Fee: "Fee",
-  Rate: "Rate",
   Type: "Type",
   Amount: "Amount",
   Balance: "Balance",
+  Rate: "Rate",
   Frequency: "Frequency",
   Daily: "Daily",
   Weekly: "Weekly",
@@ -107,7 +107,7 @@ const Finances = {
 }
 
 
-export default Other = {
+const Other = {
   MorningGreeting: "Who's here today?",
   AfternoonGreeting: "Has anyone left?",
   EveningGreeting: "Did you buy anything today?",

@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { TextInput, Text, TouchableOpacity, View } from 'react-native'
-import { Icon } from 'react-native-elements'
 import { Styles } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import { SignInCaregiver } from '../utilities/auth';
 import Loading from '../components/Loading';
-import { GetCaregiversDB } from '../utilities/dbstore';
+import { GetCaregiversDB, UpdateCaregiverDB, ListDB } from '../utilities/dbstore';
 import { CreateCaregiver } from '../utilities/localstore';
 import Backdrop from '../components/Backdrop';
 import Language from '../languages'
 import SecureInput from '../components/SecureInput';
+import { CAREGIVER } from '../constants/Store';
 
 
 const SignIn = (props) => {
@@ -23,7 +23,8 @@ const SignIn = (props) => {
 
     await SignInCaregiver(username, password)
 
-    const caregiversResp = await GetCaregiversDB()
+    // const caregiversResp = await GetCaregiversDB()
+    const caregiversResp = await ListDB(CAREGIVER)
     const caregivers = caregiversResp["data"]["listCaregivers"]["items"]
 
     for (const caregiver of caregivers) {
@@ -32,6 +33,8 @@ const SignIn = (props) => {
         break
       }
     }
+
+
 
     setLoading(false)
 

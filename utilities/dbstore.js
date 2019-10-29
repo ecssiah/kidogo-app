@@ -1,29 +1,34 @@
 import { API, graphqlOperation } from "aws-amplify";
-import { createCaregiver } from "../src/graphql/mutations";
-import { listCaregivers } from "../src/graphql/queries";
+import {
+  QueryGetTypes,
+  QueryListTypes,
+  MutationTypes,
+} from "../constants/Store";
 
-export const CreateCaregiverDB = async (caregiverData) => {
+
+export const GetDB = async (type, id) => {
+  await API.graphql(graphqlOperation(QueryGetTypes[type], { id }))
+}
+
+
+export const ListDB = async (type) => {
+  await API.graphql(graphqlOperation(QueryListTypes[type]))
+}
+
+
+export const CreateDB = async (type, data) => {
   await API.graphql(
     graphqlOperation(
-      createCaregiver,
-      { input: { ...caregiverData } }
-    ),
-  )
-}
-
-
-export const GetCaregiversDB = async () => {
-  const caregiversResp = await API.graphql(
-    graphqlOperation(
-      listCaregivers
+      MutationTypes[type], { input: { ...data } }
     )
   )
-
-  return caregiversResp
 }
 
 
-export const UpdateDB = async (localData) => {
-
-
+export const UpdateDB = async (type, update) => {
+  await API.graphql(
+    graphqlOperation(
+      MutationTypes[type], { input: { ...update } }
+    )
+  )
 }

@@ -10,6 +10,7 @@ type Caregiver @model {
   location: String!
   address: String!
   city: String!
+  lastUpdate: String!
   accounts: [Account] @connection(name: "CaregiverAccounts")
 }
 

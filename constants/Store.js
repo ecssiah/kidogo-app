@@ -48,6 +48,7 @@ export const ACCOUNTS = 'Accounts'
 
 export const QueryGetTypes = {
   [CAREGIVER]: getCaregiver,
+  [ACCOUNTS]: getAccount,
   [GUARDIANS]: getGuardian,
   [CONTACTS]: getContact,
   [CHILDREN]: getChild,
@@ -56,12 +57,12 @@ export const QueryGetTypes = {
   [EXPENSES]: getExpense,
   [PAYMENTS]: getPayment,
   [QUESTIONS]: getQuestion,
-  [ACCOUNTS]: getAccount,
 }
 
 
 export const QueryListTypes = {
   [CAREGIVER]: listCaregivers,
+  [ACCOUNTS]: listAccounts,
   [GUARDIANS]: listGuardians,
   [CONTACTS]: listContacts,
   [CHILDREN]: listChilds,
@@ -70,12 +71,12 @@ export const QueryListTypes = {
   [EXPENSES]: listExpenses,
   [PAYMENTS]: listPayments,
   [QUESTIONS]: listQuestions,
-  [ACCOUNTS]: listAccounts,
 }
 
 
 export const MutationTypes = {
   [CAREGIVER]: createCaregiver,
+  [ACCOUNTS]: createAccount,
   [GUARDIANS]: createGuardian,
   [CONTACTS]: createContact,
   [CHILDREN]: createChild,
@@ -84,5 +85,4 @@ export const MutationTypes = {
   [EXPENSES]: createExpense,
   [PAYMENTS]: createPayment,
   [QUESTIONS]: createQuestion,
-  [ACCOUNTS]: createAccount,
 }

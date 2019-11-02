@@ -32,3 +32,8 @@ export const UpdateDB = async (type, update) => {
     )
   )
 }
+
+
+export const UploadData = async (userData) => {
+  console.log(userData)
+}

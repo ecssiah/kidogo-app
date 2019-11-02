@@ -1,14 +1,37 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { Styles } from '../constants/Style';
 import Language from '../languages'
 
 import Backdrop from '../components/Backdrop';
+import { UploadData } from '../utilities/dbstore';
 
 
 const Upload = (props) => {
-  const onUpload = async () => {
+  const accounts = useSelector(state => state.accounts)
+  const children = useSelector(state => state.children)
+  const guardians = useSelector(state => state.guardians)
+  const contacts = useSelector(state => state.contacts)
+  const finances = useSelector(state => state.finances)
+  const payments = useSelector(state => state.payments)
+  const expenses = useSelector(state => state.expenses)
+  const questions = useSelector(state => state.questions)
 
+
+  const onUpload = async () => {
+    const userData = {
+      accounts,
+      children,
+      guardians,
+      contacts,
+      finances,
+      payments,
+      expenses,
+      questions,
+    }
+
+    await UploadData(userData)
   }
 
 

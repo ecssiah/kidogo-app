@@ -15,6 +15,7 @@ import CentreEntry from '../components/CentreEntry'
 import Message from '../components/Message';
 import Backdrop from '../components/Backdrop';
 import Language from '../languages'
+import { GetShortDate } from '../utilities/dates';
 
 
 const SignUp = (props) => {
@@ -54,6 +55,7 @@ const SignUp = (props) => {
 
       const caregiverData = {
         id: uuid(),
+        lastUpdate: null,
         username,
         password,
         email,

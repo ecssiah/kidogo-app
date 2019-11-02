@@ -14,6 +14,7 @@ export const onCreateCaregiver = `subscription OnCreateCaregiver {
     location
     address
     city
+    lastUpdate
     accounts {
       items {
         id
@@ -40,6 +41,7 @@ export const onUpdateCaregiver = `subscription OnUpdateCaregiver {
     location
     address
     city
+    lastUpdate
     accounts {
       items {
         id
@@ -66,6 +68,7 @@ export const onDeleteCaregiver = `subscription OnDeleteCaregiver {
     location
     address
     city
+    lastUpdate
     accounts {
       items {
         id
@@ -98,6 +101,7 @@ export const onCreateAccount = `subscription OnCreateAccount {
       location
       address
       city
+      lastUpdate
       accounts {
         nextToken
       }
@@ -196,6 +200,7 @@ export const onUpdateAccount = `subscription OnUpdateAccount {
       location
       address
       city
+      lastUpdate
       accounts {
         nextToken
       }
@@ -294,6 +299,7 @@ export const onDeleteAccount = `subscription OnDeleteAccount {
       location
       address
       city
+      lastUpdate
       accounts {
         nextToken
       }
@@ -394,6 +400,7 @@ export const onCreateChild = `subscription OnCreateChild {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -449,6 +456,7 @@ export const onUpdateChild = `subscription OnUpdateChild {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -504,6 +512,7 @@ export const onDeleteChild = `subscription OnDeleteChild {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -559,6 +568,7 @@ export const onCreateGuardian = `subscription OnCreateGuardian {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -616,6 +626,7 @@ export const onUpdateGuardian = `subscription OnUpdateGuardian {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -673,6 +684,7 @@ export const onDeleteGuardian = `subscription OnDeleteGuardian {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -730,6 +742,7 @@ export const onCreateContact = `subscription OnCreateContact {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -783,6 +796,7 @@ export const onUpdateContact = `subscription OnUpdateContact {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -836,6 +850,7 @@ export const onDeleteContact = `subscription OnDeleteContact {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -889,6 +904,7 @@ export const onCreateAttendance = `subscription OnCreateAttendance {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -941,6 +957,7 @@ export const onUpdateAttendance = `subscription OnUpdateAttendance {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -993,6 +1010,7 @@ export const onDeleteAttendance = `subscription OnDeleteAttendance {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1045,6 +1063,7 @@ export const onCreateFinances = `subscription OnCreateFinances {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1097,6 +1116,7 @@ export const onUpdateFinances = `subscription OnUpdateFinances {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1149,6 +1169,7 @@ export const onDeleteFinances = `subscription OnDeleteFinances {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1201,6 +1222,7 @@ export const onCreatePayment = `subscription OnCreatePayment {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1253,6 +1275,7 @@ export const onUpdatePayment = `subscription OnUpdatePayment {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1305,6 +1328,7 @@ export const onDeletePayment = `subscription OnDeletePayment {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1357,6 +1381,7 @@ export const onCreateExpense = `subscription OnCreateExpense {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1409,6 +1434,7 @@ export const onUpdateExpense = `subscription OnUpdateExpense {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1461,6 +1487,7 @@ export const onDeleteExpense = `subscription OnDeleteExpense {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1513,6 +1540,7 @@ export const onCreateQuestion = `subscription OnCreateQuestion {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1564,6 +1592,7 @@ export const onUpdateQuestion = `subscription OnUpdateQuestion {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1615,6 +1644,7 @@ export const onDeleteQuestion = `subscription OnDeleteQuestion {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken

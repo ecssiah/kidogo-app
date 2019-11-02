@@ -14,6 +14,7 @@ export const getCaregiver = `query GetCaregiver($id: ID!) {
     location
     address
     city
+    lastUpdate
     accounts {
       items {
         id
@@ -45,6 +46,7 @@ export const listCaregivers = `query ListCaregivers(
       location
       address
       city
+      lastUpdate
       accounts {
         nextToken
       }
@@ -72,6 +74,7 @@ export const getAccount = `query GetAccount($id: ID!) {
       location
       address
       city
+      lastUpdate
       accounts {
         nextToken
       }
@@ -175,6 +178,7 @@ export const listAccounts = `query ListAccounts(
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -226,6 +230,7 @@ export const getChild = `query GetChild($id: ID!) {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -306,6 +311,7 @@ export const getGuardian = `query GetGuardian($id: ID!) {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -390,6 +396,7 @@ export const getContact = `query GetContact($id: ID!) {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -466,6 +473,7 @@ export const getAttendance = `query GetAttendance($id: ID!) {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -540,6 +548,7 @@ export const getFinances = `query GetFinances($id: ID!) {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -614,6 +623,7 @@ export const getPayment = `query GetPayment($id: ID!) {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -688,6 +698,7 @@ export const getExpense = `query GetExpense($id: ID!) {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -762,6 +773,7 @@ export const getQuestion = `query GetQuestion($id: ID!) {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken

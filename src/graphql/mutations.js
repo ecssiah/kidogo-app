@@ -14,6 +14,7 @@ export const createCaregiver = `mutation CreateCaregiver($input: CreateCaregiver
     location
     address
     city
+    lastUpdate
     accounts {
       items {
         id
@@ -40,6 +41,7 @@ export const updateCaregiver = `mutation UpdateCaregiver($input: UpdateCaregiver
     location
     address
     city
+    lastUpdate
     accounts {
       items {
         id
@@ -66,6 +68,7 @@ export const deleteCaregiver = `mutation DeleteCaregiver($input: DeleteCaregiver
     location
     address
     city
+    lastUpdate
     accounts {
       items {
         id
@@ -98,6 +101,7 @@ export const createAccount = `mutation CreateAccount($input: CreateAccountInput!
       location
       address
       city
+      lastUpdate
       accounts {
         nextToken
       }
@@ -196,6 +200,7 @@ export const updateAccount = `mutation UpdateAccount($input: UpdateAccountInput!
       location
       address
       city
+      lastUpdate
       accounts {
         nextToken
       }
@@ -294,6 +299,7 @@ export const deleteAccount = `mutation DeleteAccount($input: DeleteAccountInput!
       location
       address
       city
+      lastUpdate
       accounts {
         nextToken
       }
@@ -394,6 +400,7 @@ export const createChild = `mutation CreateChild($input: CreateChildInput!) {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -449,6 +456,7 @@ export const updateChild = `mutation UpdateChild($input: UpdateChildInput!) {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -504,6 +512,7 @@ export const deleteChild = `mutation DeleteChild($input: DeleteChildInput!) {
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -559,6 +568,7 @@ export const createGuardian = `mutation CreateGuardian($input: CreateGuardianInp
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -616,6 +626,7 @@ export const updateGuardian = `mutation UpdateGuardian($input: UpdateGuardianInp
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -673,6 +684,7 @@ export const deleteGuardian = `mutation DeleteGuardian($input: DeleteGuardianInp
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -730,6 +742,7 @@ export const createContact = `mutation CreateContact($input: CreateContactInput!
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -783,6 +796,7 @@ export const updateContact = `mutation UpdateContact($input: UpdateContactInput!
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -836,6 +850,7 @@ export const deleteContact = `mutation DeleteContact($input: DeleteContactInput!
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -889,6 +904,7 @@ export const createAttendance = `mutation CreateAttendance($input: CreateAttenda
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -941,6 +957,7 @@ export const updateAttendance = `mutation UpdateAttendance($input: UpdateAttenda
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -993,6 +1010,7 @@ export const deleteAttendance = `mutation DeleteAttendance($input: DeleteAttenda
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1045,6 +1063,7 @@ export const createFinances = `mutation CreateFinances($input: CreateFinancesInp
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1097,6 +1116,7 @@ export const updateFinances = `mutation UpdateFinances($input: UpdateFinancesInp
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1149,6 +1169,7 @@ export const deleteFinances = `mutation DeleteFinances($input: DeleteFinancesInp
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1201,6 +1222,7 @@ export const createPayment = `mutation CreatePayment($input: CreatePaymentInput!
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1253,6 +1275,7 @@ export const updatePayment = `mutation UpdatePayment($input: UpdatePaymentInput!
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1305,6 +1328,7 @@ export const deletePayment = `mutation DeletePayment($input: DeletePaymentInput!
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1357,6 +1381,7 @@ export const createExpense = `mutation CreateExpense($input: CreateExpenseInput!
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1409,6 +1434,7 @@ export const updateExpense = `mutation UpdateExpense($input: UpdateExpenseInput!
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1461,6 +1487,7 @@ export const deleteExpense = `mutation DeleteExpense($input: DeleteExpenseInput!
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1513,6 +1540,7 @@ export const createQuestion = `mutation CreateQuestion($input: CreateQuestionInp
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1564,6 +1592,7 @@ export const updateQuestion = `mutation UpdateQuestion($input: UpdateQuestionInp
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken
@@ -1615,6 +1644,7 @@ export const deleteQuestion = `mutation DeleteQuestion($input: DeleteQuestionInp
         location
         address
         city
+        lastUpdate
       }
       children {
         nextToken

@@ -10,7 +10,6 @@ import {
 import {
   CreateCaregiver, InitDatabase, UpdateStore
 } from '../utilities/localstore';
-import { CreateCaregiverDB } from '../utilities/dbstore';
 import bcrypt from 'react-native-bcrypt'
 
 
@@ -19,6 +18,8 @@ import Backdrop from '../components/Backdrop';
 import Language from '../languages'
 import Message from '../components/Message';
 import Loading from '../components/Loading';
+import { CreateDB } from '../utilities/dbstore';
+import { CAREGIVER } from '../constants/Store';
 
 
 const Confirm = (props) => {
@@ -58,7 +59,7 @@ const Confirm = (props) => {
         caregiverData.password = hashedPassword
 
         await CreateCaregiver(caregiverData)
-        await CreateCaregiverDB(caregiverData)
+        await CreateDB(CAREGIVER, caregiverData)
         await InitDatabase(dispatch)
         await UpdateStore(dispatch)
 
@@ -66,7 +67,10 @@ const Confirm = (props) => {
 
         props.navigation.navigate('Dash')
       } catch (error) {
-        setError(error)
+        const errors = error.errors.map((error) => error.message)
+        const errorText = errors.join('\n')
+
+        setError(errorText)
         setLoading(false)
       }
     } else {

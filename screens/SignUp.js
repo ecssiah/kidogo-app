@@ -43,7 +43,6 @@ const SignUp = (props) => {
       setError('Password confirmation does not match')
       setPassword('')
       setPasswordConfirm('')
-
       setLoading(false)
     } else {
       const userData = {
@@ -55,7 +54,7 @@ const SignUp = (props) => {
 
       const caregiverData = {
         id: uuid(),
-        lastUpdate: null,
+        lastUpdate: GetShortDate(),
         username,
         password,
         email,

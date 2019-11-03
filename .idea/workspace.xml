@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a223f0-b68a-4795-bafe-217fcd7b542b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/kidogoapp/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/api/kidogoapp/schema.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/Store.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Confirm.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Confirm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/SignIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/SignIn.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/SignUp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Upload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/queries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/schema.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/subscriptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/subscriptions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilities/dbstore.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/dbstore.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +17,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="111" />
-    <option name="y" value="54" />
+    <option name="x" value="78" />
+    <option name="y" value="69" />
     <option name="width" value="1257" />
     <option name="height" value="724" />
   </component>
@@ -80,7 +74,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="111" y="54" width="1257" height="724" extended-state="0" />
+    <frame x="78" y="69" width="1257" height="724" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.37366256" />

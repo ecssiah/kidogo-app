@@ -10,7 +10,6 @@ import { SignedIn } from '../utilities/auth';
 import Spacer from '../components/Spacer'
 import Message from '../components/Message';
 import Backdrop from '../components/Backdrop';
-import { GetCaregiversDB, UpdateCaregiverDB } from '../utilities/dbstore';
 
 
 const Home = (props) => {

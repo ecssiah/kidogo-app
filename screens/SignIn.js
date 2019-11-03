@@ -4,7 +4,7 @@ import { Styles } from '../constants/Style';
 import Spacer from '../components/Spacer';
 import { SignInCaregiver } from '../utilities/auth';
 import Loading from '../components/Loading';
-import { GetCaregiversDB, UpdateCaregiverDB, ListDB } from '../utilities/dbstore';
+import { ListDB } from '../utilities/dbstore';
 import { CreateCaregiver } from '../utilities/localstore';
 import Backdrop from '../components/Backdrop';
 import Language from '../languages'
@@ -23,7 +23,6 @@ const SignIn = (props) => {
 
     await SignInCaregiver(username, password)
 
-    // const caregiversResp = await GetCaregiversDB()
     const caregiversResp = await ListDB(CAREGIVER)
     const caregivers = caregiversResp["data"]["listCaregivers"]["items"]
 
@@ -33,8 +32,6 @@ const SignIn = (props) => {
         break
       }
     }
-
-
 
     setLoading(false)
 

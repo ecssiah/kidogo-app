@@ -3,16 +3,26 @@ import {
   QueryGetTypes,
   QueryListTypes,
   MutationTypes,
+  CAREGIVER,
 } from "../constants/Store";
+import { GetCaregiver } from "./localstore";
 
 
 export const GetDB = async (type, id) => {
-  await API.graphql(graphqlOperation(QueryGetTypes[type], { id }))
+  return await API.graphql(
+    graphqlOperation(
+      QueryGetTypes[type], { id }
+    )
+  )
 }
 
 
-export const ListDB = async (type) => {
-  await API.graphql(graphqlOperation(QueryListTypes[type]))
+export const ListDB = async (type, filter, limit) => {
+  return await API.graphql(
+    graphqlOperation(
+      QueryListTypes[type],
+    )
+  )
 }
 
 
@@ -35,5 +45,10 @@ export const UpdateDB = async (type, update) => {
 
 
 export const UploadData = async (userData) => {
+  const caregiver = await GetCaregiver()
+  const caregivers = await ListDB(CAREGIVER)
+
+  console.log("DB: ", caregivers)
+  console.log(caregiver)
   console.log(userData)
 }

@@ -54,7 +54,7 @@ const SignUp = (props) => {
 
       const caregiverData = {
         id: uuid(),
-        lastUpdate: GetShortDate(),
+        lastUpdate: GetShortDate(-1),
         username,
         password,
         email,

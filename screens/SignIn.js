@@ -26,6 +26,8 @@ const SignIn = (props) => {
     const caregiversResp = await ListDB(CAREGIVER)
     const caregivers = caregiversResp["data"]["listCaregivers"]["items"]
 
+    console.log(caregivers)
+
     for (const caregiver of caregivers) {
       if (caregiver.username === username) {
         await CreateCaregiver(caregiver)
